@@ -10,6 +10,16 @@ Verktyg för att kunna enkelt skapa flera vyer likt hur vi idag är vana vid att
 
 * https://reactnavigation.org/
 
+## Testramverk
+
+### Jest
+
+Testramverk för JavaScript som rekommenderas i dokumentation för React Native
+
+#### Länkar
+
+* https://jestjs.io/
+
 ## APIer
 
 ### OAuth
