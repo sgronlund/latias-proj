@@ -30,4 +30,5 @@ npm start
 
 Then Expo will launch in your browser and you can choose between previewing in a browser or using a iOS/Android emulator.
 If you choose the browser your console should look something like this:
+
 ![image](https://user-images.githubusercontent.com/55285451/113585858-1120f780-962d-11eb-81f5-9c4978737d20.png)
