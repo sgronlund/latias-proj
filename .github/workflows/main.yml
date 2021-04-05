@@ -8,6 +8,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: npm ci
+    - run: cd src && npm ci
     - run: npm run build --if-present
     - run: npm test
