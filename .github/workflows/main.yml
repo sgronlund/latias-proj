@@ -9,4 +9,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: cd src && npm ci
-    - run: npm test
+    - run: cd src && npm test
