@@ -10,7 +10,8 @@ app.use(cors());
 /// Creates an HTTP server using ExpressJS
 var http = require('http').createServer(app);
 const PORT = 8080;
-var io = require('socket.io')(http);
+/// The cors: ... is also required to bypass the restriction stated above
+var io = require('socket.io')(http, {cors: {origin:"*"}});
 
 /// Starts listening on the chosen port
 http.listen(PORT, () => {
