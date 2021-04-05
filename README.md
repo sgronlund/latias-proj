@@ -2,7 +2,7 @@
 
 ## First time
 
-When you've successfully cloned this repo run the following command :
+When you've successfully cloned this repo, enter the src folder and run the following command :
 ```
 npm ci
 ``` 
