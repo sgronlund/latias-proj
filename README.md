@@ -23,7 +23,7 @@ If everything is working your terminal should look something like this:
 
 ### Client
 
-To connect a client simply run:
+To connect a client, enter the src folder from another terminal and simply run:
 ```bash
 npm start
 ```
