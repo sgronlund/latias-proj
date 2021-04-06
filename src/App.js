@@ -16,18 +16,25 @@ export default function App() {
       <TextInput
         style={{height: 40}}
         placeholder="Username"
-        onChangeText={username => setUsername(username)}
+        onChangeText={username => setUsername(username)} //Can do this in Register/Login function
       />
       <TextInput
         style={{height: 40}}
         placeholder="Password"
         onChangeText={password => setPassword(password)}
       />
-      <Button title="Register" onPress = { () => {Register(username, password)}}/>
-      <Button title="Login" onPress ={ () => {Login(username, password)}}/>
+      <Button title="Register" onPress = {() => {Register(username, password)}}/>
+      <Button title="Login" onPress = {() => {Login(username, password)}}/>
       <StatusBar style="auto" />
     </View>
   );
+}
+
+// Function that initializes sockets
+function initSockets(socket) {
+  socket.on('connection', () => {console.log(`I'm connected with the back-end`);});
+  socket.on('success', () => {console.log("logged in")/*TODO*/});
+  socket.on('failure', () => {console.log("fail")/*TODO*/});
 }
 
 // Registers the user in the database
@@ -45,7 +52,7 @@ function Login(username, password) {
 // Connects the user to the server
 function Connect() {
   var socket = socketClient ("http://192.168.1.150:8080");
-  socket.on('connection', () => {console.log(`I'm connected with the back-end`);});
+  initSockets(socket);
   return socket;
 }
 

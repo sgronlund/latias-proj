@@ -12,16 +12,12 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "better-sqlite3": "^7.1.4",
-    "cors": "^2.8.5",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
-    "express": "^4.17.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-web": "~0.13.12",
-    "socket.io": "^4.0.1",
     "socket.io-client": "^4.0.1",
     "ws": "^1.1.5"
   },
