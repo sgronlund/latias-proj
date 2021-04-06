@@ -1,5 +1,7 @@
 # latias-proj
 
+The backend and all its functionality are located [here](https://github.com/sgronlund/latias-backend)
+
 ## First time
 
 When you've successfully cloned this repo, enter the src folder and run the following command :
