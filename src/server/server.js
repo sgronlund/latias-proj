@@ -1,4 +1,4 @@
-var app = require('express')();
+var app = require('express')('192.168.1.150');
 
 const Database = require('better-sqlite3');
 const db = new Database('database.db', { verbose: console.log });
@@ -34,18 +34,25 @@ client.on('connection', (socket) => {
 function clientRegister(username, password) {
     const table = db.prepare('CREATE TABLE IF NOT EXISTS users (username varchar(255), password varchar(255))');
     table.run();
+
+    const checkUser = db.prepare('SELECT * FROM users WHERE username = ?');
+    var user = checkUser.get(username);
+
+    if(user != undefined) {return console.log("\nUsername is busy!")}
+    
     const addUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)');
     addUser.run(username, password);
 }
 
 function clientLogin(username, password) {
+    const table = db.prepare('CREATE TABLE IF NOT EXISTS users (username varchar(255), password varchar(255))');
+    table.run();
+
     const checkUser = db.prepare('SELECT * FROM users WHERE username = ? AND password = ?');
     var user = checkUser.get(username, password);
-    if(user == undefined) { //If user does not exist
-        console.log("\nFailed login\n");
-        return;
-        //TODO: Should the client disconnect?
-    } 
+
+    if(user == undefined) {return console.log("\nFailed login\n")} 
+
     console.log("\nLOGIN SUCCESSFUL!");
     console.log("username:" + user.username);
     console.log("password:" + user.password + "\n");
