@@ -1,5 +1,8 @@
 var app = require('express')();
 
+const Database = require('better-sqlite3');
+const db = new Database('database.db', { verbose: console.log });
+
 /** 
  * CORS is a mechanism which restricts us from hosting both the client and the server.
  * The package cors allows us the bypass this
@@ -11,7 +14,7 @@ app.use(cors());
 var http = require('http').createServer(app);
 const PORT = 8080;
 /// The cors: ... is also required to bypass the restriction stated above
-var io = require('socket.io')(http, {cors: {origin:"*"}});
+var client = require('socket.io')(http, {cors: {origin:"*"}});
 
 /// Starts listening on the chosen port
 http.listen(PORT, () => {
@@ -19,13 +22,32 @@ http.listen(PORT, () => {
 });
 
 
-/// Determines the behavious for when a client connects to our socket.
-io.on('connection', (socket) => { 
-    // Logs in the server that a client has connected
-    console.log('new client connected');
-    socket.emit('connection', null);
-    // If the socket receives btnpress from a client do the following
-    socket.on('btnpress', () => {
-        console.log("hello");
-    })
+/// Determines the behaviour for when a client connects to our socket.
+client.on('connection', (socket) => {
+    console.log("new client connected");
+    // If the socket receives submit from a client, add submitted
+    // username and password to the database
+    socket.on('register', (username, password) => {clientRegister(username, password);});
+    socket.on('login', (username, password) => {clientLogin(username, password);});
 });
+
+function clientRegister(username, password) {
+    const table = db.prepare('CREATE TABLE IF NOT EXISTS users (username varchar(255), password varchar(255))');
+    table.run();
+    const addUser = db.prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+    addUser.run(username, password);
+}
+
+function clientLogin(username, password) {
+    const checkUser = db.prepare('SELECT * FROM users WHERE username = ? AND password = ?');
+    var user = checkUser.get(username, password);
+    if(user == undefined) { //If user does not exist
+        console.log("\nFailed login\n");
+        return;
+        //TODO: Should the client disconnect?
+    } 
+    console.log("\nLOGIN SUCCESSFUL!");
+    console.log("username:" + user.username);
+    console.log("password:" + user.password + "\n");
+    //TODO: after login
+}
