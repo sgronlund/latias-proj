@@ -1,4 +1,4 @@
-var app = require('express')('192.168.1.150');
+var app = require('express')();
 
 const Database = require('better-sqlite3');
 const db = new Database('database.db', { verbose: console.log });
