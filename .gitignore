@@ -1,3 +1,5 @@
+src/server/.db-journal
+node_modules/**/*
 src/node_modules/**/*
 src/.expo/*
 src/.vscode/*
