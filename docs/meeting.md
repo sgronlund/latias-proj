@@ -26,3 +26,7 @@ Under mötet valde vi att dela upp oss i tre grupper, två som utvecklar två ol
 Denna uppdelning skall preliminärt vara denna vecka och förhoppningsvis utvecklas under veckan till nya arbetsområden så att projektet faktiskt kan sätta igång.
 
 Alla kunde för övrigt närvaro vid mötet och gruppen planerar att ha ett kortare standupmöte imorgon den vanliga tiden.
+
+## Arbetsmöte 06/04/21
+
+Kortare möte där vi diskuterade och visade de olika designprototyperna så som de ser ut nu. Det nämndes även lite kort vad som hade hänt på back-end sidan och vi har valt att använda oss av JavaScript som back-end språk samt SQLite (troligtvis) som vår databas. Vi planerar att prata mer om designen och möjligtvis ta ett beslut då om vilken av designerna som vi vill fortsätta med.
