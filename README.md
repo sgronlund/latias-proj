@@ -2,7 +2,7 @@
 
 ## First time
 
-When you've successfully cloned this repo run the following command :
+When you've successfully cloned this repo, enter the src folder and run the following command :
 ```
 npm ci
 ``` 
@@ -23,7 +23,7 @@ If everything is working your terminal should look something like this:
 
 ### Client
 
-To connect a client simply run:
+To connect a client, enter the src folder from another terminal and simply run:
 ```bash
 npm start
 ```
