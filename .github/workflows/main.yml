@@ -8,5 +8,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: cd src && npm ci
+    - run: cd src && npm install
     - run: cd src && npm test
