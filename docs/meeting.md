@@ -30,3 +30,10 @@ Alla kunde för övrigt närvaro vid mötet och gruppen planerar att ha ett kort
 ## Arbetsmöte 06/04/21
 
 Kortare möte där vi diskuterade och visade de olika designprototyperna så som de ser ut nu. Det nämndes även lite kort vad som hade hänt på back-end sidan och vi har valt att använda oss av JavaScript som back-end språk samt SQLite (troligtvis) som vår databas. Vi planerar att prata mer om designen och möjligtvis ta ett beslut då om vilken av designerna som vi vill fortsätta med.
+
+## Arbetsmöte 07/04/21
+
+Kortare möte där vi diskuterade och visade hur långt vi har kommit med prototypen som innebär kommunikation mellan client och server samt valde design. Vår design kommer vara en kombination av den prototyp som Kimiya och Fanny utvecklade.
+Under mötet diskuterade vi även exakta upplägget av hur funktionaliteten hos de olika quizzen, ett förslag på detta kommer skrivas som kommer att diskuteras på morgondagens möte.
+
+Alla förutom Richard närvarade på mötet.
