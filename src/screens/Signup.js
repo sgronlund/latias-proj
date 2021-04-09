@@ -24,14 +24,9 @@ class Signup extends React.Component {
     this.setState({ email: text});
   }
 
-  handleRegister = (username, password) => {
+  handleRegister = (username, password, email) => {
     var socket = this.connect();
-    socket.emit('register', username, password);
-  }
-
-  handleLogin = (username, password) => {
-    var socket = this.connect();
-    socket.emit('login', username, password);
+    socket.emit('register', username, password, email);
   }
 
   connect() {
@@ -42,7 +37,7 @@ class Signup extends React.Component {
 
   initSockets(socket) {
     socket.on('registerSuccess', () => {alert("Register successful!")});
-    socket.on('registerFailure', () => {alert("Username busy!")});
+    socket.on('registerFailure', () => {alert("Username or email busy!")});
     socket.on('loginSuccess', () => {
       alert("Login successful!")
       this.isLoggedIn = true;
@@ -71,11 +66,11 @@ class Signup extends React.Component {
                 <Text style = {styleSheets.LoginText}>Email:</Text>
                 <TextInput
                   style={styleSheets.Input}
-                  placeholder="your password"
+                  placeholder="your email"
                   onChangeText={this.handleEmail}
                 />
               </View>
-              <TouchableOpacity style = {styleSheets.BlueButton} onPress= {() => this.handleRegister(this.state.username, this.state.password)}>
+              <TouchableOpacity style = {styleSheets.BlueButton} onPress= {() => this.handleRegister(this.state.username, this.state.password, this.state.email)}>
                 <Text style = {styleSheets.ButtonText}>REGISTER</Text>
               </TouchableOpacity>
             </SafeAreaView>
