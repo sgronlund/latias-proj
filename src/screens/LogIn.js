@@ -3,7 +3,6 @@ import { TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View, Text } fro
 import socketClient from "socket.io-client";
 import QuestionButton from './components/QuestionButton'
 import theme from '../styles/themes'
-import TitleContainer from './components/TitleContainer'
 import styleSheets from '../styles/StyleSheets'
 import Toolbar from './components/Toolbar'
 

@@ -4,6 +4,7 @@ import theme from '../styles/themes'
 import TitleContainer from './components/TitleContainer'
 import QuestionButton from './components/QuestionButton'
 import styleSheets from '../styles/StyleSheets'
+import { withNavigation } from 'react-navigation'
 
 class HomeScreen extends React.Component {
     constructor(props) {
@@ -79,4 +80,4 @@ const styles = StyleSheet.create(
     }
     });
   
-export default HomeScreen;
+export default withNavigation(HomeScreen);
