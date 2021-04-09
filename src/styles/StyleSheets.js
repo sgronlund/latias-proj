@@ -1,7 +1,5 @@
 import {StyleSheet} from "react-native";
 
-//hej
-
 
 export const styleSheets = StyleSheet.create({
     background: {

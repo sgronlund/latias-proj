@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState} from 'react';
-import {styleSheets} from "../styleSheets/StyleSheets";
+import {styleSheets} from "../styles/StyleSheets";
 import { StyleSheet, Text, View, Button, TextInput, SafeAreaView } from 'react-native';
 import socketClient, { io }  from "socket.io-client";
 //kolla upp props
