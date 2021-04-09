@@ -1,14 +1,15 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput, Button, Text } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
 import socketClient from "socket.io-client";
-
-//Fattar inte hur detta fungerar
-//Hittade på react native docs
+import QuestionButton from './components/QuestionButton.js'
+import theme from '../styles/themes.js'
+import TitleContainer from './components/TitleContainer.js'
+import styleSheets from '../styles/StyleSheets.js'
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: ''};
+    this.state = {username: '', password: '', email: ''};
   }
 
   handleUsername = (text) => {
@@ -17,6 +18,10 @@ class Signup extends React.Component {
 
   handlePassword = (text) => {
     this.setState({ password: text});
+  }
+
+  handleEmail = (text) => {
+    this.setState({ email: text});
   }
 
   handleRegister = (username, password) => {
@@ -47,32 +52,47 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          onChangeText={this.handleUsername}
-          placeholder="your username"
-          //value={text}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={this.handlePassword}
-          //value={number}
-          placeholder="your password"
-          keyboardType="numeric"
-        />
-        <Button title="Register" onPress= {() => this.handleRegister(this.state.username, this.state.password)}/>
-      </SafeAreaView>
+      <SafeAreaView style = {styleSheets.MainContainer}>
+              <QuestionButton/>
+              <TitleContainer/>
+              <View style = {styles.LoginContainer}>
+                <Text style = {styleSheets.LoginText}>Username:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your username"
+                  onChangeText={this.handleUsername}
+                />
+                <Text style = {styleSheets.LoginText}>Password:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your password"
+                  onChangeText={this.handlePassword}
+                />
+                <Text style = {styleSheets.LoginText}>Email:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your password"
+                  onChangeText={this.handleEmail}
+                />
+              </View>
+              <TouchableOpacity style = {styleSheets.BlueButton} onPress= {() => this.handleRegister(this.state.username, this.state.password)}>
+                <Text style = {styleSheets.ButtonText}>REGISTER</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-  },
+  LoginContainer: 
+    {   
+        width: '95%',
+        height: '40%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: theme.DARK_PURPLE,
+        borderRadius: theme.ROUNDING_SMALL
+    },
 });
 
 export default Signup;

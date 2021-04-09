@@ -6,7 +6,7 @@ class TitleContainer extends React.Component {
     render() {
         return (
             <View style = {styles.TitleContainer}>
-                <Text style = {styles.TitleText}>HORT</Text>
+                <Text style = {styles.TitleText}>REAL DEAL</Text>
                 <Text style = {styles.PurpleLine}>─────────</Text>
             </View>
         );
@@ -21,15 +21,18 @@ const styles = StyleSheet.create(
         alignItems: 'center',
         backgroundColor: '#545985',
         width: '95%',
-        height: '35%',
+        height: '30%',
         borderRadius: theme.ROUNDING_SMALL,
-        margin: theme.MARGIN_MEDIUM
+        margin: theme.MARGIN_LARGE
     },
     TitleText:
     {
         fontSize: theme.FONT_SIZE_LARGE,
         color: 'white',
-        fontFamily: theme.DEFAULT_FONT
+        fontFamily: theme.DEFAULT_FONT,
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: 1, height: 1},
+        textShadowRadius: 5,
     },
     PurpleLine:
     {

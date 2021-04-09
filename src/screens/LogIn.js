@@ -1,8 +1,10 @@
 import React from "react";
-import { TextInput, SafeAreaView, View, StyleSheet, Button } from "react-native";
+import { TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import socketClient from "socket.io-client";
-
-
+import QuestionButton from './components/QuestionButton.js'
+import theme from '../styles/themes.js'
+import TitleContainer from './components/TitleContainer.js'
+import styleSheets from '../styles/StyleSheets.js'
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -38,31 +40,49 @@ class LogIn extends React.Component {
 
     render () {
         return (
-            <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          placeholder="your username"
-          onChangeText={this.handleUsername}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="your password"
-          onChangeText={this.handlePassword}
-        />
-        <Button 
-        title="Login" 
-        onPress= {() => this.handleLogin(this.state.username, this.state.password)}/>
+            <SafeAreaView style = {styleSheets.MainContainer}>
+              <QuestionButton/>
+              <TitleContainer/>
+              <View style = {styles.LoginContainer}>
+                <Text style = {styleSheets.LoginText}>Username:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your username"
+                  onChangeText={this.handleUsername}
+                />
+                <Text style = {styleSheets.LoginText}>Password:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your password"
+                  onChangeText={this.handlePassword}
+                />
+              </View>
+              <TouchableOpacity style = {styleSheets.PinkButton} onPress= {() => this.handleLogin(this.state.username, this.state.password)}>
+                <Text style = {styleSheets.ButtonText}>LOG IN</Text>
+              </TouchableOpacity>
+              <TouchableOpacity><Text style = {styles.ForgotPassword}>forgot password?</Text></TouchableOpacity>
             </SafeAreaView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
+    LoginContainer: 
+    {   
+        width: '95%',
+        height: '30%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: theme.DARK_PURPLE,
+        borderRadius: theme.ROUNDING_SMALL
     },
-  });
+    ForgotPassword:
+    {
+      fontFamily: 'Roboto Slab',
+      fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+      color: '#3E9EFE',
+      textDecorationLine: 'underline'
+    }
+});
 
 export default LogIn;
