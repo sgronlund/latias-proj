@@ -1,15 +1,16 @@
 import React from "react";
-import { Text, View, Button, StyleSheet, TouchableOpacity, Image } from "react-native";
-import themes from "../styles/themes";
+import { Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import theme from '../styles/themes'
+import TitleContainer from './components/TitleContainer.js'
+import QuestionButton from './components/QuestionButton.js'
+import Wallet from './components/Wallet.js'
 
 const HomeScreen = ({ navigation }) => {
     return (
-        <View style = {styles.MainContainer}>
-            <View style = {styles.TitleContainer}>
-                <Text style = {styles.TitleText}>HORT</Text>
-                <Text style = {styles.PurpleLine}>─────────</Text>
-            </View>
+        <SafeAreaView style = {styles.MainContainer}>
+            <TitleContainer/>
+            <QuestionButton/>
+            <Wallet/>
             <TouchableOpacity style = {styles.LoginButton} onPress={() => navigation.navigate('LogIn')}>
                 <Text style = {styles.ButtonText}>LOG IN</Text>
             </TouchableOpacity>
@@ -19,13 +20,12 @@ const HomeScreen = ({ navigation }) => {
             <TouchableOpacity style = {styles.GenericButton} onPress={() => navigation.navigate('Cont')}>
                 <Text style = {styles.ButtonText}>PLAY AS GUEST</Text>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 }; 
 
 const styles = StyleSheet.create(
     {
-     
     MainContainer: 
     {   
         flex: 1,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create(
     PurpleLine:
     {
         color: theme.PINK,
-        fontSize: '40px'
+        fontSize: 40
     },
     LoginButton:
     {
@@ -98,6 +98,5 @@ const styles = StyleSheet.create(
         alignSelf: "flex-end"
     }
     });
-    
   
 export default HomeScreen;
