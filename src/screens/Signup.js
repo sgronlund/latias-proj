@@ -1,10 +1,11 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
 import socketClient from "socket.io-client";
-import QuestionButton from './components/QuestionButton.js'
-import theme from '../styles/themes.js'
-import TitleContainer from './components/TitleContainer.js'
-import styleSheets from '../styles/StyleSheets.js'
+import QuestionButton from './components/QuestionButton'
+import theme from '../styles/themes'
+import TitleContainer from './components/TitleContainer'
+import styleSheets from '../styles/StyleSheets'
+import Toolbar from './components/Toolbar'
 
 class Signup extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Signup extends React.Component {
     return (
       <SafeAreaView style = {styleSheets.MainContainer}>
               <QuestionButton/>
-              <TitleContainer/>
+              <Toolbar/>
               <View style = {styles.LoginContainer}>
                 <Text style = {styleSheets.LoginText}>Username:</Text>
                 <TextInput
@@ -82,11 +83,12 @@ const styles = StyleSheet.create({
   LoginContainer: 
     {   
         width: '95%',
-        height: '40%',
+        height: '35%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: theme.DARK_PURPLE,
-        borderRadius: theme.ROUNDING_SMALL
+        borderRadius: theme.ROUNDING_SMALL,
+        margin: theme.MARGIN_LARGE
     },
 });
 

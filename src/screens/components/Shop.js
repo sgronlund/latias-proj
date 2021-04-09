@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from '../../styles/themes.js'
 
-class Wallet extends React.Component {
+class Shop extends React.Component {
     render() {
         return (
             <TouchableOpacity style = {styles.Container}>
@@ -33,4 +33,4 @@ const styles = StyleSheet.create(
     }
     });
   
-export default Wallet;
+export default Shop;

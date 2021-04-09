@@ -1,10 +1,11 @@
 import React from "react";
 import { TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import socketClient from "socket.io-client";
-import QuestionButton from './components/QuestionButton.js'
-import theme from '../styles/themes.js'
-import TitleContainer from './components/TitleContainer.js'
-import styleSheets from '../styles/StyleSheets.js'
+import QuestionButton from './components/QuestionButton'
+import theme from '../styles/themes'
+import TitleContainer from './components/TitleContainer'
+import styleSheets from '../styles/StyleSheets'
+import Toolbar from './components/Toolbar'
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -37,12 +38,12 @@ class LogIn extends React.Component {
         });
         socket.on('loginFailure', () => {alert("Login failed!")});
         }
-
+      
     render () {
         return (
             <SafeAreaView style = {styleSheets.MainContainer}>
               <QuestionButton/>
-              <TitleContainer/>
+              <Toolbar/>
               <View style = {styles.LoginContainer}>
                 <Text style = {styleSheets.LoginText}>Username:</Text>
                 <TextInput
@@ -74,7 +75,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: theme.DARK_PURPLE,
-        borderRadius: theme.ROUNDING_SMALL
+        borderRadius: theme.ROUNDING_SMALL,
+        margin: theme.MARGIN_LARGE
     },
     ForgotPassword:
     {

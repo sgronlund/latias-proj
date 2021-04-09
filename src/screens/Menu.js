@@ -1,6 +1,6 @@
 import React from 'react';
 import {styleSheets} from "../styles/StyleSheets";
-import { StyleSheet, Text, View, Button, TextInput, SafeAreaView } from 'react-native';
+import { View } from 'react-native';
 
 function Menu(props){
     return (

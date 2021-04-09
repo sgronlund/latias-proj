@@ -1,9 +1,11 @@
 import React from 'react';
-import { Button, View, Text } from "react-native";
+import { Button, SafeAreaView } from "react-native";
+import Toolbar from './components/Toolbar'
+import styleSheets from '../styles/StyleSheets'
 
 const ContGuest = () => {
-    return <View>
-        <Text>WHAT DO YOU WANT TO DO</Text>
+    return <SafeAreaView style = {styleSheets.MainContainer}>
+        <Toolbar/>
         <Button 
         title="THIS WEEKS ARTICLE QUIZ"
         />
@@ -16,7 +18,7 @@ const ContGuest = () => {
         <Button 
         title="SCOREBOARD"
         />
-    </View>
+    </SafeAreaView>
 };
 
 export default ContGuest;
