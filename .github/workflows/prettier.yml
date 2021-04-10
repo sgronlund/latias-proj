@@ -9,11 +9,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-    - run: |
+      run: |
         cd src
         npm install
     - name: Format
-    - run: npm run format
+      run: npm run format
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4.1.2
       with:
