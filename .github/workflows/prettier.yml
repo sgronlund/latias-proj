@@ -13,7 +13,9 @@ jobs:
         cd src
         npm install
     - name: Format
-      run: npm run format
+      run: |
+        cd src
+        npm run format
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4.1.2
       with:
