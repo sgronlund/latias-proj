@@ -35,9 +35,11 @@ class LogIn extends React.Component {
   initSocket() {
     Socket.on("loginSuccess", () => {
       alert("Login successful!");
+      Socket.off("loginSuccess");
     });
     Socket.on("loginFailure", () => {
       alert("Login failed!");
+      Socket.off("loginFailure");
     });
   }
 

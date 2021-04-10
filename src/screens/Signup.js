@@ -40,9 +40,11 @@ class Signup extends React.Component {
     Socket.on("registerSuccess", () => {
       alert("Register successful!");
       this.props.navigation.navigate("Home");
+      Socket.off("registerSuccess");
     });
     Socket.on("registerFailure", () => {
       alert("Username or email busy!");
+      Socket.off("registerFailure");
     });
   }
 

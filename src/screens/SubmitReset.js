@@ -28,11 +28,13 @@ class SubmitReset extends React.Component {
   initSockets() {
     Socket.on("codeFailure", () => {
       alert("Wrong code!");
+      Socket.off("codeFailure");
     });
     Socket.on("codeSuccess", () => {
       this.props.navigation.navigate("UpdatePassword", {
         email: this.state.email,
       });
+      Socket.off("codeSuccess");
     });
   }
 
