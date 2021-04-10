@@ -6,7 +6,7 @@ The backend and all its functionality are located [here](https://github.com/sgro
 
 When you've successfully cloned this repo, enter the src folder and run the following command :
 ```
-npm ci
+npm i
 ``` 
 This installs all the dependencies this project requires.
 This process should not differ from MacOS, Linux or Windows assuming you've succesfully installed NodeJS on your host machine.
@@ -16,7 +16,7 @@ This process should not differ from MacOS, Linux or Windows assuming you've succ
 ### Server
 When initiating the Client-Server session you must first start the server. To do this enter the `server`-directory which exists in the `src`-directory and run the command:
 ```bash
-node server.js
+npm start
 ```
 
 If everything is working your terminal should look something like this:
