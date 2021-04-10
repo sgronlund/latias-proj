@@ -1,11 +1,10 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
-import socketClient from "socket.io-client";
 import QuestionButton from './components/QuestionButton'
 import theme from '../styles/themes'
-import TitleContainer from './components/TitleContainer'
 import styleSheets from '../styles/StyleSheets'
 import Toolbar from './components/Toolbar'
+import Socket from './Socket'
 
 class Signup extends React.Component {
   constructor(props) {
@@ -26,24 +25,16 @@ class Signup extends React.Component {
   }
 
   handleRegister = (username, password, email) => {
-    var socket = this.connect();
-    socket.emit('register', username, password, email);
+    this.initSocket();
+    Socket.emit('register', username, password, email);
   }
 
-  connect() {
-    var socket = socketClient ("http://localhost:8080");
-    this.initSockets(socket);
-    return socket;
-  }
-
-  initSockets(socket) {
-    socket.on('registerSuccess', () => {alert("Register successful!")});
-    socket.on('registerFailure', () => {alert("Username or email busy!")});
-    socket.on('loginSuccess', () => {
-      alert("Login successful!")
-      this.isLoggedIn = true;
+  initSocket() {
+    Socket.on('registerSuccess', () => {
+      alert("Register successful!")
+      this.props.navigation.navigate('Home');
     });
-    socket.on('loginFailure', () => {alert("Login failed!")});
+    Socket.on('registerFailure', () => {alert("Username or email busy!")});
   }
 
   render() {

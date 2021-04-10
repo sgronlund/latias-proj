@@ -6,6 +6,9 @@ import Signup from './screens/Signup';
 import LogIn from './screens/LogIn';
 import Settings from './screens/Settings';
 import Toolbar from './screens/components/Toolbar'
+import Reset from './screens/Reset'
+import SubmitReset from './screens/SubmitReset'
+import UpdatePassword from './screens/updatePassword'
 
 const navigator = createStackNavigator (
   {
@@ -14,7 +17,10 @@ const navigator = createStackNavigator (
     Sign: Signup,
     LogIn: LogIn,
     Settings: Settings,
-    Toolbar: Toolbar
+    Toolbar: Toolbar,
+    Reset: Reset,
+    SubmitReset: SubmitReset,
+    UpdatePassword: UpdatePassword
   },
   {
     initialRouteName: "Home",
