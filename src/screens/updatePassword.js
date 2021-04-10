@@ -1,79 +1,90 @@
 import React from "react";
-import { TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View, Text } from "react-native";
-import QuestionButton from './components/QuestionButton'
-import theme from '../styles/themes'
-import styleSheets from '../styles/StyleSheets'
-import Toolbar from './components/Toolbar'
-import Socket from './Socket'
+import {
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
+} from "react-native";
+import QuestionButton from "./components/QuestionButton";
+import theme from "../styles/themes";
+import styleSheets from "../styles/StyleSheets";
+import Toolbar from "./components/Toolbar";
+import Socket from "./Socket";
 
 class updatePassword extends React.Component {
-    constructor(props) {
-        super(props);
-        const { navigation }  = this.props;
-        const email = navigation.getParam('email', null);
-        console.log(email);
-        this.state = {password: '', passwordConfirm: '', email: email};
-      }
+  constructor(props) {
+    super(props);
+    const { navigation } = this.props;
+    const email = navigation.getParam("email", null);
+    console.log(email);
+    this.state = { password: "", passwordConfirm: "", email: email };
+  }
 
-      handlePassword = (text) => {
-        this.setState({ password: text});
-      }
-    
-      handlePasswordConfirm = (text) => {
-        this.setState({ passwordConfirm: text});
-      }
+  handlePassword = (text) => {
+    this.setState({ password: text });
+  };
 
-    updatePassword = (password, passwordConfirm) => {
-        if(password !== passwordConfirm) return alert("Passwords are not the same");
-        Socket.emit('updatePass', this.state.email, password);
-        this.props.navigation.navigate('Home');
-    }
-      
-    render () {
-        return (
-            <SafeAreaView style = {styleSheets.MainContainer}>
-              <QuestionButton/>
-              <Toolbar/>
-              <View style = {styles.LoginContainer}>
-                <Text style = {styleSheets.LoginText}>New Password:</Text>
-                <TextInput
-                  style={styleSheets.Input}
-                  placeholder="new password"
-                  onChangeText={this.handlePassword}
-                />
-                <Text style = {styleSheets.LoginText}>Confirm Password:</Text>
-                <TextInput
-                  style={styleSheets.Input}
-                  placeholder="new password"
-                  onChangeText={this.handlePasswordConfirm}
-                />
-              </View>
-              <TouchableOpacity style = {styleSheets.PinkButton} onPress= {() => this.updatePassword(this.state.password, this.state.passwordConfirm)}>
-                <Text style = {styleSheets.ButtonText}>CONFIRM</Text>
-              </TouchableOpacity>
-            </SafeAreaView>
-        );
-    }
+  handlePasswordConfirm = (text) => {
+    this.setState({ passwordConfirm: text });
+  };
+
+  updatePassword = (password, passwordConfirm) => {
+    if (password !== passwordConfirm)
+      return alert("Passwords are not the same");
+    Socket.emit("updatePass", this.state.email, password);
+    this.props.navigation.navigate("Home");
+  };
+
+  render() {
+    return (
+      <SafeAreaView style={styleSheets.MainContainer}>
+        <QuestionButton />
+        <Toolbar />
+        <View style={styles.LoginContainer}>
+          <Text style={styleSheets.LoginText}>New Password:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="new password"
+            onChangeText={this.handlePassword}
+          />
+          <Text style={styleSheets.LoginText}>Confirm Password:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="new password"
+            onChangeText={this.handlePasswordConfirm}
+          />
+        </View>
+        <TouchableOpacity
+          style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
+          onPress={() =>
+            this.updatePassword(this.state.password, this.state.passwordConfirm)
+          }
+        >
+          <Text style={styleSheets.ButtonText}>CONFIRM</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    LoginContainer: 
-    {   
-        width: '95%',
-        height: '30%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: theme.DARK_PURPLE,
-        borderRadius: theme.ROUNDING_SMALL,
-        margin: theme.MARGIN_LARGE
-    },
-    ForgotPassword:
-    {
-      fontFamily: 'Roboto Slab',
-      fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-      color: '#3E9EFE',
-      textDecorationLine: 'underline'
-    }
+  LoginContainer: {
+    width: "95%",
+    height: "30%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: theme.DARK_PURPLE,
+    borderRadius: theme.ROUNDING_SMALL,
+    margin: theme.MARGIN_LARGE,
+  },
+  ForgotPassword: {
+    fontFamily: "Roboto Slab",
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    color: "#3E9EFE",
+    textDecorationLine: "underline",
+  },
 });
 
 export default updatePassword;
