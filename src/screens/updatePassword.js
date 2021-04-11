@@ -40,7 +40,6 @@ class updatePassword extends React.Component {
   handlePasswordConfirm = (text) => {
     this.setState({ passwordConfirm: text });
   };
-  
 
   /**
    * @brief Tells the server to update the password for a user

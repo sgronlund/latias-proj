@@ -15,8 +15,8 @@ import Socket from "./Socket";
 
 /**
  * @brief This represents the screen for entering the code that
- * you've received in your email to reset your password. On 
- * correct reset code input, the user will be sent to the 
+ * you've received in your email to reset your password. On
+ * correct reset code input, the user will be sent to the
  * password reset page.
  */
 class SubmitReset extends React.Component {
@@ -36,8 +36,8 @@ class SubmitReset extends React.Component {
   };
 
   /**
-   * @brief Initializes socket listeners for checking for code 
-   * success or failure and removes the listeners 
+   * @brief Initializes socket listeners for checking for code
+   * success or failure and removes the listeners
    */
   initSockets() {
     Socket.on("codeFailure", () => {

@@ -60,8 +60,8 @@ class Signup extends React.Component {
   };
 
   /**
-   * @brief Initializes socket listeners for checking for register 
-   * success or failure and removes the listeners 
+   * @brief Initializes socket listeners for checking for register
+   * success or failure and removes the listeners
    */
   initSocket() {
     Socket.on("registerSuccess", () => {
