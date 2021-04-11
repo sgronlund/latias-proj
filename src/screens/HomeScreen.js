@@ -12,6 +12,11 @@ import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
 
+/**
+ * @brief This represents the screen you get when you open
+ * the application. From here you can navigate to the login
+ * page, the signup page or sign in as a guest
+ */
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);

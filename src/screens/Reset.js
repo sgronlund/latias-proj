@@ -13,16 +13,29 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "./Socket";
 
+/**
+ * @brief This represents the screen for entering your email
+ * that you want the reset code to be sent to. The email must
+ * match a user in the database.
+ */
 class Reset extends React.Component {
   constructor(props) {
     super(props);
     this.state = { email: "" };
   }
 
+  /**
+   * Updates the state of the email when the user inputs text
+   * @param {String} text text to update the email to
+   */
   handleEmail = (text) => {
     this.setState({ email: text });
   };
-
+  
+  /**
+   * @brief Initializes socket listeners for checking for email 
+   * success or failure and removes the listeners 
+   */
   initSocket() {
     Socket.on("emailSuccess", () => {
       this.props.navigation.navigate("SubmitReset", {
@@ -34,6 +47,10 @@ class Reset extends React.Component {
     });
   }
 
+  /**
+   * @brief Tells the server that a user is trying reset their password
+   * @param {String} email email of the user trying to reset password
+   */
   handleSubmit = (email) => {
     this.initSocket();
     Socket.emit("resetPass", email);

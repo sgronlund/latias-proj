@@ -13,6 +13,9 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "./Socket";
 
+/**
+ * @brief This represents the screen for updating a users password
+ */
 class updatePassword extends React.Component {
   constructor(props) {
     super(props);
@@ -22,14 +25,30 @@ class updatePassword extends React.Component {
     this.state = { password: "", passwordConfirm: "", email: email };
   }
 
+  /**
+   * Updates the state of the password when the user inputs text
+   * @param {String} text text to update code to
+   */
   handlePassword = (text) => {
     this.setState({ password: text });
   };
 
+  /**
+   * Updates the state of the password confirmation when the user inputs text
+   * @param {String} text text to update the password confirmation to
+   */
   handlePasswordConfirm = (text) => {
     this.setState({ passwordConfirm: text });
   };
+  
 
+  /**
+   * @brief Tells the server to update the password for a user
+   * @details If the user inputs two passwords that are not the same, the
+   * user is notified of this and needs to re-enter the passwords
+   * @param {String} password the new password
+   * @param {String} passwordConfirm the new password (confirm)
+   */
   updatePassword = (password, passwordConfirm) => {
     if (password !== passwordConfirm)
       return alert("Passwords are not the same");

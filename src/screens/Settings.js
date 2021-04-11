@@ -6,6 +6,11 @@ import theme from "../styles/themes.js";
 import styleSheets from "../styles/StyleSheets.js";
 import Toolbar from "./components/Toolbar";
 
+/**
+ * @brief This represents the settings screen. The user
+ * can disable sound, check user policy, enter a new
+ * password or log out from here.
+ */
 class Settings extends React.Component {
   render() {
     return (

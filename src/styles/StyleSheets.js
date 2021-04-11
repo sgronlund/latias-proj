@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 import theme from "./themes.js";
 
+/**
+ * @brief This file contains a stylesheet for styles that
+ * are commonly used throughout the program.
+ */
 const styleSheets = StyleSheet.create({
   MainContainer: {
     flex: 1,
