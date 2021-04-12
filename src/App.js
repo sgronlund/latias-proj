@@ -1,5 +1,6 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import * as React from 'react';
 import HomeScreen from "./screens/HomeScreen";
 import ContGuest from "./screens/ContGuest";
 import Signup from "./screens/Signup";
@@ -11,7 +12,7 @@ import SubmitReset from "./screens/SubmitReset";
 import UpdatePassword from "./screens/updatePassword";
 
 /**
- * @brief This file contains the stack navigator 
+ * @summary This file contains the stack navigator 
  * for navigating between different screens.
  */
 const navigator = createStackNavigator(
