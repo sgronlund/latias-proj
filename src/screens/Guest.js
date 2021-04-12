@@ -10,6 +10,7 @@ import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
+import Socket from "../misc/Socket"
 
 const URL =
   "https://www.dn.se/ekonomi/har-ar-landets-basta-och-samsta-skolkommuner/";
@@ -18,6 +19,23 @@ const URL =
  * @summary
  */
 class Guest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { time: "" };
+    this.initSocket();
+  }
+
+  /**
+   * @function
+   * @summary Initializes socket listeners for checking for login
+   * success or failure and removes the listeners
+   */
+   initSocket() {
+    Socket.on("timeLeft", (timeLeft) => {
+      this.setState({ time: timeLeft })
+    });
+  }
+  
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
@@ -26,7 +44,7 @@ class Guest extends React.Component {
         <Text style={styles.TitleText}>WHAT DO YOU WANT TO DO?</Text>
         <TouchableOpacity style={[styles.Button, styleSheets.PinkBackground]}>
           <Text style={styles.Text}>THIS WEEKS ARTICLE QUIZ</Text>
-          <Text style={styles.SmallText}>Quiz is available in 03:11 h</Text>
+          <Text style={styles.SmallText}>{this.state.time}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.Button, styleSheets.PinkBackground]}>
           <Text style={styles.Text}>THIS WEEKS NEWS QUIZ</Text>
