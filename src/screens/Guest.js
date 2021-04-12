@@ -10,7 +10,7 @@ import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
-import Socket from "../misc/Socket"
+import Socket from "../misc/Socket";
 
 const URL =
   "https://www.dn.se/ekonomi/har-ar-landets-basta-och-samsta-skolkommuner/";
@@ -30,12 +30,12 @@ class Guest extends React.Component {
    * @summary Initializes socket listeners for checking for login
    * success or failure and removes the listeners
    */
-   initSocket() {
+  initSocket() {
     Socket.on("timeLeft", (timeLeft) => {
-      this.setState({ time: timeLeft })
+      this.setState({ time: timeLeft });
     });
   }
-  
+
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
