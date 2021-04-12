@@ -13,29 +13,56 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "./Socket";
 
+/**
+ * @brief This represents the signup screen. From here you enter
+ * a username, password and an email to create an account. A user
+ * can not enter a username or email that is already in the database.
+ */
 class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "", email: "" };
   }
 
+  /**
+   * Updates the state of the username when the user inputs text
+   * @param {String} text text to update username to
+   */
   handleUsername = (text) => {
     this.setState({ username: text });
   };
 
+  /**
+   * Updates the state of the password when the user inputs text
+   * @param {String} text text to update password to
+   */
   handlePassword = (text) => {
     this.setState({ password: text });
   };
 
+  /**
+   * Updates the state of the email when the user inputs text
+   * @param {String} text text to update email to
+   */
   handleEmail = (text) => {
     this.setState({ email: text });
   };
 
+  /**
+   * @brief Tells the server that a user is trying to register
+   * @param {String} username username of the user to register
+   * @param {String} password password of the user to register
+   * @param {String} email email of the user to register
+   */
   handleRegister = (username, password, email) => {
     this.initSocket();
     Socket.emit("register", username, password, email);
   };
 
+  /**
+   * @brief Initializes socket listeners for checking for register
+   * success or failure and removes the listeners
+   */
   initSocket() {
     Socket.on("registerSuccess", () => {
       alert("Register successful!");

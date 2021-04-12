@@ -2,6 +2,10 @@ import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../styles/themes.js";
 
+/**
+ * @brief This is a component which leads the user to
+ * the shop screen.
+ */
 class Shop extends React.Component {
   render() {
     return (

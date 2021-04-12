@@ -13,25 +13,47 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "./Socket";
 
+/**
+ * @brief This represents the login screen. From here you
+ * can either login or press reset password which will lead
+ * you to the reset page.
+ */
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
   }
 
+  /**
+   * Updates the state of the username when the user inputs text
+   * @param {String} text text to update username to
+   */
   handleUsername = (text) => {
     this.setState({ username: text });
   };
 
+  /**
+   * Updates the state of the password when the user inputs text
+   * @param {String} text text to update password to
+   */
   handlePassword = (text) => {
     this.setState({ password: text });
   };
 
+  /**
+   * @brief Tells the server that a user is trying to log in
+   * @param {String} username username of the user to log in
+   * @param {String} password password of the user to log in
+   */
   handleLogin = (username, password) => {
     this.initSocket();
     Socket.emit("login", username, password);
   };
 
+  /**
+   * @brief Initializes socket listeners for checking for login
+   * success or failure and removes the listeners
+   */
   initSocket() {
     Socket.on("loginSuccess", () => {
       alert("Login successful!");

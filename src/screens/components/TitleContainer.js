@@ -2,6 +2,10 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import theme from "../../styles/themes.js";
 
+/**
+ * @brief This is a component that contains the title
+ * of the application.
+ */
 class TitleContainer extends React.Component {
   render() {
     return (

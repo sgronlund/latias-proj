@@ -1,3 +1,7 @@
+/**
+ * @brief This file contains themes that are used to
+ * style different components.
+ */
 export default {
   FONT_SIZE_EXTRA_SMALL: 20,
   FONT_SIZE_SMALL: 30,

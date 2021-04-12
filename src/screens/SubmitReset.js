@@ -13,6 +13,12 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "./Socket";
 
+/**
+ * @brief This represents the screen for entering the code that
+ * you've received in your email to reset your password. On
+ * correct reset code input, the user will be sent to the
+ * password reset page.
+ */
 class SubmitReset extends React.Component {
   constructor(props) {
     super(props);
@@ -21,10 +27,18 @@ class SubmitReset extends React.Component {
     this.state = { code: "", email: email };
   }
 
+  /**
+   * Updates the state of the code when the user inputs text
+   * @param {String} text text to update code to
+   */
   handleCode = (text) => {
     this.setState({ code: text });
   };
 
+  /**
+   * @brief Initializes socket listeners for checking for code
+   * success or failure and removes the listeners
+   */
   initSockets() {
     Socket.on("codeFailure", () => {
       alert("Wrong code!");
@@ -38,6 +52,11 @@ class SubmitReset extends React.Component {
     });
   }
 
+  /**
+   * @brief Tells the server that a user is submitting their reset code
+   * @param {String} code the reset code for resetting the password
+   * @param {String} email email of the user
+   */
   handleSubmit = (code, email) => {
     this.initSockets();
     Socket.emit("submitCode", code, email);

@@ -10,6 +10,10 @@ import Reset from "./screens/Reset";
 import SubmitReset from "./screens/SubmitReset";
 import UpdatePassword from "./screens/updatePassword";
 
+/**
+ * @brief This file contains the stack navigator 
+ * for navigating between different screens.
+ */
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
