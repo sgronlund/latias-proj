@@ -1,5 +1,5 @@
-var os = require('os');
-const { exec } = require('child_process');
+var os = require("os");
+const { exec } = require("child_process");
 
 //Windows
 if(os.type() === "Windows_NT") {
