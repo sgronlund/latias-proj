@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet, TouchableOpacity, SafeAreaView, View } from "react-native";
 import theme from "../../styles/themes.js";
 
-const Gameplay = "Do this\nDo that\nAnd that"
+const Gameplay = "Do this\nDo that\nAnd that\nAnd that"
 
 /**
  * @summary This is a component which leads the user to
