@@ -42,7 +42,6 @@ class updatePassword extends React.Component {
   handlePasswordConfirm = (text) => {
     this.setState({ passwordConfirm: text });
   };
-  
 
   /**
    * @function

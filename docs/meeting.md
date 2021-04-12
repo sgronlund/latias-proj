@@ -37,3 +37,21 @@ Kortare möte där vi diskuterade och visade hur långt vi har kommit med protot
 Under mötet diskuterade vi även exakta upplägget av hur funktionaliteten hos de olika quizzen, ett förslag på detta kommer skrivas som kommer att diskuteras på morgondagens möte.
 
 Alla förutom Richard närvarade på mötet.
+
+## Arbetsmöte 08/04/21
+
+Vanlig standup där vi diskuterade hur dagen skulle gå till. Ingen större diskuterades under mötet utan arbete fortskred likt förra arbetspasset.
+
+Alla närvarande under mötet.
+
+## Arbetsmöte 09/04/21
+
+Idag diskuterade vi hur vi ska börja med front-end:n och vem ska göra vilken sida av appen och backenden ska fortsätta kolla på säkerhetslösningar för trafiken och lagringen i databasen.  Produktnamnet valdes även idag och de blev "The Real Deal".
+
+Alla närvarade under mötet.
+
+## Arbetsmlte 12/04/21
+
+Idag bestämde sig gruppen att köra igång med föreberedelse av presentationen till Milestone 1 då vi har uppnått den interna deadlinen vi satt. Inget övrigt diskuterades under mötet.
+
+Alla närvarade under mötet.

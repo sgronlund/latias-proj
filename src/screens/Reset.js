@@ -32,7 +32,7 @@ class Reset extends React.Component {
   handleEmail = (text) => {
     this.setState({ email: text });
   };
-  
+
   /**
    * @function
    * @summary Initializes socket listeners for checking for email 
