@@ -13,11 +13,11 @@ class Toolbar extends React.Component {
   constructor(props) {
     super(props);
   }
-  // &#8630; is html code for left arrow
+
   render() {
     return (
       <View style={styles.Toolbar}>
-        <TouchableOpacity style={styles.Button} onPress={() => this.props.navigation.goBack()}><Text style={styles.Arrow}>&#8630;</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.Button} onPress={() => this.props.navigation.goBack()}><Text style={styles.Arrow}>↶</Text></TouchableOpacity>
         <View style={styles.TextContainer}><Text style={styles.Text}>REAL DEAL</Text></View>
       </View>
     );
