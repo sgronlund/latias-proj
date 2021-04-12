@@ -2,6 +2,8 @@ import React from "react";
 import { Text, StyleSheet, TouchableOpacity, SafeAreaView, View } from "react-native";
 import theme from "../../styles/themes.js";
 
+const Gameplay = "Do this\nDo that\nAnd that"
+
 /**
  * @summary This is a component which leads the user to
  * the screen where information about the application
@@ -23,8 +25,7 @@ class QuestionButton extends React.Component {
         <View style = {styles.Main}>
           <View style={styles.Overlay}>
             <Text style={styles.TextBig}>How to play:</Text>
-            <Text style={styles.TextSmall}>Do this{"\n"}Do that{"\n"}And that{"\n"}
-            </Text>
+            <Text style={styles.TextSmall}>{Gameplay}</Text>
           </View>
           <View style={styles.Container}>
             <TouchableOpacity style={styles.Circle} onPress={() => this.toggleShow()}>
