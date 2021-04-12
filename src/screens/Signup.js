@@ -1,14 +1,16 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput, Button, Text } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
 import socketClient from "socket.io-client";
-
-//Fattar inte hur detta fungerar
-//Hittade på react native docs
+import QuestionButton from './components/QuestionButton'
+import theme from '../styles/themes'
+import TitleContainer from './components/TitleContainer'
+import styleSheets from '../styles/StyleSheets'
+import Toolbar from './components/Toolbar'
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: ''};
+    this.state = {username: '', password: '', email: ''};
   }
 
   handleUsername = (text) => {
@@ -19,14 +21,13 @@ class Signup extends React.Component {
     this.setState({ password: text});
   }
 
-  handleRegister = (username, password) => {
-    var socket = this.connect();
-    socket.emit('register', username, password);
+  handleEmail = (text) => {
+    this.setState({ email: text});
   }
 
-  handleLogin = (username, password) => {
+  handleRegister = (username, password, email) => {
     var socket = this.connect();
-    socket.emit('login', username, password);
+    socket.emit('register', username, password, email);
   }
 
   connect() {
@@ -37,7 +38,7 @@ class Signup extends React.Component {
 
   initSockets(socket) {
     socket.on('registerSuccess', () => {alert("Register successful!")});
-    socket.on('registerFailure', () => {alert("Username busy!")});
+    socket.on('registerFailure', () => {alert("Username or email busy!")});
     socket.on('loginSuccess', () => {
       alert("Login successful!")
       this.isLoggedIn = true;
@@ -47,32 +48,48 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          onChangeText={this.handleUsername}
-          placeholder="your username"
-          //value={text}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={this.handlePassword}
-          //value={number}
-          placeholder="your password"
-          keyboardType="numeric"
-        />
-        <Button title="Register" onPress= {() => this.handleRegister(this.state.username, this.state.password)}/>
-      </SafeAreaView>
+      <SafeAreaView style = {styleSheets.MainContainer}>
+              <QuestionButton/>
+              <Toolbar/>
+              <View style = {styles.LoginContainer}>
+                <Text style = {styleSheets.LoginText}>Username:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your username"
+                  onChangeText={this.handleUsername}
+                />
+                <Text style = {styleSheets.LoginText}>Password:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your password"
+                  onChangeText={this.handlePassword}
+                />
+                <Text style = {styleSheets.LoginText}>Email:</Text>
+                <TextInput
+                  style={styleSheets.Input}
+                  placeholder="your email"
+                  onChangeText={this.handleEmail}
+                />
+              </View>
+              <TouchableOpacity style = {styleSheets.BlueButton} onPress= {() => this.handleRegister(this.state.username, this.state.password, this.state.email)}>
+                <Text style = {styleSheets.ButtonText}>REGISTER</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-  },
+  LoginContainer: 
+    {   
+        width: '95%',
+        height: '35%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: theme.DARK_PURPLE,
+        borderRadius: theme.ROUNDING_SMALL,
+        margin: theme.MARGIN_LARGE
+    },
 });
 
 export default Signup;

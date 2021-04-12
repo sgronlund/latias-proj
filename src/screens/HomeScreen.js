@@ -1,31 +1,42 @@
 import React from "react";
-import { Text, View, Button, StyleSheet, TouchableOpacity, Image } from "react-native";
-import themes from "../styles/themes";
+import { Text, StyleSheet, TouchableOpacity, SafeAreaView, View } from "react-native";
 import theme from '../styles/themes'
+import TitleContainer from './components/TitleContainer'
+import QuestionButton from './components/QuestionButton'
+import styleSheets from '../styles/StyleSheets'
+import { withNavigation } from 'react-navigation'
 
-const HomeScreen = ({ navigation }) => {
-    return (
-        <View style = {styles.MainContainer}>
-            <View style = {styles.TitleContainer}>
-                <Text style = {styles.TitleText}>HORT</Text>
-                <Text style = {styles.PurpleLine}>─────────</Text>
-            </View>
-            <TouchableOpacity style = {styles.LoginButton} onPress={() => navigation.navigate('LogIn')}>
-                <Text style = {styles.ButtonText}>LOG IN</Text>
-            </TouchableOpacity>
-            <Text style = {styles.Text}>─────   or   ─────</Text>
-            <TouchableOpacity style = {styles.GenericButton} onPress={() => navigation.navigate('Sign')}>
-                <Text style = {styles.ButtonText}>SIGN UP</Text></TouchableOpacity>
-            <TouchableOpacity style = {styles.GenericButton} onPress={() => navigation.navigate('Cont')}>
-                <Text style = {styles.ButtonText}>PLAY AS GUEST</Text>
-            </TouchableOpacity>
-        </View>
-    );
+class HomeScreen extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <SafeAreaView style = {styleSheets.MainContainer}>
+                <View style = {styleSheets.Toolbar}></View>
+                <TitleContainer/>
+                <QuestionButton/>
+                <TouchableOpacity style = {styleSheets.PinkButton} onPress={() => this.props.navigation.navigate('LogIn')}>
+                    <Text style = {styleSheets.ButtonText}>LOG IN</Text>
+                </TouchableOpacity>
+                <Text style = {styles.Text}>─────   or   ─────</Text>
+                <TouchableOpacity style = {styleSheets.BlueButton} onPress={() => this.props.navigation.navigate('Sign')}>
+                    <Text style = {styleSheets.ButtonText}>SIGN UP</Text></TouchableOpacity>
+                <TouchableOpacity style = {styleSheets.BlueButton} onPress={() => this.props.navigation.navigate('Cont')}>
+                    <Text style = {styleSheets.ButtonText}>PLAY AS GUEST</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styleSheets.BlueButton} onPress={() => this.props.navigation.navigate('Settings')}>
+                    <Text style = {styleSheets.ButtonText}>GO TO SETTINGS</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        );
+    }
+    
 }; 
 
 const styles = StyleSheet.create(
     {
-     
     MainContainer: 
     {   
         flex: 1,
@@ -49,12 +60,6 @@ const styles = StyleSheet.create(
         color: 'white',
         fontFamily: theme.DEFAULT_FONT
     },
-    ButtonText:
-    {
-        fontSize: theme.FONT_SIZE_MEDIUM,
-        color: 'white',
-        fontFamily: theme.DEFAULT_FONT
-    },
     TitleText:
     {
         fontSize: theme.FONT_SIZE_LARGE,
@@ -64,31 +69,7 @@ const styles = StyleSheet.create(
     PurpleLine:
     {
         color: theme.PINK,
-        fontSize: '40px'
-    },
-    LoginButton:
-    {
-        width: '80%',
-        height: '8%',
-        alignItems: "center",
-        backgroundColor: theme.PINK,
-        padding: theme.PADDING_SMALL,
-        borderRadius: theme.ROUNDING_LARGE,
-        margin: theme.MARGIN_MEDIUM,
-        shadowOffset: theme.SHADOW_OFFSET,
-        shadowOpacity: theme.SHADOW_OPACITY
-    },
-    GenericButton:
-    {
-        width: '80%',
-        height: '8%',
-        alignItems: "center",
-        backgroundColor: theme.LIGHT_BLUE,
-        padding: theme.PADDING_SMALL,
-        borderRadius: theme.ROUNDING_LARGE,
-        margin: theme.MARGIN_MEDIUM,
-        shadowOffset: theme.SHADOW_OFFSET,
-        shadowOpacity: theme.SHADOW_OPACITY
+        fontSize: 40
     },
     Image:
     {
@@ -98,6 +79,5 @@ const styles = StyleSheet.create(
         alignSelf: "flex-end"
     }
     });
-    
   
-export default HomeScreen;
+export default withNavigation(HomeScreen);

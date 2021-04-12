@@ -4,19 +4,23 @@ import HomeScreen from './screens/HomeScreen';
 import ContGuest from './screens/ContGuest';
 import Signup from './screens/Signup';
 import LogIn from './screens/LogIn';
+import Settings from './screens/Settings';
+import Toolbar from './screens/components/Toolbar'
 
 const navigator = createStackNavigator (
   {
     Home: HomeScreen,
     Cont: ContGuest,
     Sign: Signup,
-    LogIn: LogIn
+    LogIn: LogIn,
+    Settings: Settings,
+    Toolbar: Toolbar
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "App",
-    },
+      header: false
+    }
   }
 )
 
