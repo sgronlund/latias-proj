@@ -42,12 +42,12 @@ class LogIn extends React.Component {
     this.setState({ password: text });
   };
 
-/**
- * @function
- * @summary Tells the server that a user is trying to log in
- * @param {String} username username of the user to log in
- * @param {String} password password of the user to log in
- */
+  /**
+   * @function
+   * @summary Tells the server that a user is trying to log in
+   * @param {String} username username of the user to log in
+   * @param {String} password password of the user to log in
+   */
   handleLogin = (username, password) => {
     this.initSocket();
     Socket.emit("login", username, password);
@@ -55,8 +55,8 @@ class LogIn extends React.Component {
 
   /**
    * @function
-   * @summary Initializes socket listeners for checking for login 
-   * success or failure and removes the listeners 
+   * @summary Initializes socket listeners for checking for login
+   * success or failure and removes the listeners
    */
   initSocket() {
     Socket.on("loginSuccess", () => {

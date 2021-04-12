@@ -35,19 +35,19 @@ class Reset extends React.Component {
 
   /**
    * @function
-   * @summary Initializes socket listeners for checking for email 
-   * success or failure and removes the listeners 
+   * @summary Initializes socket listeners for checking for email
+   * success or failure and removes the listeners
    */
   initSocket() {
     Socket.on("emailSuccess", () => {
       this.props.navigation.navigate("SubmitReset", {
         email: this.state.email,
       });
-      Socket.off('emailSuccess');
+      Socket.off("emailSuccess");
     });
     Socket.on("emailFailure", () => {
       alert("Invalid email!");
-      Socket.off('emailFailure');
+      Socket.off("emailFailure");
     });
   }
 
