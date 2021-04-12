@@ -30,7 +30,7 @@ const styleSheets = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     shadowOffset: theme.SHADOW_OFFSET,
     shadowOpacity: theme.SHADOW_OPACITY,
-    zIndex: 1
+    zIndex: 1,
   },
   PinkBackground: {
     backgroundColor: theme.PINK,

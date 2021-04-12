@@ -1,21 +1,28 @@
 import React from "react";
-import { SafeAreaView, TouchableOpacity, Text, StyleSheet, Linking } from "react-native";
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Linking,
+} from "react-native";
 import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 
-const URL = "https://www.dn.se/ekonomi/har-ar-landets-basta-och-samsta-skolkommuner/"
+const URL =
+  "https://www.dn.se/ekonomi/har-ar-landets-basta-och-samsta-skolkommuner/";
 
 /**
- * @summary 
+ * @summary
  */
- class Guest extends React.Component {
-   render() {
+class Guest extends React.Component {
+  render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar/>
-        <QuestionButton/>
+        <Toolbar />
+        <QuestionButton />
         <Text style={styles.TitleText}>WHAT DO YOU WANT TO DO?</Text>
         <TouchableOpacity style={[styles.Button, styleSheets.PinkBackground]}>
           <Text style={styles.Text}>THIS WEEKS ARTICLE QUIZ</Text>
@@ -24,19 +31,27 @@ const URL = "https://www.dn.se/ekonomi/har-ar-landets-basta-och-samsta-skolkommu
         <TouchableOpacity style={[styles.Button, styleSheets.PinkBackground]}>
           <Text style={styles.Text}>THIS WEEKS NEWS QUIZ</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.Button, styleSheets.LightBlueBackground]} onPress={() => Linking.openURL(URL)}>
+        <TouchableOpacity
+          style={[styles.Button, styleSheets.LightBlueBackground]}
+          onPress={() => Linking.openURL(URL)}
+        >
           <Text style={styles.Text}>READ THIS WEEKS ARTICLE</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.Button, styleSheets.LightBlueBackground]}>
+        <TouchableOpacity
+          style={[styles.Button, styleSheets.LightBlueBackground]}
+        >
           <Text style={styles.Text}>SCOREBOARD</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.SignUpButton} onPress={() => this.props.navigation.navigate('Sign')}>
+        <TouchableOpacity
+          style={styles.SignUpButton}
+          onPress={() => this.props.navigation.navigate("Sign")}
+        >
           <Text style={styles.SignUpText}>SIGN UP</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
-   }
-};
+  }
+}
 
 const styles = StyleSheet.create({
   Button: {
@@ -71,7 +86,7 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "white",
     fontFamily: theme.DEFAULT_FONT,
-    margin: 30
+    margin: 30,
   },
   Text: {
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
@@ -82,7 +97,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "white",
     fontFamily: theme.DEFAULT_FONT,
-  }
+  },
 });
 
 export default Guest;
