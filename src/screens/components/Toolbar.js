@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import styleSheets from "../../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
+import theme from "../../styles/themes"
 
 /**
  * @summary This is a component that contains the toolbar
@@ -12,13 +13,12 @@ class Toolbar extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  // &#8630; is html code for left arrow
   render() {
     return (
       <View style={styles.Toolbar}>
-        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-          <Text style={styleSheets.ButtonText}>GO BACK</Text>
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.Button} onPress={() => this.props.navigation.goBack()}><Text style={styles.Arrow}>&#8630;</Text></TouchableOpacity>
+        <View style={styles.TextContainer}><Text style={styles.Text}>REAL DEAL</Text></View>
       </View>
     );
   }
@@ -26,12 +26,29 @@ class Toolbar extends React.Component {
 
 const styles = StyleSheet.create({
   Toolbar: {
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#545985",
     width: "100%",
-    height: "10%",
+    alignContent: "center",
+    justifyContent: "center",
+    height: "10%"
   },
+  TextContainer: {
+    position: 'absolute',
+    alignSelf: "center",
+  },
+  Button: {
+    left: "5%"
+  },
+  Arrow: {
+    fontSize: theme.FONT_SIZE_LARGE,
+    color: "white",
+    fontFamily: theme.DEFAULT_FONT
+  },
+  Text: {
+    fontSize: theme.FONT_SIZE_SMALL,
+    color: "white",
+    fontFamily: theme.DEFAULT_FONT
+  }
 });
 
 export default withNavigation(Toolbar);

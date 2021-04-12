@@ -1,7 +1,7 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import HomeScreen from "./screens/HomeScreen";
-import ContGuest from "./screens/ContGuest";
+import Guest from "./screens/Guest";
 import Signup from "./screens/Signup";
 import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
@@ -17,7 +17,7 @@ import UpdatePassword from "./screens/updatePassword";
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Cont: ContGuest,
+    Guest: Guest,
     Sign: Signup,
     LogIn: LogIn,
     Settings: Settings,
