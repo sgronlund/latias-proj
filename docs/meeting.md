@@ -49,3 +49,9 @@ Alla närvarande under mötet.
 Idag diskuterade vi hur vi ska börja med front-end:n och vem ska göra vilken sida av appen och backenden ska fortsätta kolla på säkerhetslösningar för trafiken och lagringen i databasen.  Produktnamnet valdes även idag och de blev "The Real Deal".
 
 Alla närvarade under mötet.
+
+## Arbetsmlte 12/04/21
+
+Idag bestämde sig gruppen att köra igång med föreberedelse av presentationen till Milestone 1 då vi har uppnått den interna deadlinen vi satt. Inget övrigt diskuterades under mötet.
+
+Alla närvarade under mötet.
