@@ -1,3 +1,7 @@
+.idea/**/*
+src/package-lock.json
+src/.expo-shared/**/*
+docs/out
 src/server/.db-journal
 node_modules/**/*
 src/node_modules/**/*

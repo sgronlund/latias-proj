@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../styles/themes.js";
 
 /**
- * @brief This is a component which leads the user to
+ * @summary This is a component which leads the user to
  * the screen where information about the application
  * is displayed.
  */

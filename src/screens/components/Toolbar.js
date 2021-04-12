@@ -4,7 +4,7 @@ import styleSheets from "../../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
 
 /**
- * @brief This is a component that contains the toolbar
+ * @summary This is a component that contains the toolbar
  * for the application. The user may return to a previous
  * page from this component.
  */

@@ -14,7 +14,7 @@ import Toolbar from "./components/Toolbar";
 import Socket from "./Socket";
 
 /**
- * @brief This represents the signup screen. From here you enter
+ * @summary This represents the signup screen. From here you enter
  * a username, password and an email to create an account. A user
  * can not enter a username or email that is already in the database.
  */
@@ -25,7 +25,8 @@ class Signup extends React.Component {
   }
 
   /**
-   * Updates the state of the username when the user inputs text
+   * @function
+   * @summary Updates the state of the username when the user inputs text
    * @param {String} text text to update username to
    */
   handleUsername = (text) => {
@@ -33,7 +34,8 @@ class Signup extends React.Component {
   };
 
   /**
-   * Updates the state of the password when the user inputs text
+   * @function
+   * @summary Updates the state of the password when the user inputs text
    * @param {String} text text to update password to
    */
   handlePassword = (text) => {
@@ -41,7 +43,8 @@ class Signup extends React.Component {
   };
 
   /**
-   * Updates the state of the email when the user inputs text
+   * @function
+   * @summary Updates the state of the email when the user inputs text
    * @param {String} text text to update email to
    */
   handleEmail = (text) => {
@@ -49,7 +52,8 @@ class Signup extends React.Component {
   };
 
   /**
-   * @brief Tells the server that a user is trying to register
+   * @function
+   * @summary Tells the server that a user is trying to register
    * @param {String} username username of the user to register
    * @param {String} password password of the user to register
    * @param {String} email email of the user to register
@@ -60,18 +64,19 @@ class Signup extends React.Component {
   };
 
   /**
-   * @brief Initializes socket listeners for checking for register 
+   * @function
+   * @summary Initializes socket listeners for checking for register 
    * success or failure and removes the listeners 
    */
   initSocket() {
     Socket.on("registerSuccess", () => {
+      Socket.off("registerSuccess");
       alert("Register successful!");
       this.props.navigation.navigate("Home");
-      Socket.off("registerSuccess");
     });
     Socket.on("registerFailure", () => {
-      alert("Username or email busy!");
       Socket.off("registerFailure");
+      alert("Username or email busy!");
     });
   }
 
