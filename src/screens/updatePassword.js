@@ -13,35 +13,29 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "./Socket";
 
-class LogIn extends React.Component {
+class updatePassword extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    const { navigation } = this.props;
+    const email = navigation.getParam("email", null);
+    console.log(email);
+    this.state = { password: "", passwordConfirm: "", email: email };
   }
-
-  handleUsername = (text) => {
-    this.setState({ username: text });
-  };
 
   handlePassword = (text) => {
     this.setState({ password: text });
   };
 
-  handleLogin = (username, password) => {
-    this.initSocket();
-    Socket.emit("login", username, password);
+  handlePasswordConfirm = (text) => {
+    this.setState({ passwordConfirm: text });
   };
 
-  initSocket() {
-    Socket.on("loginSuccess", () => {
-      alert("Login successful!");
-      Socket.off("loginSuccess");
-    });
-    Socket.on("loginFailure", () => {
-      alert("Login failed!");
-      Socket.off("loginFailure");
-    });
-  }
+  updatePassword = (password, passwordConfirm) => {
+    if (password !== passwordConfirm)
+      return alert("Passwords are not the same");
+    Socket.emit("updatePass", this.state.email, password);
+    this.props.navigation.navigate("Home");
+  };
 
   render() {
     return (
@@ -49,31 +43,26 @@ class LogIn extends React.Component {
         <QuestionButton />
         <Toolbar />
         <View style={styles.LoginContainer}>
-          <Text style={styleSheets.LoginText}>Username:</Text>
+          <Text style={styleSheets.LoginText}>New Password:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your username"
-            onChangeText={this.handleUsername}
-          />
-          <Text style={styleSheets.LoginText}>Password:</Text>
-          <TextInput
-            style={styleSheets.Input}
-            placeholder="your password"
+            placeholder="new password"
             onChangeText={this.handlePassword}
+          />
+          <Text style={styleSheets.LoginText}>Confirm Password:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="new password"
+            onChangeText={this.handlePasswordConfirm}
           />
         </View>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
           onPress={() =>
-            this.handleLogin(this.state.username, this.state.password)
+            this.updatePassword(this.state.password, this.state.passwordConfirm)
           }
         >
-          <Text style={styleSheets.ButtonText}>LOG IN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("Reset")}
-        >
-          <Text style={styles.ForgotPassword}>forgot password?</Text>
+          <Text style={styleSheets.ButtonText}>CONFIRM</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
@@ -98,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LogIn;
+export default updatePassword;
