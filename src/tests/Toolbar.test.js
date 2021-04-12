@@ -4,7 +4,7 @@ import { render, fireEvent } from "@testing-library/react-native";
 
 test('check if button exists with text "GO BACK"', () => {
   const { getByText } = render(<Toolbar />);
-  const goBackButton = getByText("GO BACK");
+  const goBackButton = getByText("↶");
   expect(goBackButton).toBeDefined();
 });
 
