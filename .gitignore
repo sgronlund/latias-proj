@@ -2,6 +2,8 @@ src/server/.db-journal
 node_modules/**/*
 src/node_modules/**/*
 src/.expo/*
+src/.expo-shared/*
+src/package-lock.json
 src/.vscode/*
 npm-debug.*
 *.jks
