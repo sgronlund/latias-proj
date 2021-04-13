@@ -11,7 +11,7 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "./Socket";
+import Socket from "../misc/Socket";
 
 /**
  * @summary This represents the login screen. From here you

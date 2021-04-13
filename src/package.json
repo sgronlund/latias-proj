@@ -8,7 +8,7 @@
     "eject": "expo eject",
     "test": "jest",
     "format": "npx prettier --write ./**/*.js",
-    "clean": "rm -f package-lock.json && rm -rf node_modules && rm -rf ../docs/out",
+    "clean": "node misc/clean.js",
     "document": "jsdoc -r screens -d ../docs/out"
   },
   "jest": {
@@ -24,9 +24,11 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@types/react-test-renderer": "^17.0.1",
+    "child_process": "^1.0.2",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
     "jsdoc": "^3.6.6",
+    "os": "^0.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
