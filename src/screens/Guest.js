@@ -61,7 +61,7 @@ class Guest extends React.Component {
 
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
-            onPress={() => nthis.props.navigation.navigate("Read")}
+            onPress={() => this.props.navigation.navigate("NewsQ")}
           >
             <Text style={styles.button_pink}>THIS WEEKS NEWS QUIZ</Text>
           </TouchableOpacity>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   button_blue: {
-    fontSize: 25,
+    fontSize: 23,
     color: "#FFFFFF",
     textAlign: "center",
     width: "95%",
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_SMALL,
   },
   button_pink: {
-    fontSize: 25,
+    fontSize: 23,
     color: "#FFFFFF",
     padding: 20,
     width: "95%",

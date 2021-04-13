@@ -7,6 +7,7 @@ import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
 import Toolbar from "./screens/components/Toolbar";
 import Reset from "./screens/Reset";
+import NewsQ from "./screens/NewsQ";
 import Read from "./screens/Read";
 import SubmitReset from "./screens/SubmitReset";
 import UpdatePassword from "./screens/updatePassword";
@@ -19,6 +20,7 @@ const navigator = createStackNavigator(
   {
     Home: HomeScreen,
     Read: Read,
+    NewsQ: NewsQ,
     Guest: Guest,
     Sign: Signup,
     LogIn: LogIn,
