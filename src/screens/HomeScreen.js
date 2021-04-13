@@ -47,12 +47,20 @@ class HomeScreen extends React.Component {
         >
           <Text style={styleSheets.ButtonText}>PLAY AS GUEST</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        <TouchableOpacity 
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
           onPress={() => this.props.navigation.navigate("Settings")}
         >
           <Text style={styleSheets.ButtonText}>GO TO SETTINGS</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+        onPress={() => this.props.navigation.navigate("NQReady")}
+        style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
+        >
+          
+        </TouchableOpacity>
+
       </SafeAreaView>
     );
   }
