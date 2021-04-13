@@ -62,6 +62,7 @@ class LogIn extends React.Component {
     Socket.on("loginSuccess", () => {
       Socket.off("loginSuccess");
       alert("Login successful!");
+      this.props.navigation.navigate("Guest");
     });
     Socket.on("loginFailure", () => {
       Socket.off("loginFailure");

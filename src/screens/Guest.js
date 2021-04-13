@@ -11,9 +11,8 @@ import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
-
-const URL =
-  "https://www.dn.se/ekonomi/har-ar-landets-basta-och-samsta-skolkommuner/";
+import { LinearGradient } from "expo-linear-gradient";
+import { withNavigation } from "react-navigation";
 
 /**
  * @summary
@@ -41,81 +40,61 @@ class Guest extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <Toolbar />
         <QuestionButton />
-        <Text style={styles.TitleText}>WHAT DO YOU WANT TO DO?</Text>
-        <TouchableOpacity style={[styles.Button, styleSheets.PinkBackground]}>
-          <Text style={styles.Text}>THIS WEEKS ARTICLE QUIZ</Text>
-          <Text style={styles.SmallText}>{this.state.time}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.Button, styleSheets.PinkBackground]}>
-          <Text style={styles.Text}>THIS WEEKS NEWS QUIZ</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.Button, styleSheets.LightBlueBackground]}
-          onPress={() => Linking.openURL(URL)}
-        >
-          <Text style={styles.Text}>READ THIS WEEKS ARTICLE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.Button, styleSheets.LightBlueBackground]}
-        >
-          <Text style={styles.Text}>SCOREBOARD</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.SignUpButton}
-          onPress={() => this.props.navigation.navigate("Sign")}
-        >
-          <Text style={styles.SignUpText}>SIGN UP</Text>
-        </TouchableOpacity>
+        <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Read")}
+          >
+            <Text style={styles.button_blue}>READ THIS WEEKS ARTICLE</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("Read")}
+          >
+            <Text style={styles.button_pink}>THIS WEEKS ARTICLE QUIZ</Text>
+            <Text>{this.state.time}</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
+          <TouchableOpacity
+            onPress={() => nthis.props.navigation.navigate("Read")}
+          >
+            <Text style={styles.button_pink}>THIS WEEKS NEWS QUIZ</Text>
+          </TouchableOpacity>
+        </LinearGradient>
       </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  Button: {
-    width: "80%",
-    height: "10%",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: theme.PADDING_MEDIUM,
+  header: {
+    fontSize: 26,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+  },
+  button_blue: {
+    fontSize: 25,
+    color: "#FFFFFF",
+    textAlign: "center",
+    width: "95%",
+    margin: theme.MARGIN_MEDIUM,
+    padding: 30,
     borderRadius: theme.ROUNDING_SMALL,
+  },
+  button_pink: {
+    fontSize: 25,
+    color: "#FFFFFF",
+    padding: 20,
+    width: "95%",
     margin: theme.MARGIN_MEDIUM,
-    shadowOffset: theme.SHADOW_OFFSET,
-    shadowOpacity: theme.SHADOW_OPACITY,
-  },
-  SignUpButton: {
-    width: "30%",
-    height: "5%",
-    borderRadius: 5,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    position: "absolute",
-    alignSelf: "flex-start",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: theme.MARGIN_MEDIUM,
-    bottom: 0,
-  },
-  SignUpText: {
-    fontSize: 14,
-    color: "white",
-    fontFamily: theme.DEFAULT_FONT,
-  },
-  TitleText: {
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-    color: "white",
-    fontFamily: theme.DEFAULT_FONT,
-    margin: 30,
-  },
-  Text: {
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-    color: "white",
-    fontFamily: theme.DEFAULT_FONT,
-  },
-  SmallText: {
-    fontSize: 15,
-    color: "white",
-    fontFamily: theme.DEFAULT_FONT,
+    textAlign: "center",
+    borderRadius: theme.ROUNDING_SMALL,
   },
 });
 
-export default Guest;
+export default withNavigation(Guest);

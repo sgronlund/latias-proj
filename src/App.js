@@ -7,16 +7,18 @@ import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
 import Toolbar from "./screens/components/Toolbar";
 import Reset from "./screens/Reset";
+import Read from "./screens/Read";
 import SubmitReset from "./screens/SubmitReset";
 import UpdatePassword from "./screens/updatePassword";
 
 /**
- * @summary This file contains the stack navigator 
+ * @summary This file contains the stack navigator
  * for navigating between different screens.
  */
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
+    Read: Read,
     Guest: Guest,
     Sign: Signup,
     LogIn: LogIn,
