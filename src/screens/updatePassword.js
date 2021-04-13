@@ -11,10 +11,10 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "./Socket";
+import Socket from "../misc/Socket";
 
 /**
- * @brief This represents the screen for updating a users password
+ * @summary This represents the screen for updating a users password
  */
 class updatePassword extends React.Component {
   constructor(props) {
@@ -26,7 +26,8 @@ class updatePassword extends React.Component {
   }
 
   /**
-   * Updates the state of the password when the user inputs text
+   * @function
+   * @summary Updates the state of the password when the user inputs text
    * @param {String} text text to update code to
    */
   handlePassword = (text) => {
@@ -34,7 +35,8 @@ class updatePassword extends React.Component {
   };
 
   /**
-   * Updates the state of the password confirmation when the user inputs text
+   * @function
+   * @summary Updates the state of the password confirmation when the user inputs text
    * @param {String} text text to update the password confirmation to
    */
   handlePasswordConfirm = (text) => {
@@ -42,8 +44,9 @@ class updatePassword extends React.Component {
   };
 
   /**
-   * @brief Tells the server to update the password for a user
-   * @details If the user inputs two passwords that are not the same, the
+   * @function
+   * @summary Tells the server to update the password for a user
+   * @description If the user inputs two passwords that are not the same, the
    * user is notified of this and needs to re-enter the passwords
    * @param {String} password the new password
    * @param {String} passwordConfirm the new password (confirm)

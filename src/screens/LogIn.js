@@ -11,10 +11,10 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "./Socket";
+import Socket from "../misc/Socket";
 
 /**
- * @brief This represents the login screen. From here you
+ * @summary This represents the login screen. From here you
  * can either login or press reset password which will lead
  * you to the reset page.
  */
@@ -25,7 +25,8 @@ class LogIn extends React.Component {
   }
 
   /**
-   * Updates the state of the username when the user inputs text
+   * @function
+   * @summary Updates the state of the username when the user inputs text
    * @param {String} text text to update username to
    */
   handleUsername = (text) => {
@@ -33,7 +34,8 @@ class LogIn extends React.Component {
   };
 
   /**
-   * Updates the state of the password when the user inputs text
+   * @function
+   * @summary Updates the state of the password when the user inputs text
    * @param {String} text text to update password to
    */
   handlePassword = (text) => {
@@ -41,7 +43,8 @@ class LogIn extends React.Component {
   };
 
   /**
-   * @brief Tells the server that a user is trying to log in
+   * @function
+   * @summary Tells the server that a user is trying to log in
    * @param {String} username username of the user to log in
    * @param {String} password password of the user to log in
    */
@@ -51,17 +54,18 @@ class LogIn extends React.Component {
   };
 
   /**
-   * @brief Initializes socket listeners for checking for login
+   * @function
+   * @summary Initializes socket listeners for checking for login
    * success or failure and removes the listeners
    */
   initSocket() {
     Socket.on("loginSuccess", () => {
-      alert("Login successful!");
       Socket.off("loginSuccess");
+      alert("Login successful!");
     });
     Socket.on("loginFailure", () => {
-      alert("Login failed!");
       Socket.off("loginFailure");
+      alert("Login failed!");
     });
   }
 

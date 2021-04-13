@@ -11,10 +11,10 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "./Socket";
+import Socket from "../misc/Socket";
 
 /**
- * @brief This represents the screen for entering the code that
+ * @summary This represents the screen for entering the code that
  * you've received in your email to reset your password. On
  * correct reset code input, the user will be sent to the
  * password reset page.
@@ -28,7 +28,8 @@ class SubmitReset extends React.Component {
   }
 
   /**
-   * Updates the state of the code when the user inputs text
+   * @function
+   * @summary Updates the state of the code when the user inputs text
    * @param {String} text text to update code to
    */
   handleCode = (text) => {
@@ -36,24 +37,26 @@ class SubmitReset extends React.Component {
   };
 
   /**
-   * @brief Initializes socket listeners for checking for code
+   * @function
+   * @summary Initializes socket listeners for checking for code
    * success or failure and removes the listeners
    */
   initSockets() {
     Socket.on("codeFailure", () => {
-      alert("Wrong code!");
       Socket.off("codeFailure");
+      alert("Wrong code!");
     });
     Socket.on("codeSuccess", () => {
+      Socket.off("codeSuccess");
       this.props.navigation.navigate("UpdatePassword", {
         email: this.state.email,
       });
-      Socket.off("codeSuccess");
     });
   }
 
   /**
-   * @brief Tells the server that a user is submitting their reset code
+   * @function
+   * @summary Tells the server that a user is submitting their reset code
    * @param {String} code the reset code for resetting the password
    * @param {String} email email of the user
    */
