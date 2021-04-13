@@ -1,93 +1,137 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
-import socketClient from "socket.io-client";
-import QuestionButton from './components/QuestionButton.js'
-import theme from '../styles/themes.js'
-import TitleContainer from './components/TitleContainer.js'
-import styleSheets from '../styles/StyleSheets.js'
+import {
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import QuestionButton from "./components/QuestionButton";
+import theme from "../styles/themes";
+import styleSheets from "../styles/StyleSheets";
+import Toolbar from "./components/Toolbar";
+import Socket from "../misc/Socket";
 
+/**
+ * @summary This represents the signup screen. From here you enter
+ * a username, password and an email to create an account. A user
+ * can not enter a username or email that is already in the database.
+ */
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: '', password: '', email: ''};
+    this.state = { username: "", password: "", email: "" };
   }
 
+  /**
+   * @function
+   * @summary Updates the state of the username when the user inputs text
+   * @param {String} text text to update username to
+   */
   handleUsername = (text) => {
-    this.setState({ username: text});
-  }
+    this.setState({ username: text });
+  };
 
+  /**
+   * @function
+   * @summary Updates the state of the password when the user inputs text
+   * @param {String} text text to update password to
+   */
   handlePassword = (text) => {
-    this.setState({ password: text});
-  }
+    this.setState({ password: text });
+  };
 
+  /**
+   * @function
+   * @summary Updates the state of the email when the user inputs text
+   * @param {String} text text to update email to
+   */
   handleEmail = (text) => {
-    this.setState({ email: text});
-  }
+    this.setState({ email: text });
+  };
 
+  /**
+   * @function
+   * @summary Tells the server that a user is trying to register
+   * @param {String} username username of the user to register
+   * @param {String} password password of the user to register
+   * @param {String} email email of the user to register
+   */
   handleRegister = (username, password, email) => {
-    var socket = this.connect();
-    socket.emit('register', username, password, email);
-  }
+    this.initSocket();
+    Socket.emit("register", username, password, email);
+  };
 
-  connect() {
-    var socket = socketClient ("http://localhost:8080");
-    this.initSockets(socket);
-    return socket;
-  }
-
-  initSockets(socket) {
-    socket.on('registerSuccess', () => {alert("Register successful!")});
-    socket.on('registerFailure', () => {alert("Username or email busy!")});
-    socket.on('loginSuccess', () => {
-      alert("Login successful!")
-      this.isLoggedIn = true;
+  /**
+   * @function
+   * @summary Initializes socket listeners for checking for register
+   * success or failure and removes the listeners
+   */
+  initSocket() {
+    Socket.on("registerSuccess", () => {
+      Socket.off("registerSuccess");
+      alert("Register successful!");
+      this.props.navigation.navigate("Home");
     });
-    socket.on('loginFailure', () => {alert("Login failed!")});
+    Socket.on("registerFailure", () => {
+      Socket.off("registerFailure");
+      alert("Username or email busy!");
+    });
   }
 
   render() {
     return (
-      <SafeAreaView style = {styleSheets.MainContainer}>
-              <QuestionButton/>
-              <TitleContainer/>
-              <View style = {styles.LoginContainer}>
-                <Text style = {styleSheets.LoginText}>Username:</Text>
-                <TextInput
-                  style={styleSheets.Input}
-                  placeholder="your username"
-                  onChangeText={this.handleUsername}
-                />
-                <Text style = {styleSheets.LoginText}>Password:</Text>
-                <TextInput
-                  style={styleSheets.Input}
-                  placeholder="your password"
-                  onChangeText={this.handlePassword}
-                />
-                <Text style = {styleSheets.LoginText}>Email:</Text>
-                <TextInput
-                  style={styleSheets.Input}
-                  placeholder="your email"
-                  onChangeText={this.handleEmail}
-                />
-              </View>
-              <TouchableOpacity style = {styleSheets.BlueButton} onPress= {() => this.handleRegister(this.state.username, this.state.password, this.state.email)}>
-                <Text style = {styleSheets.ButtonText}>REGISTER</Text>
-              </TouchableOpacity>
-            </SafeAreaView>
+      <SafeAreaView style={styleSheets.MainContainer}>
+        <QuestionButton />
+        <Toolbar />
+        <View style={styles.LoginContainer}>
+          <Text style={styleSheets.LoginText}>Username:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="your username"
+            onChangeText={this.handleUsername}
+          />
+          <Text style={styleSheets.LoginText}>Password:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="your password"
+            onChangeText={this.handlePassword}
+          />
+          <Text style={styleSheets.LoginText}>Email:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="your email"
+            onChangeText={this.handleEmail}
+          />
+        </View>
+        <TouchableOpacity
+          style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
+          onPress={() =>
+            this.handleRegister(
+              this.state.username,
+              this.state.password,
+              this.state.email
+            )
+          }
+        >
+          <Text style={styleSheets.ButtonText}>REGISTER</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  LoginContainer: 
-    {   
-        width: '95%',
-        height: '40%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: theme.DARK_PURPLE,
-        borderRadius: theme.ROUNDING_SMALL
-    },
+  LoginContainer: {
+    width: "95%",
+    height: "35%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: theme.DARK_PURPLE,
+    borderRadius: theme.ROUNDING_SMALL,
+    margin: theme.MARGIN_LARGE,
+  },
 });
 
 export default Signup;

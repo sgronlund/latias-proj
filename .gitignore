@@ -1,7 +1,14 @@
+.idea/**/*
+package-lock.json
+src/package-lock.json
+src/.expo-shared/**/*
+docs/out
 src/server/.db-journal
 node_modules/**/*
 src/node_modules/**/*
 src/.expo/*
+src/.expo-shared/*
+src/package-lock.json
 src/.vscode/*
 npm-debug.*
 *.jks

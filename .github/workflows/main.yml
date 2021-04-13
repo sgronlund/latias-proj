@@ -8,5 +8,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: cd src && npm install
-    - run: cd src && npm test
+    - name: Install dependencies
+      run: |
+        cd src
+        npm install
+    - name: Run Tests
+      run: |
+        cd src
+        npm test

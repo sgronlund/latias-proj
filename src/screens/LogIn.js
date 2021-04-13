@@ -1,88 +1,127 @@
 import React from "react";
-import { TextInput, SafeAreaView, StyleSheet, TouchableOpacity, View, Text } from "react-native";
-import socketClient from "socket.io-client";
-import QuestionButton from './components/QuestionButton.js'
-import theme from '../styles/themes.js'
-import TitleContainer from './components/TitleContainer.js'
-import styleSheets from '../styles/StyleSheets.js'
+import {
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text,
+} from "react-native";
+import QuestionButton from "./components/QuestionButton";
+import theme from "../styles/themes";
+import styleSheets from "../styles/StyleSheets";
+import Toolbar from "./components/Toolbar";
+import Socket from "../misc/Socket";
 
+/**
+ * @summary This represents the login screen. From here you
+ * can either login or press reset password which will lead
+ * you to the reset page.
+ */
 class LogIn extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {username: '', password: ''};
-      }
+  constructor(props) {
+    super(props);
+    this.state = { username: "", password: "" };
+  }
 
-      handleUsername = (text) => {
-        this.setState({ username: text});
-      }
-    
-      handlePassword = (text) => {
-        this.setState({ password: text});
-      }
+  /**
+   * @function
+   * @summary Updates the state of the username when the user inputs text
+   * @param {String} text text to update username to
+   */
+  handleUsername = (text) => {
+    this.setState({ username: text });
+  };
 
-    handleLogin = (username, password) => {
-        var socket = this.connect();
-        socket.emit('login', username, password);
-    }
+  /**
+   * @function
+   * @summary Updates the state of the password when the user inputs text
+   * @param {String} text text to update password to
+   */
+  handlePassword = (text) => {
+    this.setState({ password: text });
+  };
 
-    connect() {
-        var socket = socketClient ("http://localhost:8080");
-        this.initSockets(socket);
-        return socket;
-      }
+  /**
+   * @function
+   * @summary Tells the server that a user is trying to log in
+   * @param {String} username username of the user to log in
+   * @param {String} password password of the user to log in
+   */
+  handleLogin = (username, password) => {
+    this.initSocket();
+    Socket.emit("login", username, password);
+  };
 
-      initSockets(socket) {
-        socket.on('loginSuccess', () => {
-          alert("Login successful!")
-        });
-        socket.on('loginFailure', () => {alert("Login failed!")});
-        }
+  /**
+   * @function
+   * @summary Initializes socket listeners for checking for login
+   * success or failure and removes the listeners
+   */
+  initSocket() {
+    Socket.on("loginSuccess", () => {
+      Socket.off("loginSuccess");
+      alert("Login successful!");
+    });
+    Socket.on("loginFailure", () => {
+      Socket.off("loginFailure");
+      alert("Login failed!");
+    });
+  }
 
-    render () {
-        return (
-            <SafeAreaView style = {styleSheets.MainContainer}>
-              <QuestionButton/>
-              <TitleContainer/>
-              <View style = {styles.LoginContainer}>
-                <Text style = {styleSheets.LoginText}>Username:</Text>
-                <TextInput
-                  style={styleSheets.Input}
-                  placeholder="your username"
-                  onChangeText={this.handleUsername}
-                />
-                <Text style = {styleSheets.LoginText}>Password:</Text>
-                <TextInput
-                  style={styleSheets.Input}
-                  placeholder="your password"
-                  onChangeText={this.handlePassword}
-                />
-              </View>
-              <TouchableOpacity style = {styleSheets.PinkButton} onPress= {() => this.handleLogin(this.state.username, this.state.password)}>
-                <Text style = {styleSheets.ButtonText}>LOG IN</Text>
-              </TouchableOpacity>
-              <TouchableOpacity><Text style = {styles.ForgotPassword}>forgot password?</Text></TouchableOpacity>
-            </SafeAreaView>
-        );
-    }
+  render() {
+    return (
+      <SafeAreaView style={styleSheets.MainContainer}>
+        <QuestionButton />
+        <Toolbar />
+        <View style={styles.LoginContainer}>
+          <Text style={styleSheets.LoginText}>Username:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="your username"
+            onChangeText={this.handleUsername}
+          />
+          <Text style={styleSheets.LoginText}>Password:</Text>
+          <TextInput
+            style={styleSheets.Input}
+            placeholder="your password"
+            onChangeText={this.handlePassword}
+          />
+        </View>
+        <TouchableOpacity
+          style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
+          onPress={() =>
+            this.handleLogin(this.state.username, this.state.password)
+          }
+        >
+          <Text style={styleSheets.ButtonText}>LOG IN</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("Reset")}
+        >
+          <Text style={styles.ForgotPassword}>forgot password?</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    LoginContainer: 
-    {   
-        width: '95%',
-        height: '30%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: theme.DARK_PURPLE,
-        borderRadius: theme.ROUNDING_SMALL
-    },
-    ForgotPassword:
-    {
-      fontFamily: 'Roboto Slab',
-      fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-      color: '#3E9EFE',
-      textDecorationLine: 'underline'
-    }
+  LoginContainer: {
+    width: "95%",
+    height: "30%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: theme.DARK_PURPLE,
+    borderRadius: theme.ROUNDING_SMALL,
+    margin: theme.MARGIN_LARGE,
+  },
+  ForgotPassword: {
+    fontFamily: "Roboto Slab",
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    color: "#3E9EFE",
+    textDecorationLine: "underline",
+  },
 });
 
 export default LogIn;
