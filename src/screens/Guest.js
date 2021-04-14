@@ -17,7 +17,7 @@ import { withNavigation } from "react-navigation";
 /**
  * @summary
  */
-class Guest extends React.Component {
+class Guest extends React.Component { //FIXME: Please change this name to something more relevatn
   constructor(props) {
     super(props);
     this.state = { time: "" };
@@ -33,6 +33,10 @@ class Guest extends React.Component {
     Socket.on("timeLeft", (timeLeft) => {
       this.setState({ time: timeLeft });
     });
+  }
+
+  componentWillUnmount() {
+    Socket.off("timeLeft");
   }
 
   render() {
