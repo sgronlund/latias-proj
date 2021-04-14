@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, PixelRatio } from "react-native";
 import theme from "./themes.js";
 
 /**
  * @brief This file contains a stylesheet for styles that
  * are commonly used throughout the program.
- */
+ */ 
+
 const styleSheets = StyleSheet.create({
   MainContainer: {
     flex: 1,
@@ -54,6 +55,13 @@ const styleSheets = StyleSheet.create({
     alignSelf: "flex-start",
     marginLeft: 40,
   },
+
+  TitleText: {
+    fontSize: theme.FONT_SIZE_MEDIUM, 
+    color: "white", 
+    fontFamily: theme.DEFAULT_FONT,
+    marginTop: 40, 
+  }
 });
 
 export default styleSheets;

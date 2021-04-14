@@ -58,7 +58,7 @@ class HomeScreen extends React.Component {
         onPress={() => this.props.navigation.navigate("NQReady")}
         style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
         >
-          
+        <Text >THIS IS A TEMPORARY BUTTON</Text>  
         </TouchableOpacity>
 
       </SafeAreaView>
