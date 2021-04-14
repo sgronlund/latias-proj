@@ -22,4 +22,6 @@ export default {
   DARK_PURPLE: "#081842",
   SHADOW_OFFSET: { width: 0, height: 4 },
   SHADOW_OPACITY: 0.35,
+
+  ROUND_START_BUTTON: 200,
 };
