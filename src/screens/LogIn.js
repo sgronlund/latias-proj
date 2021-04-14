@@ -11,7 +11,7 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "../misc/Socket";
+import {Socket,sharedKey} from "../misc/Socket";
 
 /**
  * @summary This represents the login screen. From here you
@@ -51,6 +51,7 @@ class LogIn extends React.Component {
   handleLogin = (username, password) => {
     this.initSocket();
     Socket.emit("login", username, password);
+    console.log(sharedKey);
   };
 
   /**
