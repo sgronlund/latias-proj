@@ -101,7 +101,6 @@ class LogIn extends React.Component {
         >
           <Text style={styles.ForgotPassword}>forgot password?</Text>
         </TouchableOpacity>
-
       </SafeAreaView>
     );
   }
