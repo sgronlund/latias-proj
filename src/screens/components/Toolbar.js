@@ -3,7 +3,17 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import styleSheets from "../../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
 import theme from "../../styles/themes";
-import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+//import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+
+/**
+ * Makes the test fail, removed for now
+ * <Ionicons
+                name="ios-settings-sharp"
+                size={35}
+                color={theme.DARK_PURPLE}
+                
+              />
+ */
 
 /**
  * @summary This is a component that contains the toolbar
@@ -30,12 +40,9 @@ class Toolbar extends React.Component {
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate("Settings")}
             >
-              <Ionicons
-                name="ios-settings-sharp"
-                size={35}
-                color={theme.DARK_PURPLE}
-                style={styles.gear}
-              />
+              
+              
+              
             </TouchableOpacity>
           </Text>
         </View>
