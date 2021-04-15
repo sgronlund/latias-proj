@@ -89,7 +89,7 @@ class Developer extends React.Component {
    */
   handleWeekNumber = (value) => {
     this.setState({ weekNumber: value });
-    console.log(this.state.weekNumber)
+    console.log(this.state.weekNumber);
   };
 
   /**
