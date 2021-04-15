@@ -28,7 +28,7 @@ class Developer extends React.Component {
       wrongAnswer2: "",
       wrongAnswer3: "",
       correctAnswer: "",
-      weekNumber: "",
+      weekNumber: 0,
     };
   }
 
@@ -85,10 +85,11 @@ class Developer extends React.Component {
    * @function
    * @summary Updates the state of the correct answer when the user
    * inputs text
-   * @param {String} text text to update correct answer to
+   * @param {Integer} value value to update correct answer to
    */
-  handleWeekNumber = (text) => {
-    this.setState({ weekNumber: text });
+  handleWeekNumber = (value) => {
+    this.setState({ weekNumber: value });
+    console.log(this.state.weekNumber)
   };
 
   /**
@@ -180,7 +181,7 @@ class Developer extends React.Component {
               this.state.wrongAnswer2,
               this.state.wrongAnswer3,
               this.state.correctAnswer,
-              this.state.weekNumber
+              parseInt(this.state.weekNumber)
             )
           }
         >
