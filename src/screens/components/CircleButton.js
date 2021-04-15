@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Dimensions, TouchableOpacity, View } from "react-native"; 
 import theme from "../../styles/themes.js";
 import styleSheets from "../../styles/StyleSheets";
+//import { Colors } from "react-native/Libraries/NewAppScreen";
 
 class CircleButton extends React.Component {
     state = {
@@ -21,7 +22,8 @@ class CircleButton extends React.Component {
     
       componentWillUnmount() {
         Dimensions.removeEventListener("change", this.onChange);
-      }    
+      }
+  
     render() {
         return (
             <View>
@@ -41,7 +43,13 @@ class CircleButton extends React.Component {
               underlayColor = '#ccc'
               onPress = { () => alert('Yaay!') }
             >
-            <Text style={styleSheets.ButtonText}>START</Text>
+            <Text 
+            style={ {
+            fontSize: Dimensions.get('window').width / 10, 
+            color: "white"
+            }}>
+              START
+            </Text>
             </TouchableOpacity>
             </View>
         )
