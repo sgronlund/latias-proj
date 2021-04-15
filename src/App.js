@@ -9,7 +9,6 @@ import Toolbar from "./screens/components/Toolbar";
 import Reset from "./screens/Reset";
 import SubmitReset from "./screens/SubmitReset";
 import UpdatePassword from "./screens/updatePassword";
-import NewQReady from "./screens/NewQReady";
 
 /**
  * @summary This file contains the stack navigator 
@@ -25,8 +24,7 @@ const navigator = createStackNavigator(
     Toolbar: Toolbar,
     Reset: Reset,
     SubmitReset: SubmitReset,
-    UpdatePassword: UpdatePassword,
-    NQReady: NewQReady
+    UpdatePassword: UpdatePassword
   },
   {
     initialRouteName: "Home",

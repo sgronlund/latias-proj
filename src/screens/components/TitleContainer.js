@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import theme from "../../styles/themes.js";
 
 /**
@@ -10,7 +10,6 @@ class TitleContainer extends React.Component {
   render() {
     return (
       <View style={styles.TitleContainer}>
-        <Image source={require('../../assets/Logo_white_onColor.png')} />
         <Text style={styles.TitleText}>REAL DEAL</Text>
         <Text style={styles.PurpleLine}>─────────</Text>
       </View>
