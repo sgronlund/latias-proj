@@ -4,7 +4,7 @@ import theme from "./themes.js";
 /**
  * @brief This file contains a stylesheet for styles that
  * are commonly used throughout the program.
- */ 
+ */
 
 const styleSheets = StyleSheet.create({
   MainContainer: {
@@ -57,11 +57,11 @@ const styleSheets = StyleSheet.create({
   },
 
   TitleText: {
-    fontSize: theme.FONT_SIZE_MEDIUM, 
-    color: "white", 
+    fontSize: theme.FONT_SIZE_MEDIUM,
+    color: "white",
     fontFamily: theme.DEFAULT_FONT,
-    marginTop: 40, 
-  }
+    marginTop: 40,
+  },
 });
 
 export default styleSheets;
