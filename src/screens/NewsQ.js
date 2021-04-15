@@ -20,31 +20,30 @@ const NewsQ = () => {
       <QuestionButton />
       <Text style={styles.numberQ}>6/10 </Text>
       <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
-      <Text style={styles.button_pink}>Vem ska trump gifta sig med?</Text>
+        <Text style={styles.button_pink}>Vem ska trump gifta sig med?</Text>
       </LinearGradient>
 
       <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-      <TouchableOpacity>
-      <Text style={styles.button_blue}>Aishe</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.button_blue}>Aishe</Text>
+        </TouchableOpacity>
       </LinearGradient>
 
       <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-      <TouchableOpacity>
-      <Text style={styles.button_blue}>Kimiya</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.button_blue}>Kimiya</Text>
+        </TouchableOpacity>
       </LinearGradient>
 
       <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-      <TouchableOpacity>
-      <Text style={styles.button_blue}>Niclas</Text>
-      </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.button_blue}>Niclas</Text>
+        </TouchableOpacity>
       </LinearGradient>
 
-      <View style= {styles.ansContainer} > 
+      <View style={styles.ansContainer}>
         <Text>hej</Text>
       </View>
-  
     </SafeAreaView>
   );
 };
@@ -81,8 +80,7 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_LARGE,
     padding: 50,
     borderRadius: theme.ROUNDING_SMALL,
-
-  }
+  },
 });
 
 export default NewsQ;

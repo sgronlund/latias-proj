@@ -17,7 +17,8 @@ import { withNavigation } from "react-navigation";
 /**
  * @summary
  */
-class Guest extends React.Component { //FIXME: Please change this name to something more relevatn
+class Guest extends React.Component {
+  //FIXME: Please change this name to something more relevatn
   constructor(props) {
     super(props);
     this.state = { time: "" };

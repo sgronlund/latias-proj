@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Modal
+  Modal,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
@@ -22,7 +22,14 @@ import Socket from "../misc/Socket";
 class Developer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { question: "", wrongAnswer1: "", wrongAnswer2: "", wrongAnswer3: "", correctAnswer: "", weekNumber: "" };
+    this.state = {
+      question: "",
+      wrongAnswer1: "",
+      wrongAnswer2: "",
+      wrongAnswer3: "",
+      correctAnswer: "",
+      weekNumber: "",
+    };
   }
 
   /**
@@ -30,7 +37,7 @@ class Developer extends React.Component {
    * @summary Updates the state of the question when the user inputs text
    * @param {String} text text to update username to
    */
-   handleQuestion = (text) => {
+  handleQuestion = (text) => {
     this.setState({ question: text });
   };
 
@@ -50,7 +57,7 @@ class Developer extends React.Component {
    * inputs text
    * @param {String} text text to update wrong answer to
    */
-   handleWrongAnswer2 = (text) => {
+  handleWrongAnswer2 = (text) => {
     this.setState({ wrongAnswer2: text });
   };
 
@@ -60,7 +67,7 @@ class Developer extends React.Component {
    * inputs text
    * @param {String} text text to update wrong answer to
    */
-   handleWrongAnswer3 = (text) => {
+  handleWrongAnswer3 = (text) => {
     this.setState({ wrongAnswer3: text });
   };
 
@@ -70,7 +77,7 @@ class Developer extends React.Component {
    * inputs text
    * @param {String} text text to update correct answer to
    */
-   handleCorrectAnswer = (text) => {
+  handleCorrectAnswer = (text) => {
     this.setState({ correctAnswer: text });
   };
 
@@ -80,7 +87,7 @@ class Developer extends React.Component {
    * inputs text
    * @param {String} text text to update correct answer to
    */
-   handleWeekNumber = (text) => {
+  handleWeekNumber = (text) => {
     this.setState({ weekNumber: text });
   };
 
@@ -90,9 +97,21 @@ class Developer extends React.Component {
    * @param {String} username username of the user to log in
    * @param {String} password password of the user to log in
    */
-  handleSubmitQuestion = (question, wrongAnswer1, wrongAnswer2, wrongAnswer3, correctAnswer, quizId) => {
+  handleSubmitQuestion = (
+    question,
+    wrongAnswer1,
+    wrongAnswer2,
+    wrongAnswer3,
+    correctAnswer,
+    quizId
+  ) => {
     this.initSocket();
-    Socket.emit("addQuestion", question, [wrongAnswer1, wrongAnswer2, wrongAnswer3, correctAnswer], quizId);
+    Socket.emit(
+      "addQuestion",
+      question,
+      [wrongAnswer1, wrongAnswer2, wrongAnswer3, correctAnswer],
+      quizId
+    );
   };
 
   /**
@@ -114,7 +133,7 @@ class Developer extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar/>        
+        <Toolbar />
         <View style={styles.InputContainer}>
           <Text style={styleSheets.LoginText}>Question:</Text>
           <TextInput
@@ -143,7 +162,9 @@ class Developer extends React.Component {
             placeholder="Correct answer"
             onChangeText={this.handleCorrectAnswer}
           />
-          <Text style={styleSheets.LoginText}>Input week number for question:</Text>
+          <Text style={styleSheets.LoginText}>
+            Input week number for question:
+          </Text>
           <TextInput
             style={styles.QuestionInput}
             placeholder="WeekNumber"
@@ -153,12 +174,14 @@ class Developer extends React.Component {
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
           onPress={() =>
-            this.handleSubmitQuestion(this.state.question, 
-                                      this.state.wrongAnswer1, 
-                                      this.state.wrongAnswer2, 
-                                      this.state.wrongAnswer3, 
-                                      this.state.correctAnswer, 
-                                      this.state.weekNumber)
+            this.handleSubmitQuestion(
+              this.state.question,
+              this.state.wrongAnswer1,
+              this.state.wrongAnswer2,
+              this.state.wrongAnswer3,
+              this.state.correctAnswer,
+              this.state.weekNumber
+            )
           }
         >
           <Text style={styleSheets.ButtonText}>SUBMIT</Text>
@@ -185,7 +208,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: "white",
     textAlign: "center",
-    placeholderTextColor : "#000000",
+    placeholderTextColor: "#000000",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
   AnswerInput: {
@@ -193,7 +216,7 @@ const styles = StyleSheet.create({
     width: "80%",
     borderWidth: 1,
     textAlign: "center",
-    placeholderTextColor : "#000000",
+    placeholderTextColor: "#000000",
     backgroundColor: "white",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },

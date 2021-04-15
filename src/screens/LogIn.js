@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Modal
+  Modal,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
@@ -81,8 +81,8 @@ class LogIn extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Toolbar/>
-        
+        <Toolbar />
+
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>Username:</Text>
           <TextInput
