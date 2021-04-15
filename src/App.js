@@ -11,6 +11,7 @@ import NewsQ from "./screens/NewsQ";
 import Read from "./screens/Read";
 import SubmitReset from "./screens/SubmitReset";
 import UpdatePassword from "./screens/updatePassword";
+import Developer from "./screens/Developer"
 
 /**
  * @summary This file contains the stack navigator
@@ -29,9 +30,10 @@ const navigator = createStackNavigator(
     Reset: Reset,
     SubmitReset: SubmitReset,
     UpdatePassword: UpdatePassword,
+    Developer: Developer
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Developer",
     defaultNavigationOptions: {
       header: false,
     },

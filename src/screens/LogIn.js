@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Modal
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
@@ -21,7 +22,7 @@ import Socket from "../misc/Socket";
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = { username: "", password: "", alert: false };
   }
 
   /**
@@ -59,6 +60,11 @@ class LogIn extends React.Component {
    * success or failure and removes the listeners
    */
   initSocket() {
+    Socket.on("loginRoot", () => {
+      Socket.off("loginRoot");
+      alert("Login successful!");
+      this.props.navigation.navigate("Developer");
+    });
     Socket.on("loginSuccess", () => {
       Socket.off("loginSuccess");
       alert("Login successful!");
@@ -66,6 +72,7 @@ class LogIn extends React.Component {
     });
     Socket.on("loginFailure", () => {
       Socket.off("loginFailure");
+      this.state.isVisible = true;
       alert("Login failed!");
     });
   }
@@ -74,7 +81,8 @@ class LogIn extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Toolbar />
+        <Toolbar/>
+        
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>Username:</Text>
           <TextInput

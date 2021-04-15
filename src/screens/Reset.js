@@ -40,14 +40,14 @@ class Reset extends React.Component {
    */
   initSocket() {
     Socket.on("emailSuccess", () => {
+      Socket.off("emailSuccess");
       this.props.navigation.navigate("SubmitReset", {
         email: this.state.email,
       });
-      Socket.off("emailSuccess");
     });
     Socket.on("emailFailure", () => {
-      alert("Invalid email!");
       Socket.off("emailFailure");
+      alert("Invalid email!");
     });
   }
 

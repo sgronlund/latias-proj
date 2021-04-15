@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, TouchableOpacity, SafeAreaView, View } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Modal, View } from "react-native";
 import theme from "../../styles/themes.js";
 
 const Gameplay = "Do this\nDo that\nAnd that\nAnd that"
@@ -19,14 +19,22 @@ class QuestionButton extends React.Component {
     this.setState({ show: !this.state.show })
   }
 
+  modal = () => {
+    if(true) {
+      return (<View style={styles.Overlay}>
+                <Text style={styles.TextBig}>How to play:</Text>
+                <Text style={styles.TextSmall}>{Gameplay}</Text>
+              </View>)
+    } else {
+      return null;
+    }
+  }
+
   render() {
     if(this.state.show) {
       return(
         <View style = {styles.Main}>
-          <View style={styles.Overlay}>
-            <Text style={styles.TextBig}>How to play:</Text>
-            <Text style={styles.TextSmall}>{Gameplay}</Text>
-          </View>
+          {this.modal}
           <View style={styles.Container}>
             <TouchableOpacity style={styles.Circle} onPress={() => this.toggleShow()}>
               <Text style={styles.QuestionMark}>?</Text>
