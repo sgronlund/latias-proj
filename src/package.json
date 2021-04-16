@@ -9,7 +9,7 @@
     "test": "jest",
     "format": "npx prettier --write ./**/*.js",
     "clean": "node misc/clean.js",
-    "document": "jsdoc -r screens -d ../docs/out"
+    "document": "jsdoc -r screens -d ../docs/out && exit 0"
   },
   "jest": {
     "preset": "react-native",

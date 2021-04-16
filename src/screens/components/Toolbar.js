@@ -2,6 +2,18 @@ import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import styleSheets from "../../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
+import theme from "../../styles/themes";
+//import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+
+/**
+ * Makes the test fail, removed for now
+ * <Ionicons
+                name="ios-settings-sharp"
+                size={35}
+                color={theme.DARK_PURPLE}
+                
+              />
+ */
 
 /**
  * @summary This is a component that contains the toolbar
@@ -16,9 +28,24 @@ class Toolbar extends React.Component {
   render() {
     return (
       <View style={styles.Toolbar}>
-        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-          <Text style={styleSheets.ButtonText}>GO BACK</Text>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => this.props.navigation.goBack()}
+        >
+          <Text style={styles.Arrow}>↶</Text>
         </TouchableOpacity>
+        <View style={styles.TextContainer}>
+          <Text style={styles.Text}>
+            REAL DEAL{" "}
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Settings")}
+            >
+              
+              
+              
+            </TouchableOpacity>
+          </Text>
+        </View>
       </View>
     );
   }
@@ -26,11 +53,31 @@ class Toolbar extends React.Component {
 
 const styles = StyleSheet.create({
   Toolbar: {
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#545985",
     width: "100%",
+    alignContent: "center",
+    justifyContent: "center",
     height: "10%",
+  },
+  TextContainer: {
+    position: "absolute",
+    alignSelf: "center",
+  },
+  Button: {
+    left: "5%",
+  },
+  Arrow: {
+    fontSize: theme.FONT_SIZE_LARGE,
+    color: "white",
+    fontFamily: theme.DEFAULT_FONT,
+  },
+  Text: {
+    fontSize: theme.FONT_SIZE_SMALL,
+    color: "white",
+    fontFamily: theme.DEFAULT_FONT,
+  },
+  gear: {
+    left: 100,
   },
 });
 

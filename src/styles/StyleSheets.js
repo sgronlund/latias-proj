@@ -26,10 +26,11 @@ const styleSheets = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: theme.PADDING_MEDIUM,
-    borderRadius: theme.ROUNDING_LARGE,
+    borderRadius: theme.ROUNDING_MEDIUM,
     margin: theme.MARGIN_MEDIUM,
     shadowOffset: theme.SHADOW_OFFSET,
     shadowOpacity: theme.SHADOW_OPACITY,
+    zIndex: 1,
   },
   PinkBackground: {
     backgroundColor: theme.PINK,
