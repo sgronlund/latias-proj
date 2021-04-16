@@ -1,23 +1,28 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import HomeScreen from "./screens/HomeScreen";
-import ContGuest from "./screens/ContGuest";
+import Guest from "./screens/Guest";
 import Signup from "./screens/Signup";
 import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
 import Toolbar from "./screens/components/Toolbar";
 import Reset from "./screens/Reset";
+import NewsQ from "./screens/NewsQ";
+import Read from "./screens/Read";
 import SubmitReset from "./screens/SubmitReset";
 import UpdatePassword from "./screens/updatePassword";
+import Developer from "./screens/Developer"
 
 /**
- * @summary This file contains the stack navigator 
+ * @summary This file contains the stack navigator
  * for navigating between different screens.
  */
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Cont: ContGuest,
+    Read: Read,
+    NewsQ: NewsQ,
+    Guest: Guest,
     Sign: Signup,
     LogIn: LogIn,
     Settings: Settings,
@@ -25,6 +30,7 @@ const navigator = createStackNavigator(
     Reset: Reset,
     SubmitReset: SubmitReset,
     UpdatePassword: UpdatePassword,
+    Developer: Developer
   },
   {
     initialRouteName: "Home",
