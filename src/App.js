@@ -33,7 +33,7 @@ const navigator = createStackNavigator(
     Developer: Developer
   },
   {
-    initialRouteName: "Developer",
+    initialRouteName: "Home",
     defaultNavigationOptions: {
       header: false,
     },
