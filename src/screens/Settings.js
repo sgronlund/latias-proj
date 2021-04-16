@@ -20,7 +20,7 @@ class Settings extends React.Component {
   handleLogout = () => {
     initLogoutSockets(this.props.navigation);
     Socket.emit("logout", Socket.id);
-  }
+  };
 
   render() {
     return (
@@ -34,10 +34,20 @@ class Settings extends React.Component {
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>User Policy</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Button} onPress={() => {this.props.navigation.navigate('Reset')}}>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => {
+            this.props.navigation.navigate("Reset");
+          }}
+        >
           <Text style={styleSheets.ButtonText}>New Password</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Button} onPress={() => {this.handleLogout()}}>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => {
+            this.handleLogout();
+          }}
+        >
           <Text style={styleSheets.ButtonText}>Log Out</Text>
         </TouchableOpacity>
       </SafeAreaView>

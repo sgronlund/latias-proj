@@ -107,7 +107,7 @@ let initLogoutSockets = (navigation) => {
     Socket.off("logoutFailure");
     alert("You are not logged in!");
   });
-}
+};
 
 export default Socket;
 export {
