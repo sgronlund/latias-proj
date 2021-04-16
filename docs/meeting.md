@@ -50,8 +50,36 @@ Idag diskuterade vi hur vi ska börja med front-end:n och vem ska göra vilken s
 
 Alla närvarade under mötet.
 
-## Arbetsmlte 12/04/21
+## Arbetsmöte 12/04/21
 
 Idag bestämde sig gruppen att köra igång med föreberedelse av presentationen till Milestone 1 då vi har uppnått den interna deadlinen vi satt. Inget övrigt diskuterades under mötet.
 
 Alla närvarade under mötet.
+
+## Arbetsmöte 13/04/21
+
+Idag planerar vi att fortsätta med föreberedelsen av presentationen. Vi kommer även att jobba samtidigt med den delar av front-enden och testning av backenden.
+
+Alla närvarande under mötet.
+
+## Arbetsmöte 16/04/21
+
+### Vad gjorde vi igår?
+
+Fixade logout funktionalitet samt utvecklarkonton så att det går att lägga till frågor.
+
+### Vi tänker vi göra idag?
+
+Potentiellt påbörja en skiss på implementation av ett sätt att hämta frågor från servern till klienten på ett smidigt sätt. Just nu verkar det som vi skicka frågor fram och tillbaka mellan varje sida eller spara alla frågor i enheten lokala lagring.
+
+Göra om delar av frontend så att allt med sockets ligger på ett och samma ställe.
+
+### Några problem?
+
+#### Fixa fonten så att det funkar till mobila enheter
+
+* Borde gå att fixa med [expo-fonts](https://docs.expo.io/versions/latest/sdk/font/)
+
+### Andra punkter
+
+Rapport utkast 2 in nästa vecka!
