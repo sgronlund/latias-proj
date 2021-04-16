@@ -19,44 +19,36 @@ class QuestionButton extends React.Component {
     this.setState({ show: !this.state.show })
   }
 
-  modal = () => {
-    if(true) {
-      return (<View style={styles.Overlay}>
-                <Text style={styles.TextBig}>How to play:</Text>
-                <Text style={styles.TextSmall}>{Gameplay}</Text>
-              </View>)
-    } else {
-      return null;
-    }
-  }
-
   render() {
-    if(this.state.show) {
-      return(
-        <View style = {styles.Main}>
-          {this.modal}
-          <View style={styles.Container}>
-            <TouchableOpacity style={styles.Circle} onPress={() => this.toggleShow()}>
-              <Text style={styles.QuestionMark}>?</Text>
-            </TouchableOpacity>
-          </View>
+        if(this.state.show) {
+          return(
+          <View style = {styles.Main}>
+            <View style={styles.Overlay}>
+                  <Text style={styles.TextBig}>How to play:</Text>
+                  <Text style={styles.TextSmall}>{Gameplay}</Text>
+            </View>
+            <View style={styles.Container}>
+              <TouchableOpacity style={styles.Circle} onPress={() => this.toggleShow()}>
+                <Text style={styles.QuestionMark}>?</Text>
+              </TouchableOpacity>
+            </View>
         </View>
-      )
-    } else {
-      return(
-        <View style={styles.Container}>
-          <TouchableOpacity style={styles.Circle} onPress={() => this.toggleShow()}>
-            <Text style={styles.QuestionMark}>?</Text>
-          </TouchableOpacity>
-        </View>
-      )
-    }
+          )
+        } else {
+          return(
+            <View style={styles.Container}>
+              <TouchableOpacity style={styles.Circle} onPress={() => this.toggleShow()}>
+                <Text style={styles.QuestionMark}>?</Text>
+              </TouchableOpacity>
+            </View>
+          )
+        }
   }
 }
 
 const styles = StyleSheet.create({
   Main: {
-    zIndex: 999,
+    zIndex: 998,
     position: "absolute",
     width: "100%",
     height: "100%"
