@@ -83,6 +83,22 @@ let initVerifyResetSockets = (navigation, email) => {
       });
 }
 
+/**
+   * @function
+   * @summary Initializes socket listeners for checking for login
+   * success or failure and removes the listeners
+   */
+let initDeveloperSockets = () => {
+  Socket.on("addQuestionSuccess", () => {
+    Socket.off("addQuestionSuccess");
+    alert("Question added!");
+  });
+  Socket.on("addQuestionFailure", () => {
+    Socket.off("addQuestionFailure");
+    alert("Invalid input!");
+  });
+}
+
 export default Socket;
-export { initLoginSockets, initResetSockets, initSignupSockets, initVerifyResetSockets, Socket }
+export { initLoginSockets, initResetSockets, initSignupSockets, initVerifyResetSockets, initDeveloperSockets, Socket }
 
