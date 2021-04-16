@@ -62,6 +62,12 @@ Idag planerar vi att fortsätta med föreberedelsen av presentationen. Vi kommer
 
 Alla närvarande under mötet.
 
+## Arbetsmöten 14-15/04/21
+
+Inget större diskuterades under dessa möten och arbete satt igång relativt hastigt. 
+
+Alla närvarade under mötet.
+
 ## Arbetsmöte 16/04/21
 
 ### Vad gjorde vi igår?
