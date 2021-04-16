@@ -5,6 +5,7 @@ import Wallet from "./components/Shop.js";
 import theme from "../styles/themes.js";
 import styleSheets from "../styles/StyleSheets.js";
 import Toolbar from "./components/Toolbar";
+import { Socket, initLogoutSockets } from "../misc/Socket";
 
 /**
  * @summary This represents the settings screen. The user
@@ -12,6 +13,15 @@ import Toolbar from "./components/Toolbar";
  * password or log out from here.
  */
 class Settings extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleLogout = () => {
+    initLogoutSockets(this.props.navigation);
+    Socket.emit("logout", Socket.id);
+  }
+
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
@@ -24,10 +34,10 @@ class Settings extends React.Component {
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>User Policy</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={() => {this.props.navigation.navigate('Reset')}}>
           <Text style={styleSheets.ButtonText}>New Password</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={() => {this.handleLogout()}}>
           <Text style={styleSheets.ButtonText}>Log Out</Text>
         </TouchableOpacity>
       </SafeAreaView>

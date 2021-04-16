@@ -4,7 +4,6 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  Linking,
 } from "react-native";
 import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
