@@ -11,7 +11,7 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "../misc/Socket";
+import { Socket, initSignupSockets } from "../misc/Socket";
 
 /**
  * @summary This represents the signup screen. From here you enter
@@ -59,26 +59,9 @@ class Signup extends React.Component {
    * @param {String} email email of the user to register
    */
   handleRegister = (username, password, email) => {
-    this.initSocket();
+    initSignupSockets(this.props.navigation);
     Socket.emit("register", username, password, email);
   };
-
-  /**
-   * @function
-   * @summary Initializes socket listeners for checking for register
-   * success or failure and removes the listeners
-   */
-  initSocket() {
-    Socket.on("registerSuccess", () => {
-      Socket.off("registerSuccess");
-      alert("Register successful!");
-      this.props.navigation.navigate("Home");
-    });
-    Socket.on("registerFailure", () => {
-      Socket.off("registerFailure");
-      alert("Username or email busy!");
-    });
-  }
 
   render() {
     return (
