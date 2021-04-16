@@ -18,7 +18,6 @@ Socket.on('serverPublic', (server_public,g,p) => {
       var private_key = bigInt(1337420); //TODO generera på annat sätt
       var my_public_key = g.modPow(private_key,p);
       sharedKey = server_public.modPow(private_key,p);
-
       Socket.emit('clientPublic', Number(my_public_key));
     });
 Socket.emit('startKeyExchange');

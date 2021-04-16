@@ -12,6 +12,7 @@ import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import {Socket,sharedKey} from "../misc/Socket";
+import aes256 from "aes256";
 
 /**
  * @summary This represents the login screen. From here you
@@ -52,6 +53,9 @@ class LogIn extends React.Component {
     this.initSocket();
     Socket.emit("login", username, password);
     console.log(sharedKey);
+
+    var testMsg = aes256.encrypt(sharedKey.toString(),"wow that epic bro OwO");
+    Socket.emit("testEncrypt",testMsg);
   };
 
   /**
