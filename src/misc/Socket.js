@@ -82,10 +82,10 @@ let initVerifyResetSockets = (navigation, email) => {
 };
 
 /**
-   * @function
-   * @summary Initializes socket listeners for checking for login
-   * success or failure and removes the listeners
-   */
+ * @function
+ * @summary Initializes socket listeners for checking for login
+ * success or failure and removes the listeners
+ */
 let initDeveloperSockets = () => {
   Socket.on("addQuestionSuccess", () => {
     Socket.off("addQuestionSuccess");
@@ -95,8 +95,14 @@ let initDeveloperSockets = () => {
     Socket.off("addQuestionFailure");
     alert("Invalid input!");
   });
-}
+};
 
 export default Socket;
-export { initLoginSockets, initResetSockets, initSignupSockets, initVerifyResetSockets, initDeveloperSockets, Socket }
-
+export {
+  initLoginSockets,
+  initResetSockets,
+  initSignupSockets,
+  initVerifyResetSockets,
+  initDeveloperSockets,
+  Socket,
+};
