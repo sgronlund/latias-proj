@@ -14,7 +14,6 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "../misc/Socket";
 
-
 /**
  * @summary This represents the login screen. From here you
  * can either login or press reset password which will lead
