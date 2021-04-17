@@ -14,6 +14,7 @@ import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import Socket from "../misc/Socket";
 
+
 /**
  * @summary This represents the login screen. From here you
  * can either login or press reset password which will lead
@@ -208,7 +209,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: "white",
     textAlign: "center",
-    placeholderTextColor: "#000000",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
   AnswerInput: {
@@ -216,7 +216,6 @@ const styles = StyleSheet.create({
     width: "80%",
     borderWidth: 1,
     textAlign: "center",
-    placeholderTextColor: "#000000",
     backgroundColor: "white",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
