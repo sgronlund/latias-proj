@@ -11,7 +11,7 @@ import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import { Socket, initDeveloperSockets } from "../misc/Socket";
-import currentWeekNumber from "current-week-number"
+import currentWeekNumber from "current-week-number";
 
 /**
  * @summary This represents the login screen. From here you
@@ -26,7 +26,7 @@ class Developer extends React.Component {
       wrongAnswer1: "",
       wrongAnswer2: "",
       wrongAnswer3: "",
-      correctAnswer: ""
+      correctAnswer: "",
     };
   }
 
@@ -90,7 +90,7 @@ class Developer extends React.Component {
     wrongAnswer1,
     wrongAnswer2,
     wrongAnswer3,
-    correctAnswer,
+    correctAnswer
   ) => {
     initDeveloperSockets();
     Socket.emit(
@@ -109,7 +109,7 @@ class Developer extends React.Component {
   resetQuestions = () => {
     Socket.emit("resetQuestions", currentWeekNumber());
     alert("Questions has been reset!");
-  }
+  };
 
   render() {
     return (

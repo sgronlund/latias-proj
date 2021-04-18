@@ -12,13 +12,20 @@ import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import { Socket, initNewsQSockets } from "../misc/Socket";
-import currentWeekNumber from "current-week-number"
-
+import currentWeekNumber from "current-week-number";
 
 class NewsQ extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { questions: [], question: "", wrongAnswer1: "", wrongAnswer2: "", wrongAnswer3: "", correctAnswer: "", currentQuestion: 0}
+    this.state = {
+      questions: [],
+      question: "",
+      wrongAnswer1: "",
+      wrongAnswer2: "",
+      wrongAnswer3: "",
+      correctAnswer: "",
+      currentQuestion: 0,
+    };
   }
 
   /**
@@ -26,7 +33,7 @@ class NewsQ extends React.Component {
    * @summary calls function before component is rendered
    */
   componentDidMount() {
-    //Cannot call this in the constructor since React-Native 
+    //Cannot call this in the constructor since React-Native
     //does not allow changing states in the constructor.
     this.getQuestions();
   }
@@ -37,11 +44,11 @@ class NewsQ extends React.Component {
    * server to get the questions for the current week.
    */
   getQuestions = () => {
-    //Need to send a reference to the class itself 
+    //Need to send a reference to the class itself
     //since we call some of it's functions
     initNewsQSockets(this);
     Socket.emit("getQuestions", currentWeekNumber());
-  }
+  };
 
   /**
    * @function
@@ -49,53 +56,55 @@ class NewsQ extends React.Component {
    * screen for the next question
    */
   nextQuestion = () => {
-    //TODO: Randomize questions, right now the 
+    //TODO: Randomize questions, right now the
     //correct answer is always in the same spot
     var currentQuestion = this.state.currentQuestion;
     var questions = this.state.questions;
-    this.setState({ question: questions[currentQuestion]?.question,
-                    wrongAnswer1: questions[currentQuestion]?.wrong1,
-                    wrongAnswer2: questions[currentQuestion]?.wrong2, 
-                    wrongAnswer3: questions[currentQuestion]?.wrong3, 
-                    correctAnswer: questions[currentQuestion]?.correct,
-                    currentQuestion: (currentQuestion + 1)});
-    if(currentQuestion === 10) {
+    this.setState({
+      question: questions[currentQuestion]?.question,
+      wrongAnswer1: questions[currentQuestion]?.wrong1,
+      wrongAnswer2: questions[currentQuestion]?.wrong2,
+      wrongAnswer3: questions[currentQuestion]?.wrong3,
+      correctAnswer: questions[currentQuestion]?.correct,
+      currentQuestion: currentQuestion + 1,
+    });
+    if (currentQuestion === 10) {
       //TODO: Add score
       this.props.navigation.navigate("Home");
     }
-  }
+  };
 
   render() {
-      return (
-        <SafeAreaView style={styleSheets.MainContainer}>
-          <Toolbar />
-          <QuestionButton />
-          <Text style={styles.numberQ}>{`${this.state.currentQuestion}/10`}</Text>
-          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
-            <Text style={styles.button_pink}>{this.state.question}</Text>
-          </LinearGradient>
-    
-          <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-            <TouchableOpacity onPress = {this.nextQuestion}>
-              <Text style={styles.button_blue}>{this.state.wrongAnswer1}</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-    
-          <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-            <TouchableOpacity onPress = {this.nextQuestion}>
-              <Text style={styles.button_blue}>{this.state.wrongAnswer2}</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-    
-          <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-            <TouchableOpacity onPress = {this.nextQuestion}>
-              <Text style={styles.button_blue}>{this.state.wrongAnswer3}</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </SafeAreaView>
-      );
+    return (
+      <SafeAreaView style={styleSheets.MainContainer}>
+        <Toolbar />
+        <QuestionButton />
+        <Text style={styles.numberQ}>{`${this.state.currentQuestion}/10`}</Text>
+        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
+          <Text style={styles.button_pink}>{this.state.question}</Text>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <TouchableOpacity onPress={this.nextQuestion}>
+            <Text style={styles.button_blue}>{this.state.wrongAnswer1}</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <TouchableOpacity onPress={this.nextQuestion}>
+            <Text style={styles.button_blue}>{this.state.wrongAnswer2}</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <TouchableOpacity onPress={this.nextQuestion}>
+            <Text style={styles.button_blue}>{this.state.wrongAnswer3}</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+      </SafeAreaView>
+    );
   }
-};
+}
 
 const styles = StyleSheet.create({
   button_pink: {
