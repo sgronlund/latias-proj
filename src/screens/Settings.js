@@ -26,7 +26,7 @@ class Settings extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Toolbar backButton={true}/>
+        <Toolbar backButton={true} />
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>Sound Off</Text>
         </TouchableOpacity>
