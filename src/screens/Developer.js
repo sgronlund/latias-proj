@@ -11,6 +11,7 @@ import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import { Socket, initDeveloperSockets } from "../misc/Socket";
+import currentWeekNumber from "current-week-number";
 
 /**
  * @summary This represents the login screen. From here you
@@ -26,7 +27,6 @@ class Developer extends React.Component {
       wrongAnswer2: "",
       wrongAnswer3: "",
       correctAnswer: "",
-      weekNumber: 0,
     };
   }
 
@@ -81,16 +81,6 @@ class Developer extends React.Component {
 
   /**
    * @function
-   * @summary Updates the state of the correct answer when the user
-   * inputs text
-   * @param {Integer} value value to update correct answer to
-   */
-  handleWeekNumber = (value) => {
-    this.setState({ weekNumber: value });
-  };
-
-  /**
-   * @function
    * @summary Tells the server that a user is trying to log in
    * @param {String} username username of the user to log in
    * @param {String} password password of the user to log in
@@ -100,16 +90,25 @@ class Developer extends React.Component {
     wrongAnswer1,
     wrongAnswer2,
     wrongAnswer3,
-    correctAnswer,
-    quizId
+    correctAnswer
   ) => {
     initDeveloperSockets();
     Socket.emit(
       "addQuestion",
       question,
       [wrongAnswer1, wrongAnswer2, wrongAnswer3, correctAnswer],
-      quizId
+      currentWeekNumber()
     );
+  };
+
+  /**
+   * @function
+   * @summary Tells the server to remove questions for the
+   * current week
+   */
+  resetQuestions = () => {
+    Socket.emit("resetQuestions", currentWeekNumber());
+    alert("Questions has been reset!");
   };
 
   render() {
@@ -144,14 +143,6 @@ class Developer extends React.Component {
             placeholder="Correct answer"
             onChangeText={this.handleCorrectAnswer}
           />
-          <Text style={styleSheets.LoginText}>
-            Input week number for question:
-          </Text>
-          <TextInput
-            style={styles.QuestionInput}
-            placeholder="WeekNumber"
-            onChangeText={this.handleWeekNumber}
-          />
         </View>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
@@ -161,12 +152,17 @@ class Developer extends React.Component {
               this.state.wrongAnswer1,
               this.state.wrongAnswer2,
               this.state.wrongAnswer3,
-              this.state.correctAnswer,
-              parseInt(this.state.weekNumber)
+              this.state.correctAnswer
             )
           }
         >
           <Text style={styleSheets.ButtonText}>SUBMIT</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
+          onPress={this.resetQuestions}
+        >
+          <Text style={styleSheets.ButtonText}>RESET QUESTIONS</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

@@ -26,6 +26,7 @@
     "@react-navigation/native": "^5.9.4",
     "@types/react-test-renderer": "^17.0.1",
     "child_process": "^1.0.2",
+    "current-week-number": "^1.0.7",
     "expo": "~40.0.0",
     "expo-app-loading": "^1.0.3",
     "expo-font": "~8.4.0",

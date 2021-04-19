@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   View,
   Text,
   SafeAreaView,
@@ -12,41 +11,100 @@ import { LinearGradient } from "expo-linear-gradient";
 import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import { Socket, initNewsQSockets } from "../misc/Socket";
+import currentWeekNumber from "current-week-number";
 
-const NewsQ = () => {
-  return (
-    <SafeAreaView style={styleSheets.MainContainer}>
-      <Toolbar />
-      <QuestionButton />
-      <Text style={styles.numberQ}>6/10 </Text>
-      <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
-        <Text style={styles.button_pink}>Vem ska trump gifta sig med?</Text>
-      </LinearGradient>
+class NewsQ extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      questions: [],
+      question: "",
+      wrongAnswer1: "",
+      wrongAnswer2: "",
+      wrongAnswer3: "",
+      correctAnswer: "",
+      currentQuestion: 0,
+    };
+  }
 
-      <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-        <TouchableOpacity>
-          <Text style={styles.button_blue}>Aishe</Text>
-        </TouchableOpacity>
-      </LinearGradient>
+  /**
+   * @function
+   * @summary calls function before component is rendered
+   */
+  componentDidMount() {
+    //Cannot call this in the constructor since React-Native
+    //does not allow changing states in the constructor.
+    this.getQuestions();
+  }
 
-      <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-        <TouchableOpacity>
-          <Text style={styles.button_blue}>Kimiya</Text>
-        </TouchableOpacity>
-      </LinearGradient>
+  /**
+   * @function
+   * @summary Initializes some socket listeners and calls for the
+   * server to get the questions for the current week.
+   */
+  getQuestions = () => {
+    //Need to send a reference to the class itself
+    //since we call some of it's functions
+    initNewsQSockets(this);
+    Socket.emit("getQuestions", currentWeekNumber());
+  };
 
-      <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-        <TouchableOpacity>
-          <Text style={styles.button_blue}>Niclas</Text>
-        </TouchableOpacity>
-      </LinearGradient>
+  /**
+   * @function
+   * @summary Updates the states for the answers to re-render the
+   * screen for the next question
+   */
+  nextQuestion = () => {
+    //TODO: Randomize questions, right now the
+    //correct answer is always in the same spot
+    var currentQuestion = this.state.currentQuestion;
+    var questions = this.state.questions;
+    this.setState({
+      question: questions[currentQuestion]?.question,
+      wrongAnswer1: questions[currentQuestion]?.wrong1,
+      wrongAnswer2: questions[currentQuestion]?.wrong2,
+      wrongAnswer3: questions[currentQuestion]?.wrong3,
+      correctAnswer: questions[currentQuestion]?.correct,
+      currentQuestion: currentQuestion + 1,
+    });
+    if (currentQuestion === 10) {
+      //TODO: Add score
+      this.props.navigation.navigate("Home");
+    }
+  };
 
-      <View style={styles.ansContainer}>
-        <Text>hej</Text>
-      </View>
-    </SafeAreaView>
-  );
-};
+  render() {
+    return (
+      <SafeAreaView style={styleSheets.MainContainer}>
+        <Toolbar />
+        <QuestionButton />
+        <Text style={styles.numberQ}>{`${this.state.currentQuestion}/10`}</Text>
+        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
+          <Text style={styles.button_pink}>{this.state.question}</Text>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <TouchableOpacity onPress={this.nextQuestion}>
+            <Text style={styles.button_blue}>{this.state.wrongAnswer1}</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <TouchableOpacity onPress={this.nextQuestion}>
+            <Text style={styles.button_blue}>{this.state.wrongAnswer2}</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <TouchableOpacity onPress={this.nextQuestion}>
+            <Text style={styles.button_blue}>{this.state.wrongAnswer3}</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+      </SafeAreaView>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   button_pink: {
