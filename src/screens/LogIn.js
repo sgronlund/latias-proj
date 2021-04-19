@@ -6,14 +6,13 @@ import {
   TouchableOpacity,
   View,
   Text,
-
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import {Socket,sharedKey,initLoginSockets} from "../misc/Socket";
-import sha256 from 'sha256';
+import { Socket, sharedKey, initLoginSockets } from "../misc/Socket";
+import sha256 from "sha256";
 import aes256 from "aes256";
 
 /**
@@ -64,8 +63,8 @@ class LogIn extends React.Component {
 
     Socket.emit("login", username, encrypt_pass);
 
-    var testMsg = aes256.encrypt(sharedKey.toString(),"wow that epic bro OwO");
-    Socket.emit("testEncrypt",testMsg);
+    var testMsg = aes256.encrypt(sharedKey.toString(), "wow that epic bro OwO");
+    Socket.emit("testEncrypt", testMsg);
   };
 
   render() {
