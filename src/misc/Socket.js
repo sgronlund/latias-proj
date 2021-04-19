@@ -115,25 +115,6 @@ let initLogoutSockets = (navigation) => {
   });
 };
 
-/**
- * @function
- * @summary Initializes socket listeners for checking for success or
- * failure of getting questions from the database
- * @param {Class} newsQ The class component newsQ (needed since we
- * call it's functions)
- */
-let initNewsQSockets = (newsQ) => {
-  Socket.on("getQuestionsSuccess", (questions) => {
-    Socket.off("getQuestionsSuccess");
-    newsQ.setState({ questions: questions });
-    newsQ.nextQuestion();
-  });
-  Socket.on("getQuestionFailure", () => {
-    Socket.off("getQuestionsSuccess");
-    alert("Could not retrieve questions!");
-  });
-};
-
 export default Socket;
 export {
   initLoginSockets,
@@ -142,6 +123,5 @@ export {
   initVerifyResetSockets,
   initDeveloperSockets,
   initLogoutSockets,
-  initNewsQSockets,
   Socket,
 };
