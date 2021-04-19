@@ -11,7 +11,7 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "../misc/Socket";
+import { Socket, initResetSockets } from "../misc/Socket";
 
 /**
  * @summary This represents the screen for entering your email
@@ -35,29 +35,11 @@ class Reset extends React.Component {
 
   /**
    * @function
-   * @summary Initializes socket listeners for checking for email
-   * success or failure and removes the listeners
-   */
-  initSocket() {
-    Socket.on("emailSuccess", () => {
-      this.props.navigation.navigate("SubmitReset", {
-        email: this.state.email,
-      });
-      Socket.off("emailSuccess");
-    });
-    Socket.on("emailFailure", () => {
-      alert("Invalid email!");
-      Socket.off("emailFailure");
-    });
-  }
-
-  /**
-   * @function
    * @summary Tells the server that a user is trying reset their password
    * @param {String} email email of the user trying to reset password
    */
   handleSubmit = (email) => {
-    this.initSocket();
+    initResetSockets(this.props.navigation, this.state.email);
     Socket.emit("resetPass", email);
   };
 

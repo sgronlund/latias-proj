@@ -22,7 +22,7 @@ import aes256 from "aes256";
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = { username: "", password: "", alert: false };
   }
 
   /**
@@ -58,27 +58,12 @@ class LogIn extends React.Component {
     Socket.emit("testEncrypt",testMsg);
   };
 
-  /**
-   * @function
-   * @summary Initializes socket listeners for checking for login
-   * success or failure and removes the listeners
-   */
-  initSocket() {
-    Socket.on("loginSuccess", () => {
-      Socket.off("loginSuccess");
-      alert("Login successful!");
-    });
-    Socket.on("loginFailure", () => {
-      Socket.off("loginFailure");
-      alert("Login failed!");
-    });
-  }
-
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
         <Toolbar />
+
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>Username:</Text>
           <TextInput

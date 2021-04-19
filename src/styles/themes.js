@@ -11,6 +11,7 @@ export default {
   PADDING_MEDIUM: 15,
   ROUNDING_EXTRA_SMALL: 5,
   ROUNDING_SMALL: 15,
+  ROUNDING_MEDIUM: 30,
   ROUNDING_LARGE: 50,
   DEFAULT_FONT: "Ramaraja",
   MARGIN_SMALL: 7,
@@ -22,4 +23,6 @@ export default {
   DARK_PURPLE: "#081842",
   SHADOW_OFFSET: { width: 0, height: 4 },
   SHADOW_OPACITY: 0.35,
+  BLUE_GRADIENT: ["#4DA6FF", "#377DC2"],
+  PINK_GRADIENT: ["#BF69E2", "#C3518D"],
 };
