@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   View,
   Text,
+
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import {Socket,sharedKey} from "../misc/Socket";
+import {Socket,sharedKey,initLoginSockets} from "../misc/Socket";
+import sha256 from 'sha256';
 import aes256 from "aes256";
 
 /**
@@ -50,9 +52,17 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
-    this.initSocket();
-    Socket.emit("login", username, password);
-    console.log(sharedKey);
+    initLoginSockets(this.props.navigation);
+    //The passwords stored in the database are first salted
+    var salt_pass = password.toString() + username.toString();
+
+    //The passwords are also irreversibly hashed
+    var hash_pass = sha256(salt_pass);
+
+    //The data transmission is encrypted in case of listeners.
+    var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
+
+    Socket.emit("login", username, encrypt_pass);
 
     var testMsg = aes256.encrypt(sharedKey.toString(),"wow that epic bro OwO");
     Socket.emit("testEncrypt",testMsg);
