@@ -208,7 +208,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: "white",
     textAlign: "center",
-    placeholderTextColor: "#000000",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
   AnswerInput: {
@@ -216,7 +215,6 @@ const styles = StyleSheet.create({
     width: "80%",
     borderWidth: 1,
     textAlign: "center",
-    placeholderTextColor: "#000000",
     backgroundColor: "white",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
