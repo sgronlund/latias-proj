@@ -62,7 +62,10 @@ class Signup extends React.Component {
    */
   handleRegister = (username, password, email) => {
     //if inputs are invalid we don't want to do anything
-    if(!username || !password || !email) {alert("Some inputs are empty!");return;}
+    if (!username || !password || !email) {
+      alert("Some inputs are empty!");
+      return;
+    }
 
     initSignupSockets(this.props.navigation);
     //the client first applies salt to the password
