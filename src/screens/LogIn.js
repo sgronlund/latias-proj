@@ -50,7 +50,7 @@ class LogIn extends React.Component {
    */
   handleLogin = (username, password) => {
     initLoginSockets(this.props.navigation);
-    Socket.emit("login", username, password);
+    Socket.emit("login", username, password, Socket.id);
   };
 
   render() {

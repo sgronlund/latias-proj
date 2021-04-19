@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  SafeAreaView,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  Linking,
-} from "react-native";
+import { SafeAreaView, TouchableOpacity, Text, StyleSheet } from "react-native";
 import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";

@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import socketClient from "socket.io-client";
 
 /**
@@ -97,6 +98,17 @@ let initDeveloperSockets = () => {
   });
 };
 
+let initLogoutSockets = (navigation) => {
+  Socket.on("logoutSuccess", () => {
+    Socket.off("logoutSuccess");
+    navigation.navigate("Home");
+  });
+  Socket.on("logoutFailure", () => {
+    Socket.off("logoutFailure");
+    alert("You are not logged in!");
+  });
+};
+
 export default Socket;
 export {
   initLoginSockets,
@@ -104,5 +116,6 @@ export {
   initSignupSockets,
   initVerifyResetSockets,
   initDeveloperSockets,
+  initLogoutSockets,
   Socket,
 };
