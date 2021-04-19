@@ -62,9 +62,6 @@ class LogIn extends React.Component {
     var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
 
     Socket.emit("login", username, encrypt_pass);
-
-    var testMsg = aes256.encrypt(sharedKey.toString(), "wow that epic bro OwO");
-    Socket.emit("testEncrypt", testMsg);
   };
 
   render() {
