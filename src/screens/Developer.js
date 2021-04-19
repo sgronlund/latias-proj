@@ -6,13 +6,11 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Modal,
 } from "react-native";
-import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "../misc/Socket";
+import { Socket, initDeveloperSockets } from "../misc/Socket";
 
 /**
  * @summary This represents the login screen. From here you
@@ -105,7 +103,7 @@ class Developer extends React.Component {
     correctAnswer,
     quizId
   ) => {
-    this.initSocket();
+    initDeveloperSockets();
     Socket.emit(
       "addQuestion",
       question,
@@ -113,22 +111,6 @@ class Developer extends React.Component {
       quizId
     );
   };
-
-  /**
-   * @function
-   * @summary Initializes socket listeners for checking for login
-   * success or failure and removes the listeners
-   */
-  initSocket() {
-    Socket.on("addQuestionSuccess", () => {
-      Socket.off("addQuestionSuccess");
-      alert("Question added!");
-    });
-    Socket.on("addQuestionFailure", () => {
-      Socket.off("addQuestionFailure");
-      alert("Invalid input!");
-    });
-  }
 
   render() {
     return (

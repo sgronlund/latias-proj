@@ -11,7 +11,7 @@ import Toolbar from "./screens/components/Toolbar";
 import Reset from "./screens/Reset";
 import NewsQ from "./screens/NewsQ";
 import Read from "./screens/Read";
-import SubmitReset from "./screens/SubmitReset";
+import VerifyReset from "./screens/VerifyReset";
 import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer"
 import React from "react";
@@ -31,7 +31,7 @@ const navigator = createStackNavigator(
     Settings: Settings,
     Toolbar: Toolbar,
     Reset: Reset,
-    SubmitReset: SubmitReset,
+    VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer
   },

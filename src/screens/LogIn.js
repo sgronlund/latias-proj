@@ -6,13 +6,12 @@ import {
   TouchableOpacity,
   View,
   Text,
-  Modal,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "../misc/Socket";
+import { Socket, initLoginSockets } from "../misc/Socket";
 
 /**
  * @summary This represents the login screen. From here you
@@ -50,32 +49,9 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
-    this.initSocket();
+    initLoginSockets(this.props.navigation);
     Socket.emit("login", username, password);
   };
-
-  /**
-   * @function
-   * @summary Initializes socket listeners for checking for login
-   * success or failure and removes the listeners
-   */
-  initSocket() {
-    Socket.on("loginRoot", () => {
-      Socket.off("loginRoot");
-      alert("Login successful!");
-      this.props.navigation.navigate("Developer");
-    });
-    Socket.on("loginSuccess", () => {
-      Socket.off("loginSuccess");
-      alert("Login successful!");
-      this.props.navigation.navigate("Guest");
-    });
-    Socket.on("loginFailure", () => {
-      Socket.off("loginFailure");
-      this.state.isVisible = true;
-      alert("Login failed!");
-    });
-  }
 
   render() {
     return (

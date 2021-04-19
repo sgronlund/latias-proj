@@ -11,7 +11,7 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "../misc/Socket";
+import { Socket, initVerifyResetSockets } from "../misc/Socket";
 
 /**
  * @summary This represents the screen for entering the code that
@@ -19,7 +19,7 @@ import Socket from "../misc/Socket";
  * correct reset code input, the user will be sent to the
  * password reset page.
  */
-class SubmitReset extends React.Component {
+class VerifyReset extends React.Component {
   constructor(props) {
     super(props);
     const { navigation } = this.props;
@@ -38,30 +38,12 @@ class SubmitReset extends React.Component {
 
   /**
    * @function
-   * @summary Initializes socket listeners for checking for code
-   * success or failure and removes the listeners
-   */
-  initSockets() {
-    Socket.on("codeFailure", () => {
-      Socket.off("codeFailure");
-      alert("Wrong code!");
-    });
-    Socket.on("codeSuccess", () => {
-      Socket.off("codeSuccess");
-      this.props.navigation.navigate("UpdatePassword", {
-        email: this.state.email,
-      });
-    });
-  }
-
-  /**
-   * @function
    * @summary Tells the server that a user is submitting their reset code
    * @param {String} code the reset code for resetting the password
    * @param {String} email email of the user
    */
   handleSubmit = (code, email) => {
-    this.initSockets();
+    initVerifyResetSockets(this.props.navigation, this.state.email);
     Socket.emit("submitCode", code, email);
   };
 
@@ -112,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SubmitReset;
+export default VerifyReset;
