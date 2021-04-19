@@ -67,7 +67,7 @@ class Signup extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Toolbar />
+        <Toolbar title="Register" backButton={true}/>
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>Username:</Text>
           <TextInput

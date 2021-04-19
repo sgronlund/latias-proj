@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import styleSheets from "../../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
 import theme from "../../styles/themes";
 //import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
@@ -28,23 +27,18 @@ class Toolbar extends React.Component {
   render() {
     return (
       <View style={styles.Toolbar}>
-        <TouchableOpacity
-          style={styles.Button}
-          onPress={() => this.props.navigation.goBack()}
-        >
-          <Text style={styles.Arrow}>↶</Text>
-        </TouchableOpacity>
-        <View style={styles.TextContainer}>
-          <Text style={styles.Text}>
-            REAL DEAL{" "}
+        {this.props.backButton ? (
+          <View style={styles.Button}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Settings")}
+              onPress={() => this.props.navigation.goBack()}
             >
-              
-              
-              
+              <Text style={styles.Arrow}>↶</Text>
             </TouchableOpacity>
-          </Text>
+          </View>
+        ) : null}
+
+        <View style={styles.TextContainer}>
+          <Text style={styles.Text}>{this.props.title || ""}</Text>
         </View>
       </View>
     );
@@ -57,6 +51,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignContent: "center",
     justifyContent: "center",
+    alignItems: "flex-start",
     height: "10%",
   },
   TextContainer: {
@@ -64,7 +59,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   Button: {
-    left: "5%",
+    height: "90%",
+    left: "2%",
   },
   Arrow: {
     fontSize: theme.FONT_SIZE_LARGE,
@@ -75,9 +71,6 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_SMALL,
     color: "white",
     fontFamily: theme.DEFAULT_FONT,
-  },
-  gear: {
-    left: 100,
   },
 });
 

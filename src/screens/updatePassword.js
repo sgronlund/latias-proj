@@ -61,7 +61,6 @@ class updatePassword extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton />
         <Toolbar />
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>New Password:</Text>
