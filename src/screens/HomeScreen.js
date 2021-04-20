@@ -11,6 +11,7 @@ import TitleContainer from "./components/TitleContainer";
 import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
+import { loadButtonSound, playButtonSound } from "../misc/Sounds";
 
 /**
  * @summary This represents the screen you get when you open
@@ -20,6 +21,12 @@ import { withNavigation } from "react-navigation";
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { buttonSound: {} };
+  }
+
+  async componentDidMount() {
+    var sound = await loadButtonSound();
+    this.setState({ buttonSound: sound });
   }
 
   render() {
@@ -30,26 +37,38 @@ class HomeScreen extends React.Component {
         <QuestionButton />
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
-          onPress={() => this.props.navigation.navigate("LogIn")}
+          onPress={() => {
+            this.props.navigation.navigate("LogIn");
+            playButtonSound(this.state.buttonSound);
+          }}
         >
           <Text style={styleSheets.ButtonText}>LOG IN</Text>
         </TouchableOpacity>
         <Text style={styles.Text}>───── or ─────</Text>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
-          onPress={() => this.props.navigation.navigate("Sign")}
+          onPress={() => {
+            this.props.navigation.navigate("Sign");
+            playButtonSound(this.state.buttonSound);
+          }}
         >
           <Text style={styleSheets.ButtonText}>SIGN UP</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
-          onPress={() => this.props.navigation.navigate("GameScreen")}
+          onPress={() => {
+            this.props.navigation.navigate("GameScreen");
+            playButtonSound(this.state.buttonSound);
+          }}
         >
           <Text style={styleSheets.ButtonText}>PLAY AS GUEST</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
-          onPress={() => this.props.navigation.navigate("Settings")}
+          onPress={() => {
+            this.props.navigation.navigate("Settings");
+            playButtonSound(this.state.buttonSound);
+          }}
         >
           <Text style={styleSheets.ButtonText}>GO TO SETTINGS</Text>
         </TouchableOpacity>

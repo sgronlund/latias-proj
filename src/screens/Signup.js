@@ -12,8 +12,8 @@ import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
 import { Socket, initSignupSockets, sharedKey } from "../misc/Socket";
-import sha256 from "sha256";
-import aes256 from "aes256";
+import sha256 from "crypto-js";
+import aes256 from "crypto-js";
 
 /**
  * @summary This represents the signup screen. From here you enter
