@@ -11,7 +11,9 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import { Socket, initLoginSockets } from "../misc/Socket";
+import { Socket, sharedKey, initLoginSockets } from "../misc/Socket";
+import sha256 from "sha256";
+import aes256 from "aes256";
 
 /**
  * @summary This represents the login screen. From here you
@@ -50,7 +52,16 @@ class LogIn extends React.Component {
    */
   handleLogin = (username, password) => {
     initLoginSockets(this.props.navigation);
-    Socket.emit("login", username, password, Socket.id);
+    //The passwords stored in the database are first salted
+    var salt_pass = password.toString() + username.toString();
+
+    //The passwords are also irreversibly hashed
+    var hash_pass = sha256(salt_pass);
+
+    //The data transmission is encrypted in case of listeners.
+    var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
+
+    Socket.emit("login", username, encrypt_pass);
   };
 
   render() {
