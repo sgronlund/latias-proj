@@ -11,6 +11,7 @@ import TitleContainer from "./components/TitleContainer";
 import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
+import { LinearGradient } from "expo-linear-gradient";
 
 /**
  * @summary This represents the screen you get when you open
@@ -27,12 +28,16 @@ class HomeScreen extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <TitleContainer />
         <QuestionButton />
-        <TouchableOpacity
+        <LinearGradient
+          colors={theme.PINK_GRADIENT}
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
+        >
+        <TouchableOpacity
           onPress={() => this.props.navigation.navigate("LogIn")}
         >
           <Text style={styleSheets.ButtonText}>LOG IN</Text>
         </TouchableOpacity>
+        </LinearGradient>
         <Text style={styles.Text}>───── or ─────</Text>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}

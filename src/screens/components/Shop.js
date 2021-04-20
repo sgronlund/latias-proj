@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../styles/themes.js";
+import { withNavigation } from "react-navigation";
 
 /**
  * @summary This is a component which leads the user to
@@ -13,8 +14,9 @@ class Shop extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity style={styles.Container}>
-        <Text style={styles.Text}>{(this.props.balance || "0") + " $"}</Text>
+      <TouchableOpacity style={styles.Container} 
+      onPress={() => this.props.navigation.navigate("ShopScreen")}>
+        <Text style={styles.Text}>97 $</Text>
       </TouchableOpacity>
     );
   }
@@ -40,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Shop;
+export default withNavigation(Shop);
