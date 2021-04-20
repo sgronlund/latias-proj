@@ -18,6 +18,7 @@ import Developer from "./screens/Developer";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import themes from "./styles/themes";
+import { Ionicons } from '@expo/vector-icons'; 
 
 /**
  * @summary This file contains the stack navigator
@@ -27,47 +28,46 @@ const navigator = createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         header: false,
-      }),
+      },
     },
     Read: {
       screen: Read,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: "READ THIS WEEKS ARTICLES",
-      }),
+      },
     },
     NewsQ: {
       screen: NewsQ,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: "THIS WEEKS NEWS QUIZ",
         headerLeft: null,
-      }),
+      },
     },
     Guest: {
       screen: Guest,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: "THE REAL DEAL",
-        headerLeft: null,
-      }),
+      },
     },
     Sign: {
       screen: Signup,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: "SIGN UP",
-      }),
+      },
     },
     LogIn: {
       screen: LogIn,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions: {
         title: "LOG IN",
-      }),
+      },
     },
     Settings: {
       screen: Settings,
-      navigationOptions: ({ navigation }) => ({
+      navigationOptions:{
         title: "SETTINGS",
-      }),
+      },
     },
     Toolbar: Toolbar,
     Reset: Reset,
@@ -77,7 +77,7 @@ const navigator = createStackNavigator(
   },
   {
     initialRouteName: "Home",
-    defaultNavigationOptions: {
+    defaultNavigationOptions: ({navigation}) => ({
       headerTintColor: "#FFFFFF",
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
@@ -88,12 +88,12 @@ const navigator = createStackNavigator(
         fontSize: 30,
         fontFamily: themes.DEFAULT_FONT,
       },
-      headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Image source={require("./assets/favicon.png")} />
+      headerRight:  (
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+            <Ionicons name="ios-settings-sharp" size={24} color="black" />
         </TouchableOpacity>
       ),
-    },
+    }),
   }
 );
 
