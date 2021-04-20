@@ -13,15 +13,8 @@ import styleSheets from "../styles/StyleSheets";
 import { withNavigation } from "react-navigation";
 import { LinearGradient } from "expo-linear-gradient";
 
-
 const ShopScreen = () => {
-  return (
-    <SafeAreaView style={styleSheets.MainContainer}>
-
-
-      
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={styleSheets.MainContainer}></SafeAreaView>;
 };
 
 export default ShopScreen;

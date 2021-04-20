@@ -32,11 +32,11 @@ class HomeScreen extends React.Component {
           colors={theme.PINK_GRADIENT}
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
         >
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("LogIn")}
-        >
-          <Text style={styleSheets.ButtonText}>LOG IN</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("LogIn")}
+          >
+            <Text style={styleSheets.ButtonText}>LOG IN</Text>
+          </TouchableOpacity>
         </LinearGradient>
         <Text style={styles.Text}>───── or ─────</Text>
         <TouchableOpacity
