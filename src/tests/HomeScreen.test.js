@@ -47,4 +47,3 @@ test('Press "PLAY AS GUEST" button', () => {
   expect(navigate).toHaveBeenCalledTimes(1);
   expect(navigate).toHaveBeenCalledWith("Guest");
 });
-
