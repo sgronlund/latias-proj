@@ -64,7 +64,7 @@ Alla närvarande under mötet.
 
 ## Arbetsmöten 14-15/04/21
 
-Inget större diskuterades under dessa möten och arbete satt igång relativt hastigt. 
+Inget större diskuterades under dessa möten och arbete satt igång relativt hastigt.
 
 Alla närvarade under mötet.
 
@@ -89,3 +89,48 @@ Göra om delar av frontend så att allt med sockets ligger på ett och samma st�
 ### Andra punkter
 
 Rapport utkast 2 in nästa vecka!
+
+## Arbetsmöte 19/04/21
+
+Denna vecka började vi att planer mer i detalj vad vi ska göra de kommande veckorna innan milestone 2.
+
+### Veckoplan
+
+#### Vecka 16
+
+* Rapporten.
+* Inloggning + Krypterad kommunikation + vyn till inloggning
+
+#### Vecka 17
+
+* Få själva spelet fungera.
+
+#### Vecka 18
+
+* Någon form av lösning på responsiva designen.
+* Poängsystem.
+* Shoppen.
+
+## Arbetsmöte 20/04/21
+
+### Vad gjorde vi igår?
+
+* Började på andra utkastet till rapporten
+* Började utveckla det faktiska spelet
+* Började ändra inloggningsvyn
+
+### Vi tänker vi göra idag?
+
+* Fortsätta med rapporten.
+* Fortsätta att fixa inloggningsvyn.
+* Poängsystem/Scoreboard
+* Shop
+* Kolla om det är svårt att implementera ljud
+
+### Några problem?
+
+* Ikoner verkar inte fungera på Android-enheter.
+
+### Andra punkter
+
+Inget att kommentera.
