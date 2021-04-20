@@ -48,17 +48,3 @@ test('Press "PLAY AS GUEST" button', () => {
   expect(navigate).toHaveBeenCalledWith("Guest");
 });
 
-test('check if button exists with text "GO TO SETTINGS"', () => {
-  const { getByText } = render(<HomeScreen />);
-  const settingsButton = getByText("GO TO SETTINGS");
-  expect(settingsButton).toBeDefined();
-});
-
-test('Press "GO TO SETTINGS" button', () => {
-  const navigate = jest.fn();
-  const { getByText } = render(<HomeScreen navigation={{ navigate }} />);
-  const settingsButton = getByText("GO TO SETTINGS");
-  fireEvent.press(settingsButton);
-  expect(navigate).toHaveBeenCalledTimes(1);
-  expect(navigate).toHaveBeenCalledWith("Settings");
-});

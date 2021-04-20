@@ -4,7 +4,7 @@ import socketClient from "socket.io-client";
 /**
  * @summary Connects a socket to the given ip
  */
-const Socket = socketClient("localhost:8080");
+const Socket = socketClient("http://192.168.1.101:8080");
 
 /**
  * @function
