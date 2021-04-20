@@ -25,7 +25,6 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <View style={styleSheets.Toolbar}></View>
         <TitleContainer />
         <QuestionButton />
         <TouchableOpacity

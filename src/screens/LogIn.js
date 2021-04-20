@@ -57,8 +57,6 @@ class LogIn extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Toolbar />
-
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>Username:</Text>
           <TextInput

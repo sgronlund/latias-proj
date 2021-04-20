@@ -13,6 +13,7 @@ import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import { Socket, initNewsQSockets } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
+import themes from "../styles/themes";
 
 class NewsQ extends React.Component {
   constructor(props) {
@@ -77,7 +78,6 @@ class NewsQ extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar />
         <QuestionButton />
         <Text style={styles.numberQ}>{`${this.state.currentQuestion}/10`}</Text>
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: -5,
     fontSize: 20,
+    fontFamily: themes.DEFAULT_FONT,
   },
   ansContainer: {
     backgroundColor: theme.DARK_PURPLE,

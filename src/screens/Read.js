@@ -16,14 +16,14 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import themes from "../styles/themes";
 
 const Read = () => {
   return (
     <SafeAreaView style={styleSheets.MainContainer}>
-      <Toolbar />
       <QuestionButton />
       <View style={styles.midsquare}>
-        <Text style={styles.header}>THIS WEEKS ARTICELS</Text>
+        <Text style={styles.header}>───── THIS WEEKS ARTICELS ─────</Text>
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
             onPress={() =>
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     textAlign: "center",
     borderRadius: theme.ROUNDING_SMALL,
+    fontFamily: themes.DEFAULT_FONT,
   },
   icon: {
     //funker ej
