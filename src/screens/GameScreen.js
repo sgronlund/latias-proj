@@ -8,6 +8,7 @@ import Socket from "../misc/Socket";
 import Shop from "./components/Shop";
 import { LinearGradient } from "expo-linear-gradient";
 import { withNavigation } from "react-navigation";
+import Wallet from "./components/Shop.js";
 
 /**
  * @summary
@@ -45,8 +46,8 @@ class GameScreen extends React.Component {
     const isLoggedIn = this.state.loggedIn;
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar title="Real Deal" backButton={!isLoggedIn} />
         {isLoggedIn ? <Shop /> : null}
+        <Wallet />
         <QuestionButton />
         <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
 
@@ -63,7 +64,7 @@ class GameScreen extends React.Component {
             onPress={() => this.props.navigation.navigate("Read")}
           >
             <Text style={styles.button_pink}>THIS WEEKS ARTICLE QUIZ</Text>
-            <Text>{this.state.time}</Text>
+            <Text style={styles.timer}>{this.state.time}</Text>
           </TouchableOpacity>
         </LinearGradient>
 
@@ -82,8 +83,13 @@ class GameScreen extends React.Component {
 const styles = StyleSheet.create({
   header: {
     fontSize: 26,
-    fontWeight: "bold",
     color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
+  },
+  timer: {
+    fontSize: 20,
+    color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
   },
   button_blue: {
     fontSize: 23,
@@ -93,6 +99,8 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     padding: 30,
     borderRadius: theme.ROUNDING_SMALL,
+
+    fontFamily: theme.DEFAULT_FONT,
   },
   button_pink: {
     fontSize: 23,
@@ -102,6 +110,8 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     textAlign: "center",
     borderRadius: theme.ROUNDING_SMALL,
+
+    fontFamily: theme.DEFAULT_FONT,
   },
 });
 

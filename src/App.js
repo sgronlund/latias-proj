@@ -1,7 +1,8 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import {loadAsync} from 'expo-font';
+import { loadAsync } from "expo-font";
 
+import { Image } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
@@ -13,8 +14,10 @@ import NewsQ from "./screens/NewsQ";
 import Read from "./screens/Read";
 import VerifyReset from "./screens/VerifyReset";
 import UpdatePassword from "./screens/updatePassword";
-import Developer from "./screens/Developer"
+import Developer from "./screens/Developer";
 import React from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import themes from "./styles/themes";
 
 /**
  * @summary This file contains the stack navigator
@@ -22,49 +25,96 @@ import React from "react";
  */
 const navigator = createStackNavigator(
   {
-    Home: HomeScreen,
-    Read: Read,
-    NewsQ: NewsQ,
-    GameScreen: GameScreen,
-    Sign: Signup,
-    LogIn: LogIn,
-    Settings: Settings,
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: false,
+      }),
+    },
+    Read: {
+      screen: Read,
+      navigationOptions: ({ navigation }) => ({
+        title: "READ THIS WEEKS ARTICLES",
+      }),
+    },
+    NewsQ: {
+      screen: NewsQ,
+      navigationOptions: ({ navigation }) => ({
+        title: "THIS WEEKS NEWS QUIZ",
+        headerLeft: null,
+      }),
+    },
+    Guest: {
+      screen: Guest,
+      navigationOptions: ({ navigation }) => ({
+        title: "THE REAL DEAL",
+        headerLeft: null,
+      }),
+    },
+    Sign: {
+      screen: Signup,
+      navigationOptions: ({ navigation }) => ({
+        title: "SIGN UP",
+      }),
+    },
+    LogIn: {
+      screen: LogIn,
+      navigationOptions: ({ navigation }) => ({
+        title: "LOG IN",
+      }),
+    },
+    Settings: {
+      screen: Settings,
+      navigationOptions: ({ navigation }) => ({
+        title: "SETTINGS",
+      }),
+    },
     Toolbar: Toolbar,
     Reset: Reset,
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
-    Developer: Developer
+    Developer: Developer,
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      header: false,
+      headerTintColor: "#FFFFFF",
+      headerStyle: {
+        backgroundColor: themes.PURPLE_LIGHT,
+        borderBottomWidth: 0,
+      },
+      headerTitleStyle: {
+        alignSelf: "center",
+        fontSize: 30,
+        fontFamily: themes.DEFAULT_FONT,
+      },
+      headerRight: () => (
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+          <Image source={require("./assets/favicon.png")} />
+        </TouchableOpacity>
+      ),
     },
   }
 );
 
-
-
 export default class App extends React.Component {
-  
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      fontLoaded: false
-    }
+      fontLoaded: false,
+    };
   }
 
   async componentDidMount() {
     await loadAsync({
-      'Ramaraja': require('./assets/fonts/Ramaraja.ttf'),
-      'Roboto Slab': require('./assets/fonts/RobotoSlab-Regular.ttf')
+      Ramaraja: require("./assets/fonts/Ramaraja.ttf"),
+      "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });
-    this.setState({fontLoaded: true});
+    this.setState({ fontLoaded: true });
   }
 
-
   render() {
-    const Container = createAppContainer(navigator)
-    return <Container/>;
+    const Container = createAppContainer(navigator);
+    return <Container />;
   }
 }

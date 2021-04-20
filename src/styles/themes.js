@@ -21,6 +21,7 @@ export default {
   PINK: "#BF69E2",
   PURPLE: "#383E6E",
   DARK_PURPLE: "#081842",
+  PURPLE_LIGHT: "#545985",
   SHADOW_OFFSET: { width: 0, height: 4 },
   SHADOW_OPACITY: 0.35,
   BLUE_GRADIENT: ["#4DA6FF", "#377DC2"],
