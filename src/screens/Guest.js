@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     textAlign: "center",
     borderRadius: theme.ROUNDING_SMALL,
-
     fontFamily: theme.DEFAULT_FONT,
   },
 });

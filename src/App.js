@@ -12,6 +12,7 @@ import Toolbar from "./screens/components/Toolbar";
 import Reset from "./screens/Reset";
 import NewsQ from "./screens/NewsQ";
 import Read from "./screens/Read";
+import ShopScreen from "./screens/ShopScreen";
 import VerifyReset from "./screens/VerifyReset";
 import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
@@ -74,6 +75,7 @@ const navigator = createStackNavigator(
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer,
+    ShopScreen: ShopScreen,
   },
   {
     initialRouteName: "Home",
