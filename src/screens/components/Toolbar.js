@@ -2,17 +2,6 @@ import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { withNavigation } from "react-navigation";
 import theme from "../../styles/themes";
-//import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
-
-/**
- * Makes the test fail, removed for now
- * <Ionicons
-                name="ios-settings-sharp"
-                size={35}
-                color={theme.DARK_PURPLE}
-                
-              />
- */
 
 /**
  * @summary This is a component that contains the toolbar

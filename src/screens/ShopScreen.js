@@ -11,56 +11,63 @@ import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { LinearGradient } from "expo-linear-gradient";
 
-class ShopScreen extends React.Componenet {
-
+export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return ( 
+    return (
       <SafeAreaView style={styleSheets.MainContainer}>
-      <QuestionButton />
-      <View style={styles.midsquare}>
-        <Text style={styles.header}>───── PRICE SHOP ─────</Text>
-        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-          <View>
-            <Text style={styles.button_blue_text}>
-              Liten latte OKQ8
-            <TouchableOpacity>
-          <View style={styles.button_price}>
-          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_price}>
-            <Text style={styles.text_button}>
-              100€
-            </Text>
-            </LinearGradient>
+        <QuestionButton />
+        <View style={styles.midsquare}>
+          <Text style={styles.header}>───── PRICE SHOP ─────</Text>
+          <LinearGradient
+            colors={theme.BLUE_GRADIENT}
+            style={styles.button_blue}
+          >
+            <View>
+              <Text style={styles.button_blue_text}>
+                Liten latte OKQ8
+                <TouchableOpacity>
+                  <View style={styles.button_price}>
+                    <LinearGradient
+                      colors={theme.PINK_GRADIENT}
+                      style={styles.button_price}
+                    >
+                      <Text style={styles.text_button}>100€</Text>
+                    </LinearGradient>
+                  </View>
+                </TouchableOpacity>
+              </Text>
             </View>
-          </TouchableOpacity>
-            </Text>
-          </View>
-        </LinearGradient>
+          </LinearGradient>
 
-        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-          <View>
-            <Text style={styles.button_blue_text}>
-              Liten latte OKQ8
-            <TouchableOpacity>
-          <View style={styles.button_price}>
-          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_price}>
-            <Text style={styles.text_button}>
-              100€
-            </Text>
-            </LinearGradient>
+          <LinearGradient
+            colors={theme.BLUE_GRADIENT}
+            style={styles.button_blue}
+          >
+            <View>
+              <Text style={styles.button_blue_text}>
+                Liten latte OKQ8
+                <TouchableOpacity>
+                  <View style={styles.button_price}>
+                    <LinearGradient
+                      colors={theme.PINK_GRADIENT}
+                      style={styles.button_price}
+                    >
+                      <Text style={styles.text_button}>100€</Text>
+                    </LinearGradient>
+                  </View>
+                </TouchableOpacity>
+              </Text>
             </View>
-          </TouchableOpacity>
-            </Text>
-          </View>
-        </LinearGradient>
-      </View>
-    </SafeAreaView>
-    )
+          </LinearGradient>
+        </View>
+      </SafeAreaView>
+    );
   }
-};
+}
 
 const styles = StyleSheet.create({
   midsquare: {
@@ -81,7 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 19,
     color: "#FFFFFF",
     padding: 5,
-    paddingBottom:0,
+    paddingBottom: 0,
     width: "80%",
     margin: theme.MARGIN_MEDIUM,
     textAlign: "left",
@@ -101,7 +108,7 @@ const styles = StyleSheet.create({
     shadowOpacity: theme.SHADOW_OPACITY,
   },
   button_price: {
-    width: 60, 
+    width: 60,
     height: 30,
     borderRadius: theme.ROUNDING_SMALL,
     shadowOffset: theme.SHADOW_OFFSET,
@@ -114,6 +121,4 @@ const styles = StyleSheet.create({
     fontSize: 21,
     textAlign: "center",
   },
-})
-
-export default ShopScreen;
+});

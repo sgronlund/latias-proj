@@ -1,23 +1,33 @@
 import React from "react";
 import { SafeAreaView, TouchableOpacity, Text, StyleSheet } from "react-native";
-import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import Toolbar from "./components/Toolbar";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
 import Shop from "./components/Shop";
 import { LinearGradient } from "expo-linear-gradient";
 import { withNavigation } from "react-navigation";
-import Wallet from "./components/Shop.js";
+import currentWeekNumber from "current-week-number";
 
 /**
  * @summary
  */
-class GameScreen extends React.Component {
+ class GameScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { time: "", loggedIn: false };
+    this.state = { time: "", loggedIn: false, quizReady: false };
   }
+
+  static navigationOptions = ({navigation}) =>  {
+    const {params = {}} = navigation.state 
+    if(params.loggedIn) {
+      return {
+          headerLeft: null
+      }
+    }
+  }
+
 
   componentDidMount() {
     this.initSocket();
@@ -32,10 +42,16 @@ class GameScreen extends React.Component {
     Socket.on("timeLeft", (timeLeft) => {
       this.setState({ time: timeLeft });
     });
-    Socket.on("returnUserSuccess", (username) => {
+    Socket.on("returnUserSuccess", () => {
+      Socket.off("returnUserSuccess");
       this.setState({ loggedIn: true });
+      this.props.navigation.setParams({loggedIn: this.state.loggedIn})
+    });
+    Socket.on("getQuestionsSuccess", () => {
+      this.setState({ quizReady: true });
     });
     Socket.emit("getUser", Socket.id);
+    Socket.emit("getQuestions", currentWeekNumber());
   }
 
   componentWillUnmount() {
@@ -47,7 +63,6 @@ class GameScreen extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         {isLoggedIn ? <Shop /> : null}
-        <Wallet />
         <QuestionButton />
         <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
 
@@ -70,7 +85,7 @@ class GameScreen extends React.Component {
 
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("NewsQ")}
+            onPress={() => { this.state.quizReady ? this.props.navigation.navigate("NewsQ") : alert("Quiz not ready!")}}
           >
             <Text style={styles.button_pink}>THIS WEEKS NEWS QUIZ</Text>
           </TouchableOpacity>

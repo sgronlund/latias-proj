@@ -36,7 +36,7 @@ let initLoginSockets = (navigation) => {
   });
   Socket.on("loginSuccess", () => {
     Socket.off("loginSuccess");
-    navigation.navigate("GameScreen");
+    navigation.navigate("GameScreen", {headerLeft: null});
   });
   Socket.on("loginFailure", () => {
     Socket.off("loginFailure");
