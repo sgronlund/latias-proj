@@ -13,21 +13,20 @@ import currentWeekNumber from "current-week-number";
 /**
  * @summary
  */
- class GameScreen extends React.Component {
+class GameScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = { time: "", loggedIn: false, quizReady: false };
   }
 
-  static navigationOptions = ({navigation}) =>  {
-    const {params = {}} = navigation.state 
-    if(params.loggedIn) {
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    if (params.loggedIn) {
       return {
-          headerLeft: null
-      }
+        headerLeft: null,
+      };
     }
-  }
-
+  };
 
   componentDidMount() {
     this.initSocket();
@@ -45,7 +44,7 @@ import currentWeekNumber from "current-week-number";
     Socket.on("returnUserSuccess", () => {
       Socket.off("returnUserSuccess");
       this.setState({ loggedIn: true });
-      this.props.navigation.setParams({loggedIn: this.state.loggedIn})
+      this.props.navigation.setParams({ loggedIn: this.state.loggedIn });
     });
     Socket.on("getQuestionsSuccess", () => {
       this.setState({ quizReady: true });
@@ -88,7 +87,11 @@ import currentWeekNumber from "current-week-number";
 
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
-            onPress={() => { this.state.quizReady ? this.props.navigation.navigate("NewsQ") : alert("Quiz not ready!")}}
+            onPress={() => {
+              this.state.quizReady
+                ? this.props.navigation.navigate("NewsQ")
+                : alert("Quiz not ready!");
+            }}
           >
             <Text style={styles.button_pink}>THIS WEEKS NEWS QUIZ</Text>
           </TouchableOpacity>

@@ -11,7 +11,7 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import {Socket, sharedKey} from "../misc/Socket";
+import { Socket, sharedKey } from "../misc/Socket";
 import sha256 from "sha256";
 import aes256 from "aes256";
 
@@ -56,7 +56,7 @@ class updatePassword extends React.Component {
     if (password !== passwordConfirm) {
       return alert("Passwords are not the same");
     }
-    Socket.on("returnUserByEmailSuccess" , (username) => {
+    Socket.on("returnUserByEmailSuccess", (username) => {
       var salt_pass = password.toString() + username.toString();
 
       //The passwords are also irreversibly hashed
@@ -65,18 +65,17 @@ class updatePassword extends React.Component {
       //The data transmission is encrypted in case of listeners.
       var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
       Socket.emit("updatePass", this.state.email, encrypt_pass);
-      Socket.off("returnUserByEmailSuccess")
+      Socket.off("returnUserByEmailSuccess");
 
       this.props.navigation.navigate("Home");
-    })
-    
+    });
+
     Socket.emit("getUserByEmail", this.state.email);
   };
 
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-         
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>New Password:</Text>
           <TextInput

@@ -26,7 +26,6 @@ class Settings extends React.Component {
     Socket.emit("getUser", Socket.id);
   }
 
-
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
