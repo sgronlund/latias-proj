@@ -131,7 +131,9 @@ class NewsQ extends React.Component {
                 this.nextQuestion();
               }}
             >
-              <Text style={styles.button_blue}>{this.state.randomAlternatives[0]}</Text>
+              <Text style={styles.button_blue}>
+                {this.state.randomAlternatives[0]}
+              </Text>
             </TouchableOpacity>
           </LinearGradient>
 
@@ -145,7 +147,9 @@ class NewsQ extends React.Component {
                 this.nextQuestion();
               }}
             >
-              <Text style={styles.button_blue}>{this.state.randomAlternatives[1]}</Text>
+              <Text style={styles.button_blue}>
+                {this.state.randomAlternatives[1]}
+              </Text>
             </TouchableOpacity>
           </LinearGradient>
 
@@ -159,7 +163,9 @@ class NewsQ extends React.Component {
                 this.nextQuestion();
               }}
             >
-              <Text style={styles.button_blue}>{this.state.randomAlternatives[2]}</Text>
+              <Text style={styles.button_blue}>
+                {this.state.randomAlternatives[2]}
+              </Text>
             </TouchableOpacity>
           </LinearGradient>
         </SafeAreaView>
