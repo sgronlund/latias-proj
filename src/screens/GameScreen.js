@@ -11,7 +11,6 @@ import { withNavigation } from "react-navigation";
 import Wallet from "./components/Shop.js";
 import currentWeekNumber from "current-week-number";
 
-
 /**
  * @summary
  */

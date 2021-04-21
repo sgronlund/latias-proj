@@ -88,7 +88,6 @@ class NewsQ extends React.Component {
     }
   };
 
-
   /**
    * @summary checks if a given answer is correct
    * @param {String} answer Answer to check
