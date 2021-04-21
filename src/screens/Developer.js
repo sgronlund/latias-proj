@@ -114,7 +114,7 @@ class Developer extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar />
+        <Toolbar backButton={true} />
         <View style={styles.InputContainer}>
           <Text style={styleSheets.LoginText}>Question:</Text>
           <TextInput

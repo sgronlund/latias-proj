@@ -5,17 +5,20 @@ import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
+import Shop from "./components/Shop";
 import { LinearGradient } from "expo-linear-gradient";
 import { withNavigation } from "react-navigation";
 
 /**
  * @summary
  */
-class Guest extends React.Component {
-  //FIXME: Please change this name to something more relevatn
+class GameScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { time: "" };
+    this.state = { time: "", loggedIn: false };
+  }
+
+  componentDidMount() {
     this.initSocket();
   }
 
@@ -28,6 +31,10 @@ class Guest extends React.Component {
     Socket.on("timeLeft", (timeLeft) => {
       this.setState({ time: timeLeft });
     });
+    Socket.on("returnUserSuccess", (username) => {
+      this.setState({ loggedIn: true });
+    });
+    Socket.emit("getUser", Socket.id);
   }
 
   componentWillUnmount() {
@@ -35,9 +42,11 @@ class Guest extends React.Component {
   }
 
   render() {
+    const isLoggedIn = this.state.loggedIn;
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar />
+        <Toolbar title="Real Deal" backButton={!isLoggedIn} />
+        {isLoggedIn ? <Shop /> : null}
         <QuestionButton />
         <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
 
@@ -96,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(Guest);
+export default withNavigation(GameScreen);

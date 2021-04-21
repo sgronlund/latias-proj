@@ -7,10 +7,14 @@ import theme from "../../styles/themes.js";
  * the shop screen.
  */
 class Shop extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <TouchableOpacity style={styles.Container}>
-        <Text style={styles.Text}>97 $</Text>
+        <Text style={styles.Text}>{(this.props.balance || "0") + " $"}</Text>
       </TouchableOpacity>
     );
   }

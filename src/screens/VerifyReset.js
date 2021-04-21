@@ -50,7 +50,6 @@ class VerifyReset extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton />
         <Toolbar />
         <View style={styles.LoginContainer}>
           <Text style={styles.CodeText}>Code:</Text>
@@ -65,6 +64,12 @@ class VerifyReset extends React.Component {
           onPress={() => this.handleSubmit(this.state.code, this.state.email)}
         >
           <Text style={styleSheets.ButtonText}>SUBMIT CODE</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
+          onPress={() => this.props.navigation.navigate("Home")}
+        >
+          <Text style={styleSheets.ButtonText}>CANCEL</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

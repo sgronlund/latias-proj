@@ -77,7 +77,7 @@ class NewsQ extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar />
+        <Toolbar title="Real Deal" />
         <QuestionButton />
         <Text style={styles.numberQ}>{`${this.state.currentQuestion}/10`}</Text>
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>

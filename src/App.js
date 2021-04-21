@@ -3,7 +3,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import {loadAsync} from 'expo-font';
 
 import HomeScreen from "./screens/HomeScreen";
-import Guest from "./screens/Guest";
+import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
 import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
@@ -25,7 +25,7 @@ const navigator = createStackNavigator(
     Home: HomeScreen,
     Read: Read,
     NewsQ: NewsQ,
-    Guest: Guest,
+    GameScreen: GameScreen,
     Sign: Signup,
     LogIn: LogIn,
     Settings: Settings,
