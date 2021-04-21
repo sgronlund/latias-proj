@@ -134,3 +134,28 @@ Denna vecka började vi att planer mer i detalj vad vi ska göra de kommande vec
 ### Andra punkter
 
 Inget att kommentera.
+
+## Arbetsmöte 21/04/21
+
+### Vad gjorde vi igår?
+
+* Inloggningvyn
+* Fortsatt på rapporten
+* Började kolla på scoreboard
+* Kollade på hur det är att implementera ljud.
+
+### Vi tänker vi göra idag?
+
+* Merge alla PRs först!
+* Shoppen
+* Scoreboard / Poäng
+* Ta bort frontend-testerna, just nu har det inte hjälp oss att ha dom kvar för dom låter oss inte testa vissa komponenter pga. imports.
+
+### Några problem?
+
+* Hitta top 5 av alla i databasen. Kan vara en idé att ha en separat tabell med endast användarnamn och poäng.
+
+### Andra punkter
+
+Inget att kommentera.
+
