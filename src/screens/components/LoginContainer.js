@@ -10,6 +10,11 @@ class LoginContainer extends React.Component {
         super(props)
     }
 
+    /**
+      * @function
+      * @summary initializes listeners for checking successful logut and
+      * tells the server that the client wants to log out
+      */
     handleLogout = () => {
         initLogoutSockets(this.props.navigation);
         Socket.emit("logout", Socket.id);

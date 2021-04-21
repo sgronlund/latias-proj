@@ -1,8 +1,6 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { loadAsync } from "expo-font";
-
-import { Image } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
@@ -17,7 +15,7 @@ import VerifyReset from "./screens/VerifyReset";
 import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
 import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
 
@@ -46,8 +44,8 @@ const navigator = createStackNavigator(
         headerLeft: null,
       },
     },
-    Guest: {
-      screen: Guest,
+    GameScreen: {
+      screen: GameScreen,
       navigationOptions: {
         title: "THE REAL DEAL",
       },
@@ -115,7 +113,8 @@ export default class App extends React.Component {
 
   async componentDidMount() {
     await loadAsync({
-      Ramaraja: require("./assets/fonts/Ramaraja.ttf"),
+      ///FIXME: Doesn't load succesfully when starting with Expo
+      "Ramaraja": require("./assets/fonts/Ramaraja.ttf"),
       "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });
     this.setState({ fontLoaded: true });

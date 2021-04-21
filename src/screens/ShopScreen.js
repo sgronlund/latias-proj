@@ -11,48 +11,55 @@ import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { LinearGradient } from "expo-linear-gradient";
 
-const ShopScreen = () => {
-  return ( 
-    <SafeAreaView style={styleSheets.MainContainer}>
-    <QuestionButton />
-    <View style={styles.midsquare}>
-      <Text style={styles.header}>───── PRICE SHOP ─────</Text>
-      <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-        <View>
-          <Text style={styles.button_blue_text}>
-            Liten latte OKQ8
-          <TouchableOpacity>
-        <View style={styles.button_price}>
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_price}>
-          <Text style={styles.text_button}>
-            100€
-          </Text>
-          </LinearGradient>
-          </View>
-        </TouchableOpacity>
-          </Text>
-        </View>
-      </LinearGradient>
+class ShopScreen extends React.Componenet {
 
-      <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-        <View>
-          <Text style={styles.button_blue_text}>
-            Liten latte OKQ8
-          <TouchableOpacity>
-        <View style={styles.button_price}>
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_price}>
-          <Text style={styles.text_button}>
-            100€
-          </Text>
-          </LinearGradient>
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return ( 
+      <SafeAreaView style={styleSheets.MainContainer}>
+      <QuestionButton />
+      <View style={styles.midsquare}>
+        <Text style={styles.header}>───── PRICE SHOP ─────</Text>
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <View>
+            <Text style={styles.button_blue_text}>
+              Liten latte OKQ8
+            <TouchableOpacity>
+          <View style={styles.button_price}>
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_price}>
+            <Text style={styles.text_button}>
+              100€
+            </Text>
+            </LinearGradient>
+            </View>
+          </TouchableOpacity>
+            </Text>
           </View>
-        </TouchableOpacity>
-          </Text>
-        </View>
-      </LinearGradient>
-    </View>
-  </SafeAreaView>
-  )
+        </LinearGradient>
+
+        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+          <View>
+            <Text style={styles.button_blue_text}>
+              Liten latte OKQ8
+            <TouchableOpacity>
+          <View style={styles.button_price}>
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_price}>
+            <Text style={styles.text_button}>
+              100€
+            </Text>
+            </LinearGradient>
+            </View>
+          </TouchableOpacity>
+            </Text>
+          </View>
+        </LinearGradient>
+      </View>
+    </SafeAreaView>
+    )
+  }
 };
 
 const styles = StyleSheet.create({

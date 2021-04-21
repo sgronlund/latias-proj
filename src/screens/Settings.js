@@ -26,7 +26,7 @@ class Settings extends React.Component {
     Socket.emit("getUser", Socket.id);
   }
 
-  // TouchableOpactity måste ha en view kring sig och det går inte att ha flera SafeAreaView utan det måste vara en vanlig view :)))))))))))))))))))))))))))))))))))))))))))
+
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
