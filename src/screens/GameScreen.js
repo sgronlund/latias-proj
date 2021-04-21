@@ -9,6 +9,8 @@ import Shop from "./components/Shop";
 import { LinearGradient } from "expo-linear-gradient";
 import { withNavigation } from "react-navigation";
 import Wallet from "./components/Shop.js";
+import currentWeekNumber from "current-week-number";
+
 
 /**
  * @summary
@@ -16,7 +18,7 @@ import Wallet from "./components/Shop.js";
 class GameScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { time: "", loggedIn: false };
+    this.state = { time: "", loggedIn: false, quizReady: false };
   }
 
   componentDidMount() {
@@ -32,10 +34,15 @@ class GameScreen extends React.Component {
     Socket.on("timeLeft", (timeLeft) => {
       this.setState({ time: timeLeft });
     });
-    Socket.on("returnUserSuccess", (username) => {
+    Socket.on("returnUserSuccess", () => {
+      Socket.off("returnUserSuccess");
       this.setState({ loggedIn: true });
     });
+    Socket.on("getQuestionsSuccess", () => {
+      this.setState({ quizReady: true });
+    });
     Socket.emit("getUser", Socket.id);
+    Socket.emit("getQuestions", currentWeekNumber());
   }
 
   componentWillUnmount() {
@@ -70,7 +77,11 @@ class GameScreen extends React.Component {
 
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("NewsQ")}
+            onPress={() => {
+              this.state.quizReady
+                ? this.props.navigation.navigate("NewsQ")
+                : alert("Quiz not ready!");
+            }}
           >
             <Text style={styles.button_pink}>THIS WEEKS NEWS QUIZ</Text>
           </TouchableOpacity>
