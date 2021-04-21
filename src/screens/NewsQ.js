@@ -21,9 +21,6 @@ class NewsQ extends React.Component {
       questions: [],
       randomAlternatives: [],
       question: "",
-      answer1: "",
-      answer2: "",
-      answer3: "",
       currentQuestion: 0,
     };
   }
@@ -59,49 +56,35 @@ class NewsQ extends React.Component {
    * @summary Updates the states for the answers to re-render the
    * screen for the next question
    */
-  nextQuestion = async () => {
+  nextQuestion = () => {
     var currentQuestion = this.state.currentQuestion;
     var questions = this.state.questions;
-    var answers = [
+
+    var tmpAnswers = [
       questions[currentQuestion]?.wrong1,
       questions[currentQuestion]?.wrong2,
       questions[currentQuestion]?.correct,
     ];
-    await this.setState({
+
+    //Shuffles alternatives
+    var answers = [];
+    var startLength = tmpAnswers.length;
+    for (var i = 0; i < startLength; i++) {
+      var n = Math.floor(Math.random() * tmpAnswers.length);
+      var randomAlternative = tmpAnswers.splice(n, 1)[0];
+      answers.push(randomAlternative);
+    }
+
+    //Update alternatives and question
+    this.setState({
       question: questions[currentQuestion]?.question,
       randomAlternatives: answers,
       currentQuestion: currentQuestion + 1,
     });
-    this.randomizeAnswers();
     if (currentQuestion === questions.length) {
       //TODO: Sum score and add to database
       this.props.navigation.navigate("Home");
     }
-  };
-
-  /**
-   * @function
-   * @summary Gets a random answer from all the alternatives
-   * @returns {String} random answer
-   */
-  getAnswer = () => {
-    var answers = this.state.randomAlternatives;
-    var answer = answers.splice(
-      Math.floor(Math.random() * answers.length),
-      1
-    )[0];
-    this.setState({ randomAlternatives: answers });
-    return answer;
-  };
-
-  /**
-   * @function
-   * @summary Updates the states for the three answers
-   */
-  randomizeAnswers = () => {
-    this.setState({ answer1: this.getAnswer() });
-    this.setState({ answer2: this.getAnswer() });
-    this.setState({ answer3: this.getAnswer() });
   };
 
   /**
@@ -145,11 +128,11 @@ class NewsQ extends React.Component {
           >
             <TouchableOpacity
               onPress={() => {
-                this.checkAnswer(this.state.answer1);
+                this.checkAnswer(this.state.randomAlternatives[0]);
                 this.nextQuestion();
               }}
             >
-              <Text style={styles.button_blue}>{this.state.answer1}</Text>
+              <Text style={styles.button_blue}>{this.state.randomAlternatives[0]}</Text>
             </TouchableOpacity>
           </LinearGradient>
 
@@ -159,11 +142,11 @@ class NewsQ extends React.Component {
           >
             <TouchableOpacity
               onPress={() => {
-                this.checkAnswer(this.state.answer2);
+                this.checkAnswer(this.state.randomAlternatives[1]);
                 this.nextQuestion();
               }}
             >
-              <Text style={styles.button_blue}>{this.state.answer2}</Text>
+              <Text style={styles.button_blue}>{this.state.randomAlternatives[1]}</Text>
             </TouchableOpacity>
           </LinearGradient>
 
@@ -173,11 +156,11 @@ class NewsQ extends React.Component {
           >
             <TouchableOpacity
               onPress={() => {
-                this.checkAnswer(this.state.answer3);
+                this.checkAnswer(this.state.randomAlternatives[2]);
                 this.nextQuestion();
               }}
             >
-              <Text style={styles.button_blue}>{this.state.answer3}</Text>
+              <Text style={styles.button_blue}>{this.state.randomAlternatives[2]}</Text>
             </TouchableOpacity>
           </LinearGradient>
         </SafeAreaView>
