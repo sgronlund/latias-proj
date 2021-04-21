@@ -70,24 +70,30 @@ const navigator = createStackNavigator(
         title: "SETTINGS",
       },
     },
+    ShopScreen: {
+      screen: ShopScreen,
+      navigationOptions:{
+        title: "SHOP",
+      },
+    },
     Toolbar: Toolbar,
     Reset: Reset,
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer,
-    ShopScreen: ShopScreen,
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: ({navigation}) => ({
       headerTintColor: "#FFFFFF",
+      headerBackTitleVisible: false,
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
         borderBottomWidth: 0,
       },
       headerTitleStyle: {
         alignSelf: "center",
-        fontSize: 30,
+        fontSize: 23,
         fontFamily: themes.DEFAULT_FONT,
       },
       headerRight:  (
