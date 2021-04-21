@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
-import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import { Socket } from "../misc/Socket";
@@ -83,7 +82,7 @@ class NewsQ extends React.Component {
     });
     if (currentQuestion === questions.length) {
       //TODO: Sum score and add to database
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate("GameScreen");
     }
   };
 
@@ -110,7 +109,6 @@ class NewsQ extends React.Component {
     else
       return (
         <SafeAreaView style={styleSheets.MainContainer}>
-          <Toolbar title="Real Deal" />
           <QuestionButton />
           <Text
             style={styles.numberQ}

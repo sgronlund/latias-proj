@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   },
   QuestionMark: {
     fontSize: theme.FONT_SIZE_MEDIUM,
+    textAlign: "center",
     color: "white"
   },
   TextBig: {

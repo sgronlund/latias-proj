@@ -5,7 +5,8 @@ import Wallet from "./components/Shop.js";
 import theme from "../styles/themes.js";
 import styleSheets from "../styles/StyleSheets.js";
 import Toolbar from "./components/Toolbar";
-import { Socket, initLogoutSockets } from "../misc/Socket";
+import LoginContainer from "./components/LoginContainer";
+import { View, Socket, initLogoutSockets } from "../misc/Socket";
 
 /**
  * @summary This represents the settings screen. The user
@@ -15,40 +16,28 @@ import { Socket, initLogoutSockets } from "../misc/Socket";
 class Settings extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { loggedIn: false };
   }
 
-  handleLogout = () => {
-    initLogoutSockets(this.props.navigation);
-    Socket.emit("logout", Socket.id);
-  };
+  componentDidMount() {
+    Socket.on("returnUserSuccess", (username) => {
+      this.setState({ loggedIn: true });
+    });
+    Socket.emit("getUser", Socket.id);
+  }
 
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Toolbar backButton={true} />
+        <Wallet />
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>Sound Off</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>User Policy</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Button}
-          onPress={() => {
-            this.props.navigation.navigate("Reset");
-          }}
-        >
-          <Text style={styleSheets.ButtonText}>New Password</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.Button}
-          onPress={() => {
-            this.handleLogout();
-          }}
-        >
-          <Text style={styleSheets.ButtonText}>Log Out</Text>
-        </TouchableOpacity>
+        {this.state.loggedIn ? <LoginContainer /> : null}
       </SafeAreaView>
     );
   }

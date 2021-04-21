@@ -11,7 +11,9 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import Toolbar from "./components/Toolbar";
-import Socket from "../misc/Socket";
+import { Socket, sharedKey } from "../misc/Socket";
+import sha256 from "sha256";
+import aes256 from "aes256";
 
 /**
  * @summary This represents the screen for updating a users password
@@ -21,7 +23,6 @@ class updatePassword extends React.Component {
     super(props);
     const { navigation } = this.props;
     const email = navigation.getParam("email", null);
-    console.log(email);
     this.state = { password: "", passwordConfirm: "", email: email };
   }
 
@@ -52,16 +53,29 @@ class updatePassword extends React.Component {
    * @param {String} passwordConfirm the new password (confirm)
    */
   updatePassword = (password, passwordConfirm) => {
-    if (password !== passwordConfirm)
+    if (password !== passwordConfirm) {
       return alert("Passwords are not the same");
-    Socket.emit("updatePass", this.state.email, password);
-    this.props.navigation.navigate("Home");
+    }
+    Socket.on("returnUserByEmailSuccess", (username) => {
+      var salt_pass = password.toString() + username.toString();
+
+      //The passwords are also irreversibly hashed
+      var hash_pass = sha256(salt_pass);
+
+      //The data transmission is encrypted in case of listeners.
+      var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
+      Socket.emit("updatePass", this.state.email, encrypt_pass);
+      Socket.off("returnUserByEmailSuccess");
+
+      this.props.navigation.navigate("Home");
+    });
+
+    Socket.emit("getUserByEmail", this.state.email);
   };
 
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar />
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>New Password:</Text>
           <TextInput

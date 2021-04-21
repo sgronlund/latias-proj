@@ -61,14 +61,13 @@ class LogIn extends React.Component {
     //The data transmission is encrypted in case of listeners.
     var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
 
-    Socket.emit("login", username, encrypt_pass);
+    Socket.emit("login", username, encrypt_pass, Socket.id);
   };
 
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Toolbar title="Login" backButton={true} />
         <View style={styles.LoginContainer}>
           <Text style={styleSheets.LoginText}>Username:</Text>
           <TextInput

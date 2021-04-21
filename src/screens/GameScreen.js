@@ -1,8 +1,8 @@
 import React from "react";
 import { SafeAreaView, TouchableOpacity, Text, StyleSheet } from "react-native";
-import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import Toolbar from "./components/Toolbar";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
 import Shop from "./components/Shop";
@@ -18,6 +18,15 @@ class GameScreen extends React.Component {
     super(props);
     this.state = { time: "", loggedIn: false, quizReady: false };
   }
+
+  static navigationOptions = ({ navigation }) => {
+    const { params = {} } = navigation.state;
+    if (params.loggedIn) {
+      return {
+        headerLeft: null,
+      };
+    }
+  };
 
   componentDidMount() {
     this.initSocket();
@@ -35,6 +44,10 @@ class GameScreen extends React.Component {
     Socket.on("returnUserSuccess", () => {
       Socket.off("returnUserSuccess");
       this.setState({ loggedIn: true });
+      this.props.navigation.setParams({ loggedIn: this.state.loggedIn });
+    });
+    Socket.on("getQuestionsSuccess", () => {
+      this.setState({ quizReady: true });
     });
     Socket.on("getQuestionsSuccess", () => {
       this.setState({ quizReady: true });
@@ -51,7 +64,6 @@ class GameScreen extends React.Component {
     const isLoggedIn = this.state.loggedIn;
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Toolbar title="Real Deal" backButton={!isLoggedIn} />
         {isLoggedIn ? <Shop /> : null}
         <QuestionButton />
         <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
@@ -69,7 +81,7 @@ class GameScreen extends React.Component {
             onPress={() => this.props.navigation.navigate("Read")}
           >
             <Text style={styles.button_pink}>THIS WEEKS ARTICLE QUIZ</Text>
-            <Text>{this.state.time}</Text>
+            <Text style={styles.timer}>{this.state.time}</Text>
           </TouchableOpacity>
         </LinearGradient>
 
@@ -92,8 +104,13 @@ class GameScreen extends React.Component {
 const styles = StyleSheet.create({
   header: {
     fontSize: 26,
-    fontWeight: "bold",
     color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
+  },
+  timer: {
+    fontSize: 20,
+    color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
   },
   button_blue: {
     fontSize: 23,
@@ -103,6 +120,8 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     padding: 30,
     borderRadius: theme.ROUNDING_SMALL,
+
+    fontFamily: theme.DEFAULT_FONT,
   },
   button_pink: {
     fontSize: 23,
@@ -112,6 +131,7 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     textAlign: "center",
     borderRadius: theme.ROUNDING_SMALL,
+    fontFamily: theme.DEFAULT_FONT,
   },
 });
 
