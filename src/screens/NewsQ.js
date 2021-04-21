@@ -19,7 +19,7 @@ class NewsQ extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      currentAnswers: [],
+      randomAlternatives: [],
       question: "",
       answer1: "",
       answer2: "",
@@ -69,7 +69,7 @@ class NewsQ extends React.Component {
     ];
     await this.setState({
       question: questions[currentQuestion]?.question,
-      currentAnswers: answers,
+      randomAlternatives: answers,
       currentQuestion: currentQuestion + 1,
     });
     this.randomizeAnswers();
@@ -85,12 +85,12 @@ class NewsQ extends React.Component {
    * @returns {String} random answer
    */
   getAnswer = () => {
-    var answers = this.state.currentAnswers;
+    var answers = this.state.randomAlternatives;
     var answer = answers.splice(
       Math.floor(Math.random() * answers.length),
       1
     )[0];
-    this.setState({ currentAnswers: answers });
+    this.setState({ randomAlternatives: answers });
     return answer;
   };
 
