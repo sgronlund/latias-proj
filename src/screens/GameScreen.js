@@ -50,6 +50,9 @@ import currentWeekNumber from "current-week-number";
     Socket.on("getQuestionsSuccess", () => {
       this.setState({ quizReady: true });
     });
+    Socket.on("getQuestionsSuccess", () => {
+      this.setState({ quizReady: true });
+    });
     Socket.emit("getUser", Socket.id);
     Socket.emit("getQuestions", currentWeekNumber());
   }
