@@ -11,7 +11,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
-import { Socket, initNewsQSockets } from "../misc/Socket";
+import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 class NewsQ extends React.Component {
@@ -121,7 +121,6 @@ class NewsQ extends React.Component {
           >
             <Text style={styles.button_pink}>{this.state.question}</Text>
           </LinearGradient>
-
           <LinearGradient
             colors={theme.BLUE_GRADIENT}
             style={styles.button_blue}
