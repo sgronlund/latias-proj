@@ -17,7 +17,6 @@ class QuestionButton extends React.Component {
 
   toggleShow() {
     this.setState({ show: !this.state.show })
-    return this.state.show;
   }
 
   render() {
