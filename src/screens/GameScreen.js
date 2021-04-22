@@ -2,7 +2,6 @@ import React from "react";
 import { SafeAreaView, TouchableOpacity, Text, StyleSheet } from "react-native";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
-import Toolbar from "./components/Toolbar";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
 import Shop from "./components/Shop";

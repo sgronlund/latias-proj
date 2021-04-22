@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
-import Toolbar from "./components/Toolbar";
 import { Socket, initDeveloperSockets } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 

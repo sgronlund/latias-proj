@@ -4,9 +4,8 @@ import QuestionButton from "./components/QuestionButton.js";
 import Wallet from "./components/Shop.js";
 import theme from "../styles/themes.js";
 import styleSheets from "../styles/StyleSheets.js";
-import Toolbar from "./components/Toolbar";
 import LoginContainer from "./components/LoginContainer";
-import { View, Socket, initLogoutSockets } from "../misc/Socket";
+import Socket from "../misc/Socket";
 
 /**
  * @summary This represents the settings screen. The user

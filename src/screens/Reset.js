@@ -7,10 +7,8 @@ import {
   View,
   Text,
 } from "react-native";
-import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
-import Toolbar from "./components/Toolbar";
 import { Socket, initResetSockets } from "../misc/Socket";
 
 /**

@@ -10,7 +10,6 @@ import {
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
-import Toolbar from "./components/Toolbar";
 import { Socket, sharedKey, initLoginSockets } from "../misc/Socket";
 import sha256 from "sha256";
 import aes256 from "aes256";
@@ -57,7 +56,7 @@ class LogIn extends React.Component {
 
     //The passwords are also irreversibly hashed
     var hash_pass = sha256(salt_pass);
-
+    if (!sharedKey) return alert("You are not connected to the server!");
     //The data transmission is encrypted in case of listeners.
     var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
 

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-  View,
-} from "react-native";
+import { Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import theme from "../styles/themes";
 import TitleContainer from "./components/TitleContainer";
 import QuestionButton from "./components/QuestionButton";

@@ -30,4 +30,7 @@ export default {
   SHADOW_OPACITY: 0.35,
   BLUE_GRADIENT: ["#4DA6FF", "#377DC2"],
   PINK_GRADIENT: ["#BF69E2", "#C3518D"],
+  GREEN_GRADIENT: ["#0a7909", "#19ff00"],
+  RED_GRADIENT: ["#792409", "#ff3500"],
+  ORANGE_GRADIENT: ["#ff5e00", "#ff9100"],
 };
