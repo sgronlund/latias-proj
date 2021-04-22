@@ -1,16 +1,22 @@
 import React from "react";
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import { Socket } from "../misc/Socket";
-import Shop from "./components/Shop"
+import Shop from "./components/Shop";
 
 class ArtQWaiting extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {time: "", loggedIn: true};
+    this.state = { time: "", loggedIn: true };
   }
 
   componentDidMount() {
@@ -34,24 +40,24 @@ class ArtQWaiting extends React.Component {
 
   render() {
     const isLoggedIn = this.state.loggedIn;
-   return(
-     <SafeAreaView style={styleSheets.MainContainer}>
-       <QuestionButton/>
-       {/*<Scoreboard/>*/}
-       {isLoggedIn ? <Shop /> : null}
-       <View style={styles.Container}>
-        <Text style={styles.Text}>THIS QUIZ IS AVAILABLE IN</Text>
-        <Text style={styles.timerText}>{this.state.time}</Text>
-        <LinearGradient 
-          colors={theme.PINK_GRADIENT}
-          style={styles.Button}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("Read")}>
-            <Text style={styles.ButtonText}>READ THIS WEEKS ARTICLES</Text>
-          </TouchableOpacity>
-        </LinearGradient> 
-       </View>
-     </SafeAreaView>
-   )
+    return (
+      <SafeAreaView style={styleSheets.MainContainer}>
+        <QuestionButton />
+        {/*<Scoreboard/>*/}
+        {isLoggedIn ? <Shop /> : null}
+        <View style={styles.Container}>
+          <Text style={styles.Text}>THIS QUIZ IS AVAILABLE IN</Text>
+          <Text style={styles.timerText}>{this.state.time}</Text>
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Button}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Read")}
+            >
+              <Text style={styles.ButtonText}>READ THIS WEEKS ARTICLES</Text>
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
+      </SafeAreaView>
+    );
   }
 }
 
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
     marginTop: "20%",
-    paddingBottom: 30
+    paddingBottom: 30,
   },
   Text: {
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
@@ -92,8 +98,8 @@ const styles = StyleSheet.create({
   },
   ButtonText: {
     color: "white",
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL
-  }
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+  },
 });
 
 export default ArtQWaiting;
