@@ -33,7 +33,7 @@ class Settings extends React.Component {
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>Sound Off</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={() => {this.props.navigation.navigate("UserPolicy")}}>
           <Text style={styleSheets.ButtonText}>User Policy</Text>
         </TouchableOpacity>
         {this.state.loggedIn ? <LoginContainer /> : null}

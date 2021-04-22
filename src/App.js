@@ -18,6 +18,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
+import UserPolicy from "./screens/UserPolicy";
 
 /**
  * @summary This file contains the stack navigator
@@ -80,6 +81,7 @@ const navigator = createStackNavigator(
         title: "ARTICLE QUIZ"
       }
     },
+    UserPolicy: UserPolicy,
     Reset: Reset,
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
