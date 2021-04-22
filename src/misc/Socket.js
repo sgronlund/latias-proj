@@ -26,7 +26,6 @@ Socket.on("serverPublic", (server_public, g, p) => {
   Socket.emit("clientPublic", Number(my_public_key));
 });
 
-
 /**
  * @function
  * @summary Initializes socket listeners for checking for login

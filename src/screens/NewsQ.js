@@ -69,7 +69,7 @@ class NewsQ extends React.Component {
       return;
     }
     this.setState({ time: this.state.time - decrementStep });
-  };
+  }
 
   /**
    * @function
@@ -125,7 +125,7 @@ class NewsQ extends React.Component {
     ];
 
     //Shuffle alternatives
-    var answers = this.shuffleAnswers(tmpAnswers)
+    var answers = this.shuffleAnswers(tmpAnswers);
 
     //Update alternatives and question
     this.setState({
@@ -169,7 +169,7 @@ class NewsQ extends React.Component {
     }
 
     //No button number means the user has submitted no answer
-    switch(buttonNumber) {
+    switch (buttonNumber) {
       case 1:
         this.setState({
           buttonColour1: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
@@ -179,11 +179,11 @@ class NewsQ extends React.Component {
         this.setState({
           buttonColour2: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
         });
-        break; 
+        break;
       case 3:
         this.setState({
           buttonColour3: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
-        });        
+        });
         break;
     }
     return correct;
