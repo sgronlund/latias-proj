@@ -159,3 +159,27 @@ Inget att kommentera.
 
 Inget att kommentera.
 
+## Arbetsmöte 22/04/21
+
+### Vad gjorde vi igår?
+
+* Mergade alla PR.
+* Shoppen klar.
+* Scoreboard är på gång.
+* Frontend testerna borta
+
+### Vi tänker vi göra idag?
+
+* Få utkast 2 klart (läsa igenom och kanske skriva något nytt).
+
+* Fortsätta med scoreboard.
+
+* Timer i nutidsquiz:et.
+
+### Några problem?
+
+
+
+### Andra punkter
+
+Inget att kommentera.
