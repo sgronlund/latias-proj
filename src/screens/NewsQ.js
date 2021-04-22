@@ -8,7 +8,7 @@ import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 //Starting time
-const totalTime = 20;
+const totalTime = 2;
 
 //Decrement timer by 0.1
 const decrementStep = 0.1;
@@ -77,8 +77,6 @@ class NewsQ extends React.Component {
    * server to get the questions for the current week.
    */
   getQuestions = () => {
-    //We could put this is Socket.js but sending a reference to the
-    //class itself would be necessary (which is ok but wonky)
     Socket.emit("getQuestions", currentWeekNumber());
     Socket.on("getQuestionsSuccess", (questions) => {
       Socket.off("getQuestionsSuccess");
@@ -156,9 +154,9 @@ class NewsQ extends React.Component {
     let correct = false;
     if (!answer) {
       this.setState({
-        buttonColour1: theme.RED_GRADIENT,
-        buttonColour2: theme.RED_GRADIENT,
-        buttonColour3: theme.RED_GRADIENT,
+        buttonColour1: theme.ORANGE_GRADIENT,
+        buttonColour2: theme.ORANGE_GRADIENT,
+        buttonColour3: theme.ORANGE_GRADIENT,
       });
       return correct;
     }
