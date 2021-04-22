@@ -96,7 +96,7 @@ class NewsQ extends React.Component {
    * to be shuffled
    * @returns {[{String}]} new array with shuffled answers
    */
-  shuffleAnswers(tmpAnswers) {
+  shuffleAnswers(unshuffledAnswers) {
     var answers = [];
     var startLength = tmpAnswers.length;
     for (var i = 0; i < startLength; i++) {
