@@ -1,19 +1,15 @@
 import React from "react";
 import {
-  Button,
   View,
   Text,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
-  ViewBase,
   Linking,
 } from "react-native";
-import { startClock } from "react-native-reanimated";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Toolbar from "./components/Toolbar";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import themes from "../styles/themes";

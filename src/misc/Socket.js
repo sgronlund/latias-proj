@@ -12,6 +12,10 @@ const Socket = socketClient("http://localhost:8080");
  */
 let sharedKey;
 
+Socket.on("connection", () => {
+  Socket.emit("startKeyExchange");
+});
+
 Socket.on("serverPublic", (server_public, g, p) => {
   server_public = bigInt(server_public);
   g = bigInt(g);
@@ -21,7 +25,7 @@ Socket.on("serverPublic", (server_public, g, p) => {
   sharedKey = server_public.modPow(private_key, p);
   Socket.emit("clientPublic", Number(my_public_key));
 });
-Socket.emit("startKeyExchange");
+
 
 /**
  * @function

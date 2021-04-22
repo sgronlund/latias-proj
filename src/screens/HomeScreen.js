@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
-  View,
 } from "react-native";
 import theme from "../styles/themes";
 import TitleContainer from "./components/TitleContainer";
