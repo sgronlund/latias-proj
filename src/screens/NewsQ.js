@@ -92,7 +92,7 @@ class NewsQ extends React.Component {
   /**
    * @function
    * @summary shuffles answers from an array
-   * @param {[{String}]} tmpAnswers array containing all answers
+   * @param {[{String}]} unshuffledAnswers array containing all answers in order, with the correct answer as the last element
    * to be shuffled
    * @returns {[{String}]} new array with shuffled answers
    */
