@@ -31,5 +31,5 @@ export default {
   BLUE_GRADIENT: ["#4DA6FF", "#377DC2"],
   PINK_GRADIENT: ["#BF69E2", "#C3518D"],
   GREEN_GRADIENT: ["#0a7909", "#19ff00"],
-  RED_GRADIENT: ["#792409", "#ff3500"]
+  RED_GRADIENT: ["#792409", "#ff3500"],
 };
