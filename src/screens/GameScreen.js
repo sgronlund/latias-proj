@@ -77,7 +77,7 @@ class GameScreen extends React.Component {
 
         <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Read")}
+            onPress={() => this.props.navigation.navigate("ArtQWaiting")}
           >
             <Text style={styles.button_pink}>THIS WEEKS ARTICLE QUIZ</Text>
             <Text style={styles.timer}>{this.state.time}</Text>

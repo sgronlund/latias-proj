@@ -8,7 +8,7 @@ import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 //Starting time
-const totalTime = 20;
+const totalTime = 5;
 
 //Decrement timer by 0.1
 const decrementStep = 0.1;
