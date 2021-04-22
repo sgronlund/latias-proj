@@ -13,6 +13,9 @@ const totalTime = 20;
 //Decrement timer by 0.1
 const decrementStep = 0.1;
 
+//1000 ms
+const delayNewQuestion = 1000;
+
 class NewsQ extends React.Component {
   constructor(props) {
     super(props);
@@ -62,7 +65,7 @@ class NewsQ extends React.Component {
       setTimeout(() => {
         this.nextQuestion();
         this.startTimer();
-      }, 1000);
+      }, delayNewQuestion);
       return;
     }
     this.setState({ time: this.state.time - decrementStep });
@@ -213,7 +216,7 @@ class NewsQ extends React.Component {
                 setTimeout(() => {
                   this.nextQuestion();
                   this.startTimer();
-                }, 1000);
+                }, delayNewQuestion);
               }}
             >
               <Text style={styles.button_blue}>
@@ -233,7 +236,7 @@ class NewsQ extends React.Component {
                 setTimeout(() => {
                   this.nextQuestion();
                   this.startTimer();
-                }, 1000);
+                }, delayNewQuestion);
               }}
             >
               <Text style={styles.button_blue}>
@@ -253,7 +256,7 @@ class NewsQ extends React.Component {
                 setTimeout(() => {
                   this.nextQuestion();
                   this.startTimer();
-                }, 1000);
+                }, delayNewQuestion);
               }}
             >
               <Text style={styles.button_blue}>
