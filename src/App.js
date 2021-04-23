@@ -6,7 +6,6 @@ import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
 import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
-import Toolbar from "./screens/components/Toolbar";
 import Reset from "./screens/Reset";
 import NewsQ from "./screens/NewsQ";
 import Read from "./screens/Read";
@@ -14,10 +13,12 @@ import ShopScreen from "./screens/ShopScreen";
 import VerifyReset from "./screens/VerifyReset";
 import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
+import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
+import UserPolicy from "./screens/UserPolicy";
 
 /**
  * @summary This file contains the stack navigator
@@ -74,7 +75,13 @@ const navigator = createStackNavigator(
         title: "SHOP",
       },
     },
-    Toolbar: Toolbar,
+    ArtQWaiting : {
+      screen: ArtQWaiting,
+      navigationOptions: {
+        title: "ARTICLE QUIZ"
+      }
+    },
+    UserPolicy: UserPolicy,
     Reset: Reset,
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
@@ -95,8 +102,8 @@ const navigator = createStackNavigator(
         fontFamily: themes.DEFAULT_FONT,
       },
       headerRight:  (
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-            <Ionicons name="ios-settings-sharp" size={24} color="black" />
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
+            <Ionicons name="ios-settings-sharp" size={24} color="black"/>
         </TouchableOpacity>
       ),
     }),

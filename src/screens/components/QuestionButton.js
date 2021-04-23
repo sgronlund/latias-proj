@@ -84,9 +84,7 @@ const styles = StyleSheet.create({
   },
   Overlay: {
     padding: theme.PADDING_MEDIUM,
-    position: 'absolute',
-    width: "100%",
-    height: "100%",
+    flexGrow: 1,
     backgroundColor: "black",
     opacity: 0.9
   }
