@@ -178,7 +178,27 @@ Inget att kommentera.
 
 ### Några problem?
 
+### Andra punkter
 
+Inget att kommentera.
+
+## Arbetsmöte 23/04/21
+
+### Vad gjorde vi igår?
+
+* Fixade timer
+* Fortsatta med scoreboard
+* Skrev lite på rapporten
+
+### Vi tänker vi göra idag?
+
+* Få utkast 2 klart (läsa igenom och kanske skriva något nytt).
+
+* Fortsätta med scoreboard.(kanske?)
+
+### Några problem?
+
+Inget att kommentera.
 
 ### Andra punkter
 
