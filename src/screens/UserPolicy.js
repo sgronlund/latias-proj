@@ -4,9 +4,7 @@ import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 
 /**
- * @summary This represents the login screen. From here you
- * can either login or press reset password which will lead
- * you to the reset page.
+ * @summary This represents the user policy screen
  */
 class UserPolicy extends React.Component {
   render() {
