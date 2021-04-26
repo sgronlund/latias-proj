@@ -203,3 +203,31 @@ Inget att kommentera.
 ### Andra punkter
 
 Inget att kommentera.
+
+## Arbetsmöte 26/04/21
+
+### Vad gjorde vi igår (Fredags)?
+
+* Genomgång av systemet
+
+* Fick färdigt utkast 2
+
+* Funktionaliteten hos Scoreboard klar
+
+### Vi tänker vi göra idag?
+
+* Få en Score-komponent. (Richard, Niclas)
+  
+* Styling på Shop. (Aishe, Kimiya)
+  
+* Få in bild istället för produktnamn. (Sebastian)
+
+* Vänteskärmen till artikeletquizet. (Jakob)
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
