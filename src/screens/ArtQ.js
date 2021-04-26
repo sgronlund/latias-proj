@@ -26,7 +26,7 @@ class ArtQ extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton/>
+        <QuestionButton />
         <Text style={styles.Text}>
           {"Player count: " + this.state.playerCount}
         </Text>
