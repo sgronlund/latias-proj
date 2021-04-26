@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Image, Text, View, StyleSheet } from "react-native";
+import LOGOCOLOR from "../../assets/Logo_white_onColor.png"
 import theme from "../../styles/themes.js";
 
 /**
@@ -10,18 +11,23 @@ class TitleContainer extends React.Component {
   render() {
     return (
       <View style={styles.TitleContainer}>
-        <Text style={styles.TitleText}>REAL DEAL</Text>
-        <Text style={styles.PurpleLine}>─────────</Text>
+        <Image source={{uri: LOGOCOLOR}} style={styles.TitleLogo}/>
       </View>
     );
   }
 }
 
+//{resizeMode: "cover", width: "85%", height: "85%"}
+
 const styles = StyleSheet.create({
+  TitleLogo: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
+  },
   TitleContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#545985",
     width: "95%",
     height: "30%",
     borderRadius: theme.ROUNDING_SMALL,
