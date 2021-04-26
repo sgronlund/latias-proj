@@ -8,6 +8,7 @@ import Shop from "./components/Shop";
 import { LinearGradient } from "expo-linear-gradient";
 import { withNavigation } from "react-navigation";
 import currentWeekNumber from "current-week-number";
+import SignUpIcon from "./components/SignUpIcon";
 
 /**
  * @summary
@@ -63,7 +64,7 @@ class GameScreen extends React.Component {
     const isLoggedIn = this.state.loggedIn;
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        {isLoggedIn ? <Shop /> : null}
+        {isLoggedIn ? <Shop /> : <SignUpIcon />}
         <QuestionButton />
         <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
 

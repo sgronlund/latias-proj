@@ -17,7 +17,7 @@ import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from "@expo/vector-icons";
 import UserPolicy from "./screens/UserPolicy";
 
 /**
@@ -65,21 +65,21 @@ const navigator = createStackNavigator(
     },
     Settings: {
       screen: Settings,
-      navigationOptions:{
+      navigationOptions: {
         title: "SETTINGS",
       },
     },
     ShopScreen: {
       screen: ShopScreen,
-      navigationOptions:{
+      navigationOptions: {
         title: "SHOP",
       },
     },
-    ArtQWaiting : {
+    ArtQWaiting: {
       screen: ArtQWaiting,
       navigationOptions: {
-        title: "ARTICLE QUIZ"
-      }
+        title: "ARTICLE QUIZ",
+      },
     },
     UserPolicy: UserPolicy,
     Reset: Reset,
@@ -89,7 +89,7 @@ const navigator = createStackNavigator(
   },
   {
     initialRouteName: "Home",
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerTintColor: "#FFFFFF",
       headerBackTitleVisible: false,
       headerStyle: {
@@ -101,9 +101,12 @@ const navigator = createStackNavigator(
         fontSize: 23,
         fontFamily: themes.DEFAULT_FONT,
       },
-      headerRight:  (
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
-            <Ionicons name="ios-settings-sharp" size={24} color="black"/>
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Settings")}
+          style={{ marginRight: 15 }}
+        >
+          <Ionicons name="ios-settings-sharp" size={24} color="black" />
         </TouchableOpacity>
       ),
     }),
@@ -121,7 +124,7 @@ export default class App extends React.Component {
   async componentDidMount() {
     await loadAsync({
       ///FIXME: Doesn't load succesfully when starting with Expo
-      "Ramaraja": require("./assets/fonts/Ramaraja.ttf"),
+      Ramaraja: require("./assets/fonts/Ramaraja.ttf"),
       "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });
     this.setState({ fontLoaded: true });

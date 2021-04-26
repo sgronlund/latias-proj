@@ -7,7 +7,7 @@ import { withNavigation } from "react-navigation";
  * @summary This is a component which leads the user to
  * the shop screen.
  */
-class Shop extends React.Component {
+class SignUpIcon extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -16,9 +16,9 @@ class Shop extends React.Component {
     return (
       <TouchableOpacity
         style={styles.Container}
-        onPress={() => this.props.navigation.navigate("ShopScreen")}
+        onPress={() => this.props.navigation.navigate("Sign")}
       >
-        <Text style={styles.Text}>97 $</Text>
+        <Text style={styles.Text}>Sign up</Text>
       </TouchableOpacity>
     );
   }
@@ -26,8 +26,6 @@ class Shop extends React.Component {
 
 const styles = StyleSheet.create({
   Container: {
-    //width: 80,
-    //height: 30,
     paddingHorizontal: "5%",
     borderRadius: 10,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -45,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(Shop);
+export default withNavigation(SignUpIcon);
