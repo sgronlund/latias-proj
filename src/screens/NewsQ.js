@@ -121,8 +121,8 @@ class NewsQ extends React.Component {
     var answers = this.shuffleAnswers([
       questions[currentQuestion]?.wrong1,
       questions[currentQuestion]?.wrong2,
-      questions[currentQuestion]?.correct]
-    );
+      questions[currentQuestion]?.correct,
+    ]);
 
     //Update alternatives and question
     this.setState({
