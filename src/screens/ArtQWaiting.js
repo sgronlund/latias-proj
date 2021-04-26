@@ -17,7 +17,7 @@ import Shop from "./components/Shop";
 class ArtQWaiting extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { time: "", loggedIn: true, quizReady: false };
+    this.state = { time: "", loggedIn: false, quizReady: false };
   }
 
   componentDidMount() {
