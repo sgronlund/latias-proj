@@ -32,7 +32,7 @@ class ArtQWaiting extends React.Component {
 
   /**
    * @function
-   * @summary initializes socket listeners 
+   * @summary initializes socket listeners
    * for the class
    */
   initSockets() {
