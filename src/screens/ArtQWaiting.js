@@ -61,7 +61,7 @@ class ArtQWaiting extends React.Component {
             >
               <TouchableOpacity
                 style={styles.ReadyButton}
-                onPress={() => this.props.navigation.navigate("Home")}
+                onPress={() => this.props.navigation.navigate("ArtQ")}
               >
                 <Text style={styles.ReadyText}>START</Text>
               </TouchableOpacity>
