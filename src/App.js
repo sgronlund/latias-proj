@@ -86,7 +86,7 @@ const navigator = createStackNavigator(
       screen: ArtQ,
       navigationOptions: {
         title: "ARTICLE QUIZ",
-        //headerLeft: null
+        headerLeft: null
       }
     },
     UserPolicy: UserPolicy,
