@@ -10,13 +10,13 @@ import currentWeekNumber from "current-week-number";
 class ArtQ extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {playerCount: 0}
+    this.state = { playerCount: 0 };
   }
 
   componentDidMount() {
     Socket.on("updatePlayerCount", (playerCount) => {
-      this.setState({playerCount: playerCount});
-    })
+      this.setState({ playerCount: playerCount });
+    });
     Socket.emit("quizConnect");
   }
 
@@ -25,11 +25,13 @@ class ArtQ extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Text style={styles.timerText}>{"Player count: " + this.state.playerCount}</Text>
+        <Text style={styles.timerText}>
+          {"Player count: " + this.state.playerCount}
+        </Text>
       </SafeAreaView>
-    )
+    );
   }
 }
 
