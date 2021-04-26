@@ -92,16 +92,15 @@ class NewsQ extends React.Component {
   /**
    * @function
    * @summary shuffles answers from an array
-   * @param {[{String}]} unshuffledAnswers array containing all answers in order, with the correct answer as the last element
+   * @param {[{String}]} randomAlternatives array containing all answers in order, with the correct answer as the last element
    * to be shuffled
    * @returns {[{String}]} new array with shuffled answers
    */
-  shuffleAnswers(unshuffledAnswers) {
+  shuffleAnswers(randomAlternatives) {
     var answers = [];
-    var startLength = tmpAnswers.length;
     for (var i = 0; i < startLength; i++) {
-      var n = Math.floor(Math.random() * tmpAnswers.length);
-      var randomAlternative = tmpAnswers.splice(n, 1)[0];
+      var n = Math.floor(Math.random() * randomAlternatives.length);
+      var randomAlternative = randomAlternatives.splice(n, 1)[0];
       answers.push(randomAlternative);
     }
     return answers;
@@ -116,14 +115,14 @@ class NewsQ extends React.Component {
     var currentQuestion = this.state.currentQuestion;
     var questions = this.state.questions;
 
-    var tmpAnswers = [
+    var randomAlternatives = [
       questions[currentQuestion]?.wrong1,
       questions[currentQuestion]?.wrong2,
       questions[currentQuestion]?.correct,
     ];
 
     //Shuffle alternatives
-    var answers = this.shuffleAnswers(tmpAnswers);
+    var answers = this.shuffleAnswers(randomAlternatives);
 
     //Update alternatives and question
     this.setState({
