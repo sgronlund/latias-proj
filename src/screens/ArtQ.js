@@ -5,7 +5,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import { Socket } from "../misc/Socket";
-import currentWeekNumber from "current-week-number";
 
 class ArtQ extends React.Component {
   constructor(props) {
@@ -27,7 +26,8 @@ class ArtQ extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Text style={styles.timerText}>
+        <QuestionButton/>
+        <Text style={styles.Text}>
           {"Player count: " + this.state.playerCount}
         </Text>
       </SafeAreaView>
@@ -36,32 +36,7 @@ class ArtQ extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  button_pink: {
-    fontSize: 23,
-    color: "#FFFFFF",
-    textAlign: "center",
-    width: "95%",
-    margin: theme.MARGIN_MEDIUM,
-    padding: 27,
-    borderRadius: theme.ROUNDING_SMALL,
-  },
-  button_blue: {
-    fontSize: 22,
-    color: "#FFFFFF",
-    textAlign: "center",
-    width: "95%",
-    margin: theme.MARGIN_SMALL,
-    padding: 12,
-    borderRadius: theme.ROUNDING_SMALL,
-  },
-  numberQ: {
-    color: "#FFFFFF",
-    left: 150,
-    marginTop: 30,
-    marginBottom: -5,
-    fontSize: 20,
-  },
-  timerText: {
+  Text: {
     fontSize: theme.FONT_SIZE_LARGE,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
