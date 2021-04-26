@@ -28,6 +28,7 @@ class NewsQ extends React.Component {
       buttonColour1: theme.BLUE_GRADIENT,
       buttonColour2: theme.BLUE_GRADIENT,
       buttonColour3: theme.BLUE_GRADIENT,
+      correctAnswers: 0,
     };
   }
 
@@ -138,7 +139,7 @@ class NewsQ extends React.Component {
 
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
-      //TODO: Sum score and add to database
+      Socket.emit('submitAnswers', this.state.correctAnswers);
       this.props.navigation.navigate("GameScreen");
     }
   };
@@ -163,6 +164,7 @@ class NewsQ extends React.Component {
 
     var currentQuestion = this.state.currentQuestion - 1;
     if (this.state.questions[currentQuestion].correct === answer) {
+      this.state.correctAnswers += 1;
       correct = true;
     }
 
