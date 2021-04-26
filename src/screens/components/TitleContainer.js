@@ -17,8 +17,6 @@ class TitleContainer extends React.Component {
   }
 }
 
-//{resizeMode: "cover", width: "85%", height: "85%"}
-
 const styles = StyleSheet.create({
   TitleLogo: {
     width: "100%",
