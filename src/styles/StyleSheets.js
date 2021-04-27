@@ -23,7 +23,7 @@ const styleSheets = StyleSheet.create({
   GenericButton: {
     width: "80%",
     height: "8%",
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
     padding: theme.PADDING_MEDIUM,
     borderRadius: theme.ROUNDING_MEDIUM,
