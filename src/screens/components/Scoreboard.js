@@ -19,10 +19,8 @@ class Scoreboard extends React.Component {
           {username: '', score: ''},
           {username: '', score: ''},
           {username: '', score: ''}
-          ],
-          tableHead: ['Top Players', 'Username', 'Score']
-          
-        }
+          ]
+        };
       }
 
     generateScoreboard = () => {

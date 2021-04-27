@@ -166,8 +166,12 @@ class NewsQ extends React.Component {
 
     var currentQuestion = this.state.currentQuestion - 1;
     if (this.state.questions[currentQuestion].correct === answer) {
+<<<<<<< HEAD
       var newScore = this.state.correctAnswers + 1;
       this.setState({correctAnswers: newScore});
+=======
+      this.state.correctAnswers += 1;
+>>>>>>> 17076cbafe6417ed471fd8e2aae8e5f390ab0b0a
       correct = true;
     }
 
