@@ -20,8 +20,7 @@ class Scoreboard extends React.Component {
           {username: '', score: ''},
           {username: '', score: ''}
           ]
-          
-        }
+        };
       }
 
     generateScoreboard = () => {
