@@ -231,3 +231,33 @@ Inget att kommentera.
 ### Andra punkter
 
 Inget att kommentera.
+
+## Arbetsmöte 27/04/21
+
+### Vad gjorde vi igår?
+
+* Styling till shoppen på g
+
+* Få in bild istället för produktnamn
+
+* Scoreboard nästan i mål
+
+* Countdown + Player Count
+
+### Vi tänker vi göra idag?
+
+* Scoreboard.(Niclas, Richard och Fanny)
+
+* ArtQ standardfunktionalitet (kunna bläddra mellan frågor). (Jakob)
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt". (Aishe, Kimiya)
+
+* Vänteskärm till nutidsquiz. (Niclas, Richard och Fanny efter Scoreboard)
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
