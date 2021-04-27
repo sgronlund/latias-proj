@@ -6,15 +6,13 @@ import {
   TouchableOpacity,
   View,
   Text,
-  NativeModules,
-  Platform,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket, sharedKey, initLoginSockets } from "../misc/Socket";
-import { JSHash, CONSTANTS} from "react-native-hash";
-
+import sha256 from "sha256";
+import CryptoJS from "react-native-crypto-js";
 
 /**
  * @summary This represents the login screen. From here you
@@ -52,30 +50,17 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
-    var Aes = NativeModules.Aes;
     initLoginSockets(this.props.navigation);
     //The passwords stored in the database are first salted
     var salt_pass = password.toString() + username.toString();
 
     //The passwords are also irreversibly hashed
-    //The passwords are also irreversibly hashed
-    let hash_pass;
-    JSHash(salt_pass, CONSTANTS.HashAlgorithms.sha256)
-      .then(hash => hash_pass = hash)
-      .catch(e => console.log(e));
-
+    let hash_pass = sha256(salt_pass);
     if (!sharedKey) return alert("You are not connected to the server!");
+    var encrypted_pass = CryptoJS.AES.encrypt(hash_pass, sharedKey.toString()).toString()
+
     //The data transmission is encrypted in case of listeners.
-    const encrypt_pass = () => {
-      return Aes.randomKey(16).then(iv => {
-          return Aes.encrypt(hash_pass, sharedKey, iv).then(cipher => ({
-              cipher
-          }))
-      })
-    }
-    
-    //The data transmission is encrypted in case of listeners.
-    Socket.emit("login", username, encrypt_pass, Socket.id);
+    Socket.emit("login", username, encrypted_pass, Socket.id);
   };
 
   render() {

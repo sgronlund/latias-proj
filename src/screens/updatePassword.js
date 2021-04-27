@@ -10,8 +10,8 @@ import {
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket, sharedKey } from "../misc/Socket";
-import * as Crypto from 'expo-crypto';
-import { JSHash, CONSTANTS} from "react-native-hash";
+import sha256 from "sha256";
+import CryptoJS from "react-native-crypto-js";
 
 
 /**
@@ -60,21 +60,14 @@ class updatePassword extends React.Component {
       var salt_pass = password.toString() + username.toString();
 
       //The passwords are also irreversibly hashed
-      let hash_pass;
-      JSHash(salt_pass, CONSTANTS.HashAlgorithms.sha256)
-      .then(hash => hash_pass = hash)
-      .catch(e => console.log(e));
+      let hash_pass = sha256(salt_pass)
 
-
+      if (!sharedKey) return alert("You are not connected to the server!");
+      
+  
       //The data transmission is encrypted in case of listeners.
-      const encrypt_pass = () => {
-        return Aes.randomKey(16).then(iv => {
-            return Aes.encrypt(hash_pass, sharedKey, iv).then(cipher => ({
-                cipher
-            }))
-        })
-      }
-      Socket.emit("updatePass", this.state.email, encrypt_pass);
+      var encrypted_pass = CryptoJS.AES.encrypt(hash_pass, sharedKey.toString()).toString()
+      Socket.emit("updatePass", this.state.email, encrypted_pass);
       Socket.off("returnUserByEmailSuccess");
 
       this.props.navigation.navigate("Home");

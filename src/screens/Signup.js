@@ -13,7 +13,8 @@ import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket, initSignupSockets, sharedKey } from "../misc/Socket";
-import { JSHash, CONSTANTS} from "react-native-hash";
+import sha256 from "sha256";
+import CryptoJS from "react-native-crypto-js";
 
 /**
  * @summary This represents the signup screen. From here you enter
@@ -74,24 +75,14 @@ class Signup extends React.Component {
 
     //hash the password so that it is not stored in clear text in the database
     //The passwords are also irreversibly hashed
-    let hash_pass;
-    JSHash(salt_pass, CONSTANTS.HashAlgorithms.sha256)
-      .then(hash => hash_pass = hash)
-      .catch(e => console.log(e));
+    let hash_pass = sha256(salt_pass)
 
     //The data transmission is encrypted in case of listeners.
     
     if (!sharedKey) return alert("You are not connected to the server!");
     //we now want to encrypt the password so that it cannot be replayed by an attacker. The server will decrypt the password on its end.
-    const encrypt_pass = () => {
-      return Aes.randomKey(16).then(iv => {
-          return Aes.encrypt(hash_pass, sharedKey, iv).then(cipher => ({
-              cipher
-          }))
-      })
-    } //AES256 is a reversible algorithm which is why we use it
-
-    Socket.emit("register", username, encrypt_pass, email);
+    var encrypted_pass = CryptoJS.AES.encrypt(hash_pass, sharedKey.toString()).toString()
+    Socket.emit("register", username, encrypted_pass, email);
   };
 
   render() {
