@@ -45,6 +45,10 @@ let initLoginSockets = (navigation) => {
     Socket.off("loginFailure");
     alert("Login failed!");
   });
+  Socket.on("alreadyLoggedIn", () => {
+    Socket.off("alreadyLoggedIn");
+    alert("You are already logged in on another device!");
+  });
 };
 
 /**
