@@ -20,6 +20,7 @@ import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
 import UserPolicy from "./screens/UserPolicy";
+import Scoreboard from "./screens/components/ScoreBoard";
 
 /**
  * @summary This file contains the stack navigator
@@ -89,6 +90,7 @@ const navigator = createStackNavigator(
         headerLeft: null
       }
     },
+    Scoreboard: Scoreboard,
     UserPolicy: UserPolicy,
     Reset: Reset,
     VerifyReset: VerifyReset,
