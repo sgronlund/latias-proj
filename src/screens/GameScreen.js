@@ -2,12 +2,14 @@ import React from "react";
 import { SafeAreaView, TouchableOpacity, Text, StyleSheet } from "react-native";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import Scoreboard from "./components/Scoreboard";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
 import Shop from "./components/Shop";
 import { LinearGradient } from "expo-linear-gradient";
 import { withNavigation } from "react-navigation";
 import currentWeekNumber from "current-week-number";
+
 
 /**
  * @summary

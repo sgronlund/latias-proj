@@ -16,6 +16,9 @@ const decrementStep = 0.1;
 //1000 ms
 const delayNewQuestion = 1000;
 
+//how many alternatives per question
+const alternativeCount = 3;
+
 class NewsQ extends React.Component {
   constructor(props) {
     super(props);
@@ -99,7 +102,7 @@ class NewsQ extends React.Component {
    */
   shuffleAnswers(randomAlternatives) {
     var answers = [];
-    for (var i = 0; i < startLength; i++) {
+    for (var i = 0; i < alternativeCount; i++) {
       var n = Math.floor(Math.random() * randomAlternatives.length);
       var randomAlternative = randomAlternatives.splice(n, 1)[0];
       answers.push(randomAlternative);
@@ -163,7 +166,8 @@ class NewsQ extends React.Component {
 
     var currentQuestion = this.state.currentQuestion - 1;
     if (this.state.questions[currentQuestion].correct === answer) {
-      this.state.correctAnswers += 1;
+      var newScore = this.state.correctAnswers + 1;
+      this.setState({correctAnswers: newScore});
       correct = true;
     }
 
