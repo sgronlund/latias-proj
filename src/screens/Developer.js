@@ -24,7 +24,6 @@ class Developer extends React.Component {
       question: "",
       wrongAnswer1: "",
       wrongAnswer2: "",
-      wrongAnswer3: "",
       correctAnswer: "",
     };
   }
@@ -60,16 +59,6 @@ class Developer extends React.Component {
 
   /**
    * @function
-   * @summary Updates the state of wrong answer number 3 when the user
-   * inputs text
-   * @param {String} text text to update wrong answer to
-   */
-  handleWrongAnswer3 = (text) => {
-    this.setState({ wrongAnswer3: text });
-  };
-
-  /**
-   * @function
    * @summary Updates the state of the correct answer when the user
    * inputs text
    * @param {String} text text to update correct answer to
@@ -88,14 +77,13 @@ class Developer extends React.Component {
     question,
     wrongAnswer1,
     wrongAnswer2,
-    wrongAnswer3,
     correctAnswer
   ) => {
     initDeveloperSockets();
     Socket.emit(
       "addQuestion",
       question,
-      [wrongAnswer1, wrongAnswer2, wrongAnswer3, correctAnswer],
+      [wrongAnswer1, wrongAnswer2, correctAnswer],
       currentWeekNumber()
     );
   };
@@ -133,11 +121,6 @@ class Developer extends React.Component {
           />
           <TextInput
             style={styles.AnswerInput}
-            placeholder="Wrong answer"
-            onChangeText={this.handleWrongAnswer3}
-          />
-          <TextInput
-            style={styles.AnswerInput}
             placeholder="Correct answer"
             onChangeText={this.handleCorrectAnswer}
           />
@@ -149,7 +132,6 @@ class Developer extends React.Component {
               this.state.question,
               this.state.wrongAnswer1,
               this.state.wrongAnswer2,
-              this.state.wrongAnswer3,
               this.state.correctAnswer
             )
           }
