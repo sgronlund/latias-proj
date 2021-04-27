@@ -28,6 +28,7 @@ class NewsQ extends React.Component {
       buttonColour1: theme.BLUE_GRADIENT,
       buttonColour2: theme.BLUE_GRADIENT,
       buttonColour3: theme.BLUE_GRADIENT,
+      disableButtons: false,
     };
   }
 
@@ -98,6 +99,7 @@ class NewsQ extends React.Component {
    */
   shuffleAnswers(randomAlternatives) {
     var answers = [];
+    var startLength = randomAlternatives.length;
     for (var i = 0; i < startLength; i++) {
       var n = Math.floor(Math.random() * randomAlternatives.length);
       var randomAlternative = randomAlternatives.splice(n, 1)[0];
@@ -115,14 +117,12 @@ class NewsQ extends React.Component {
     var currentQuestion = this.state.currentQuestion;
     var questions = this.state.questions;
 
-    var randomAlternatives = [
+    //Shuffle alternatives
+    var answers = this.shuffleAnswers([
       questions[currentQuestion]?.wrong1,
       questions[currentQuestion]?.wrong2,
       questions[currentQuestion]?.correct,
-    ];
-
-    //Shuffle alternatives
-    var answers = this.shuffleAnswers(randomAlternatives);
+    ]);
 
     //Update alternatives and question
     this.setState({
@@ -186,6 +186,16 @@ class NewsQ extends React.Component {
     return correct;
   };
 
+  loadNewQuestionsDelayed() {
+    clearInterval(this.clockCall);
+    this.setState({ disableButtons: true });
+    setTimeout(() => {
+      this.nextQuestion();
+      this.startTimer();
+      this.setState({ disableButtons: false });
+    }, delayNewQuestion);
+  }
+
   render() {
     if (this.state.currentQuestion === this.state.questions.length + 1)
       return null;
@@ -209,12 +219,9 @@ class NewsQ extends React.Component {
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[0], 1);
-                clearInterval(this.clockCall);
-                setTimeout(() => {
-                  this.nextQuestion();
-                  this.startTimer();
-                }, delayNewQuestion);
+                this.loadNewQuestionsDelayed();
               }}
+              disabled={this.state.disableButtons}
             >
               <Text style={styles.button_blue}>
                 {this.state.randomAlternatives[0]}
@@ -229,12 +236,9 @@ class NewsQ extends React.Component {
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[1], 2);
-                clearInterval(this.clockCall);
-                setTimeout(() => {
-                  this.nextQuestion();
-                  this.startTimer();
-                }, delayNewQuestion);
+                this.loadNewQuestionsDelayed();
               }}
+              disabled={this.state.disableButtons}
             >
               <Text style={styles.button_blue}>
                 {this.state.randomAlternatives[1]}
@@ -249,12 +253,9 @@ class NewsQ extends React.Component {
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[2], 3);
-                clearInterval(this.clockCall);
-                setTimeout(() => {
-                  this.nextQuestion();
-                  this.startTimer();
-                }, delayNewQuestion);
+                this.loadNewQuestionsDelayed();
               }}
+              disabled={this.state.disableButtons}
             >
               <Text style={styles.button_blue}>
                 {this.state.randomAlternatives[2]}

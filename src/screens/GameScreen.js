@@ -46,9 +46,7 @@ class GameScreen extends React.Component {
       this.props.navigation.setParams({ loggedIn: this.state.loggedIn });
     });
     Socket.on("getQuestionsSuccess", () => {
-      this.setState({ quizReady: true });
-    });
-    Socket.on("getQuestionsSuccess", () => {
+      Socket.off("getQuestionsSuccess");
       this.setState({ quizReady: true });
     });
     Socket.emit("getUser", Socket.id);

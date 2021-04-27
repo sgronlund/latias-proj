@@ -8,6 +8,7 @@ import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
 import Reset from "./screens/Reset";
 import NewsQ from "./screens/NewsQ";
+import ArtQ from "./screens/ArtQ";
 import Read from "./screens/Read";
 import ShopScreen from "./screens/ShopScreen";
 import VerifyReset from "./screens/VerifyReset";
@@ -79,6 +80,13 @@ const navigator = createStackNavigator(
       screen: ArtQWaiting,
       navigationOptions: {
         title: "ARTICLE QUIZ"
+      }
+    },
+    ArtQ : {
+      screen: ArtQ,
+      navigationOptions: {
+        title: "ARTICLE QUIZ",
+        headerLeft: null
       }
     },
     UserPolicy: UserPolicy,
