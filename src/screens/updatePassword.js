@@ -10,8 +10,9 @@ import {
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket, sharedKey } from "../misc/Socket";
-import sha256 from "sha256";
-import aes256 from "aes256";
+import * as Crypto from 'expo-crypto';
+import { JSHash, CONSTANTS} from "react-native-hash";
+
 
 /**
  * @summary This represents the screen for updating a users password
@@ -51,6 +52,7 @@ class updatePassword extends React.Component {
    * @param {String} passwordConfirm the new password (confirm)
    */
   updatePassword = (password, passwordConfirm) => {
+    var Aes = NativeModules.Aes;
     if (password !== passwordConfirm) {
       return alert("Passwords are not the same");
     }
@@ -58,10 +60,20 @@ class updatePassword extends React.Component {
       var salt_pass = password.toString() + username.toString();
 
       //The passwords are also irreversibly hashed
-      var hash_pass = sha256(salt_pass);
+      let hash_pass;
+      JSHash(salt_pass, CONSTANTS.HashAlgorithms.sha256)
+      .then(hash => hash_pass = hash)
+      .catch(e => console.log(e));
+
 
       //The data transmission is encrypted in case of listeners.
-      var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
+      const encrypt_pass = () => {
+        return Aes.randomKey(16).then(iv => {
+            return Aes.encrypt(hash_pass, sharedKey, iv).then(cipher => ({
+                cipher
+            }))
+        })
+      }
       Socket.emit("updatePass", this.state.email, encrypt_pass);
       Socket.off("returnUserByEmailSuccess");
 
