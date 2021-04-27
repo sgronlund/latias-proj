@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  FlatList,
 } from "react-native";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
@@ -16,7 +17,7 @@ import Shop from "./components/Shop";
 class ArtQWaiting extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { time: "", loggedIn: true };
+    this.state = { time: "", loggedIn: false, quizReady: false };
   }
 
   componentDidMount() {
@@ -25,43 +26,111 @@ class ArtQWaiting extends React.Component {
 
   componentWillUnmount() {
     Socket.off("timeLeft");
+    Socket.off("quizReady");
+    Socket.off("returnUserSuccess");
   }
 
+  /**
+   * @function
+   * @summary initializes socket listeners
+   * for the class
+   */
   initSockets() {
     Socket.on("timeLeft", (timeLeft) => {
       this.setState({ time: timeLeft });
     });
     Socket.on("returnUserSuccess", () => {
-      Socket.off("returnUserSuccess");
       this.setState({ loggedIn: true });
     });
     Socket.emit("getUser", Socket.id);
+    Socket.emit("isQuizReady");
+    Socket.on("quizReady", () => {
+      this.setState({ quizReady: true });
+    });
   }
 
   render() {
     const isLoggedIn = this.state.loggedIn;
-    return (
-      <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton />
-        {/*<Scoreboard/>*/}
-        {isLoggedIn ? <Shop /> : null}
-        <View style={styles.Container}>
-          <Text style={styles.Text}>THIS QUIZ IS AVAILABLE IN</Text>
-          <Text style={styles.timerText}>{this.state.time}</Text>
-          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Button}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Read")}
+    if (this.state.quizReady) {
+      return (
+        <SafeAreaView style={styleSheets.MainContainer}>
+          <View style={styles.readyContainer}>
+            <LinearGradient
+              colors={theme.PINK_GRADIENT}
+              style={styles.ReadyButton}
             >
-              <Text style={styles.ButtonText}>READ THIS WEEKS ARTICLES</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
-      </SafeAreaView>
-    );
+              <TouchableOpacity
+                style={styles.ReadyButton}
+                onPress={() => this.props.navigation.navigate("ArtQ")}
+              >
+                <Text style={styles.ReadyText}>START</Text>
+              </TouchableOpacity>
+            </LinearGradient>
+            <Text style={styles.TitleText}>
+              ────── This weeks topics ──────
+            </Text>
+            <FlatList
+              data={[
+                { key: "Topic number 1" },
+                { key: "Topic number 2" },
+                { key: "Topic number 3" },
+              ]}
+              renderItem={({ item }) => (
+                <Text style={styles.TitleText}>{item.key}</Text>
+              )}
+            />
+          </View>
+        </SafeAreaView>
+      );
+    } else {
+      return (
+        <SafeAreaView style={styleSheets.MainContainer}>
+          <QuestionButton />
+          {/*<Scoreboard/>*/}
+          {isLoggedIn ? <Shop /> : null}
+          <View style={styles.Container}>
+            <Text style={styles.Text}>THIS QUIZ IS AVAILABLE IN</Text>
+            <Text style={styles.timerText}>{this.state.time}</Text>
+            <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Button}>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("Read")}
+              >
+                <Text style={styles.ButtonText}>READ THIS WEEKS ARTICLES</Text>
+              </TouchableOpacity>
+            </LinearGradient>
+          </View>
+        </SafeAreaView>
+      );
+    }
   }
 }
 
 const styles = StyleSheet.create({
+  readyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  TitleText: {
+    color: "white",
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    flex: 1,
+    flexWrap: "wrap",
+  },
+  ReadyButton: {
+    width: 250,
+    height: 250,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    borderRadius: 125,
+    margin: 30,
+  },
+  ReadyText: {
+    fontSize: theme.FONT_SIZE_MEDIUM,
+    color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
+  },
   Container: {
     width: "80%",
     height: "40%",
