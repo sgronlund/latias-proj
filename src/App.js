@@ -20,7 +20,7 @@ import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
 import UserPolicy from "./screens/UserPolicy";
-import Scoreboard from "./screens/components/ScoreBoard";
+import Scoreboard from "./screens/components/Scoreboard";
 
 /**
  * @summary This file contains the stack navigator

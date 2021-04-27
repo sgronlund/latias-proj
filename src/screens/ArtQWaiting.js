@@ -11,6 +11,7 @@ import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import Scoreboard from "./components/Scoreboard";
 import { Socket } from "../misc/Socket";
 import Shop from "./components/Shop";
 
@@ -65,8 +66,10 @@ class ArtQWaiting extends React.Component {
               >
                 <Text style={styles.ReadyText}>START</Text>
               </TouchableOpacity>
-            </LinearGradient>
-            <Text style={styles.TitleText}>
+            </LinearGradient><Text style={styles.TitleText}>
+              ────────────────────────
+            </Text>
+            {/*<Text style={styles.TitleText}>
               ────── This weeks topics ──────
             </Text>
             <FlatList
@@ -78,7 +81,8 @@ class ArtQWaiting extends React.Component {
               renderItem={({ item }) => (
                 <Text style={styles.TitleText}>{item.key}</Text>
               )}
-            />
+            />*/}
+            <Scoreboard />
           </View>
         </SafeAreaView>
       );
@@ -112,10 +116,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   TitleText: {
+    height: '50px',
     color: "white",
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-    flex: 1,
-    flexWrap: "wrap",
   },
   ReadyButton: {
     width: 250,

@@ -1,8 +1,10 @@
 import React from "react";
-import { Text, SafeAreaView, TouchableOpacity, StyleSheet} from "react-native";
+import { Text, TouchableOpacity, StyleSheet, View} from "react-native";
 import { DataTable } from 'react-native-paper';
 import { withNavigation } from "react-navigation";
 import styleSheets from "../../styles/StyleSheets";
+import themes from "../../styles/themes.js"
+import { LinearGradient } from "expo-linear-gradient";
 import { sharedKey, Socket } from "../../misc/Socket";
 //import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 
@@ -18,7 +20,7 @@ class Scoreboard extends React.Component {
           {username: '', score: ''},
           {username: '', score: ''}
           ],
-          tableHead: ['Position', 'Username', 'Score']
+          tableHead: ['Top Players', 'Username', 'Score']
           
         }
       }
@@ -38,47 +40,76 @@ class Scoreboard extends React.Component {
     }
   render() {
     return (
-      <SafeAreaView style={styleSheets.MainContainer}>
-          <DataTable style= {{backgroundColor: '#3E9EFE'}}>
-            <DataTable.Header >
-                <DataTable.Title style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableHead[0]}</DataTable.Title>
-                <DataTable.Title style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableHead[1]}</DataTable.Title>
-                <DataTable.Title style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableHead[2]}</DataTable.Title>
+        <View style={{width: '80%', alignItems: 'center', height: '30%'}}>
+        <LinearGradient colors={themes.BLUE_GRADIENT} style={styles.main, {width: '90%', alignItems: 'center', borderRadius: 15, height: '100%'}}>
+          <DataTable style= {styles.main}>
+            <DataTable.Header style={{height: '30%', justifyContent: 'center'}}>
+                <Text style={styles.header}>Top Players</Text>
             </DataTable.Header>
         
-            <DataTable.Row>
-                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>1</DataTable.Cell>
-                <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableData[0]?.username}</DataTable.Cell>
-                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableData[0]?.score}</DataTable.Cell>
+            <DataTable.Row style={{height: '22%'}}>
+                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>1</Text>
+                </DataTable.Cell>
+                <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>{this.state.tableData[0]?.username}</Text>
+                </DataTable.Cell>
+                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>{Math.floor(this.state.tableData[0]?.score).toString() + 'p'}</Text>
+                </DataTable.Cell>
             </DataTable.Row>
         
-            <DataTable.Row>
-                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>2</DataTable.Cell>
-                <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableData[1]?.username}</DataTable.Cell>
-                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableData[1]?.score}</DataTable.Cell>
+            <DataTable.Row style={{height: '22%'}}>
+                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>2</Text>
+                </DataTable.Cell>
+                <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>{this.state.tableData[1]?.username}</Text>
+                </DataTable.Cell>
+                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>{Math.floor(this.state.tableData[1]?.score).toString() + 'p'}</Text>
+                </DataTable.Cell>
             </DataTable.Row>
 
-            <DataTable.Row>
-                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>3</DataTable.Cell>
-                <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableData[2]?.username}</DataTable.Cell>
-                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>{this.state.tableData[2]?.score}</DataTable.Cell>
+            <DataTable.Row style={{height: '22%'}}>
+                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
+                  <Text style={styles.font}>3</Text>
+                  </DataTable.Cell>
+                <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>{this.state.tableData[2]?.username}</Text>
+                </DataTable.Cell>
+                <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.font}>{Math.floor(this.state.tableData[2]?.score).toString() + 'p'}</Text>
+                </DataTable.Cell>
             </DataTable.Row>
             </DataTable>
-          </SafeAreaView>
+            </LinearGradient>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
-    Table : {
-        color: "#3E9EFE"
+    main : {
+        borderRadius: 15,
+        border: '5px',
+        borderColor: 'black',
+        height: '100%'
     },
-  
-    Scoreboard: {
-        width: "100%"
+    header : {
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        fontSize: themes.FONT_SIZE_SMALL,
+        fontFamily: themes.DEFAULT_FONT,
+        height: '100%',
+        marginTop: '2%'
+    },
+    font : {
+      color: 'white', 
+      fontFamily: themes.DEFAULT_FONT, 
+      fontSize: themes.FONT_SIZE_EXTRA_SMALL
     }
-  
 });
 
-export default withNavigation(Scoreboard);
+export default Scoreboard;
