@@ -1,5 +1,12 @@
 import React from "react";
-import { PixelRatio, Linking, SafeAreaView, StyleSheet, Text, ScrollView} from "react-native";
+import {
+  PixelRatio,
+  Linking,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  ScrollView,
+} from "react-native";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 
@@ -126,13 +133,11 @@ class UserPolicy extends React.Component {
   }
 }
 
-
 // FIXME: I should be enabled globally
-var FONT_BACK_LABEL   = 16;
+var FONT_BACK_LABEL = 16;
 if (PixelRatio.get() <= 2) {
   FONT_BACK_LABEL = 14;
 }
-
 
 const styles = StyleSheet.create({
   Container: {
