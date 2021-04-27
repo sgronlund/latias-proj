@@ -6,13 +6,15 @@ import {
   TouchableOpacity,
   View,
   Text,
+  NativeModules,
+  Platform,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket, sharedKey, initLoginSockets } from "../misc/Socket";
-import sha256 from "sha256";
-import aes256 from "aes256";
+import { JSHash, CONSTANTS} from "react-native-hash";
+
 
 /**
  * @summary This represents the login screen. From here you
@@ -50,16 +52,29 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
+    var Aes = NativeModules.Aes;
     initLoginSockets(this.props.navigation);
     //The passwords stored in the database are first salted
     var salt_pass = password.toString() + username.toString();
 
     //The passwords are also irreversibly hashed
-    var hash_pass = sha256(salt_pass);
+    //The passwords are also irreversibly hashed
+    let hash_pass;
+    JSHash(salt_pass, CONSTANTS.HashAlgorithms.sha256)
+      .then(hash => hash_pass = hash)
+      .catch(e => console.log(e));
+
     if (!sharedKey) return alert("You are not connected to the server!");
     //The data transmission is encrypted in case of listeners.
-    var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
-
+    const encrypt_pass = () => {
+      return Aes.randomKey(16).then(iv => {
+          return Aes.encrypt(hash_pass, sharedKey, iv).then(cipher => ({
+              cipher
+          }))
+      })
+    }
+    
+    //The data transmission is encrypted in case of listeners.
     Socket.emit("login", username, encrypt_pass, Socket.id);
   };
 
