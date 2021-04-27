@@ -88,7 +88,7 @@ class GameScreen extends React.Component {
           <TouchableOpacity
             onPress={() => {
               this.state.quizReady
-                ? this.props.navigation.navigate("NewsQ")
+                ? this.props.navigation.navigate("NewsQReady")
                 : alert("Quiz not ready!");
             }}
           >

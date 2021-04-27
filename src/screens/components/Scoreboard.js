@@ -40,7 +40,7 @@ class Scoreboard extends React.Component {
     }
   render() {
     return (
-        <View style={{width: '80%', alignItems: 'center', height: '30%'}}>
+        <View style={{width: '80%', alignItems: 'center', height: '100%'}}>
         <LinearGradient colors={themes.BLUE_GRADIENT} style={styles.main, {width: '90%', alignItems: 'center', borderRadius: 15, height: '100%'}}>
           <DataTable style= {styles.main}>
             <DataTable.Header style={{height: '30%', justifyContent: 'center'}}>

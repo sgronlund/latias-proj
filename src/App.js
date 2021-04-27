@@ -21,6 +21,8 @@ import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
 import UserPolicy from "./screens/UserPolicy";
 import Scoreboard from "./screens/components/Scoreboard";
+import NewsQReady from "./screens/NewsQReady";
+
 
 /**
  * @summary This file contains the stack navigator
@@ -90,6 +92,7 @@ const navigator = createStackNavigator(
         headerLeft: null
       }
     },
+    NewsQReady: NewsQReady,
     Scoreboard: Scoreboard,
     UserPolicy: UserPolicy,
     Reset: Reset,
