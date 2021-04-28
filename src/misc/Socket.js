@@ -33,15 +33,12 @@ Socket.on("serverPublic", (server_public, g, p) => {
  */
 let initLoginSockets = (navigation) => {
   Socket.on("loginRoot", () => {
-    
     navigation.navigate("Developer");
   });
   Socket.on("loginSuccess", () => {
-    
     navigation.navigate("GameScreen", { headerLeft: null });
   });
   Socket.on("loginFailure", () => {
-    
     alert("Login failed!");
   });
   Socket.on("alreadyLoggedIn", () => {

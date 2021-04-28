@@ -72,13 +72,16 @@ class Signup extends React.Component {
 
     //hash the password so that it is not stored in clear text in the database
     //The passwords are also irreversibly hashed
-    let hash_pass = sha256(salt_pass)
+    let hash_pass = sha256(salt_pass);
 
     //The data transmission is encrypted in case of listeners.
-    
+
     if (!sharedKey) return alert("You are not connected to the server!");
     //we now want to encrypt the password so that it cannot be replayed by an attacker. The server will decrypt the password on its end.
-    var encrypted_pass = CryptoJS.AES.encrypt(hash_pass, sharedKey.toString()).toString()
+    var encrypted_pass = CryptoJS.AES.encrypt(
+      hash_pass,
+      sharedKey.toString()
+    ).toString();
     Socket.emit("register", username, encrypted_pass, email);
   };
 
