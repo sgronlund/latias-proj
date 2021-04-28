@@ -4,7 +4,7 @@ import bigInt from "big-integer";
 /**
  * @summary Connects a socket to the given ip
  */
-const Socket = socketClient("http://localhost:8080");
+const Socket = socketClient("http://192.168.1.150:8080");
 
 /**
  * @summary the shared symmetric key to exchange data with the server
@@ -32,19 +32,25 @@ Socket.on("serverPublic", (server_public, g, p) => {
  * @param {Object} navigation navigator that redirects to other screens
  */
 let initLoginSockets = (navigation) => {
+  Socket.on("blankDetails", () => {
+    alert("You need to enter all fields!");
+  });
   Socket.on("loginRoot", () => {
     navigation.navigate("Developer");
+  });
+  Socket.on("alreadyLoggedIn", () => {
+    alert("You are already logged in on another device!");
   });
   Socket.on("loginSuccess", () => {
     navigation.navigate("GameScreen", { headerLeft: null });
   });
+  Socket.on("invalidUserDetails", () => {
+    alert("Invalid details!")
+  });
   Socket.on("loginFailure", () => {
     alert("Login failed!");
   });
-  Socket.on("alreadyLoggedIn", () => {
-    Socket.off("alreadyLoggedIn");
-    alert("You are already logged in on another device!");
-  });
+
 };
 
 /**
