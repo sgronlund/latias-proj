@@ -1,11 +1,10 @@
-import { Alert } from "react-native";
 import socketClient from "socket.io-client";
 import bigInt from "big-integer";
 
 /**
  * @summary Connects a socket to the given ip
  */
-const Socket = socketClient("http://192.168.0.104:8080");
+const Socket = socketClient("http://localhost:8080");
 
 /**
  * @summary the shared symmetric key to exchange data with the server
