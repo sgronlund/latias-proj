@@ -84,7 +84,7 @@ class NewsQ extends React.Component {
       this.setState({ questions: questions });
       this.nextQuestion();
     });
-    Socket.on("getQuestionFailure", () => {
+    Socket.on("getQuestionsFailure", () => {
       Socket.off("getQuestionsSuccess");
       alert("Could not retrieve questions!");
     });

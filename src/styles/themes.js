@@ -30,6 +30,7 @@ export default {
   SHADOW_OFFSET: { width: 0, height: 4 },
   SHADOW_OPACITY: 0.35,
   BLUE_GRADIENT: ["#4DA6FF", "#377DC2"],
+  DARK_BLUE_GRADIENT: ["#005bff", "#0400ff"],
   PINK_GRADIENT: ["#BF69E2", "#C3518D"],
   GREEN_GRADIENT: ["#0a7909", "#19ff00"],
   RED_GRADIENT: ["#792409", "#ff3500"],

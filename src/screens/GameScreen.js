@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_MEDIUM,
     padding: 30,
     borderRadius: theme.ROUNDING_SMALL,
-
     fontFamily: theme.DEFAULT_FONT,
   },
   button_pink: {
