@@ -100,6 +100,7 @@ This privacy policy page was created at `;
  * @summary This represents the user policy screen
  */
 class UserPolicy extends React.Component {
+  
   render() {
     const url = "https://app-privacy-policy-generator.nisrulz.com/";
     const url2 = "https://privacypolicytemplate.net/";
