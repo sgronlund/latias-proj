@@ -25,6 +25,10 @@ class LogIn extends React.Component {
     this.state = { username: "", password: "", alert: false };
   }
 
+  componentDidMount() {
+    initLoginSockets(this.props.navigation);
+  }
+
   /**
    * @function
    * @summary Updates the state of the username when the user inputs text
@@ -50,7 +54,7 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
-    initLoginSockets(this.props.navigation);
+    
     //The passwords stored in the database are first salted
     var salt_pass = password.toString() + username.toString();
 
