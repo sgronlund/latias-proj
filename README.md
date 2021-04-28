@@ -34,12 +34,6 @@ If you choose the browser your console should look something like this:
 
 ![image](https://user-images.githubusercontent.com/55285451/113585858-1120f780-962d-11eb-81f5-9c4978737d20.png)
 
-### Tests
-
-To run tests, you can simply run (after running npm install):
-```bash
-npm test
-```
 
 ### Docs
 
@@ -56,3 +50,12 @@ To clean up temporary files or files that should not be commited, simply run:
 ```bash
 npm run clean
 ```
+
+### Errors
+
+1. If you cannot compile
+- Remove `node_modules` and `package-lock.json`
+- Run `npm install` and try again
+2. If error persists
+- Read error message and try to interpret it
+3. Ask for help 🤠
