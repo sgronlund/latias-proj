@@ -31,7 +31,7 @@ class ArtQ extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     Socket.on("updatePlayerCount", (playerCount) => {
       this.setState({ playerCount: playerCount });
     });
@@ -81,7 +81,6 @@ class ArtQ extends React.Component {
   previousQuestion = () => {
     if (this.state.currentQuestion === 0) return;
     this.setState({
-      // await this???
       currentQuestion: this.state.currentQuestion - 1,
     });
     this.displayPress(this.state.userAnswers[this.state.currentQuestion - 1]);
