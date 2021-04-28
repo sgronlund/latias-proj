@@ -52,7 +52,6 @@ class updatePassword extends React.Component {
    * @param {String} passwordConfirm the new password (confirm)
    */
   updatePassword = (password, passwordConfirm) => {
-    var Aes = NativeModules.Aes;
     if (password !== passwordConfirm) {
       return alert("Passwords are not the same");
     }

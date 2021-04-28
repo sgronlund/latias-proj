@@ -6,8 +6,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  NativeModules,
-  Platform,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
@@ -62,7 +60,6 @@ class Signup extends React.Component {
    * @param {String} email email of the user to register
    */
   handleRegister = (username, password, email) => {
-    var Aes = NativeModules.Aes;
     //if inputs are invalid we don't want to do anything
     if (!username || !password || !email) {
       alert("Some inputs are empty!");
