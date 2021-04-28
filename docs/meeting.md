@@ -261,3 +261,35 @@ Inget att kommentera.
 ### Andra punkter
 
 Inget att kommentera.
+
+## Arbetsmöte 27/04/21
+
+### Vad gjorde vi igår?
+
+* ArtQ standardfunktionalitet (kunna bläddra mellan frågor).
+
+* Scoreboard
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt".
+
+* Började fixade dependencies, just klar
+
+### Vi tänker vi göra idag?
+
+* Submit för ArtQ (Jakob)
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt" (fortsätta, Aishe och Kimiya)
+
+* Fortsätta fixa dependencies (Sebastian)
+
+* Scoreboard, fortsätta (Niclas, Richard, Fanny)
+
+* Göra quizzen. (Fritt fram och ta!)
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
