@@ -185,7 +185,7 @@ class NewsQ extends React.Component {
     }
     return correct;
   };
-  
+
   loadNewQuestionsDelayed() {
     clearInterval(this.clockCall);
     this.setState({ disableButtons: true });
