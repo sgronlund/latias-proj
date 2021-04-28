@@ -15,12 +15,12 @@ import Socket from "../misc/Socket";
 class Settings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loggedIn: false };
+    this.state = { loggedIn: false, username: null };
   }
 
   componentDidMount() {
     Socket.on("returnUserSuccess", (username) => {
-      this.setState({ loggedIn: true });
+      this.setState({ loggedIn: true, username: username });
     });
     Socket.emit("getUser", Socket.id);
   }
@@ -30,6 +30,12 @@ class Settings extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
         <Wallet />
+        {this.state.loggedIn ? (
+          <Text style={styles.NameText}>
+            You are logged in as: {this.state.username}
+          </Text>
+        ) : null}
+
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>Sound Off</Text>
         </TouchableOpacity>
@@ -56,6 +62,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
     margin: theme.MARGIN_MEDIUM,
+  },
+  NameText: {
+    fontSize: 20,
+    color: "white",
+    fontFamily: theme.DEFAULT_FONT,
   },
 });
 

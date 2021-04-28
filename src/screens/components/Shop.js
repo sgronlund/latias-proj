@@ -2,6 +2,7 @@ import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../styles/themes.js";
 import { withNavigation } from "react-navigation";
+import Socket from "../../misc/Socket";
 
 /**
  * @summary This is a component which leads the user to
@@ -10,6 +11,20 @@ import { withNavigation } from "react-navigation";
 class Shop extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { balance: null };
+  }
+
+  componentDidMount() {
+    Socket.on("returnBalanceSuccess", (balance) => {
+      this.setState({ balance: balance });
+    });
+
+    //felhantering
+    Socket.on("returnBalanceFailure", () => {
+      this.setState({ balance: -1 });
+    });
+
+    Socket.emit("getBalance", Socket.id);
   }
 
   render() {
@@ -18,7 +33,7 @@ class Shop extends React.Component {
         style={styles.Container}
         onPress={() => this.props.navigation.navigate("ShopScreen")}
       >
-        <Text style={styles.Text}>97 $</Text>
+        <Text style={styles.Text}>{this.state.balance} $</Text>
       </TouchableOpacity>
     );
   }
