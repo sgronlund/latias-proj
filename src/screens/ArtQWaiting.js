@@ -11,6 +11,7 @@ import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import Scoreboard from "./components/Scoreboard";
 import { Socket } from "../misc/Socket";
 import Shop from "./components/Shop";
 
@@ -66,7 +67,8 @@ class ArtQWaiting extends React.Component {
                 <Text style={styles.ReadyText}>START</Text>
               </TouchableOpacity>
             </LinearGradient>
-            <Text style={styles.TitleText}>
+            <Text style={styles.TitleText}>────────────────────────</Text>
+            {/*<Text style={styles.TitleText}>
               ────── This weeks topics ──────
             </Text>
             <FlatList
@@ -78,7 +80,10 @@ class ArtQWaiting extends React.Component {
               renderItem={({ item }) => (
                 <Text style={styles.TitleText}>{item.key}</Text>
               )}
-            />
+            />*/}
+          </View>
+          <View style={styles.scoreboard}>
+            <Scoreboard />
           </View>
         </SafeAreaView>
       );
@@ -86,7 +91,6 @@ class ArtQWaiting extends React.Component {
       return (
         <SafeAreaView style={styleSheets.MainContainer}>
           <QuestionButton />
-          {/*<Scoreboard/>*/}
           {isLoggedIn ? <Shop /> : null}
           <View style={styles.Container}>
             <Text style={styles.Text}>THIS QUIZ IS AVAILABLE IN</Text>
@@ -99,6 +103,9 @@ class ArtQWaiting extends React.Component {
               </TouchableOpacity>
             </LinearGradient>
           </View>
+          <View style={styles.scoreboard}>
+            <Scoreboard style={{ height: "100%" }} />
+          </View>
         </SafeAreaView>
       );
     }
@@ -106,16 +113,24 @@ class ArtQWaiting extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  scoreboard: {
+    width: "100%",
+    height: "30%",
+    position: "absolute",
+    top: "55%",
+    marginBottom: 0,
+    alignItems: "center",
+  },
   readyContainer: {
-    flex: 1,
+    flex: 0,
+    top: "20%",
     justifyContent: "center",
     alignItems: "center",
   },
   TitleText: {
+    height: "50px",
     color: "white",
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-    flex: 1,
-    flexWrap: "wrap",
   },
   ReadyButton: {
     width: 250,
@@ -138,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
-    marginTop: "20%",
+    top: "10%",
     paddingBottom: 30,
   },
   Text: {

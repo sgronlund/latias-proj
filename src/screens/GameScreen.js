@@ -2,6 +2,7 @@ import React from "react";
 import { SafeAreaView, TouchableOpacity, Text, StyleSheet } from "react-native";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import Scoreboard from "./components/Scoreboard";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
 import Shop from "./components/Shop";
@@ -86,7 +87,7 @@ class GameScreen extends React.Component {
           <TouchableOpacity
             onPress={() => {
               this.state.quizReady
-                ? this.props.navigation.navigate("NewsQ")
+                ? this.props.navigation.navigate("NewsQReady")
                 : alert("Quiz not ready!");
             }}
           >
