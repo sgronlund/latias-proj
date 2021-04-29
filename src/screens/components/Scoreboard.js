@@ -30,7 +30,6 @@ class Scoreboard extends React.Component {
     }
 
     componentDidMount() {
-      console.log("hejsan");
       this.generateScoreboard();
     }
   render() {
