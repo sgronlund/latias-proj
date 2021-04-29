@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet, View} from "react-native";
+import { Text, StyleSheet, View} from "react-native";
 import { DataTable } from 'react-native-paper';
 import themes from "../../styles/themes.js"
 import { LinearGradient } from "expo-linear-gradient";
