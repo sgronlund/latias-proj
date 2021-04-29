@@ -63,6 +63,7 @@ class LogIn extends React.Component {
     var encrypted_pass = CryptoJS.AES.encrypt(
       hash_pass,
       sharedKey.toString()
+    ).toString();
 
 
     //The data transmission is encrypted in case of listeners.
