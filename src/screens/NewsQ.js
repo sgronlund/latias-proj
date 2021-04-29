@@ -276,21 +276,21 @@ class NewsQ extends React.Component {
 
 const styles = StyleSheet.create({
   button_pink: {
-    fontSize: 23,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#FFFFFF",
     textAlign: "center",
     width: "95%",
     margin: theme.MARGIN_MEDIUM,
-    padding: 27,
+    padding: theme.PADDING_LARGE,
     borderRadius: theme.ROUNDING_SMALL,
   },
   button_blue: {
-    fontSize: 22,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#FFFFFF",
     textAlign: "center",
     width: "95%",
-    margin: theme.MARGIN_SMALL,
-    padding: 12,
+    marginBottom: theme.MARGIN_SMALL,
+    padding: theme.PADDING_SMALL,
     borderRadius: theme.ROUNDING_SMALL,
   },
   numberQ: {
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     left: 150,
     marginTop: 30,
     marginBottom: -5,
-    fontSize: 20,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },
   timerText: {
     fontSize: theme.FONT_SIZE_LARGE,

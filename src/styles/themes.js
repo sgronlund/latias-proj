@@ -1,12 +1,39 @@
+
+import { Dimensions } from 'react-native';
+
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
+global.dimensions = {
+  width: width,
+  height: height/12
+}
+
+global.fontSizes = {
+  Tiny: width/26,
+  ExtraSmall: width/18,
+  Small: width/16,
+  Medium: width/8,
+  Large: width/6
+}
+
+global.margins = {
+  Small: width/40,
+  Medium: width/15,
+  Large: width/10
+}
+
 /**
  * @brief This file contains themes that are used to
  * style different components.
  */
 export default {
-  FONT_SIZE_EXTRA_SMALL: 20,
-  FONT_SIZE_SMALL: 30,
-  FONT_SIZE_MEDIUM: 40,
-  FONT_SIZE_LARGE: 50,
+  FONT_SIZE_TINY: fontSizes.Tiny,
+  FONT_SIZE_EXTRA_SMALL: fontSizes.ExtraSmall,
+  FONT_SIZE_SMALL: fontSizes.Small,
+  FONT_SIZE_MEDIUM: fontSizes.Medium,
+  FONT_SIZE_LARGE: fontSizes.Large,
   PADDING_SMALL: 10,
   PADDING_MEDIUM: 15,
   PADDING_LARGE: 30,
@@ -15,7 +42,7 @@ export default {
   ROUNDING_MEDIUM: 30,
   ROUNDING_LARGE: 50,
   DEFAULT_FONT: "Roboto Slab",
-  MARGIN_SMALL: 7,
+  MARGIN_SMALL: margins.Small,
   MARGIN_MEDIUM: 15,
   MARGIN_LARGE: 25,
   LIGHT_BLUE: "#3E9EFE",
@@ -35,4 +62,6 @@ export default {
   GREEN_GRADIENT: ["#0a7909", "#19ff00"],
   RED_GRADIENT: ["#792409", "#ff3500"],
   ORANGE_GRADIENT: ["#ff5e00", "#ff9100"],
+  HEIGHT: dimensions.height,
+  WIDTH: dimensions.width
 };

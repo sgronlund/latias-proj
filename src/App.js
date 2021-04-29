@@ -1,5 +1,5 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer  } from "react-navigation";
+import { createStackNavigator, HeaderBackButton } from "react-navigation-stack";
 import { loadAsync } from "expo-font";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
@@ -16,7 +16,7 @@ import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
 import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, PixelRatio } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
 import UserPolicy from "./screens/UserPolicy";
@@ -101,16 +101,16 @@ const navigator = createStackNavigator(
       headerBackTitleVisible: false,
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
-        borderBottomWidth: 0,
+        height: themes.HEIGHT
       },
       headerTitleStyle: {
         alignSelf: "center",
-        fontSize: 23,
+        fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },
       headerRight:  (
         <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
-            <Ionicons name="ios-settings-sharp" size={24} color="black"/>
+            <Ionicons name="ios-settings-sharp" size={themes.FONT_SIZE_EXTRA_SMALL} color="black"/>
         </TouchableOpacity>
       ),
     }),

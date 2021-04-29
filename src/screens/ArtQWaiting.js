@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   timerText: {
     textAlign: "center",
-    fontSize: theme.FONT_SIZE_SMALL,
+    fontSize: theme.FONT_SIZE_MEDIUM,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
