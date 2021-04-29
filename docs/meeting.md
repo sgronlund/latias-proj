@@ -262,7 +262,7 @@ Inget att kommentera.
 
 Inget att kommentera.
 
-## Arbetsmöte 27/04/21
+## Arbetsmöte 28/04/21
 
 ### Vad gjorde vi igår?
 
@@ -285,6 +285,38 @@ Inget att kommentera.
 * Scoreboard, fortsätta (Niclas, Richard, Fanny)
 
 * Göra quizzen. (Fritt fram och ta!)
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
+
+## Arbetsmöte 29/04/21
+
+### Vad gjorde vi igår?
+
+* Submit för ArtQ
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt".
+
+* Dependencies fixade
+
+### Vi tänker vi göra idag?
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt" (fortsätta, Aishe och Kimiya)
+
+* Fixa login styling + settings (Sebastian)
+
+* GameScreen styling (Jakob)
+
+* Scoreboard, fortsätta (Niclas, Richard, Fanny)
+
+* Göra quizzen. (Fritt fram och ta!)
+
+* Styling på diverse sidor
 
 ### Några problem?
 
