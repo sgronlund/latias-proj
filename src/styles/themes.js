@@ -23,6 +23,12 @@ global.margins = {
   Large: width / 10,
 };
 
+global.rounding = {
+  ExtraSmall: width / 50,
+  Small: width / 22,
+  Medium: width / 12,
+}
+
 /**
  * @brief This file contains themes that are used to
  * style different components.
@@ -36,10 +42,9 @@ export default {
   PADDING_SMALL: 10,
   PADDING_MEDIUM: 15,
   PADDING_LARGE: 30,
-  ROUNDING_EXTRA_SMALL: 5,
-  ROUNDING_SMALL: 15,
-  ROUNDING_MEDIUM: 30,
-  ROUNDING_LARGE: 50,
+  ROUNDING_EXTRA_SMALL: rounding.ExtraSmall,
+  ROUNDING_SMALL: rounding.Small,
+  ROUNDING_MEDIUM: rounding.Medium,
   DEFAULT_FONT: "Roboto Slab",
   MARGIN_INPUT: margins.align,
   MARGIN_SMALL: margins.Small,

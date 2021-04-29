@@ -107,16 +107,16 @@ const navigator = createStackNavigator(
       headerBackTitleVisible: false,
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
-        borderBottomWidth: 0,
+        height: themes.HEIGHT
       },
       headerTitleStyle: {
         alignSelf: "center",
-        fontSize: 23,
-        fontFamily: themes.DEFAULT_FONT,
+        fontSize: themes.FONT_SIZE_EXTRA_SMALL,
+        fontFamily: themes.DEFAULT_FONT
       },
       headerRight: () =>  (
         <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
-            <Ionicons name="ios-settings-sharp" size={24} color="black"/>
+            <Ionicons name="ios-settings-sharp" size={themes.FONT_SIZE_EXTRA_SMALL} color="black"/>
         </TouchableOpacity>
       ),
     }),

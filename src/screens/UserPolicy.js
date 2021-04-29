@@ -133,12 +133,6 @@ class UserPolicy extends React.Component {
   }
 }
 
-// FIXME: I should be enabled globally
-var FONT_BACK_LABEL = 16;
-if (PixelRatio.get() <= 2) {
-  FONT_BACK_LABEL = 14;
-}
-
 const styles = StyleSheet.create({
   Container: {
     margin: theme.MARGIN_MEDIUM,
@@ -149,12 +143,12 @@ const styles = StyleSheet.create({
   },
   Text: {
     fontFamily: "Roboto Slab",
-    fontSize: FONT_BACK_LABEL,
+    fontSize: theme.FONT_SIZE_TINY,
     color: "white",
   },
   link: {
     fontFamily: "Roboto Slab",
-    fontSize: FONT_BACK_LABEL,
+    fontSize: theme.FONT_SIZE_TINY,
     color: "#3E9EFE",
     textDecorationLine: "underline",
   },

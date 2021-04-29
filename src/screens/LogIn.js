@@ -85,6 +85,7 @@ class LogIn extends React.Component {
             style={styleSheets.Input}
             placeholder="your password"
             onChangeText={this.handlePassword}
+            secureTextEntry={true}
           />
         </View>
         <TouchableOpacity
