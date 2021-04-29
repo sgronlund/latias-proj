@@ -22,7 +22,6 @@ class Scoreboard extends React.Component {
 
     generateScoreboard = () => {
       Socket.on('updatedLB', (leaderboard) => {
-        console.log(leaderboard);
         this.setState({tableData: leaderboard});
         Socket.off('updatedLB');
       });
