@@ -3,8 +3,7 @@ import { Text, StyleSheet, View} from "react-native";
 import { DataTable } from 'react-native-paper';
 import themes from "../../styles/themes.js"
 import { LinearGradient } from "expo-linear-gradient";
-import { sharedKey, Socket } from "../../misc/Socket";
-//import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { Socket } from "../../misc/Socket";
 
 /**
  * @summary this is a scoreboard displaying the current top players
