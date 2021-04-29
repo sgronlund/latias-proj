@@ -1,28 +1,26 @@
+import { Dimensions } from "react-native";
 
-import { Dimensions } from 'react-native';
-
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
 
 global.dimensions = {
   width: width,
-  height: height/12
-}
+  height: height / 12,
+};
 
 global.fontSizes = {
-  Tiny: width/26,
-  ExtraSmall: width/18,
-  Small: width/16,
-  Medium: width/8,
-  Large: width/6
-}
+  Tiny: width / 26,
+  ExtraSmall: width / 18,
+  Small: width / 16,
+  Medium: width / 8,
+  Large: width / 6,
+};
 
 global.margins = {
-  Small: width/40,
-  Medium: width/15,
-  Large: width/10
-}
+  Small: width / 40,
+  Medium: width / 15,
+  Large: width / 10,
+};
 
 /**
  * @brief This file contains themes that are used to
@@ -63,5 +61,5 @@ export default {
   RED_GRADIENT: ["#792409", "#ff3500"],
   ORANGE_GRADIENT: ["#ff5e00", "#ff9100"],
   HEIGHT: dimensions.height,
-  WIDTH: dimensions.width
+  WIDTH: dimensions.width,
 };

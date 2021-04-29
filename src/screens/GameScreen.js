@@ -1,5 +1,11 @@
 import React from "react";
-import { SafeAreaView, TouchableOpacity, Text, StyleSheet, View } from "react-native";
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  View,
+} from "react-native";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
@@ -64,9 +70,9 @@ class GameScreen extends React.Component {
         {isLoggedIn ? <Shop /> : null}
         <QuestionButton />
         <View style={styles.TextContainer}>
-        <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
+          <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
         </View>
-        
+
         <View style={styles.ButtonContainer}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Read")}
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
     height: "70%",
     width: "95%",
     alignItems: "center",
-    margin: theme.MARGIN_SMALL
+    margin: theme.MARGIN_SMALL,
   },
   Button: {
     width: "100%",

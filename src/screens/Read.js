@@ -30,11 +30,14 @@ const Read = () => {
           style={styles.Button}
         >
           <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
-              <FontAwesome5
-                name="book-open"
-                size={theme.FONT_SIZE_EXTRA_SMALL}
-                color="white"
-              >  TRUMP HAR GIFT SIG</FontAwesome5>
+            <FontAwesome5
+              name="book-open"
+              size={theme.FONT_SIZE_EXTRA_SMALL}
+              color="white"
+            >
+              {" "}
+              TRUMP HAR GIFT SIG
+            </FontAwesome5>
           </LinearGradient>
         </TouchableOpacity>
 
@@ -48,10 +51,13 @@ const Read = () => {
         >
           <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
             <FontAwesome5
-                name="book-open"
-                size={theme.FONT_SIZE_EXTRA_SMALL}
-                color="white"
-              >  TRUMP HAR GIFT SIG</FontAwesome5>
+              name="book-open"
+              size={theme.FONT_SIZE_EXTRA_SMALL}
+              color="white"
+            >
+              {" "}
+              TRUMP HAR GIFT SIG
+            </FontAwesome5>
           </LinearGradient>
         </TouchableOpacity>
         <TouchableOpacity
@@ -64,10 +70,13 @@ const Read = () => {
         >
           <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
             <FontAwesome5
-                name="book-open"
-                size={theme.FONT_SIZE_EXTRA_SMALL}
-                color="white"
-              >  TRUMP HAR GIFT SIG</FontAwesome5>
+              name="book-open"
+              size={theme.FONT_SIZE_EXTRA_SMALL}
+              color="white"
+            >
+              {" "}
+              TRUMP HAR GIFT SIG
+            </FontAwesome5>
           </LinearGradient>
         </TouchableOpacity>
       </View>
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_SMALL,
     height: "60%",
     width: "90%",
-    textAlign: "center"
+    textAlign: "center",
   },
   Button: {
     flexGrow: 1,
