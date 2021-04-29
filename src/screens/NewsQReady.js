@@ -73,7 +73,7 @@ const height = Dimensions.get("window").height;
 global.responsive = {
   width: width / 4 + height / 4,
   height: width / 4 + height / 4,
-  borderRadius: width / 8 + height / 8
+  borderRadius: width / 8 + height / 8,
 };
 
 const styles = StyleSheet.create({
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   ButtonContainer: {
     height: responsive.height,
     width: responsive.width,
-    padding: theme.PADDING_LARGE
+    padding: theme.PADDING_LARGE,
   },
   ReadyButton: {
     width: "100%",

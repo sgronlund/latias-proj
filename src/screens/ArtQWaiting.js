@@ -58,24 +58,24 @@ class ArtQWaiting extends React.Component {
         <QuestionButton />
         {isLoggedIn ? <Shop /> : null}
         <View style={styles.Container}>
-            <Text style={styles.Text}>
-              THIS QUIZ IS AVAILABLE {quizReady ? "NOW" : "IN"}
-            </Text>
-            {quizReady ? null : (
-              <Text style={styles.timerText}>{this.state.time}</Text>
-            )}
+          <Text style={styles.Text}>
+            THIS QUIZ IS AVAILABLE {quizReady ? "NOW" : "IN"}
+          </Text>
+          {quizReady ? null : (
+            <Text style={styles.timerText}>{this.state.time}</Text>
+          )}
           {quizReady ? (
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate("ArtQ")}
-                style={styles.ReadyButton}
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("ArtQ")}
+              style={styles.ReadyButton}
+            >
+              <LinearGradient
+                colors={theme.PINK_GRADIENT}
+                style={styles.Gradient}
               >
-                <LinearGradient
-                  colors={theme.PINK_GRADIENT}
-                  style={styles.Gradient}
-                >
-                  <Text style={styles.ButtonText}>START</Text>
-                </LinearGradient>
-              </TouchableOpacity>
+                <Text style={styles.ButtonText}>START</Text>
+              </LinearGradient>
+            </TouchableOpacity>
           ) : null}
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Read")}
@@ -89,7 +89,7 @@ class ArtQWaiting extends React.Component {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-        <Scoreboard/>
+        <Scoreboard />
       </SafeAreaView>
     );
   }
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: theme.PADDING_MEDIUM,
     borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_LARGE
+    margin: theme.MARGIN_LARGE,
   },
   GradientButton: {
     flex: 1,
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderRadius: theme.ROUNDING_SMALL
+    borderRadius: theme.ROUNDING_SMALL,
   },
   Gradient: {
     flex: 1,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
     bottom: "5%",
-    position: "absolute"
+    position: "absolute",
   },
   ButtonText: {
     color: "white",
