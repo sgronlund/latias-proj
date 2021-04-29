@@ -66,9 +66,8 @@ class ArtQWaiting extends React.Component {
               >
                 <Text style={styles.ReadyText}>START</Text>
               </TouchableOpacity>
-            </LinearGradient><Text style={styles.TitleText}>
-              ────────────────────────
-            </Text>
+            </LinearGradient>
+            <Text style={styles.TitleText}>────────────────────────</Text>
             {/*<Text style={styles.TitleText}>
               ────── This weeks topics ──────
             </Text>
@@ -84,7 +83,7 @@ class ArtQWaiting extends React.Component {
             />*/}
           </View>
           <View style={styles.scoreboard}>
-            <Scoreboard/>
+            <Scoreboard />
           </View>
         </SafeAreaView>
       );
@@ -105,7 +104,7 @@ class ArtQWaiting extends React.Component {
             </LinearGradient>
           </View>
           <View style={styles.scoreboard}>
-            <Scoreboard style={{height: '100%'}}/>
+            <Scoreboard style={{ height: "100%" }} />
           </View>
         </SafeAreaView>
       );
@@ -119,21 +118,21 @@ const styles = StyleSheet.create({
     //flexWrap: 0,
     //flexGrow: 0,
     //flexDirection: 0,
-    width: '100%',
-    height: '30%',
-    position: 'absolute',
-    top: '55%',
+    width: "100%",
+    height: "30%",
+    position: "absolute",
+    top: "55%",
     marginBottom: 0,
-    alignItems: 'center',
+    alignItems: "center",
   },
   readyContainer: {
     flex: 0,
-    top: '20%',
+    top: "20%",
     justifyContent: "center",
     alignItems: "center",
   },
   TitleText: {
-    height: '50px',
+    height: "50px",
     color: "white",
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },

@@ -141,7 +141,7 @@ class NewsQ extends React.Component {
 
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
-      Socket.emit('submitAnswers', this.state.correctAnswers);
+      Socket.emit("submitAnswers", this.state.correctAnswers);
       this.props.navigation.navigate("GameScreen");
     }
   };
@@ -167,7 +167,7 @@ class NewsQ extends React.Component {
     var currentQuestion = this.state.currentQuestion - 1;
     if (this.state.questions[currentQuestion].correct === answer) {
       var newScore = this.state.correctAnswers + 1;
-      this.setState({correctAnswers: newScore});
+      this.setState({ correctAnswers: newScore });
       correct = true;
     }
 

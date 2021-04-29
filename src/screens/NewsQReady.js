@@ -18,7 +18,7 @@ import Shop from "./components/Shop";
 class ArtQWaiting extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {loggedIn: false};
+    this.state = { loggedIn: false };
   }
 
   componentDidMount() {
@@ -43,26 +43,25 @@ class ArtQWaiting extends React.Component {
 
   render() {
     return (
-    <SafeAreaView style={styleSheets.MainContainer}>
+      <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.readyContainer}>
-        <LinearGradient
+          <LinearGradient
             colors={theme.PINK_GRADIENT}
             style={styles.ReadyButton}
-        >
+          >
             <TouchableOpacity
-            style={styles.ReadyButton}
-            onPress={() => this.props.navigation.navigate("NewsQ")}
+              style={styles.ReadyButton}
+              onPress={() => this.props.navigation.navigate("NewsQ")}
             >
-            <Text style={styles.ReadyText}>START</Text>
+              <Text style={styles.ReadyText}>START</Text>
             </TouchableOpacity>
-        </LinearGradient><Text style={styles.TitleText}>
-            ────────────────────────
-        </Text>
+          </LinearGradient>
+          <Text style={styles.TitleText}>────────────────────────</Text>
         </View>
         <View style={styles.scoreboard}>
-        <Scoreboard/>
+          <Scoreboard />
         </View>
-    </SafeAreaView>
+      </SafeAreaView>
     );
   }
 }
@@ -73,21 +72,21 @@ const styles = StyleSheet.create({
     //flexWrap: 0,
     //flexGrow: 0,
     //flexDirection: 0,
-    width: '100%',
-    height: '30%',
-    position: 'absolute',
-    top: '55%',
+    width: "100%",
+    height: "30%",
+    position: "absolute",
+    top: "55%",
     marginBottom: 0,
-    alignItems: 'center',
+    alignItems: "center",
   },
   readyContainer: {
     flex: 0,
-    top: '20%',
+    top: "20%",
     justifyContent: "center",
     alignItems: "center",
   },
   TitleText: {
-    height: '50px',
+    height: "50px",
     color: "white",
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },

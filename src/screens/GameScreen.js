@@ -10,7 +10,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { withNavigation } from "react-navigation";
 import currentWeekNumber from "current-week-number";
 
-
 /**
  * @summary
  */
