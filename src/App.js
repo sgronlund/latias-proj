@@ -1,5 +1,5 @@
 import { createAppContainer  } from "react-navigation";
-import { createStackNavigator, HeaderBackButton } from "react-navigation-stack";
+import { createStackNavigator} from "react-navigation-stack";
 import { loadAsync } from "expo-font";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
