@@ -166,6 +166,7 @@ class NewsQ extends React.Component {
 
     var currentQuestion = this.state.currentQuestion - 1;
     if (this.state.questions[currentQuestion].correct === answer) {
+       /// TODO: Add calculations based on timer here, probably
       var newScore = this.state.correctAnswers + 1;
       this.setState({ correctAnswers: newScore });
       correct = true;
