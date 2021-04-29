@@ -44,8 +44,6 @@ let initLoginSockets = (navigation) => {
   Socket.on("loginSuccess", () => {
     navigation.navigate("GameScreen", { headerLeft: () => null });
   });
-  Socket.on("invalidUserDetails", () => {
-    alert("Invalid details!");
   });
   Socket.on("invalidUserDetails", () => {
     alert("Invalid details!");
