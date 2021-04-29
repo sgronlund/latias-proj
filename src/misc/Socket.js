@@ -4,7 +4,7 @@ import bigInt from "big-integer";
 /**
  * @summary Connects a socket to the given ip
  */
-const Socket = socketClient("http://localhost:8080");
+const Socket = socketClient("http://192.168.0.104:8080");
 
 /**
  * @summary the shared symmetric key to exchange data with the server
@@ -42,7 +42,7 @@ let initLoginSockets = (navigation) => {
     alert("You are already logged in on another device!");
   });
   Socket.on("loginSuccess", () => {
-    navigation.navigate("GameScreen", { headerLeft: null });
+    navigation.navigate("GameScreen", { headerLeft: () => null });
   });
   Socket.on("invalidUserDetails", () => {
     alert("Invalid details!");

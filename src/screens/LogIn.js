@@ -54,16 +54,14 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
+    
     //The passwords stored in the database are first salted
     var salt_pass = password.toString() + username.toString();
 
     //The passwords are also irreversibly hashed
     let hash_pass = sha256(salt_pass);
     if (!sharedKey) return alert("You are not connected to the server!");
-    var encrypted_pass = CryptoJS.AES.encrypt(
-      hash_pass,
-      sharedKey.toString()
-    ).toString();
+    var encrypted_pass = CryptoJS.AES.encrypt(hash_pass, sharedKey.toString()).toString()
 
     //The data transmission is encrypted in case of listeners.
     Socket.emit("login", username, encrypted_pass, Socket.id);
@@ -108,12 +106,12 @@ class LogIn extends React.Component {
 const styles = StyleSheet.create({
   LoginContainer: {
     width: "95%",
-    height: "30%",
-    justifyContent: "center",
+    height: "40%",
+    justifyContent: "space-evenly",
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_LARGE,
+    margin: theme.MARGIN_SMALL
   },
   ForgotPassword: {
     fontFamily: "Roboto Slab",

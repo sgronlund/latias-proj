@@ -54,8 +54,10 @@ class ArtQ extends React.Component {
       Socket.off("getQuestionsArticleSuccess");
       this.initializeQuestions(questionsAnswers);
     });
+    // FIXME: Should always check if there are any questions, right now we can enter the quiz even if we have none
     Socket.on("getQuestionsArticleFailure", () => {
       Socket.off("getQuestionsArticleSuccess");
+      this.props.navigation.goBack();
       alert("Could not retrieve questions!");
     });
   };

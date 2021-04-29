@@ -1,5 +1,5 @@
-import { createAppContainer  } from "react-navigation";
-import { createStackNavigator, HeaderBackButton } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { loadAsync } from "expo-font";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
@@ -16,7 +16,7 @@ import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
 import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
-import { TouchableOpacity, PixelRatio } from "react-native";
+import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
 import UserPolicy from "./screens/UserPolicy";
@@ -30,7 +30,7 @@ const navigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        header: false,
+        header: () => null,
       },
     },
     Read: {
@@ -43,7 +43,7 @@ const navigator = createStackNavigator(
       screen: NewsQ,
       navigationOptions: {
         title: "THIS WEEKS NEWS QUIZ",
-        headerLeft: null,
+        headerLeft: () => null,
       },
     },
     GameScreen: {
@@ -86,6 +86,7 @@ const navigator = createStackNavigator(
       screen: ArtQ,
       navigationOptions: {
         title: "ARTICLE QUIZ",
+        headerLeft: null
       }
     },
     UserPolicy: UserPolicy,
@@ -101,16 +102,16 @@ const navigator = createStackNavigator(
       headerBackTitleVisible: false,
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
-        height: themes.HEIGHT
+        borderBottomWidth: 0,
       },
       headerTitleStyle: {
         alignSelf: "center",
-        fontSize: themes.FONT_SIZE_EXTRA_SMALL,
+        fontSize: 23,
         fontFamily: themes.DEFAULT_FONT,
       },
-      headerRight:  (
+      headerRight: () =>  (
         <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
-            <Ionicons name="ios-settings-sharp" size={themes.FONT_SIZE_EXTRA_SMALL} color="black"/>
+            <Ionicons name="ios-settings-sharp" size={24} color="black"/>
         </TouchableOpacity>
       ),
     }),

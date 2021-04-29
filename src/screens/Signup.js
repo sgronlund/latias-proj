@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
@@ -89,7 +90,7 @@ class Signup extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <View style={styles.LoginContainer}>
+        <KeyboardAvoidingView style={styles.LoginContainer} behaviour="position">
           <Text style={styleSheets.LoginText}>Username:</Text>
           <TextInput
             style={styleSheets.Input}
@@ -108,7 +109,6 @@ class Signup extends React.Component {
             placeholder="your email"
             onChangeText={this.handleEmail}
           />
-        </View>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
           onPress={() =>
@@ -121,6 +121,7 @@ class Signup extends React.Component {
         >
           <Text style={styleSheets.ButtonText}>REGISTER</Text>
         </TouchableOpacity>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     );
   }
@@ -129,8 +130,7 @@ class Signup extends React.Component {
 const styles = StyleSheet.create({
   LoginContainer: {
     width: "95%",
-    height: "35%",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
