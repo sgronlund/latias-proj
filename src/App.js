@@ -16,7 +16,7 @@ import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
 import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
-import { TouchableOpacity, PixelRatio } from "react-native";
+import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from '@expo/vector-icons'; 
 import UserPolicy from "./screens/UserPolicy";
