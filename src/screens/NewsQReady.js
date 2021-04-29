@@ -68,10 +68,6 @@ class ArtQWaiting extends React.Component {
 
 const styles = StyleSheet.create({
   scoreboard: {
-    //flex: 0,
-    //flexWrap: 0,
-    //flexGrow: 0,
-    //flexDirection: 0,
     width: "100%",
     height: "30%",
     position: "absolute",
