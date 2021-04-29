@@ -27,7 +27,7 @@ global.rounding = {
   ExtraSmall: width / 50,
   Small: width / 22,
   Medium: width / 12,
-}
+};
 
 /**
  * @brief This file contains themes that are used to

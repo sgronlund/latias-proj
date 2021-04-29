@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
@@ -210,9 +216,8 @@ class NewsQ extends React.Component {
         <SafeAreaView style={styleSheets.MainContainer}>
           <QuestionButton />
           <View style={styles.NumberQContainer}>
-            <Text
-              style={styles.numberQ}
-            >{`${this.state.currentQuestion}/${this.state.questions.length}`}
+            <Text style={styles.numberQ}>
+              {`${this.state.currentQuestion}/${this.state.questions.length}`}
             </Text>
           </View>
           <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Question}>
@@ -309,7 +314,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
-    marginTop: theme.MARGIN_SMALL
+    marginTop: theme.MARGIN_SMALL,
   },
   NumberQContainer: {
     height: "10%",
