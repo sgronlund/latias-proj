@@ -1,8 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet, View} from "react-native";
 import { DataTable } from 'react-native-paper';
-import { withNavigation } from "react-navigation";
-import styleSheets from "../../styles/StyleSheets";
 import themes from "../../styles/themes.js"
 import { LinearGradient } from "expo-linear-gradient";
 import { sharedKey, Socket } from "../../misc/Socket";
