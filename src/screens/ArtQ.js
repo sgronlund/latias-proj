@@ -18,16 +18,16 @@ class ArtQ extends React.Component {
     super(props);
     this.state = {
       playerCount: 0,
-      shuffledAnswers: [],
-      correctAnswers: [],
-      questions: [],
+      shuffledAlternatives: [], // All alternatives, shuffled
+      correctAnswers: [], // All correct answers in order
+      questions: [], // All questions (without the answers)
+      userAnswers: [], //The buttons pressed by the user
+      currentAlternatives: [], //The currently displayed alternatives
       currentQuestion: 0,
       buttonColour1: theme.BLUE_GRADIENT,
       buttonColour2: theme.BLUE_GRADIENT,
       buttonColour3: theme.BLUE_GRADIENT,
       buttonColour4: theme.BLUE_GRADIENT,
-      userAnswers: [],
-      currentAlternatives: [],
     };
   }
 
@@ -86,15 +86,19 @@ class ArtQ extends React.Component {
     this.displayPress(this.state.userAnswers[this.state.currentQuestion - 1]);
   };
 
-  updateCurrentQuestion() {
+  /**
+   * @function
+   * @summary Updates the states for the displayed alternatives
+   */
+  updateCurrentAlternatives() {
     var currentQuestion = this.state.currentQuestion;
-
     var tmpCurrentAlternatives = [];
+
     tmpCurrentAlternatives.push(
-      this.state.shuffledAnswers[currentQuestion][0],
-      this.state.shuffledAnswers[currentQuestion][1],
-      this.state.shuffledAnswers[currentQuestion][2],
-      this.state.shuffledAnswers[currentQuestion][3]
+      this.state.shuffledAlternatives[currentQuestion][0],
+      this.state.shuffledAlternatives[currentQuestion][1],
+      this.state.shuffledAlternatives[currentQuestion][2],
+      this.state.shuffledAlternatives[currentQuestion][3]
     );
     this.setState({
       currentAlternatives: tmpCurrentAlternatives,
@@ -102,25 +106,9 @@ class ArtQ extends React.Component {
   }
 
   /**
-   * @summary checks if a given answer is correct
-   * @param {String} buttonNumber number of the button pressed
-   * @returns {Boolean} true if answer is correct, false if not
-   */
-  checkAnswer = async (buttonNumber) => {
-    var currentQuestion = this.state.currentQuestion - 1;
-    if (
-      this.state.shuffledAnswers[buttonNumber] ===
-      this.state.correctAnswers[currentQuestion]
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  /**
-   *
-   * @param {*} buttonNumber
+   * @function
+   * @summary locks in the number of the button pressed as an answer
+   * @param {Integer} buttonNumber number to lock in
    */
   saveAnswer(buttonNumber) {
     var tmpAnswers = this.state.userAnswers;
@@ -129,11 +117,11 @@ class ArtQ extends React.Component {
   }
 
   /**
-   *
-   * @param {*} buttonNumber
+   * @function
+   * @summary changes colour of the button pressed
+   * @param {Integer} buttonNumber number of the button pressed
    */
   displayPress(buttonNumber) {
-    //Reset all buttons first
     this.setState({
       buttonColour1: theme.BLUE_GRADIENT,
       buttonColour2: theme.BLUE_GRADIENT,
@@ -164,7 +152,7 @@ class ArtQ extends React.Component {
    * @param {[...]} questions Array containing all questions and answers
    */
   async initializeQuestions(questions) {
-    var shuffledAnswers = [];
+    var shuffledAlternatives = [];
     var correctAnswers = [];
     var questions2 = [];
     for (const question of questions) {
@@ -174,16 +162,16 @@ class ArtQ extends React.Component {
         question.wrong2,
         question.wrong3,
       ]);
-      shuffledAnswers.push(shuffleAnswers);
+      shuffledAlternatives.push(shuffleAnswers);
       correctAnswers.push(question.correct);
       questions2.push(question.question);
     }
     await this.setState({
-      shuffledAnswers: shuffledAnswers,
+      shuffledAlternatives: shuffledAlternatives,
       correctAnswers: correctAnswers,
       questions: questions2,
     });
-    this.updateCurrentQuestion();
+    this.updateCurrentAlternatives();
   }
 
   /**
@@ -205,103 +193,148 @@ class ArtQ extends React.Component {
   }
 
   submitAnswers() {
-    this.props.navigation.navigate("GameScreen");
+    var userAnswers = this.state.userAnswers;
+    var correctAnswers = this.state.correctAnswers;
+    var alternatives = this.state.shuffledAlternatives;
+
+    /* Can't check only length here because we may insert an element at 
+    index 4 for example and if index 3 is not yet inserted, it will be 
+    filled with an undefined element. */
+    if (
+      userAnswers.includes(undefined) ||
+      userAnswers.length !== correctAnswers.length
+    ) {
+      alert("You have not answered all questions!");
+      return;
+    }
+
+    var numberOfCorrectAnswers = 0;
+    for (var i = 0; i < userAnswers.length; i++) {
+      var currentAlternatives = alternatives[i];
+
+      //Users answers are indexed from 1-4 so we need to subtract 1
+      var currentAnswer = userAnswers[i] - 1;
+      if (currentAlternatives[currentAnswer] === correctAnswers[i]) {
+        numberOfCorrectAnswers++;
+      }
+    }
+    //TODO: Replace this with adding score to the database
+    alert(numberOfCorrectAnswers + "/" + correctAnswers.length + " correct!");
+
+    /* We should add this line back in the future when we 
+    replace the alert with score added to the database */
+    //this.props.navigation.navigate("GameScreen");
   }
 
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <Text style={styles.Text}>
-          {"Player count: " + this.state.playerCount}
-        </Text>
-        <Text style={styles.numberQ}>{`${this.state.currentQuestion + 1}/${
-          this.state.questions.length
-        }`}</Text>
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
-          <Text style={styles.button_pink}>
-            {this.state.questions[this.state.currentQuestion]}
+        <View style={styles.PlayerCountContainer}>
+          <Text style={styles.Text}>
+            {"Player count: " + this.state.playerCount}
           </Text>
-        </LinearGradient>
-        <LinearGradient
-          colors={this.state.buttonColour1}
-          style={styles.button_blue}
-        >
+        </View>
+
+        <View style={styles.NumberQContainer}>
+          <Text style={styles.NumberQ}>{`${this.state.currentQuestion + 1}/${
+            this.state.questions.length
+          }`}</Text>
+        </View>
+
+        <View style={styles.QuestionContainer}>
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
+            <Text style={styles.ButtonText}>
+              {this.state.questions[this.state.currentQuestion]}
+            </Text>
+          </LinearGradient>
+        </View>
+
+        <View style={styles.AlternativeContainer}>
           <TouchableOpacity
             onPress={() => {
               this.saveAnswer(1);
-              this.checkAnswer(1);
               this.displayPress(1);
             }}
+            style={styles.Button}
           >
-            <Text style={styles.button_blue}>
-              {this.state.currentAlternatives[0]}
-            </Text>
+            <LinearGradient
+              colors={this.state.buttonColour1}
+              style={styles.Gradient}
+            >
+              <Text style={styles.ButtonText}>
+                {this.state.currentAlternatives[0]}
+              </Text>
+            </LinearGradient>
           </TouchableOpacity>
-        </LinearGradient>
 
-        <LinearGradient
-          colors={this.state.buttonColour2}
-          style={styles.button_blue}
-        >
           <TouchableOpacity
             onPress={() => {
               this.saveAnswer(2);
-              this.checkAnswer(2);
               this.displayPress(2);
             }}
+            style={styles.Button}
           >
-            <Text style={styles.button_blue}>
-              {this.state.currentAlternatives[1]}
-            </Text>
+            <LinearGradient
+              colors={this.state.buttonColour2}
+              style={styles.Gradient}
+            >
+              <Text style={styles.ButtonText}>
+                {this.state.currentAlternatives[1]}
+              </Text>
+            </LinearGradient>
           </TouchableOpacity>
-        </LinearGradient>
 
-        <LinearGradient
-          colors={this.state.buttonColour3}
-          style={styles.button_blue}
-        >
           <TouchableOpacity
             onPress={() => {
               this.saveAnswer(3);
-              this.checkAnswer(3);
               this.displayPress(3);
             }}
+            style={styles.Button}
           >
-            <Text style={styles.button_blue}>
-              {this.state.currentAlternatives[2]}
-            </Text>
+            <LinearGradient
+              colors={this.state.buttonColour3}
+              style={styles.Gradient}
+            >
+              <Text style={styles.ButtonText}>
+                {this.state.currentAlternatives[2]}
+              </Text>
+            </LinearGradient>
           </TouchableOpacity>
-        </LinearGradient>
-        <LinearGradient
-          colors={this.state.buttonColour4}
-          style={styles.button_blue}
-        >
+
           <TouchableOpacity
             onPress={() => {
               this.saveAnswer(4);
-              this.checkAnswer(4);
               this.displayPress(4);
             }}
+            style={styles.Button}
           >
-            <Text style={styles.button_blue}>
-              {this.state.currentAlternatives[3]}
-            </Text>
+            <LinearGradient
+              colors={this.state.buttonColour4}
+              style={styles.Gradient}
+            >
+              <Text style={styles.ButtonText}>
+                {this.state.currentAlternatives[3]}
+              </Text>
+            </LinearGradient>
           </TouchableOpacity>
-        </LinearGradient>
+        </View>
+
         <View
           style={{
             flexDirection: "row-reverse",
-            justifyContent: "center",
+            justifyContent: "space-between",
             alignItems: "center",
+            width: "40%",
           }}
         >
           {this.state.currentQuestion < this.state.questions.length - 1 ? (
             <TouchableOpacity
               onPress={async () => {
                 await this.nextQuestion();
-                this.updateCurrentQuestion();
+                this.updateCurrentAlternatives();
               }}
+              style={styles.ArrowButton}
             >
               <Text style={styles.Arrow}>→</Text>
             </TouchableOpacity>
@@ -310,20 +343,18 @@ class ArtQ extends React.Component {
               onPress={() => {
                 this.submitAnswers();
               }}
+              style={styles.ArrowButton}
             >
-              <Text
-                style={{ fontSize: theme.FONT_SIZE_SMALL, color: "#FFFFFF" }}
-              >
-                Submit
-              </Text>
+              <Text style={styles.Arrow}>Submit</Text>
             </TouchableOpacity>
           )}
 
           <TouchableOpacity
             onPress={async () => {
               await this.previousQuestion();
-              this.updateCurrentQuestion();
+              this.updateCurrentAlternatives();
             }}
+            style={styles.ArrowButton}
           >
             <Text style={styles.Arrow}>←</Text>
           </TouchableOpacity>
@@ -334,44 +365,59 @@ class ArtQ extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  button_pink: {
-    fontSize: 23,
-    color: "#FFFFFF",
-    textAlign: "center",
-    width: "95%",
+  PlayerCountContainer: {
+    height: "10%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  QuestionContainer: {
     height: "20%",
-    margin: theme.MARGIN_MEDIUM,
-    padding: 27,
+    width: "95%",
+    alignItems: "center",
+  },
+  AlternativeContainer: {
+    height: "40%",
+    width: "95%",
+    alignItems: "center",
+  },
+  Gradient: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
   },
-  button_blue: {
+  ButtonText: {
     fontSize: 23,
     color: "#FFFFFF",
-    textAlign: "center",
-    width: "95%",
-    height: "10%",
-    margin: theme.MARGIN_SMALL,
-    padding: 12,
-    borderRadius: theme.ROUNDING_SMALL,
+  },
+  Button: {
+    width: "100%",
+    height: "20%",
+    marginTop: theme.MARGIN_SMALL,
+  },
+  ArrowButton: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   Arrow: {
     fontSize: theme.FONT_SIZE_LARGE,
+    fontFamily: theme.DEFAULT_FONT,
     color: "#FFFFFF",
   },
-  numberQ: {
+  NumberQContainer: {
+    height: "10%",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+  },
+  NumberQ: {
     color: "#FFFFFF",
-    left: 150,
-    marginTop: 30,
-    marginBottom: -5,
     fontSize: 20,
   },
   Text: {
-    fontSize: theme.FONT_SIZE_LARGE,
-    color: "#FFFFFF",
-    fontFamily: theme.DEFAULT_FONT,
-  },
-  ButtonText: {
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    fontSize: theme.FONT_SIZE_MEDIUM,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
