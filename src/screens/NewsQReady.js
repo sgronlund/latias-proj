@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArtQWaiting;
+export default NewsQWaiting;
