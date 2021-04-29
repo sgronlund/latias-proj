@@ -65,7 +65,6 @@ class LogIn extends React.Component {
       sharedKey.toString()
     ).toString();
 
-
     //The data transmission is encrypted in case of listeners.
     Socket.emit("login", username, encrypted_pass, Socket.id);
   };
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_SMALL
+    margin: theme.MARGIN_SMALL,
   },
   ForgotPassword: {
     fontFamily: "Roboto Slab",

@@ -19,7 +19,7 @@ const styleSheets = StyleSheet.create({
     textAlign: "center",
     fontSize: theme.FONT_SIZE_TINY,
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
-    marginBottom: theme.MARGIN_SMALL
+    marginBottom: theme.MARGIN_SMALL,
   },
   GenericButton: {
     width: "80%",

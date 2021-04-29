@@ -90,7 +90,10 @@ class Signup extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <KeyboardAvoidingView style={styles.LoginContainer} behaviour="position">
+        <KeyboardAvoidingView
+          style={styles.LoginContainer}
+          behaviour="position"
+        >
           <Text style={styleSheets.inputHeader}>Username:</Text>
           <TextInput
             style={styleSheets.Input}
@@ -109,7 +112,6 @@ class Signup extends React.Component {
             placeholder="your email"
             onChangeText={this.handleEmail}
           />
-        
         </KeyboardAvoidingView>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
