@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   TitleText: {
-    height: "50px",
+    height: 50,
     color: "white",
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },

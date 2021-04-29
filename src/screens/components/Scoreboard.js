@@ -32,6 +32,9 @@ class Scoreboard extends React.Component {
       this.generateScoreboard();
     }
   render() {
+    const player1 = this.state.tableData[0];
+    const player2 = this.state.tableData[1];
+    const player3 = this.state.tableData[2];
     return (
         <View style={{width: '80%', alignItems: 'center', height: '100%'}}>
         <LinearGradient colors={themes.BLUE_GRADIENT} style={styles.main, {width: '90%', alignItems: 'center', borderRadius: 15, height: '100%'}}>
@@ -45,10 +48,10 @@ class Scoreboard extends React.Component {
                     <Text style={styles.font}>1</Text>
                 </DataTable.Cell>
                 <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.font}>{this.state.tableData[0]?.username}</Text>
+                    <Text style={styles.font}>{player1?.username}</Text>
                 </DataTable.Cell>
                 <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.font}>{Math.floor(this.state.tableData[0]?.score).toString() + 'p'}</Text>
+                    <Text style={styles.font}>{player1 ? Math.floor(player1.score).toString() + 'p' : null}</Text>
                 </DataTable.Cell>
             </DataTable.Row>
         
@@ -57,10 +60,10 @@ class Scoreboard extends React.Component {
                     <Text style={styles.font}>2</Text>
                 </DataTable.Cell>
                 <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.font}>{this.state.tableData[1]?.username}</Text>
+                    <Text style={styles.font}>{player2?.username}</Text>
                 </DataTable.Cell>
                 <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.font}>{Math.floor(this.state.tableData[1]?.score).toString() + 'p'}</Text>
+                    <Text style={styles.font}>{player2 ? Math.floor(player2.score).toString() + 'p' : null}</Text>
                 </DataTable.Cell>
             </DataTable.Row>
 
@@ -69,10 +72,10 @@ class Scoreboard extends React.Component {
                   <Text style={styles.font}>3</Text>
                   </DataTable.Cell>
                 <DataTable.Cell style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.font}>{this.state.tableData[2]?.username}</Text>
+                    <Text style={styles.font}>{player3?.username}</Text>
                 </DataTable.Cell>
                 <DataTable.Cell numeric style={{alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.font}>{Math.floor(this.state.tableData[2]?.score).toString() + 'p'}</Text>
+                    <Text style={styles.font}>{player3 ? Math.floor(player3.score).toString() + 'p' : null}</Text>
                 </DataTable.Cell>
             </DataTable.Row>
             </DataTable>
@@ -85,7 +88,6 @@ class Scoreboard extends React.Component {
 const styles = StyleSheet.create({
     main : {
         borderRadius: 15,
-        border: '5px',
         borderColor: 'black',
         height: '100%'
     },
