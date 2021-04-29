@@ -47,6 +47,9 @@ let initLoginSockets = (navigation) => {
   Socket.on("invalidUserDetails", () => {
     alert("Invalid details!");
   });
+  Socket.on("invalidUserDetails", () => {
+    alert("Invalid details!");
+  });
   Socket.on("loginFailure", () => {
     alert("Login failed!");
   });
