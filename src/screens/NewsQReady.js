@@ -15,7 +15,7 @@ import Scoreboard from "./components/Scoreboard";
 import { Socket } from "../misc/Socket";
 import Shop from "./components/Shop";
 
-class ArtQWaiting extends React.Component {
+class NewsQWaiting extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loggedIn: false };
