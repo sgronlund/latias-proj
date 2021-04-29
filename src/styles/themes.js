@@ -17,6 +17,7 @@ global.fontSizes = {
 };
 
 global.margins = {
+  align: width * 0.1,
   Small: width / 40,
   Medium: width / 15,
   Large: width / 10,
@@ -40,6 +41,7 @@ export default {
   ROUNDING_MEDIUM: 30,
   ROUNDING_LARGE: 50,
   DEFAULT_FONT: "Roboto Slab",
+  MARGIN_INPUT: margins.align,
   MARGIN_SMALL: margins.Small,
   MARGIN_MEDIUM: 15,
   MARGIN_LARGE: 25,

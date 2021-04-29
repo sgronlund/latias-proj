@@ -45,7 +45,7 @@ class Reset extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.LoginContainer}>
-          <Text style={styles.CodeText}>Email:</Text>
+          <Text style={styleSheets.inputHeader}>Email:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="Email"

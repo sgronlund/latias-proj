@@ -72,13 +72,13 @@ class LogIn extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
         <View style={styles.LoginContainer}>
-          <Text style={styleSheets.LoginText}>Username:</Text>
+          <Text style={styleSheets.inputHeader}>Username:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your username"
             onChangeText={this.handleUsername}
           />
-          <Text style={styleSheets.LoginText}>Password:</Text>
+          <Text style={styleSheets.inputHeader}>Password:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your password"
@@ -106,8 +106,7 @@ class LogIn extends React.Component {
 const styles = StyleSheet.create({
   LoginContainer: {
     width: "95%",
-    height: "40%",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,

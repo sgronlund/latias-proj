@@ -91,24 +91,26 @@ class Signup extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
         <KeyboardAvoidingView style={styles.LoginContainer} behaviour="position">
-          <Text style={styleSheets.LoginText}>Username:</Text>
+          <Text style={styleSheets.inputHeader}>Username:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your username"
             onChangeText={this.handleUsername}
           />
-          <Text style={styleSheets.LoginText}>Password:</Text>
+          <Text style={styleSheets.inputHeader}>Password:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your password"
             onChangeText={this.handlePassword}
           />
-          <Text style={styleSheets.LoginText}>Email:</Text>
+          <Text style={styleSheets.inputHeader}>Email:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your email"
             onChangeText={this.handleEmail}
           />
+        
+        </KeyboardAvoidingView>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
           onPress={() =>
@@ -121,7 +123,6 @@ class Signup extends React.Component {
         >
           <Text style={styleSheets.ButtonText}>REGISTER</Text>
         </TouchableOpacity>
-        </KeyboardAvoidingView>
       </SafeAreaView>
     );
   }
@@ -130,11 +131,11 @@ class Signup extends React.Component {
 const styles = StyleSheet.create({
   LoginContainer: {
     width: "95%",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_LARGE,
+    margin: theme.MARGIN_SMALL,
   },
 });
 
