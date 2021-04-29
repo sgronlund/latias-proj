@@ -11,7 +11,7 @@ class TitleContainer extends React.Component {
   render() {
     return (
       <View style={styles.TitleContainer}>
-        <Image source={{uri: LOGOCOLOR}} style={styles.TitleLogo}/>
+        <Image source={LOGOCOLOR} style={styles.TitleLogo}/>
       </View>
     );
   }
