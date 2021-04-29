@@ -1,6 +1,7 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { loadAsync } from "expo-font";
+import AppLoading from 'expo-app-loading';
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
@@ -126,17 +127,17 @@ export default class App extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  async loadLocalFonts() {
     await loadAsync({
       ///FIXME: Doesn't load succesfully when starting with Expo
       "Ramaraja": require("./assets/fonts/Ramaraja.ttf"),
       "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });
-    this.setState({ fontLoaded: true });
   }
 
   render() {
     const Container = createAppContainer(navigator);
+    if(!this.state.fontLoaded) return <AppLoading startAsync={this.loadLocalFonts} onFinish={() => {this.setState({ fontLoaded: true });} }onError={console.warn}/>
     return <Container />;
   }
 }

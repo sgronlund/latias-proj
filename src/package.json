@@ -25,6 +25,7 @@
     "@react-navigation/native": "^5.9.4",
     "current-week-number": "^1.0.7",
     "expo": "~40.0.0",
+    "expo-app-loading": "^1.0.3",
     "expo-font": "~8.4.0",
     "jsdoc": "^3.6.6",
     "react": "16.13.1",
