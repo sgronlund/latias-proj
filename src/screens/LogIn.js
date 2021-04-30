@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_SMALL
+    margin: theme.MARGIN_SMALL,
   },
   ForgotPassword: {
     fontFamily: "Roboto Slab",
