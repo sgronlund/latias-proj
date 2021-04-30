@@ -69,12 +69,11 @@ class Signup extends React.Component {
 
     initSignupSockets(this.props.navigation);
     //the client first applies salt to the password
-    var salt_pass = password.toString() + username.toString();
+    var salt_pass = password + username.toUpperCase();
 
     //hash the password so that it is not stored in clear text in the database
     //The passwords are also irreversibly hashed
     let hash_pass = sha256(salt_pass);
-
     //The data transmission is encrypted in case of listeners.
 
     if (!sharedKey) return alert("You are not connected to the server!");
