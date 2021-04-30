@@ -1,6 +1,7 @@
 import { createAppContainer  } from "react-navigation";
 import { createStackNavigator} from "react-navigation-stack";
 import { loadAsync } from "expo-font";
+import AppLoading from 'expo-app-loading';
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
@@ -33,7 +34,7 @@ const navigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        header: false,
+        header: () => null,
       },
     },
     Read: {
@@ -46,7 +47,7 @@ const navigator = createStackNavigator(
       screen: NewsQ,
       navigationOptions: {
         title: "THIS WEEKS NEWS QUIZ",
-        headerLeft: null,
+        headerLeft: () => null,
       },
     },
     GameScreen: {
@@ -113,7 +114,7 @@ const navigator = createStackNavigator(
         fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },
-      headerRight:  (
+      headerRight: () =>  (
         <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
             <Ionicons name="ios-settings-sharp" size={themes.FONT_SIZE_EXTRA_SMALL} color="black"/>
         </TouchableOpacity>
@@ -130,17 +131,17 @@ export default class App extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  async loadLocalFonts() {
     await loadAsync({
       ///FIXME: Doesn't load succesfully when starting with Expo
       "Ramaraja": require("./assets/fonts/Ramaraja.ttf"),
       "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });
-    this.setState({ fontLoaded: true });
   }
 
   render() {
     const Container = createAppContainer(navigator);
+    if(!this.state.fontLoaded) return <AppLoading startAsync={this.loadLocalFonts} onFinish={() => {this.setState({ fontLoaded: true });} }onError={console.warn}/>
     return <Container />;
   }
 }

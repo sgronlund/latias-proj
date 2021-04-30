@@ -49,7 +49,7 @@ class VerifyReset extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.LoginContainer}>
-          <Text style={styles.CodeText}>Code:</Text>
+          <Text style={styleSheets.inputHeader}>Code:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="Code"

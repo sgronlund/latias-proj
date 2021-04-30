@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Platform,
 } from "react-native";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
@@ -102,13 +103,13 @@ class Developer extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.InputContainer}>
-          <Text style={styleSheets.LoginText}>Question:</Text>
+          <Text style={styleSheets.inputHeader}>Question:</Text>
           <TextInput
             style={styles.QuestionInput}
             placeholder="Question"
             onChangeText={this.handleQuestion}
           />
-          <Text style={styleSheets.LoginText}>Answers:</Text>
+          <Text style={styleSheets.inputHeader}>Answers:</Text>
           <TextInput
             style={styles.AnswerInput}
             placeholder="Wrong answer"
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_LARGE,
   },
   QuestionInput: {
-    height: 40,
+    flexBasis: 40,
     margin: 12,
     width: "80%",
     borderWidth: 1,
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
   AnswerInput: {
-    height: 40,
+    flexBasis: 40,
     width: "80%",
     borderWidth: 1,
     textAlign: "center",

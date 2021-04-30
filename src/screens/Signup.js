@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import theme from "../styles/themes";
@@ -89,26 +90,29 @@ class Signup extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
-        <View style={styles.LoginContainer}>
-          <Text style={styleSheets.LoginText}>Username:</Text>
+        <KeyboardAvoidingView
+          style={styles.LoginContainer}
+          behaviour="position"
+        >
+          <Text style={styleSheets.inputHeader}>Username:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your username"
             onChangeText={this.handleUsername}
           />
-          <Text style={styleSheets.LoginText}>Password:</Text>
+          <Text style={styleSheets.inputHeader}>Password:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your password"
             onChangeText={this.handlePassword}
           />
-          <Text style={styleSheets.LoginText}>Email:</Text>
+          <Text style={styleSheets.inputHeader}>Email:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your email"
             onChangeText={this.handleEmail}
           />
-        </View>
+        </KeyboardAvoidingView>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
           onPress={() =>
@@ -129,12 +133,11 @@ class Signup extends React.Component {
 const styles = StyleSheet.create({
   LoginContainer: {
     width: "95%",
-    height: "35%",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_LARGE,
+    margin: theme.MARGIN_SMALL,
   },
 });
 

@@ -80,13 +80,13 @@ class updatePassword extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.LoginContainer}>
-          <Text style={styleSheets.LoginText}>New Password:</Text>
+          <Text style={styleSheets.inputHeader}>New Password:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="new password"
             onChangeText={this.handlePassword}
           />
-          <Text style={styleSheets.LoginText}>Confirm Password:</Text>
+          <Text style={styleSheets.inputHeader}>Confirm Password:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="new password"

@@ -42,7 +42,7 @@ let initLoginSockets = (navigation) => {
     alert("You are already logged in on another device!");
   });
   Socket.on("loginSuccess", () => {
-    navigation.navigate("GameScreen", { headerLeft: null });
+    navigation.navigate("GameScreen", { headerLeft: () => null });
   });
   Socket.on("invalidUserDetails", () => {
     alert("Invalid details!");

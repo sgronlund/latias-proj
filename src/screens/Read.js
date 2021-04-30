@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_SMALL,
   },
   header: {
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
     color: theme.LIGHT_BLUE,
     margin: theme.MARGIN_MEDIUM,
     fontSize: theme.FONT_SIZE_TINY,
