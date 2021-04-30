@@ -125,6 +125,7 @@ class Scoreboard extends React.Component {
   }
 }
 
+
 const height = Dimensions.get("window").height;
 
 global.responsive = {

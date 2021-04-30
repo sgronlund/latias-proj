@@ -55,7 +55,7 @@ class LogIn extends React.Component {
    */
   handleLogin = (username, password) => {
     //The passwords stored in the database are first salted
-    var salt_pass = password.toString() + username.toString();
+    var salt_pass = password + username.toUpperCase();
 
     //The passwords are also irreversibly hashed
     let hash_pass = sha256(salt_pass);

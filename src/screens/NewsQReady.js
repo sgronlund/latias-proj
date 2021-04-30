@@ -115,6 +115,44 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
+  Container: {
+    width: "80%",
+    height: "40%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: theme.DARK_PURPLE,
+    borderRadius: theme.ROUNDING_SMALL,
+    top: "10%",
+    paddingBottom: 30,
+  },
+  Text: {
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
+    top: "10%",
+    position: "absolute",
+  },
+  timerText: {
+    textAlign: "center",
+    fontSize: theme.FONT_SIZE_SMALL,
+    color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
+  },
+  Button: {
+    width: "90%",
+    height: "18%",
+    justifyContent: "center",
+    alignItems: "center",
+    bottom: "5%",
+    position: "absolute",
+    borderRadius: theme.ROUNDING_SMALL,
+    shadowOffset: theme.SHADOW_OFFSET,
+    shadowOpacity: theme.SHADOW_OPACITY,
+  },
+  ButtonText: {
+    color: "white",
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+  },
 });
 
 export default NewsQWaiting;
