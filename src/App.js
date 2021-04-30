@@ -1,5 +1,5 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer  } from "react-navigation";
+import { createStackNavigator} from "react-navigation-stack";
 import { loadAsync } from "expo-font";
 import AppLoading from 'expo-app-loading';
 import HomeScreen from "./screens/HomeScreen";
@@ -112,7 +112,7 @@ const navigator = createStackNavigator(
       headerTitleStyle: {
         alignSelf: "center",
         fontSize: themes.FONT_SIZE_EXTRA_SMALL,
-        fontFamily: themes.DEFAULT_FONT
+        fontFamily: themes.DEFAULT_FONT,
       },
       headerRight: () =>  (
         <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
