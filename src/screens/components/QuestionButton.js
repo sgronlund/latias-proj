@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, TouchableOpacity, Modal, View } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Dimensions, View } from "react-native";
 import theme from "../../styles/themes.js";
 
 const Gameplay = "Do this\nDo that\nAnd that\nAnd that"
@@ -47,6 +47,14 @@ class QuestionButton extends React.Component {
   }
 }
 
+const width = Dimensions.get('window').width;
+
+global.responsive = {
+  width: width/8,
+  height: width/8,
+  borderRadius: width/16
+}
+
 const styles = StyleSheet.create({
   Main: {
     zIndex: 998,
@@ -61,9 +69,9 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   Circle: {
-    width: 50,
-    height: 50,
-    borderRadius: 50 / 2,
+    width: responsive.width,
+    height: responsive.height,
+    borderRadius: responsive.borderRadius,
     backgroundColor: "black",
     opacity: 0.9,
     textAlign: "center",

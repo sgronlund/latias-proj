@@ -1,5 +1,11 @@
 import React from "react";
-import { SafeAreaView, TouchableOpacity, Text, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  View,
+} from "react-native";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import Scoreboard from "./components/Scoreboard";
@@ -64,70 +70,94 @@ class GameScreen extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         {isLoggedIn ? <Shop /> : null}
         <QuestionButton />
-        <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
+        <View style={styles.TextContainer}>
+          <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
+        </View>
 
-        <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+        <View style={styles.ButtonContainer}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Read")}
+            style={styles.Button}
           >
-            <Text style={styles.button_blue}>READ THIS WEEKS ARTICLE</Text>
+            <LinearGradient
+              colors={theme.BLUE_GRADIENT}
+              style={styles.Gradient}
+            >
+              <Text style={styles.ButtonText}>READ THIS WEEKS ARTICLE</Text>
+            </LinearGradient>
           </TouchableOpacity>
-        </LinearGradient>
 
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("ArtQWaiting")}
+            style={styles.Button}
           >
-            <Text style={styles.button_pink}>THIS WEEKS ARTICLE QUIZ</Text>
-            <Text style={styles.timer}>{this.state.time}</Text>
+            <LinearGradient
+              colors={theme.PINK_GRADIENT}
+              style={styles.Gradient}
+            >
+              <Text style={styles.ButtonText}>THIS WEEKS ARTICLE QUIZ</Text>
+              <Text style={styles.timer}>{this.state.time}</Text>
+            </LinearGradient>
           </TouchableOpacity>
-        </LinearGradient>
 
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
           <TouchableOpacity
             onPress={() => {
               this.state.quizReady
                 ? this.props.navigation.navigate("NewsQReady")
                 : alert("Quiz not ready!");
             }}
+            style={styles.Button}
           >
-            <Text style={styles.button_pink}>THIS WEEKS NEWS QUIZ</Text>
+            <LinearGradient
+              colors={theme.PINK_GRADIENT}
+              style={styles.Gradient}
+            >
+              <Text style={styles.ButtonText}>THIS WEEKS NEWS QUIZ</Text>
+            </LinearGradient>
           </TouchableOpacity>
-        </LinearGradient>
+        </View>
       </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  TextContainer: {
+    height: "10%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  ButtonContainer: {
+    height: "70%",
+    width: "95%",
+    alignItems: "center",
+    margin: theme.MARGIN_SMALL,
+  },
+  Button: {
+    width: "100%",
+    height: "30%",
+    marginTop: theme.MARGIN_SMALL,
+  },
+  Gradient: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: theme.ROUNDING_SMALL,
+  },
+  ButtonText: {
+    fontSize: theme.FONT_SIZE_SMALL,
+    color: "#FFFFFF",
+  },
   header: {
-    fontSize: 26,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
   timer: {
-    fontSize: 20,
+    fontSize: theme.FONT_SIZE_SMALL,
     color: "#FFFFFF",
-    fontFamily: theme.DEFAULT_FONT,
-  },
-  button_blue: {
-    fontSize: 23,
-    color: "#FFFFFF",
-    textAlign: "center",
-    width: "95%",
-    margin: theme.MARGIN_MEDIUM,
-    padding: 30,
-    borderRadius: theme.ROUNDING_SMALL,
-    fontFamily: theme.DEFAULT_FONT,
-  },
-  button_pink: {
-    fontSize: 23,
-    color: "#FFFFFF",
-    padding: 20,
-    width: "95%",
-    margin: theme.MARGIN_MEDIUM,
-    textAlign: "center",
-    borderRadius: theme.ROUNDING_SMALL,
     fontFamily: theme.DEFAULT_FONT,
   },
 });

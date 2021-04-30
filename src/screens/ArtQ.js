@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_SMALL,
   },
   ButtonText: {
-    fontSize: 23,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#FFFFFF",
   },
   Button: {
@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   Arrow: {
-    fontSize: theme.FONT_SIZE_LARGE,
+    fontSize: theme.FONT_SIZE_MEDIUM,
     fontFamily: theme.DEFAULT_FONT,
     color: "#FFFFFF",
   },
@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
   },
   NumberQ: {
     color: "#FFFFFF",
-    fontSize: 20,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },
   Text: {
     fontSize: theme.FONT_SIZE_MEDIUM,

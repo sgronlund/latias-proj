@@ -18,91 +18,98 @@ const Read = () => {
   return (
     <SafeAreaView style={styleSheets.MainContainer}>
       <QuestionButton />
-      <View style={styles.midsquare}>
-        <Text style={styles.header}>───── THIS WEEKS ARTICELS ─────</Text>
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
-          <TouchableOpacity
-            onPress={() =>
-              Linking.openURL(
-                "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
-              )
-            }
-          >
-            <Text style={styles.button_pink}>
-              <View style={styles.icon}>
-                <FontAwesome5 name="book-open" size={24} color="white" />
-              </View>
+      <View style={styles.midSquare}>
+        <Text style={styles.header}>───── THIS WEEKS ARTICLES ─────</Text>
+
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(
+              "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
+            )
+          }
+          style={styles.Button}
+        >
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
+            <FontAwesome5
+              name="book-open"
+              size={theme.FONT_SIZE_EXTRA_SMALL}
+              color="white"
+            >
+              {" "}
               TRUMP HAR GIFT SIG
-            </Text>
-          </TouchableOpacity>
-        </LinearGradient>
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
-          <TouchableOpacity
-            onPress={() =>
-              Linking.openURL(
-                "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
-              )
-            }
-          >
-            <Text style={styles.button_pink}>
-              <View style={styles.icon}>
-                <FontAwesome5 name="book-open" size={24} color="white" />
-              </View>
+            </FontAwesome5>
+          </LinearGradient>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(
+              "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
+            )
+          }
+          style={styles.Button}
+        >
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
+            <FontAwesome5
+              name="book-open"
+              size={theme.FONT_SIZE_EXTRA_SMALL}
+              color="white"
+            >
+              {" "}
               TRUMP HAR GIFT SIG
-            </Text>
-          </TouchableOpacity>
-        </LinearGradient>
-        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.button_pink}>
-          <TouchableOpacity
-            onPress={() =>
-              Linking.openURL(
-                "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
-              )
-            }
-          >
-            <Text style={styles.button_pink}>
-              <View style={styles.icon}>
-                <FontAwesome5 name="book-open" size={24} color="white" />
-              </View>
+            </FontAwesome5>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(
+              "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
+            )
+          }
+          style={styles.Button}
+        >
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
+            <FontAwesome5
+              name="book-open"
+              size={theme.FONT_SIZE_EXTRA_SMALL}
+              color="white"
+            >
+              {" "}
               TRUMP HAR GIFT SIG
-            </Text>
-          </TouchableOpacity>
-        </LinearGradient>
+            </FontAwesome5>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  midsquare: {
+  midSquare: {
     backgroundColor: theme.DARK_PURPLE,
-    width: 350,
-    height: 550,
-    // justifyContent: "center", //y-led
+    margin: theme.MARGIN_MEDIUM,
+    borderRadius: theme.ROUNDING_SMALL,
+    height: "60%",
+    width: "90%",
+    textAlign: "center",
+  },
+  Button: {
+    flexGrow: 1,
+    margin: theme.MARGIN_MEDIUM,
+  },
+  Gradient: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
     borderRadius: theme.ROUNDING_SMALL,
   },
   header: {
-    justifyContent: "flex-start", //y-led
+    justifyContent: "flex-start",
     alignItems: "center",
     color: theme.LIGHT_BLUE,
-    margin: 28,
-    fontSize: 13,
-  },
-  button_pink: {
-    fontSize: 17,
-    color: "#FFFFFF",
-    padding: 7,
-    width: "80%",
     margin: theme.MARGIN_MEDIUM,
-    textAlign: "center",
-    borderRadius: theme.ROUNDING_SMALL,
-    fontFamily: themes.DEFAULT_FONT,
-  },
-  icon: {
-    //funker ej
-    justifyContent: "flex-end", //y-led
+    fontSize: theme.FONT_SIZE_TINY,
   },
 });
 

@@ -51,40 +51,10 @@ class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  MainContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: theme.PURPLE,
-  },
-  TitleContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#545985",
-    width: "95%",
-    height: "35%",
-    borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_MEDIUM,
-  },
   Text: {
     fontSize: theme.FONT_SIZE_SMALL,
     color: "white",
     fontFamily: theme.DEFAULT_FONT,
-  },
-  TitleText: {
-    fontSize: theme.FONT_SIZE_LARGE,
-    color: "white",
-    fontFamily: theme.DEFAULT_FONT,
-  },
-  PurpleLine: {
-    color: theme.PINK,
-    fontSize: 40,
-  },
-  Image: {
-    width: 50,
-    height: 50,
-    backgroundColor: "transparent",
-    alignSelf: "flex-end",
   },
 });
 
