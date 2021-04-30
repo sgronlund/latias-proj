@@ -22,9 +22,6 @@ const decrementStep = 0.1;
 //1000 ms
 const delayNewQuestion = 1000;
 
-//amount of alternatives per question
-const alternativeCount = 3;
-
 class NewsQ extends React.Component {
   constructor(props) {
     super(props);
