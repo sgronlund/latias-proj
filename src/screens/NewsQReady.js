@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  FlatList,
   Dimensions,
 } from "react-native";
 import theme from "../styles/themes";
