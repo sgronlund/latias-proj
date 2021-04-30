@@ -28,6 +28,8 @@ class NewsQ extends React.Component {
     this.state = {
       questions: [],
       randomAlternatives: [],
+      doneArr: [], //Contains the users answer to every question and the color matching their answer
+      //TODO: add time it took per question?
       question: "",
       currentQuestion: 0,
       time: totalTime,
@@ -147,7 +149,8 @@ class NewsQ extends React.Component {
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
       Socket.emit("submitAnswers", this.state.correctAnswers);
-      this.props.navigation.navigate("GameScreen");
+      // Navigate to the "victory" screen with the amount of correct answers aswell as an object of how the user did in the quizz
+      this.props.navigation.navigate("NewsQDone", {numCorrect: this.state.correctAnswers, completeGame: this.state.doneArr})
     }
   };
 
@@ -159,6 +162,8 @@ class NewsQ extends React.Component {
    * @returns {Boolean} true if answer is correct, false if not
    */
   checkAnswer = async (answer, buttonNumber) => {
+    var currentQuestion = this.state.currentQuestion - 1;
+    var answerTime = this.state.time.toFixed(2)
     let correct = false;
     if (!answer) {
       this.setState({
@@ -166,16 +171,28 @@ class NewsQ extends React.Component {
         buttonColour2: theme.ORANGE_GRADIENT,
         buttonColour3: theme.ORANGE_GRADIENT,
       });
+      //Store the users answer, if it answered correctly and the question+alternative, here we also enter the usersAnswer as an
+      // empty string since it is undefined
+      var newStateArr = this.state.doneArr.slice();
+      newStateArr.push({answerColor: theme.ORANGE_GRADIENT, timeLeft: "-"});
+      this.setState({doneArr: newStateArr});
       return correct;
     }
 
-    var currentQuestion = this.state.currentQuestion - 1;
+    
+    
     if (this.state.questions[currentQuestion].correct === answer) {
       /// TODO: Add calculations based on timer here, probably
       var newScore = this.state.correctAnswers + 1;
       this.setState({ correctAnswers: newScore });
       correct = true;
     }
+    //Store the users answer, if it answered correctly and the question+alternative
+    var newStateArr = this.state.doneArr.slice();
+    const color = correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT;
+    newStateArr.push({answerColor: color, timeLeft: answerTime});
+    this.setState({doneArr: newStateArr});
+
 
     //No button number means the user has submitted no answer
     switch (buttonNumber) {
