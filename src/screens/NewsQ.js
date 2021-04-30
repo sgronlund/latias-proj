@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
@@ -15,9 +21,6 @@ const decrementStep = 0.1;
 
 //1000 ms
 const delayNewQuestion = 1000;
-
-//amount of alternatives per question
-const alternativeCount = 3;
 
 class NewsQ extends React.Component {
   constructor(props) {
@@ -65,11 +68,13 @@ class NewsQ extends React.Component {
     to restart the timer inside of the setTimeout function, else the 
     timer is started 10 times. */
     if (this.state.time < 0) {
+      this.setState({ disableButtons: true });
       this.checkAnswer();
       clearInterval(this.clockCall);
       setTimeout(() => {
         this.nextQuestion();
         this.startTimer();
+        this.setState({ disableButtons: false });
       }, delayNewQuestion);
       return;
     }
@@ -210,71 +215,71 @@ class NewsQ extends React.Component {
       return (
         <SafeAreaView style={styleSheets.MainContainer}>
           <QuestionButton />
-          <Text
-            style={styles.numberQ}
-          >{`${this.state.currentQuestion}/${this.state.questions.length}`}</Text>
-          <LinearGradient
-            colors={theme.PINK_GRADIENT}
-            style={styles.button_pink}
-          >
-            <Text style={styles.button_pink}>{this.state.question}</Text>
+          <View style={styles.NumberQContainer}>
+            <Text style={styles.numberQ}>
+              {`${this.state.currentQuestion}/${this.state.questions.length}`}
+            </Text>
+          </View>
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Question}>
+            <Text style={styles.ButtonText}>{this.state.question}</Text>
           </LinearGradient>
-          <LinearGradient
-            colors={this.state.buttonColour1}
-            style={styles.button_blue}
-          >
+          <View style={styles.AlternativeContainer}>
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[0], 1);
                 this.loadNewQuestionsDelayed();
               }}
               disabled={this.state.disableButtons}
+              style={styles.Button}
             >
-              <Text style={styles.button_blue}>
-                {this.state.randomAlternatives[0]}
-              </Text>
+              <LinearGradient
+                colors={this.state.buttonColour1}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>
+                  {this.state.randomAlternatives[0]}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
-          </LinearGradient>
 
-          <LinearGradient
-            colors={this.state.buttonColour2}
-            style={styles.button_blue}
-          >
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[1], 2);
                 this.loadNewQuestionsDelayed();
               }}
               disabled={this.state.disableButtons}
+              style={styles.Button}
             >
-              <Text style={styles.button_blue}>
-                {this.state.randomAlternatives[1]}
-              </Text>
+              <LinearGradient
+                colors={this.state.buttonColour2}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>
+                  {this.state.randomAlternatives[1]}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
-          </LinearGradient>
 
-          <LinearGradient
-            colors={this.state.buttonColour3}
-            style={styles.button_blue}
-          >
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[2], 3);
                 this.loadNewQuestionsDelayed();
               }}
               disabled={this.state.disableButtons}
+              style={styles.Button}
             >
-              <Text style={styles.button_blue}>
-                {this.state.randomAlternatives[2]}
-              </Text>
+              <LinearGradient
+                colors={this.state.buttonColour3}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>
+                  {this.state.randomAlternatives[2]}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
-          </LinearGradient>
+          </View>
           <Text style={styles.timerText}>
-            {
-              //Absolute value because 0.0 is shown as -0.0, probably
-              //because it is actually something like -0.000000000001
-              Math.abs(this.state.time).toFixed(1)
-            }
+            {Math.abs(this.state.time).toFixed(1)}
           </Text>
         </SafeAreaView>
       );
@@ -282,29 +287,43 @@ class NewsQ extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  button_pink: {
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-    color: "#FFFFFF",
-    textAlign: "center",
+  AlternativeContainer: {
+    height: "40%",
     width: "95%",
-    margin: theme.MARGIN_MEDIUM,
-    padding: theme.PADDING_LARGE,
+    alignItems: "center",
+  },
+  Gradient: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
   },
-  button_blue: {
+  ButtonText: {
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#FFFFFF",
-    textAlign: "center",
+  },
+  Button: {
+    width: "100%",
+    height: "30%",
+    marginTop: theme.MARGIN_SMALL,
+  },
+  Question: {
     width: "95%",
-    marginBottom: theme.MARGIN_SMALL,
-    padding: theme.PADDING_SMALL,
+    height: "20%",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
+    marginTop: theme.MARGIN_SMALL,
+  },
+  NumberQContainer: {
+    height: "10%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   numberQ: {
     color: "#FFFFFF",
-    left: 150,
-    marginTop: 30,
-    marginBottom: -5,
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },
   timerText: {
