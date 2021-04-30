@@ -68,7 +68,6 @@ class NewsQWaiting extends React.Component {
   }
 }
 
-
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
 
