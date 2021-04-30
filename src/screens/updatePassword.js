@@ -85,12 +85,14 @@ class updatePassword extends React.Component {
             style={styleSheets.Input}
             placeholder="new password"
             onChangeText={this.handlePassword}
+            secureTextEntry={true}
           />
           <Text style={styleSheets.inputHeader}>Confirm Password:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="new password"
             onChangeText={this.handlePasswordConfirm}
+            secureTextEntry={true}
           />
         </View>
         <TouchableOpacity

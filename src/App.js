@@ -1,5 +1,5 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer  } from "react-navigation";
+import { createStackNavigator} from "react-navigation-stack";
 import { loadAsync } from "expo-font";
 import AppLoading from 'expo-app-loading';
 import HomeScreen from "./screens/HomeScreen";
@@ -107,16 +107,16 @@ const navigator = createStackNavigator(
       headerBackTitleVisible: false,
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
-        borderBottomWidth: 0,
+        height: themes.HEIGHT
       },
       headerTitleStyle: {
         alignSelf: "center",
-        fontSize: 23,
+        fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },
       headerRight: () =>  (
         <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
-            <Ionicons name="ios-settings-sharp" size={24} color="black"/>
+            <Ionicons name="ios-settings-sharp" size={themes.FONT_SIZE_EXTRA_SMALL} color="black"/>
         </TouchableOpacity>
       ),
     }),

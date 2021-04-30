@@ -105,6 +105,7 @@ class Signup extends React.Component {
             style={styleSheets.Input}
             placeholder="your password"
             onChangeText={this.handlePassword}
+            secureTextEntry={true}
           />
           <Text style={styleSheets.inputHeader}>Email:</Text>
           <TextInput

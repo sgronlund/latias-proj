@@ -154,6 +154,7 @@ class ArtQ extends React.Component {
    * @param {[...]} questions Array containing all questions and answers
    */
   async initializeQuestions(questions) {
+    if (!questions) return;
     var shuffledAlternatives = [];
     var correctAnswers = [];
     var questions2 = [];
