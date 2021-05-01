@@ -129,9 +129,10 @@ class NewsQ extends React.Component {
   calculateScoreTotal() {
     var totalScore = 0;
     for (const question of this.state.doneArr) {
-      if(question.answerColor === theme.GREEN_GRADIENT) {
+      if (question.answerColor === theme.GREEN_GRADIENT) {
         //5 + (0 to 5)
-        totalScore += 5 + (parseFloat(question.timeLeft)/divideToGetMaximumFive);
+        totalScore +=
+          5 + parseFloat(question.timeLeft) / divideToGetMaximumFive;
       }
     }
     return Math.floor(totalScore);
@@ -195,8 +196,8 @@ class NewsQ extends React.Component {
         buttonColour2: theme.ORANGE_GRADIENT,
         buttonColour3: theme.ORANGE_GRADIENT,
       });
-      newStateArr.push({answerColor: theme.ORANGE_GRADIENT, timeLeft: "-"});
-      this.setState({doneArr: newStateArr});
+      newStateArr.push({ answerColor: theme.ORANGE_GRADIENT, timeLeft: "-" });
+      this.setState({ doneArr: newStateArr });
       return correct;
     }
 
@@ -207,19 +208,19 @@ class NewsQ extends React.Component {
     }
 
     const color = correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT;
-    newStateArr.push({answerColor: color, timeLeft: answerTime});
-    this.setState({doneArr: newStateArr});
+    newStateArr.push({ answerColor: color, timeLeft: answerTime });
+    this.setState({ doneArr: newStateArr });
 
     //No button number means the user has submitted no answer
-    if(buttonNumber === 1) {
+    if (buttonNumber === 1) {
       this.setState({
         buttonColour1: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
       });
-    } else if(buttonNumber === 2) {
+    } else if (buttonNumber === 2) {
       this.setState({
         buttonColour2: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
       });
-    } else if(buttonNumber === 3) {
+    } else if (buttonNumber === 3) {
       this.setState({
         buttonColour3: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
       });

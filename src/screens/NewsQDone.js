@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Text, SafeAreaView, StyleSheet, View } from "react-native";
 import QuestionButton from "./components/QuestionButton";
 import Shop from "./components/Shop";
 import styleSheets from "../styles/StyleSheets";
@@ -96,7 +91,7 @@ const styles = StyleSheet.create({
   FlexBox: {
     flex: 3,
     alignItems: "center",
-    margin: theme.MARGIN_EXTRA_TINY
+    margin: theme.MARGIN_EXTRA_TINY,
   },
   VerticalLine: {
     height: "75%",
