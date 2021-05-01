@@ -43,7 +43,7 @@ class Developer extends React.Component {
               colors={theme.PINK_GRADIENT}
               style={styles.Gradient}
             >
-              <Text style={styles.ButtonText}>ART QUIZ</Text>
+              <Text style={styles.ButtonText}>ARTICLE QUIZ</Text>
             </LinearGradient>}
           </TouchableOpacity>
           <TouchableOpacity
