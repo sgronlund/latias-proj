@@ -207,6 +207,7 @@ class NewsQ extends React.Component {
       correct = true;
     }
 
+    //Store the color associated with the answer and the time it took for the user to answer.
     const color = correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT;
     newStateArr.push({ answerColor: color, timeLeft: answerTime });
     this.setState({ doneArr: newStateArr });
