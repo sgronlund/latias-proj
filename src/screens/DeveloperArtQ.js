@@ -13,9 +13,8 @@ import { Socket, initDeveloperArtQSockets } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 /**
- * @summary This represents the login screen. From here you
- * can either login or press reset password which will lead
- * you to the reset page.
+ * @summary This screen is where the developer can submit
+ * questions to the article quiz
  */
 class DeveloperArtQ extends React.Component {
   constructor(props) {

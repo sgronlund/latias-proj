@@ -6,9 +6,8 @@ import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 /**
- * @summary This represents the login screen. From here you
- * can either login or press reset password which will lead
- * you to the reset page.
+ * @summary This screen is where the developer can
+ * see the currently submitted questions
  */
 class DeveloperQuestions extends React.Component {
   constructor(props) {
