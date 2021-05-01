@@ -223,7 +223,7 @@ class ArtQ extends React.Component {
     }
     //TODO: Replace this with adding score to the database
     alert(numberOfCorrectAnswers + "/" + correctAnswers.length + " correct!");
-    
+
     /* We should add this line back in the future when we 
     replace the alert with score added to the database */
     //this.props.navigation.navigate("GameScreen");

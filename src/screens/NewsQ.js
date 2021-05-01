@@ -18,7 +18,7 @@ const totalTime = 20;
 
 /*We divide by this number to always get a maximum extra,
 time score of 5, regardless of what totalTime we have */
-const divideToGetMaximumFive = totalTime/5
+const divideToGetMaximumFive = totalTime / 5;
 
 //Decrement timer by 0.1
 const decrementStep = 0.1;
@@ -130,9 +130,10 @@ class NewsQ extends React.Component {
   calculateScoreTotal() {
     var totalScore = 0;
     for (const question of this.state.doneArr) {
-      if(question.answerColor === theme.GREEN_GRADIENT) {
+      if (question.answerColor === theme.GREEN_GRADIENT) {
         //5 + (0-5)
-        totalScore += 5 + (parseFloat(question.timeLeft)/divideToGetMaximumFive);
+        totalScore +=
+          5 + parseFloat(question.timeLeft) / divideToGetMaximumFive;
       }
     }
     return Math.floor(totalScore);
@@ -170,7 +171,11 @@ class NewsQ extends React.Component {
       var totalScore = this.calculateScoreTotal();
       Socket.emit("submitAnswers", this.state.correctAnswers);
       // Navigate to the "victory" screen with the amount of correct answers aswell as an object of how the user did in the quizz
-      this.props.navigation.navigate("NewsQDone", {numCorrect: this.state.correctAnswers, completeGame: this.state.doneArr, totalScore: totalScore})
+      this.props.navigation.navigate("NewsQDone", {
+        numCorrect: this.state.correctAnswers,
+        completeGame: this.state.doneArr,
+        totalScore: totalScore,
+      });
     }
   };
 
@@ -183,7 +188,7 @@ class NewsQ extends React.Component {
    */
   checkAnswer = async (answer, buttonNumber) => {
     var currentQuestion = this.state.currentQuestion - 1;
-    var answerTime = this.state.time.toFixed(2)
+    var answerTime = this.state.time.toFixed(2);
     let correct = false;
     if (!answer) {
       this.setState({
@@ -194,13 +199,11 @@ class NewsQ extends React.Component {
       //Store the users answer, if it answered correctly and the question+alternative, here we also enter the usersAnswer as an
       // empty string since it is undefined
       var newStateArr = this.state.doneArr.slice();
-      newStateArr.push({answerColor: theme.ORANGE_GRADIENT, timeLeft: "-"});
-      this.setState({doneArr: newStateArr});
+      newStateArr.push({ answerColor: theme.ORANGE_GRADIENT, timeLeft: "-" });
+      this.setState({ doneArr: newStateArr });
       return correct;
     }
 
-    
-    
     if (this.state.questions[currentQuestion].correct === answer) {
       var newScore = this.state.correctAnswers + 1;
       this.setState({ correctAnswers: newScore });
@@ -209,9 +212,8 @@ class NewsQ extends React.Component {
     //Store the users answer, if it answered correctly and the question+alternative
     var newStateArr = this.state.doneArr.slice();
     const color = correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT;
-    newStateArr.push({answerColor: color, timeLeft: answerTime});
-    this.setState({doneArr: newStateArr});
-
+    newStateArr.push({ answerColor: color, timeLeft: answerTime });
+    this.setState({ doneArr: newStateArr });
 
     //No button number means the user has submitted no answer
     switch (buttonNumber) {

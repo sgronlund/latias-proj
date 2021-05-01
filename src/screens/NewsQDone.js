@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   FlexBox: {
     flex: 3,
     alignItems: "center",
-    margin: theme.MARGIN_EXTRA_TINY
+    margin: theme.MARGIN_EXTRA_TINY,
   },
   VerticalLine: {
     height: "75%",
