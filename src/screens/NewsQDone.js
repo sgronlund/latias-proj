@@ -148,7 +148,6 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   scoreText: {
-    flexShrink: 1,
     fontSize: theme.FONT_SIZE_TINY,
     fontFamily: theme.DEFAULT_FONT,
     color: "#FFFFFF",
