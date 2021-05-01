@@ -14,7 +14,11 @@ import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 //Starting time
-const totalTime = 5;
+const totalTime = 20;
+
+/*We divide by this number to always get a maximum extra,
+time score of 5, regardless of what totalTime we have */
+const divideToGetMaximumFive = totalTime/5
 
 //Decrement timer by 0.1
 const decrementStep = 0.1;
@@ -69,7 +73,7 @@ class NewsQ extends React.Component {
     the timeout has completed (await doesn't help). Therefore, we need 
     to restart the timer inside of the setTimeout function, else the 
     timer is started 10 times. */
-    if (this.state.time < 0) {
+    if (this.state.time.toFixed(1) <= 0) {
       this.setState({ disableButtons: true });
       this.checkAnswer();
       clearInterval(this.clockCall);
@@ -120,6 +124,21 @@ class NewsQ extends React.Component {
   }
 
   /**
+   * @summary Calculates total score for users answers
+   * @returns {Integer} total score
+   */
+  calculateScoreTotal() {
+    var totalScore = 0;
+    for (const question of this.state.doneArr) {
+      if(question.answerColor === theme.GREEN_GRADIENT) {
+        //5 + (0-5)
+        totalScore += 5 + (parseFloat(question.timeLeft)/divideToGetMaximumFive);
+      }
+    }
+    return Math.floor(totalScore);
+  }
+
+  /**
    * @function
    * @summary Updates the states for the answers to re-render the
    * screen for the next question
@@ -148,9 +167,10 @@ class NewsQ extends React.Component {
 
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
+      var totalScore = this.calculateScoreTotal();
       Socket.emit("submitAnswers", this.state.correctAnswers);
       // Navigate to the "victory" screen with the amount of correct answers aswell as an object of how the user did in the quizz
-      this.props.navigation.navigate("NewsQDone", {numCorrect: this.state.correctAnswers, completeGame: this.state.doneArr})
+      this.props.navigation.navigate("NewsQDone", {numCorrect: this.state.correctAnswers, completeGame: this.state.doneArr, totalScore: totalScore})
     }
   };
 
@@ -182,7 +202,6 @@ class NewsQ extends React.Component {
     
     
     if (this.state.questions[currentQuestion].correct === answer) {
-      /// TODO: Add calculations based on timer here, probably
       var newScore = this.state.correctAnswers + 1;
       this.setState({ correctAnswers: newScore });
       correct = true;
