@@ -3,7 +3,6 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from "react-native";
 import QuestionButton from "./components/QuestionButton";
@@ -11,7 +10,6 @@ import Shop from "./components/Shop";
 import styleSheets from "../styles/StyleSheets";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
-import Scoreboard from "./components/Scoreboard";
 
 export default class NewsQDone extends React.Component {
   constructor(props) {
