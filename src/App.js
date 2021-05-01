@@ -112,13 +112,13 @@ const navigator = createStackNavigator(
     DeveloperArtQ: {
       screen: DeveloperArtQ,
       navigationOptions: {
-        title: "ARITCLE QUIZ"
+        title: "ARTICLE QUIZ"
       }
     },
     DeveloperQuestions: {
       screen: DeveloperQuestions,
       navigationOptions: {
-        title: "ARTICLE QUIZ"
+        title: "QUESTIONS"
       }
     },
     NewsQDone: {
