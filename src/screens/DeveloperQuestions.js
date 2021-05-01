@@ -2,11 +2,9 @@ import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
-  TouchableOpacity,
   View,
   Text,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket } from "../misc/Socket";

@@ -103,9 +103,24 @@ const navigator = createStackNavigator(
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer,
-    DeveloperNewsQ: DeveloperNewsQ,
-    DeveloperArtQ: DeveloperArtQ,
-    DeveloperQuestions: DeveloperQuestions,
+    DeveloperNewsQ: {
+      screen: DeveloperNewsQ,
+      navigationOptions: {
+        title: "NEWS QUIZ"
+      }
+    },
+    DeveloperArtQ: {
+      screen: DeveloperArtQ,
+      navigationOptions: {
+        title: "ARITCLE QUIZ"
+      }
+    },
+    DeveloperQuestions: {
+      screen: DeveloperQuestions,
+      navigationOptions: {
+        title: "ARTICLE QUIZ"
+      }
+    },
     NewsQDone: {
       screen: NewsQDone,
       navigationOptions: {
