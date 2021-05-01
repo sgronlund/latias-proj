@@ -18,7 +18,7 @@ const totalTime = 20;
 
 /* We divide by this number to always get a maximum extra,
 time score of 5, regardless of what totalTime we have */
-const divideToGetMaximumFive = totalTime/5
+const divideToGetMaximumFive = totalTime / 5;
 
 //Decrement timer by 0.1
 const decrementStep = 0.1;
@@ -168,8 +168,12 @@ class NewsQ extends React.Component {
     if (currentQuestion === questions.length) {
       var totalScore = this.calculateScoreTotal();
       Socket.emit("submitAnswers", this.state.correctAnswers);
-      // Navigate to the "victory" screen with the amount of correct answers as well as an object of how the user did in the quiz
-      this.props.navigation.navigate("NewsQDone", {numCorrect: this.state.correctAnswers, completeGame: this.state.doneArr, totalScore: totalScore})
+      // Navigate to the "victory" screen with the amount of correct answers aswell as an object of how the user did in the quizz
+      this.props.navigation.navigate("NewsQDone", {
+        numCorrect: this.state.correctAnswers,
+        completeGame: this.state.doneArr,
+        totalScore: totalScore,
+      });
     }
   };
 
