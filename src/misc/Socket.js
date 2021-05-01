@@ -128,7 +128,7 @@ let initDeveloperNewsQSockets = () => {
  * @summary Initializes socket listeners for checking if a question
  * was successfully added
  */
- let initDeveloperArtQSockets = () => {
+let initDeveloperArtQSockets = () => {
   Socket.on("addQuestionArticleSuccess", () => {
     Socket.off("addQuestionArticleSuccess");
     alert("Question added!");

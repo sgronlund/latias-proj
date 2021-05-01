@@ -64,7 +64,7 @@ class DeveloperArtQ extends React.Component {
    * inputs text
    * @param {String} text text to update wrong answer to
    */
-   handleWrongAnswer3 = (text) => {
+  handleWrongAnswer3 = (text) => {
     this.setState({ wrongAnswer3: text });
   };
 

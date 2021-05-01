@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-} from "react-native";
+import { SafeAreaView, StyleSheet, View, Text } from "react-native";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket } from "../misc/Socket";

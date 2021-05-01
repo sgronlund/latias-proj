@@ -28,12 +28,14 @@ class Developer extends React.Component {
             onPress={() => this.props.navigation.navigate("DeveloperNewsQ")}
             style={styles.Button}
           >
-            {<LinearGradient
-              colors={theme.BLUE_GRADIENT}
-              style={styles.Gradient}
-            >
-              <Text style={styles.ButtonText}>NEWS QUIZ</Text>
-            </LinearGradient>}
+            {
+              <LinearGradient
+                colors={theme.BLUE_GRADIENT}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>NEWS QUIZ</Text>
+              </LinearGradient>
+            }
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("DeveloperArtQ")}
@@ -50,12 +52,14 @@ class Developer extends React.Component {
             onPress={() => this.props.navigation.navigate("DeveloperQuestions")}
             style={styles.Button}
           >
-            {<LinearGradient
-              colors={theme.DARK_BLUE_GRADIENT}
-              style={styles.Gradient}
-            >
-              <Text style={styles.ButtonText}>QUESTIONS</Text>
-            </LinearGradient>}
+            {
+              <LinearGradient
+                colors={theme.DARK_BLUE_GRADIENT}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>QUESTIONS</Text>
+              </LinearGradient>
+            }
           </TouchableOpacity>
         </View>
       </SafeAreaView>

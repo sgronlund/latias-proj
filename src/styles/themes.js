@@ -14,7 +14,6 @@ global.fontSizes = {
   Small: width / 16,
   Medium: width / 8,
   Large: width / 6,
-  
 };
 
 global.margins = {
