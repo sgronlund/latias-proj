@@ -41,12 +41,14 @@ class Developer extends React.Component {
             onPress={() => this.props.navigation.navigate("DeveloperArtQ")}
             style={styles.Button}
           >
-            {<LinearGradient
-              colors={theme.PINK_GRADIENT}
-              style={styles.Gradient}
-            >
-              <Text style={styles.ButtonText}>ARTICLE QUIZ</Text>
-            </LinearGradient>}
+            {
+              <LinearGradient
+                colors={theme.PINK_GRADIENT}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>ARTICLE QUIZ</Text>
+              </LinearGradient>
+            }
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("DeveloperQuestions")}
