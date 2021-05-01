@@ -15,6 +15,9 @@ import ShopScreen from "./screens/ShopScreen";
 import VerifyReset from "./screens/VerifyReset";
 import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
+import DeveloperNewsQ from "./screens/DeveloperNewsQ";
+import DeveloperArtQ from "./screens/DeveloperArtQ"
+import DeveloperQuestions from "./screens/DeveloperQuestions";
 import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
 import { TouchableOpacity } from "react-native";
@@ -100,6 +103,9 @@ const navigator = createStackNavigator(
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer,
+    DeveloperNewsQ: DeveloperNewsQ,
+    DeveloperArtQ: DeveloperArtQ,
+    DeveloperQuestions: DeveloperQuestions,
     NewsQDone: {
       screen: NewsQDone,
       navigationOptions: {

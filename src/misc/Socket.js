@@ -109,16 +109,32 @@ let initVerifyResetSockets = (navigation, email) => {
 
 /**
  * @function
- * @summary Initializes socket listeners for checking for login
- * success or failure and removes the listeners
+ * @summary Initializes socket listeners for checking if a question
+ * was successfully added
  */
-let initDeveloperSockets = () => {
+let initDeveloperNewsQSockets = () => {
   Socket.on("addQuestionSuccess", () => {
     Socket.off("addQuestionSuccess");
     alert("Question added!");
   });
   Socket.on("addQuestionFailure", () => {
     Socket.off("addQuestionFailure");
+    alert("Invalid input!");
+  });
+};
+
+/**
+ * @function
+ * @summary Initializes socket listeners for checking if a question
+ * was successfully added
+ */
+ let initDeveloperArtQSockets = () => {
+  Socket.on("addQuestionArticleSuccess", () => {
+    Socket.off("addQuestionArticleSuccess");
+    alert("Question added!");
+  });
+  Socket.on("addQuestionArticleFailure", () => {
+    Socket.off("addQuestionArticleFailure");
     alert("Invalid input!");
   });
 };
@@ -146,7 +162,8 @@ export {
   initResetSockets,
   initSignupSockets,
   initVerifyResetSockets,
-  initDeveloperSockets,
+  initDeveloperNewsQSockets,
+  initDeveloperArtQSockets,
   initLogoutSockets,
   sharedKey,
   Socket,
