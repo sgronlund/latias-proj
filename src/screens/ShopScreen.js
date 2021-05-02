@@ -7,16 +7,30 @@ import {
   View,
 } from "react-native";
 import theme from "../styles/themes";
+import Shop from "./components/Shop";
 import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { LinearGradient } from "expo-linear-gradient";
+import {Socket} from "../misc/Socket"
 
 const prices = [
   { text: "Liten latte OKQ8", price: 100 },
   { text: "Stor latte OKQ8", price: 150 },
 ];
 
-const PriceButton = (props) => {
+class PriceButton extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  
+  updateBalance = (price) => {
+    Socket.on("returnUpdateSuccess", () => {
+    });
+    Socket.emit("changeBalance", Socket.id, price);
+  };
+
+  render() {
   return (
     <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
       <View
@@ -24,20 +38,19 @@ const PriceButton = (props) => {
           flexDirection: "row",
           alignItems: "center",
           flexGrow: 1,
-          //margin: theme.MARGIN_MEDIUM,
         }}
       >
         <View style={{ flexGrow: 1 }}>
-          <Text style={styles.button_blue_text}>{props.text}</Text>
+          <Text style={styles.button_blue_text}>{this.props.text}</Text>
         </View>
 
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => {this.updateBalance(this.props.price)}}>
             <LinearGradient
               colors={theme.PINK_GRADIENT}
               style={styles.button_price}
             >
-              <Text style={styles.button_pink_text}>{props.price}€</Text>
+              <Text style={styles.button_pink_text}>{this.props.price}€</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -45,16 +58,20 @@ const PriceButton = (props) => {
     </LinearGradient>
   );
 };
+}
+
 
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
+    //this.updateBalance = this.updateBalance.bind(this);
   }
 
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
+        <Shop />
         <View style={styles.midsquare}>
           <Text style={styles.header}>──────── PRICE SHOP ────────</Text>
           <View style={{ width: "100%" }}>
