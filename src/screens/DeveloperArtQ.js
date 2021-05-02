@@ -109,6 +109,11 @@ class DeveloperArtQ extends React.Component {
     alert("Questions has been reset!");
   };
 
+  componenWillUnmount() {
+    Socket.off("addQuestionArticleSuccess");
+    Socket.off("addQuestionArticleFailure");
+  }
+
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>

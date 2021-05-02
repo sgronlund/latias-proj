@@ -87,6 +87,11 @@ class DeveloperNewsQ extends React.Component {
     );
   };
 
+  componentDidUnmount() {
+    Socket.off("addQuestionSuccess");
+    Socket.off("addQuestionFailure");
+  }
+
   /**
    * @function
    * @summary Tells the server to remove questions for the
