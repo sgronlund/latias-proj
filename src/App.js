@@ -23,6 +23,7 @@ import { Ionicons } from '@expo/vector-icons';
 import UserPolicy from "./screens/UserPolicy";
 import Scoreboard from "./screens/components/Scoreboard";
 import NewsQReady from "./screens/NewsQReady";
+import NewsQDone from "./screens/NewsQDone";
 
 
 /**
@@ -99,6 +100,13 @@ const navigator = createStackNavigator(
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer,
+    NewsQDone: {
+      screen: NewsQDone,
+      navigationOptions: {
+        title: "SCORE",
+        headerLeft: () => null,
+      },
+    },
   },
   {
     initialRouteName: "Home",
@@ -110,7 +118,7 @@ const navigator = createStackNavigator(
         height: themes.HEIGHT
       },
       headerTitleStyle: {
-        alignSelf: "center",
+        
         fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },

@@ -14,7 +14,11 @@ import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 //Starting time
-const totalTime = 5;
+const totalTime = 20;
+
+/* We divide by this number to always get a maximum extra,
+time score of 5, regardless of what totalTime we have */
+const divideToGetMaximumFive = totalTime / 5;
 
 //Decrement timer by 0.1
 const decrementStep = 0.1;
@@ -28,6 +32,7 @@ class NewsQ extends React.Component {
     this.state = {
       questions: [],
       randomAlternatives: [],
+      doneArr: [], //Contains the users answer to every question and the color matching their answer
       question: "",
       currentQuestion: 0,
       time: totalTime,
@@ -67,7 +72,7 @@ class NewsQ extends React.Component {
     the timeout has completed (await doesn't help). Therefore, we need 
     to restart the timer inside of the setTimeout function, else the 
     timer is started 10 times. */
-    if (this.state.time < 0) {
+    if (this.state.time.toFixed(1) <= 0) {
       this.setState({ disableButtons: true });
       this.checkAnswer();
       clearInterval(this.clockCall);
@@ -118,6 +123,22 @@ class NewsQ extends React.Component {
   }
 
   /**
+   * @summary Calculates total score for users answers
+   * @returns {Integer} total score
+   */
+  calculateScoreTotal() {
+    var totalScore = 0;
+    for (const question of this.state.doneArr) {
+      if (question.answerColor === theme.GREEN_GRADIENT) {
+        //5 + (0 to 5)
+        totalScore +=
+          5 + parseFloat(question.timeLeft) / divideToGetMaximumFive;
+      }
+    }
+    return Math.floor(totalScore);
+  }
+
+  /**
    * @function
    * @summary Updates the states for the answers to re-render the
    * screen for the next question
@@ -146,8 +167,14 @@ class NewsQ extends React.Component {
 
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
+      var totalScore = this.calculateScoreTotal();
       Socket.emit("submitAnswers", this.state.correctAnswers);
-      this.props.navigation.navigate("GameScreen");
+      // Navigate to the "victory" screen with the amount of correct answers aswell as an object of how the user did in the quizz
+      this.props.navigation.navigate("NewsQDone", {
+        numCorrect: this.state.correctAnswers,
+        completeGame: this.state.doneArr,
+        totalScore: totalScore,
+      });
     }
   };
 
@@ -160,44 +187,52 @@ class NewsQ extends React.Component {
    */
   checkAnswer = async (answer, buttonNumber) => {
     let correct = false;
+    var currentQuestion = this.state.currentQuestion - 1;
+    var answerTime = this.state.time.toFixed(2);
+    var newStateArr = this.state.doneArr.slice();
     if (!answer) {
       this.setState({
         buttonColour1: theme.ORANGE_GRADIENT,
         buttonColour2: theme.ORANGE_GRADIENT,
         buttonColour3: theme.ORANGE_GRADIENT,
       });
+      newStateArr.push({ answerColor: theme.ORANGE_GRADIENT, timeLeft: "-" });
+      this.setState({ doneArr: newStateArr });
       return correct;
     }
 
-    var currentQuestion = this.state.currentQuestion - 1;
     if (this.state.questions[currentQuestion].correct === answer) {
-      /// TODO: Add calculations based on timer here, probably
       var newScore = this.state.correctAnswers + 1;
       this.setState({ correctAnswers: newScore });
       correct = true;
     }
 
+    //Store the color associated with the answer and the time it took for the user to answer.
+    const color = correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT;
+    newStateArr.push({ answerColor: color, timeLeft: answerTime });
+    this.setState({ doneArr: newStateArr });
+
     //No button number means the user has submitted no answer
-    switch (buttonNumber) {
-      case 1:
-        this.setState({
-          buttonColour1: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
-        });
-        break;
-      case 2:
-        this.setState({
-          buttonColour2: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
-        });
-        break;
-      case 3:
-        this.setState({
-          buttonColour3: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
-        });
-        break;
+    if (buttonNumber === 1) {
+      this.setState({
+        buttonColour1: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
+      });
+    } else if (buttonNumber === 2) {
+      this.setState({
+        buttonColour2: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
+      });
+    } else if (buttonNumber === 3) {
+      this.setState({
+        buttonColour3: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
+      });
     }
     return correct;
   };
 
+  /**
+   * @function
+   * @summary loads the next question with a time delay
+   */
   loadNewQuestionsDelayed() {
     clearInterval(this.clockCall);
     this.setState({ disableButtons: true });
