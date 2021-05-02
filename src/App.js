@@ -1,6 +1,7 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { loadAsync } from "expo-font";
+import AppLoading from "expo-app-loading";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
@@ -8,6 +9,7 @@ import LogIn from "./screens/LogIn";
 import Settings from "./screens/Settings";
 import Reset from "./screens/Reset";
 import NewsQ from "./screens/NewsQ";
+import ArtQ from "./screens/ArtQ";
 import Read from "./screens/Read";
 import ShopScreen from "./screens/ShopScreen";
 import VerifyReset from "./screens/VerifyReset";
@@ -19,6 +21,9 @@ import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
 import { Ionicons } from "@expo/vector-icons";
 import UserPolicy from "./screens/UserPolicy";
+import Scoreboard from "./screens/components/Scoreboard";
+import NewsQReady from "./screens/NewsQReady";
+import NewsQDone from "./screens/NewsQDone";
 
 /**
  * @summary This file contains the stack navigator
@@ -29,7 +34,7 @@ const navigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        header: false,
+        header: () => null,
       },
     },
     Read: {
@@ -42,7 +47,7 @@ const navigator = createStackNavigator(
       screen: NewsQ,
       navigationOptions: {
         title: "THIS WEEKS NEWS QUIZ",
-        headerLeft: null,
+        headerLeft: () => null,
       },
     },
     GameScreen: {
@@ -81,11 +86,26 @@ const navigator = createStackNavigator(
         title: "ARTICLE QUIZ",
       },
     },
+    ArtQ: {
+      screen: ArtQ,
+      navigationOptions: {
+        title: "ARTICLE QUIZ",
+      },
+    },
+    NewsQReady: NewsQReady,
+    Scoreboard: Scoreboard,
     UserPolicy: UserPolicy,
     Reset: Reset,
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer,
+    NewsQDone: {
+      screen: NewsQDone,
+      navigationOptions: {
+        title: "SCORE",
+        headerLeft: () => null,
+      },
+    },
   },
   {
     initialRouteName: "Home",
@@ -94,19 +114,22 @@ const navigator = createStackNavigator(
       headerBackTitleVisible: false,
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
-        borderBottomWidth: 0,
+        height: themes.HEIGHT,
       },
       headerTitleStyle: {
-        alignSelf: "center",
-        fontSize: 23,
+        fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },
-      headerRight: (
+      headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate("Settings")}
           style={{ marginRight: 15 }}
         >
-          <Ionicons name="ios-settings-sharp" size={24} color="black" />
+          <Ionicons
+            name="ios-settings-sharp"
+            size={themes.FONT_SIZE_EXTRA_SMALL}
+            color="black"
+          />
         </TouchableOpacity>
       ),
     }),
@@ -121,17 +144,26 @@ export default class App extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  async loadLocalFonts() {
     await loadAsync({
       ///FIXME: Doesn't load succesfully when starting with Expo
       Ramaraja: require("./assets/fonts/Ramaraja.ttf"),
       "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });
-    this.setState({ fontLoaded: true });
   }
 
   render() {
     const Container = createAppContainer(navigator);
+    if (!this.state.fontLoaded)
+      return (
+        <AppLoading
+          startAsync={this.loadLocalFonts}
+          onFinish={() => {
+            this.setState({ fontLoaded: true });
+          }}
+          onError={console.warn}
+        />
+      );
     return <Container />;
   }
 }

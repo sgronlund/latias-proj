@@ -231,3 +231,97 @@ Inget att kommentera.
 ### Andra punkter
 
 Inget att kommentera.
+
+## Arbetsmöte 27/04/21
+
+### Vad gjorde vi igår?
+
+* Styling till shoppen på g
+
+* Få in bild istället för produktnamn
+
+* Scoreboard nästan i mål
+
+* Countdown + Player Count
+
+### Vi tänker vi göra idag?
+
+* Scoreboard.(Niclas, Richard och Fanny)
+
+* ArtQ standardfunktionalitet (kunna bläddra mellan frågor). (Jakob)
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt". (Aishe, Kimiya)
+
+* Vänteskärm till nutidsquiz. (Niclas, Richard och Fanny efter Scoreboard)
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
+
+## Arbetsmöte 28/04/21
+
+### Vad gjorde vi igår?
+
+* ArtQ standardfunktionalitet (kunna bläddra mellan frågor).
+
+* Scoreboard
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt".
+
+* Började fixade dependencies, just klar
+
+### Vi tänker vi göra idag?
+
+* Submit för ArtQ (Jakob)
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt" (fortsätta, Aishe och Kimiya)
+
+* Fortsätta fixa dependencies (Sebastian)
+
+* Scoreboard, fortsätta (Niclas, Richard, Fanny)
+
+* Göra quizzen. (Fritt fram och ta!)
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
+
+## Arbetsmöte 29/04/21
+
+### Vad gjorde vi igår?
+
+* Submit för ArtQ
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt".
+
+* Dependencies fixade
+
+### Vi tänker vi göra idag?
+
+* Pengar till alla konton, behöver simulera hur det skulle fungera "på riktigt" (fortsätta, Aishe och Kimiya)
+
+* Fixa login styling + settings (Sebastian)
+
+* GameScreen styling (Jakob)
+
+* Scoreboard, fortsätta (Niclas, Richard, Fanny)
+
+* Göra quizzen. (Fritt fram och ta!)
+
+* Styling på diverse sidor
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.

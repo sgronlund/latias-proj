@@ -12,13 +12,14 @@ const styleSheets = StyleSheet.create({
     backgroundColor: theme.PURPLE,
   },
   Input: {
-    height: 40,
-    margin: 12,
+    flexBasis: 50,
     width: "80%",
     borderWidth: 1,
     backgroundColor: "white",
     textAlign: "center",
+    fontSize: theme.FONT_SIZE_TINY,
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
+    marginBottom: theme.MARGIN_SMALL,
   },
   GenericButton: {
     width: "80%",
@@ -48,12 +49,13 @@ const styleSheets = StyleSheet.create({
     height: 100,
     backgroundColor: "#545985",
   },
-  LoginText: {
+  inputHeader: {
+    margin: theme.MARGIN_SMALL,
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "white",
     fontFamily: theme.DEFAULT_FONT,
     alignSelf: "flex-start",
-    marginLeft: 40,
+    marginLeft: theme.MARGIN_INPUT,
   },
 });
 

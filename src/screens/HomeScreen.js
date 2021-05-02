@@ -89,21 +89,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: theme.DEFAULT_FONT,
   },
-  TitleText: {
-    fontSize: theme.FONT_SIZE_LARGE,
-    color: "white",
-    fontFamily: theme.DEFAULT_FONT,
-  },
-  PurpleLine: {
-    color: theme.PINK,
-    fontSize: 40,
-  },
-  Image: {
-    width: 50,
-    height: 50,
-    backgroundColor: "transparent",
-    alignSelf: "flex-end",
-  },
 });
 
 export default withNavigation(HomeScreen);

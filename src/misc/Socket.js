@@ -1,4 +1,3 @@
-import { Alert } from "react-native";
 import socketClient from "socket.io-client";
 import bigInt from "big-integer";
 
@@ -33,16 +32,22 @@ Socket.on("serverPublic", (server_public, g, p) => {
  * @param {Object} navigation navigator that redirects to other screens
  */
 let initLoginSockets = (navigation) => {
+  Socket.on("blankDetails", () => {
+    alert("You need to enter all fields!");
+  });
   Socket.on("loginRoot", () => {
-    Socket.off("loginRoot");
     navigation.navigate("Developer");
   });
+  Socket.on("alreadyLoggedIn", () => {
+    alert("You are already logged in on another device!");
+  });
   Socket.on("loginSuccess", () => {
-    Socket.off("loginSuccess");
-    navigation.navigate("GameScreen", { headerLeft: null });
+    navigation.navigate("GameScreen", { headerLeft: () => null });
+  });
+  Socket.on("invalidUserDetails", () => {
+    alert("Invalid details!");
   });
   Socket.on("loginFailure", () => {
-    Socket.off("loginFailure");
     alert("Login failed!");
   });
 };

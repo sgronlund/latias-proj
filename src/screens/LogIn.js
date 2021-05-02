@@ -12,7 +12,7 @@ import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
 import { Socket, sharedKey, initLoginSockets } from "../misc/Socket";
 import sha256 from "sha256";
-import aes256 from "aes256";
+import CryptoJS from "react-native-crypto-js";
 import { LinearGradient } from "expo-linear-gradient";
 
 /**
@@ -24,6 +24,10 @@ class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "", alert: false };
+  }
+
+  componentDidMount() {
+    initLoginSockets(this.props.navigation);
   }
 
   /**
@@ -51,17 +55,19 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
-    initLoginSockets(this.props.navigation);
     //The passwords stored in the database are first salted
-    var salt_pass = password.toString() + username.toString();
+    var salt_pass = password + username.toUpperCase();
 
     //The passwords are also irreversibly hashed
-    var hash_pass = sha256(salt_pass);
+    let hash_pass = sha256(salt_pass);
     if (!sharedKey) return alert("You are not connected to the server!");
-    //The data transmission is encrypted in case of listeners.
-    var encrypt_pass = aes256.encrypt(sharedKey.toString(), hash_pass);
+    var encrypted_pass = CryptoJS.AES.encrypt(
+      hash_pass,
+      sharedKey.toString()
+    ).toString();
 
-    Socket.emit("login", username, encrypt_pass, Socket.id);
+    //The data transmission is encrypted in case of listeners.
+    Socket.emit("login", username, encrypted_pass, Socket.id);
   };
 
   render() {
@@ -69,17 +75,18 @@ class LogIn extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
         <View style={styles.LoginContainer}>
-          <Text style={styleSheets.LoginText}>Username:</Text>
+          <Text style={styleSheets.inputHeader}>Username:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your username"
             onChangeText={this.handleUsername}
           />
-          <Text style={styleSheets.LoginText}>Password:</Text>
+          <Text style={styleSheets.inputHeader}>Password:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="your password"
             onChangeText={this.handlePassword}
+            secureTextEntry={true}
           />
         </View>
 
@@ -110,12 +117,11 @@ class LogIn extends React.Component {
 const styles = StyleSheet.create({
   LoginContainer: {
     width: "95%",
-    height: "30%",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
-    margin: theme.MARGIN_LARGE,
+    margin: theme.MARGIN_SMALL,
   },
   ForgotPassword: {
     fontFamily: "Roboto Slab",

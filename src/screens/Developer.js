@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Platform,
 } from "react-native";
 import theme from "../styles/themes";
 import styleSheets from "../styles/StyleSheets";
@@ -24,7 +25,6 @@ class Developer extends React.Component {
       question: "",
       wrongAnswer1: "",
       wrongAnswer2: "",
-      wrongAnswer3: "",
       correctAnswer: "",
     };
   }
@@ -60,16 +60,6 @@ class Developer extends React.Component {
 
   /**
    * @function
-   * @summary Updates the state of wrong answer number 3 when the user
-   * inputs text
-   * @param {String} text text to update wrong answer to
-   */
-  handleWrongAnswer3 = (text) => {
-    this.setState({ wrongAnswer3: text });
-  };
-
-  /**
-   * @function
    * @summary Updates the state of the correct answer when the user
    * inputs text
    * @param {String} text text to update correct answer to
@@ -88,14 +78,13 @@ class Developer extends React.Component {
     question,
     wrongAnswer1,
     wrongAnswer2,
-    wrongAnswer3,
     correctAnswer
   ) => {
     initDeveloperSockets();
     Socket.emit(
       "addQuestion",
       question,
-      [wrongAnswer1, wrongAnswer2, wrongAnswer3, correctAnswer],
+      [wrongAnswer1, wrongAnswer2, correctAnswer],
       currentWeekNumber()
     );
   };
@@ -114,13 +103,13 @@ class Developer extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.InputContainer}>
-          <Text style={styleSheets.LoginText}>Question:</Text>
+          <Text style={styleSheets.inputHeader}>Question:</Text>
           <TextInput
             style={styles.QuestionInput}
             placeholder="Question"
             onChangeText={this.handleQuestion}
           />
-          <Text style={styleSheets.LoginText}>Answers:</Text>
+          <Text style={styleSheets.inputHeader}>Answers:</Text>
           <TextInput
             style={styles.AnswerInput}
             placeholder="Wrong answer"
@@ -130,11 +119,6 @@ class Developer extends React.Component {
             style={styles.AnswerInput}
             placeholder="Wrong answer"
             onChangeText={this.handleWrongAnswer2}
-          />
-          <TextInput
-            style={styles.AnswerInput}
-            placeholder="Wrong answer"
-            onChangeText={this.handleWrongAnswer3}
           />
           <TextInput
             style={styles.AnswerInput}
@@ -149,7 +133,6 @@ class Developer extends React.Component {
               this.state.question,
               this.state.wrongAnswer1,
               this.state.wrongAnswer2,
-              this.state.wrongAnswer3,
               this.state.correctAnswer
             )
           }
@@ -178,7 +161,7 @@ const styles = StyleSheet.create({
     margin: theme.MARGIN_LARGE,
   },
   QuestionInput: {
-    height: 40,
+    flexBasis: 40,
     margin: 12,
     width: "80%",
     borderWidth: 1,
@@ -187,7 +170,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
   AnswerInput: {
-    height: 40,
+    flexBasis: 40,
     width: "80%",
     borderWidth: 1,
     textAlign: "center",

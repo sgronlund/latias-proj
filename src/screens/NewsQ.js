@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
@@ -8,7 +14,11 @@ import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
 //Starting time
-const totalTime = 5;
+const totalTime = 20;
+
+/* We divide by this number to always get a maximum extra,
+time score of 5, regardless of what totalTime we have */
+const divideToGetMaximumFive = totalTime / 5;
 
 //Decrement timer by 0.1
 const decrementStep = 0.1;
@@ -22,12 +32,15 @@ class NewsQ extends React.Component {
     this.state = {
       questions: [],
       randomAlternatives: [],
+      doneArr: [], //Contains the users answer to every question and the color matching their answer
       question: "",
       currentQuestion: 0,
       time: totalTime,
       buttonColour1: theme.BLUE_GRADIENT,
       buttonColour2: theme.BLUE_GRADIENT,
       buttonColour3: theme.BLUE_GRADIENT,
+      disableButtons: false,
+      correctAnswers: 0,
     };
   }
 
@@ -59,12 +72,14 @@ class NewsQ extends React.Component {
     the timeout has completed (await doesn't help). Therefore, we need 
     to restart the timer inside of the setTimeout function, else the 
     timer is started 10 times. */
-    if (this.state.time < 0) {
+    if (this.state.time.toFixed(1) <= 0) {
+      this.setState({ disableButtons: true });
       this.checkAnswer();
       clearInterval(this.clockCall);
       setTimeout(() => {
         this.nextQuestion();
         this.startTimer();
+        this.setState({ disableButtons: false });
       }, delayNewQuestion);
       return;
     }
@@ -83,7 +98,7 @@ class NewsQ extends React.Component {
       this.setState({ questions: questions });
       this.nextQuestion();
     });
-    Socket.on("getQuestionFailure", () => {
+    Socket.on("getQuestionsFailure", () => {
       Socket.off("getQuestionsSuccess");
       alert("Could not retrieve questions!");
     });
@@ -92,19 +107,35 @@ class NewsQ extends React.Component {
   /**
    * @function
    * @summary shuffles answers from an array
-   * @param {[{String}]} unshuffledAnswers array containing all answers in order, with the correct answer as the last element
+   * @param {[{String}]} randomAlternatives array containing all answers in order, with the correct answer as the last element
    * to be shuffled
    * @returns {[{String}]} new array with shuffled answers
    */
-  shuffleAnswers(unshuffledAnswers) {
+  shuffleAnswers(randomAlternatives) {
     var answers = [];
-    var startLength = tmpAnswers.length;
+    var startLength = randomAlternatives.length;
     for (var i = 0; i < startLength; i++) {
-      var n = Math.floor(Math.random() * tmpAnswers.length);
-      var randomAlternative = tmpAnswers.splice(n, 1)[0];
+      var n = Math.floor(Math.random() * randomAlternatives.length);
+      var randomAlternative = randomAlternatives.splice(n, 1)[0];
       answers.push(randomAlternative);
     }
     return answers;
+  }
+
+  /**
+   * @summary Calculates total score for users answers
+   * @returns {Integer} total score
+   */
+  calculateScoreTotal() {
+    var totalScore = 0;
+    for (const question of this.state.doneArr) {
+      if (question.answerColor === theme.GREEN_GRADIENT) {
+        //5 + (0 to 5)
+        totalScore +=
+          5 + parseFloat(question.timeLeft) / divideToGetMaximumFive;
+      }
+    }
+    return Math.floor(totalScore);
   }
 
   /**
@@ -116,14 +147,12 @@ class NewsQ extends React.Component {
     var currentQuestion = this.state.currentQuestion;
     var questions = this.state.questions;
 
-    var tmpAnswers = [
+    //Shuffle alternatives
+    var answers = this.shuffleAnswers([
       questions[currentQuestion]?.wrong1,
       questions[currentQuestion]?.wrong2,
       questions[currentQuestion]?.correct,
-    ];
-
-    //Shuffle alternatives
-    var answers = this.shuffleAnswers(tmpAnswers);
+    ]);
 
     //Update alternatives and question
     this.setState({
@@ -138,8 +167,14 @@ class NewsQ extends React.Component {
 
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
-      //TODO: Sum score and add to database
-      this.props.navigation.navigate("GameScreen");
+      var totalScore = this.calculateScoreTotal();
+      Socket.emit("submitAnswers", this.state.correctAnswers);
+      // Navigate to the "victory" screen with the amount of correct answers aswell as an object of how the user did in the quizz
+      this.props.navigation.navigate("NewsQDone", {
+        numCorrect: this.state.correctAnswers,
+        completeGame: this.state.doneArr,
+        totalScore: totalScore,
+      });
     }
   };
 
@@ -152,40 +187,61 @@ class NewsQ extends React.Component {
    */
   checkAnswer = async (answer, buttonNumber) => {
     let correct = false;
+    var currentQuestion = this.state.currentQuestion - 1;
+    var answerTime = this.state.time.toFixed(2);
+    var newStateArr = this.state.doneArr.slice();
     if (!answer) {
       this.setState({
         buttonColour1: theme.ORANGE_GRADIENT,
         buttonColour2: theme.ORANGE_GRADIENT,
         buttonColour3: theme.ORANGE_GRADIENT,
       });
+      newStateArr.push({ answerColor: theme.ORANGE_GRADIENT, timeLeft: "-" });
+      this.setState({ doneArr: newStateArr });
       return correct;
     }
 
-    var currentQuestion = this.state.currentQuestion - 1;
     if (this.state.questions[currentQuestion].correct === answer) {
+      var newScore = this.state.correctAnswers + 1;
+      this.setState({ correctAnswers: newScore });
       correct = true;
     }
 
+    //Store the color associated with the answer and the time it took for the user to answer.
+    const color = correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT;
+    newStateArr.push({ answerColor: color, timeLeft: answerTime });
+    this.setState({ doneArr: newStateArr });
+
     //No button number means the user has submitted no answer
-    switch (buttonNumber) {
-      case 1:
-        this.setState({
-          buttonColour1: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
-        });
-        break;
-      case 2:
-        this.setState({
-          buttonColour2: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
-        });
-        break;
-      case 3:
-        this.setState({
-          buttonColour3: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
-        });
-        break;
+    if (buttonNumber === 1) {
+      this.setState({
+        buttonColour1: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
+      });
+    } else if (buttonNumber === 2) {
+      this.setState({
+        buttonColour2: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
+      });
+    } else if (buttonNumber === 3) {
+      this.setState({
+        buttonColour3: correct ? theme.GREEN_GRADIENT : theme.RED_GRADIENT,
+      });
     }
     return correct;
   };
+
+  /**
+   * @function
+   * @summary loads the next question with a time delay
+   */
+  loadNewQuestionsDelayed() {
+    clearInterval(this.clockCall);
+    this.setState({ disableButtons: true });
+    setTimeout(() => {
+      this.nextQuestion();
+      this.startTimer();
+      this.setState({ disableButtons: false });
+    }, delayNewQuestion);
+  }
 
   render() {
     if (this.state.currentQuestion === this.state.questions.length + 1)
@@ -194,80 +250,71 @@ class NewsQ extends React.Component {
       return (
         <SafeAreaView style={styleSheets.MainContainer}>
           <QuestionButton />
-          <Text
-            style={styles.numberQ}
-          >{`${this.state.currentQuestion}/${this.state.questions.length}`}</Text>
-          <LinearGradient
-            colors={theme.PINK_GRADIENT}
-            style={styles.button_pink}
-          >
-            <Text style={styles.button_pink}>{this.state.question}</Text>
+          <View style={styles.NumberQContainer}>
+            <Text style={styles.numberQ}>
+              {`${this.state.currentQuestion}/${this.state.questions.length}`}
+            </Text>
+          </View>
+          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Question}>
+            <Text style={styles.ButtonText}>{this.state.question}</Text>
           </LinearGradient>
-          <LinearGradient
-            colors={this.state.buttonColour1}
-            style={styles.button_blue}
-          >
+          <View style={styles.AlternativeContainer}>
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[0], 1);
-                clearInterval(this.clockCall);
-                setTimeout(() => {
-                  this.nextQuestion();
-                  this.startTimer();
-                }, delayNewQuestion);
+                this.loadNewQuestionsDelayed();
               }}
+              disabled={this.state.disableButtons}
+              style={styles.Button}
             >
-              <Text style={styles.button_blue}>
-                {this.state.randomAlternatives[0]}
-              </Text>
+              <LinearGradient
+                colors={this.state.buttonColour1}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>
+                  {this.state.randomAlternatives[0]}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
-          </LinearGradient>
 
-          <LinearGradient
-            colors={this.state.buttonColour2}
-            style={styles.button_blue}
-          >
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[1], 2);
-                clearInterval(this.clockCall);
-                setTimeout(() => {
-                  this.nextQuestion();
-                  this.startTimer();
-                }, delayNewQuestion);
+                this.loadNewQuestionsDelayed();
               }}
+              disabled={this.state.disableButtons}
+              style={styles.Button}
             >
-              <Text style={styles.button_blue}>
-                {this.state.randomAlternatives[1]}
-              </Text>
+              <LinearGradient
+                colors={this.state.buttonColour2}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>
+                  {this.state.randomAlternatives[1]}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
-          </LinearGradient>
 
-          <LinearGradient
-            colors={this.state.buttonColour3}
-            style={styles.button_blue}
-          >
             <TouchableOpacity
               onPress={async () => {
                 this.checkAnswer(this.state.randomAlternatives[2], 3);
-                clearInterval(this.clockCall);
-                setTimeout(() => {
-                  this.nextQuestion();
-                  this.startTimer();
-                }, delayNewQuestion);
+                this.loadNewQuestionsDelayed();
               }}
+              disabled={this.state.disableButtons}
+              style={styles.Button}
             >
-              <Text style={styles.button_blue}>
-                {this.state.randomAlternatives[2]}
-              </Text>
+              <LinearGradient
+                colors={this.state.buttonColour3}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>
+                  {this.state.randomAlternatives[2]}
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
-          </LinearGradient>
+          </View>
           <Text style={styles.timerText}>
-            {
-              //Absolute value because 0.0 is shown as -0.0, probably
-              //because it is actually something like -0.000000000001
-              Math.abs(this.state.time).toFixed(1)
-            }
+            {Math.abs(this.state.time).toFixed(1)}
           </Text>
         </SafeAreaView>
       );
@@ -275,30 +322,44 @@ class NewsQ extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  button_pink: {
-    fontSize: 23,
-    color: "#FFFFFF",
-    textAlign: "center",
+  AlternativeContainer: {
+    height: "40%",
     width: "95%",
-    margin: theme.MARGIN_MEDIUM,
-    padding: 27,
+    alignItems: "center",
+  },
+  Gradient: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
   },
-  button_blue: {
-    fontSize: 22,
+  ButtonText: {
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#FFFFFF",
-    textAlign: "center",
+  },
+  Button: {
+    width: "100%",
+    height: "30%",
+    marginTop: theme.MARGIN_SMALL,
+  },
+  Question: {
     width: "95%",
-    margin: theme.MARGIN_SMALL,
-    padding: 12,
+    height: "20%",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
+    marginTop: theme.MARGIN_SMALL,
+  },
+  NumberQContainer: {
+    height: "10%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   numberQ: {
     color: "#FFFFFF",
-    left: 150,
-    marginTop: 30,
-    marginBottom: -5,
-    fontSize: 20,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },
   timerText: {
     fontSize: theme.FONT_SIZE_LARGE,
