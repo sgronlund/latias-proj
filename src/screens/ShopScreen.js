@@ -30,12 +30,10 @@ class PriceButton extends React.Component {
   }
 
   updateBalance = (price) => {
-    console.log("bought")
-    Socket.on("returnUpdatedStateInShop", () => {
-      Socket.off("returnUpdatedStateInShop")
+    Socket.emit("changeBalance", Socket.id, price);
+    Socket.on("returnUpdateSuccess", () => {
       this.setState({showCode: true, modalVisible: false})
     });
-    Socket.emit("changeBalance", Socket.id, price);
   };
 
   setModalVisible = (visible) => {
@@ -43,12 +41,10 @@ class PriceButton extends React.Component {
   };
 
   render() {
-    const { modalVisible, showCode } = this.state;
     const width = Dimensions.get("window").width / 2;
 
     return (
       <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
-        
         <View
           style={{
             flexDirection: "row",
@@ -63,7 +59,7 @@ class PriceButton extends React.Component {
             <Modal
               animationType="slide"
               transparent={true}
-              visible={modalVisible}
+              visible={this.state.modalVisible}
               onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
               }}
@@ -78,6 +74,7 @@ class PriceButton extends React.Component {
                     style={[styles.button, styles.buttonBuy]}
                     onPress={() => {
                       this.updateBalance(this.props.price);
+                      this.setModalVisible(false);
                     }}
                   >
                     <Text style={styles.textStyle}>BUY</Text>
@@ -94,7 +91,7 @@ class PriceButton extends React.Component {
             <Modal
               animationType="slide"
               transparent={true}
-              visible={showCode}
+              visible={this.state.showCode}
               onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
               }}

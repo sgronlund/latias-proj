@@ -148,7 +148,6 @@ export default class App extends React.Component {
 
   async loadLocalFonts() {
     await loadAsync({
-      ///FIXME: Doesn't load succesfully when starting with Expo
       Ramaraja: require("./assets/fonts/Ramaraja.ttf"),
       "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });

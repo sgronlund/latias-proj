@@ -21,7 +21,6 @@ class Shop extends React.Component {
     });
 
     Socket.on("returnUpdateSuccess", (balance) => {
-      Socket.off("returnUpdateSuccess");
       console.log("returnUpdateSuccess", balance);
       this.setState({ balance: parseInt(balance) });
       Socket.emit("updatedStateInShop")
