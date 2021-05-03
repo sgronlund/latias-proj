@@ -7,6 +7,7 @@ import {
   View,
   Modal,
   Pressable,
+  Dimensions,
 } from "react-native";
 import theme from "../styles/themes";
 import Shop from "./components/Shop";
@@ -15,6 +16,7 @@ import styleSheets from "../styles/StyleSheets";
 import { LinearGradient } from "expo-linear-gradient";
 import { Socket } from "../misc/Socket";
 import themes from "../styles/themes";
+import QRCode from "react-native-qrcode-svg";
 
 const prices = [
   { text: "Liten latte OKQ8", price: 100 },
@@ -24,10 +26,15 @@ const prices = [
 class PriceButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { modalVisible: false };
+    this.state = { modalVisible: false, showCode: false};
   }
 
   updateBalance = (price) => {
+    console.log("bought")
+    Socket.on("returnUpdatedStateInShop", () => {
+      Socket.off("returnUpdatedStateInShop")
+      this.setState({showCode: true, modalVisible: false})
+    });
     Socket.emit("changeBalance", Socket.id, price);
   };
 
@@ -35,14 +42,13 @@ class PriceButton extends React.Component {
     this.setState({ modalVisible: visible });
   };
 
-  componentDidMount() {
-    Socket.on("returnUpdateSuccess", () => {});
-  }
-
   render() {
-    const { modalVisible } = this.state;
+    const { modalVisible, showCode } = this.state;
+    const width = Dimensions.get("window").width / 2;
+
     return (
       <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
+        
         <View
           style={{
             flexDirection: "row",
@@ -60,19 +66,17 @@ class PriceButton extends React.Component {
               visible={modalVisible}
               onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
-                //this.setModalVisible(!modalVisible);
               }}
             >
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                   <Text style={styles.modalText}>
-                    Do you want to make this purchace? (The code will have to be
+                    Do you want to make this purchase? (The code will have to be
                     used now)
                   </Text>
                   <Pressable
                     style={[styles.button, styles.buttonBuy]}
                     onPress={() => {
-                      this.setModalVisible(false);
                       this.updateBalance(this.props.price);
                     }}
                   >
@@ -85,6 +89,27 @@ class PriceButton extends React.Component {
                     <Text style={styles.textStyle}>Cancel</Text>
                   </Pressable>
                 </View>
+              </View>
+            </Modal>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={showCode}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+              }}
+            >
+              <View style={styles.centeredView}>
+                <TouchableOpacity onPress= {() => {this.setState({showCode: false})}}>
+                <View style={styles.modalView}>
+                  <QRCode
+                    size={width}
+                    logoSize={45}
+                    value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    logoBackgroundColor='transparent'
+                  />
+                </View>
+                </TouchableOpacity>
               </View>
             </Modal>
             <TouchableOpacity
@@ -109,14 +134,13 @@ class PriceButton extends React.Component {
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
-    //this.updateBalance = this.updateBalance.bind(this);
   }
 
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
+        <Shop/>
         <QuestionButton />
-        <Shop />
         <View style={styles.midsquare}>
           <Text style={styles.header}>─────── PRICE SHOP ───────</Text>
           <View style={{ width: "100%" }}>
@@ -134,7 +158,10 @@ export default class ShopScreen extends React.Component {
   }
 }
 
+
+
 const styles = StyleSheet.create({
+  
   midsquare: {
     backgroundColor: theme.DARK_PURPLE,
     marginTop: "10%",
@@ -149,6 +176,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: theme.LIGHT_BLUE,
     margin: "10%",
+    fontSize: theme.FONT_SIZE_TINY
   },
   button_blue: {
     margin: theme.MARGIN_MEDIUM,
@@ -157,13 +185,10 @@ const styles = StyleSheet.create({
     shadowOffset: theme.SHADOW_OFFSET,
     shadowOpacity: theme.SHADOW_OPACITY,
     padding: "7%",
-    //paddingHorizontal: "15%",
-    // flex: 1,
     flexDirection: "row",
-    //justifyContent: "space-between",
   },
   button_blue_text: {
-    fontSize: 25,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
@@ -171,42 +196,32 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_SMALL,
     shadowOffset: theme.SHADOW_OFFSET,
     shadowOpacity: theme.SHADOW_OPACITY,
-    // marginLeft: "70%",
-    width: "140%",
+    width: "100%",
   },
   button_pink_text: {
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
-    fontSize: 25,
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     textAlign: "center",
-    //  padding: "10%",
+    padding: theme.PADDING_MEDIUM,
   },
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    marginTop: theme.MARGIN_SMALL,
   },
   modalView: {
-    margin: 20,
+    margin: theme.MARGIN_SMALL,
     backgroundColor: themes.PURPLE_LIGHT,
-    borderRadius: 20,
-    padding: 35,
+    borderRadius: theme.ROUNDING_SMALL,
+    padding: theme.PADDING_LARGE,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   button: {
-    borderRadius: 20,
-    padding: 15,
-    elevation: 2,
-    margin: 8,
+    borderRadius: theme.ROUNDING_EXTRA_SMALL,
+    padding: theme.PADDING_MEDIUM,
+    margin: theme.MARGIN_TINY,
   },
   buttonClose: {
     backgroundColor: "red",
@@ -218,11 +233,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
+    fontSize: theme.FONT_SIZE_TINY,
   },
   modalText: {
-    marginBottom: 15,
+    marginBottom: theme.MARGIN_TINY,
     textAlign: "center",
-    fontSize: 17,
+    fontSize: theme.FONT_SIZE_TINY,
     color: "white",
     fontWeight: "bold",
   },

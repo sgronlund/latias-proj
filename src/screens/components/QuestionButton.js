@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
   Container: {
     position: "absolute",
     alignSelf: "flex-end",
-    margin: theme.MARGIN_MEDIUM,
+    margin: theme.MARGIN_SMALL,
+    padding: theme.PADDING_SMALL,
     bottom: 0,
   },
   Circle: {

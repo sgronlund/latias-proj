@@ -21,8 +21,10 @@ class Shop extends React.Component {
     });
 
     Socket.on("returnUpdateSuccess", (balance) => {
+      Socket.off("returnUpdateSuccess");
       console.log("returnUpdateSuccess", balance);
       this.setState({ balance: parseInt(balance) });
+      Socket.emit("updatedStateInShop")
     });
 
     //felhantering
@@ -33,13 +35,19 @@ class Shop extends React.Component {
     Socket.emit("getBalance", Socket.id);
   }
 
+  componentWillUnmount() {
+    Socket.off("returnUpdateSuccess");
+    Socket.off("returnBalanceSuccess")
+    Socket.off("returnUpdateFailure")
+  }
+
   render() {
     return (
       <TouchableOpacity
         style={styles.Container}
         onPress={() => this.props.navigation.navigate("ShopScreen")}
       >
-        <Text style={styles.Text}>{this.state.balance} $</Text>
+        <Text style={styles.Text}>{this.state.balance} €</Text>
       </TouchableOpacity>
     );
   }
