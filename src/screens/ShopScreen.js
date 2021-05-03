@@ -14,6 +14,7 @@ import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { LinearGradient } from "expo-linear-gradient";
 import { Socket } from "../misc/Socket";
+import themes from "../styles/themes";
 
 const prices = [
   { text: "Liten latte OKQ8", price: 100 },
@@ -25,13 +26,18 @@ class PriceButton extends React.Component {
     super(props);
     this.state = { modalVisible: false };
   }
+
+  updateBalance = (price) => {
+    Socket.emit("changeBalance", Socket.id, price);
+  };
+
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   };
-  updateBalance = (price) => {
+
+  componentDidMount() {
     Socket.on("returnUpdateSuccess", () => {});
-    Socket.emit("changeBalance", Socket.id, price);
-  };
+  }
 
   render() {
     const { modalVisible } = this.state;
@@ -51,7 +57,7 @@ class PriceButton extends React.Component {
             <Modal
               animationType="slide"
               transparent={true}
-              visible={false}
+              visible={modalVisible}
               onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
                 //this.setModalVisible(!modalVisible);
@@ -60,29 +66,30 @@ class PriceButton extends React.Component {
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                   <Text style={styles.modalText}>
-                    Do you want to make this purchace
+                    Do you want to make this purchace? (The code will have to be
+                    used now)
                   </Text>
+                  <Pressable
+                    style={[styles.button, styles.buttonBuy]}
+                    onPress={() => {
+                      this.setModalVisible(false);
+                      this.updateBalance(this.props.price);
+                    }}
+                  >
+                    <Text style={styles.textStyle}>BUY</Text>
+                  </Pressable>
                   <Pressable
                     style={[styles.button, styles.buttonClose]}
                     onPress={() => this.setModalVisible(false)}
                   >
                     <Text style={styles.textStyle}>Cancel</Text>
                   </Pressable>
-                  <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => {
-                      this.setModalVisible(false),
-                        this.updateBalance(this.props.price);
-                    }}
-                  >
-                    <Text style={styles.textStyle}>BUY</Text>
-                  </Pressable>
                 </View>
               </View>
             </Modal>
             <TouchableOpacity
               onPress={() => {
-                this.updateBalance(this.props.price);
+                this.setModalVisible(true);
               }}
             >
               <LinearGradient
@@ -111,7 +118,7 @@ export default class ShopScreen extends React.Component {
         <QuestionButton />
         <Shop />
         <View style={styles.midsquare}>
-          <Text style={styles.header}>──────── PRICE SHOP ────────</Text>
+          <Text style={styles.header}>─────── PRICE SHOP ───────</Text>
           <View style={{ width: "100%" }}>
             {prices.map((price, index) => (
               <PriceButton
@@ -156,7 +163,7 @@ const styles = StyleSheet.create({
     //justifyContent: "space-between",
   },
   button_blue_text: {
-    fontSize: "120%",
+    fontSize: 25,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
@@ -170,7 +177,7 @@ const styles = StyleSheet.create({
   button_pink_text: {
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
-    fontSize: "120%",
+    fontSize: 25,
     textAlign: "center",
     //  padding: "10%",
   },
@@ -182,7 +189,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: themes.PURPLE_LIGHT,
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -197,14 +204,15 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20,
-    padding: 10,
+    padding: 15,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
+    margin: 8,
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "red",
+  },
+  buttonBuy: {
+    backgroundColor: themes.PINK,
   },
   textStyle: {
     color: "white",
@@ -214,5 +222,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+    fontSize: 17,
+    color: "white",
+    fontWeight: "bold",
   },
 });

@@ -72,6 +72,7 @@ const navigator = createStackNavigator(
       screen: Settings,
       navigationOptions: {
         title: "SETTINGS",
+        headerRight: () => null,
       },
     },
     ShopScreen: {
@@ -119,6 +120,7 @@ const navigator = createStackNavigator(
       headerTitleStyle: {
         fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
+        textAlign: "center",
       },
       headerRight: () => (
         <TouchableOpacity

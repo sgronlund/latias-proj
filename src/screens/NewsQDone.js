@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     padding: theme.PADDING_MEDIUM,
   },
   textContainer: {
-    alignText: "center",
+    textAlign: "center",
     alignItems: "center",
     margin: theme.MARGIN_SMALL,
   },
