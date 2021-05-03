@@ -141,7 +141,6 @@ export default class ShopScreen extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <Shop />
-        <QuestionButton />
         <View style={styles.midsquare}>
           <Text style={styles.header}>─────── PRICE SHOP ───────</Text>
           <View style={{ width: "100%" }}>

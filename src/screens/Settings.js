@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import QuestionButton from "./components/QuestionButton.js";
-import Wallet from "./components/Shop.js";
+import Shop from "./components/Shop.js";
 import theme from "../styles/themes.js";
 import styleSheets from "../styles/StyleSheets.js";
 import LoginContainer from "./components/LoginContainer";
@@ -28,14 +28,6 @@ class Settings extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton />
-        <Wallet />
-        {this.state.loggedIn ? (
-          <Text style={styles.NameText}>
-            You are logged in as: {this.state.username}
-          </Text>
-        ) : null}
-
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>Sound Off</Text>
         </TouchableOpacity>

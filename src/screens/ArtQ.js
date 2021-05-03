@@ -51,16 +51,18 @@ class ArtQ extends React.Component {
    * server to get the questions for the current week.
    */
   getQuestions = () => {
-    Socket.emit("getQuestionsArticle", currentWeekNumber());
     Socket.on("getQuestionsArticleSuccess", (questionsAnswers) => {
       Socket.off("getQuestionsArticleSuccess");
+      Socket.off("getQuestionsArticleFailure");
       this.initializeQuestions(questionsAnswers);
     });
     Socket.on("getQuestionsArticleFailure", () => {
+      Socket.off("getQuestionsArticleFailure");
       Socket.off("getQuestionsArticleSuccess");
       this.props.navigation.goBack();
       alert("Could not retrieve questions!");
     });
+    Socket.emit("getQuestionsArticle", currentWeekNumber());
   };
 
   /**
@@ -230,7 +232,6 @@ class ArtQ extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton />
         <View style={styles.PlayerCountContainer}>
           <Text style={styles.Text}>
             {"Player count: " + this.state.playerCount}

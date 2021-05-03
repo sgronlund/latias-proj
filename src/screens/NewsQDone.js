@@ -63,9 +63,6 @@ export default class NewsQDone extends React.Component {
     ));
     return (
       <SafeAreaView style={[styleSheets.MainContainer]}>
-        <QuestionButton />
-        <Shop />
-
         <View style={styles.textContainer}>
           <Text style={styles.greetUser}> Well done!</Text>
           <Text style={styles.greetUser}>

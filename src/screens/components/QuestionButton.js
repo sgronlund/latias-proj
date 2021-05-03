@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   TextSmall: {
     fontSize: theme.FONT_SIZE_SMALL,
     color: "white",
-    flexWrap: 1,
+    flexWrap: "wrap",
     marginBottom: theme.MARGIN_EXTRA_TINY
   },
   Overlay: {

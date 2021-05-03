@@ -38,21 +38,21 @@ class Scoreboard extends React.Component {
       <DataTable.Row key={index}>
         <DataTable.Cell
           numeric
-          style={{ alignItems: "center", justifyContent: "center" }}
+          style={{ alignItems: "center", justifyContent: "center", flexGrow: 3 }}
         >
           <Text style={styles.font}>{index+1}</Text>
         </DataTable.Cell>
         <DataTable.Cell
-          style={{ alignItems: "center", justifyContent: "center" }}
+          style={{ alignItems: "center", justifyContent: "center", flexGrow: 3 }}
         >
           <Text style={styles.font}>{user.username}</Text>
         </DataTable.Cell>
         <DataTable.Cell
           numeric
-          style={{ alignItems: "center", justifyContent: "center" }}
+          style={{ alignItems: "center", justifyContent: "center" , flexGrow: 3}}
         >
           <Text style={styles.font}>
-            {type === "newsq" ? Math.floor(user.score).toString() + "p" : Math.floor(user.scoreArticle).toString()}
+            {type === "newsq" ? Math.floor(user.score).toString() + "p" : Math.floor(user.scoreArticle).toString() + "p"}
           </Text>
         </DataTable.Cell>
       </DataTable.Row>
@@ -99,10 +99,9 @@ const styles = StyleSheet.create({
     color: "white"
   },
   font: {
-    fontSize: themes.FONT_SIZE_TINY,
     color: "white",
     fontFamily: themes.DEFAULT_FONT,
-    fontSize: themes.FONT_SIZE_EXTRA_SMALL,
+    fontSize: themes.FONT_SIZE_TINY,
   },
   cell: {
     alignItems: "center", 

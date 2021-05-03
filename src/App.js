@@ -51,6 +51,7 @@ const navigator = createStackNavigator(
       navigationOptions: {
         title: "THIS WEEKS NEWS QUIZ",
         headerLeft: () => null,
+        headerRight: () => null,
       },
     },
     GameScreen: {
@@ -94,6 +95,7 @@ const navigator = createStackNavigator(
       screen: ArtQ,
       navigationOptions: {
         title: "ARTICLE QUIZ",
+        headerRight: () => null,
       },
     },
     NewsQReady: NewsQReady,
@@ -106,7 +108,8 @@ const navigator = createStackNavigator(
     DeveloperNewsQ: {
       screen: DeveloperNewsQ,
       navigationOptions: {
-        title: "NEWS QUIZ"
+        title: "NEWS QUIZ",
+        
       }
     },
     DeveloperArtQ: {
@@ -126,6 +129,7 @@ const navigator = createStackNavigator(
       navigationOptions: {
         title: "SCORE",
         headerLeft: () => null,
+        headerRight: () => null,
       },
     },
   },
