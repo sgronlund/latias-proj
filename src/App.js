@@ -15,6 +15,9 @@ import ShopScreen from "./screens/ShopScreen";
 import VerifyReset from "./screens/VerifyReset";
 import UpdatePassword from "./screens/updatePassword";
 import Developer from "./screens/Developer";
+import DeveloperNewsQ from "./screens/DeveloperNewsQ";
+import DeveloperArtQ from "./screens/DeveloperArtQ"
+import DeveloperQuestions from "./screens/DeveloperQuestions";
 import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
 import { TouchableOpacity } from "react-native";
@@ -23,6 +26,7 @@ import { Ionicons } from '@expo/vector-icons';
 import UserPolicy from "./screens/UserPolicy";
 import Scoreboard from "./screens/components/Scoreboard";
 import NewsQReady from "./screens/NewsQReady";
+import NewsQDone from "./screens/NewsQDone";
 
 
 /**
@@ -99,6 +103,31 @@ const navigator = createStackNavigator(
     VerifyReset: VerifyReset,
     UpdatePassword: UpdatePassword,
     Developer: Developer,
+    DeveloperNewsQ: {
+      screen: DeveloperNewsQ,
+      navigationOptions: {
+        title: "NEWS QUIZ"
+      }
+    },
+    DeveloperArtQ: {
+      screen: DeveloperArtQ,
+      navigationOptions: {
+        title: "ARTICLE QUIZ"
+      }
+    },
+    DeveloperQuestions: {
+      screen: DeveloperQuestions,
+      navigationOptions: {
+        title: "QUESTIONS"
+      }
+    },
+    NewsQDone: {
+      screen: NewsQDone,
+      navigationOptions: {
+        title: "SCORE",
+        headerLeft: () => null,
+      },
+    },
   },
   {
     initialRouteName: "Home",
@@ -110,7 +139,7 @@ const navigator = createStackNavigator(
         height: themes.HEIGHT
       },
       headerTitleStyle: {
-        alignSelf: "center",
+        
         fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },

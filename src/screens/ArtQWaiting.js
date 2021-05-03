@@ -109,9 +109,10 @@ global.responsive = {
 const styles = StyleSheet.create({
   Container: {
     backgroundColor: "#081842",
-    height: "40%",
+    height: "50%",
     width: "80%",
     alignItems: "center",
+    justifyContent: "center",
     padding: theme.PADDING_MEDIUM,
     borderRadius: theme.ROUNDING_SMALL,
     margin: theme.MARGIN_LARGE,
@@ -145,11 +146,7 @@ const styles = StyleSheet.create({
   ReadyButton: {
     width: responsive.width,
     height: responsive.height,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
     borderRadius: responsive.borderRadius,
-    margin: 30,
   },
   TextContainer: {
     alignItems: "center",
@@ -160,6 +157,8 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_TINY,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
+    top: "5%",
+    position: "absolute",
   },
   timerText: {
     fontSize: theme.FONT_SIZE_MEDIUM,
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
   },
   Button: {
     width: "90%",
-    height: "20%",
+    height: "15%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
