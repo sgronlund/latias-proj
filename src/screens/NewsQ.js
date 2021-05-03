@@ -146,6 +146,8 @@ class NewsQ extends React.Component {
 
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
+      console.log(Socket._callbacks);
+
       Socket.emit("submitAnswers", this.state.correctAnswers);
       this.props.navigation.navigate("GameScreen");
     }

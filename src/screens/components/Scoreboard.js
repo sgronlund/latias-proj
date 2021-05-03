@@ -21,31 +21,49 @@ class Scoreboard extends React.Component {
   }
 
   generateScoreboard = () => {
-    Socket.on("updatedLB", (leaderboard) => {
+    Socket.on("updateLeaderboard", (leaderboard) => {
       this.setState({ tableData: leaderboard });
-      Socket.off("updatedLB");
+      Socket.off("updatedLeaderboard");
     });
-    Socket.emit("getLeaderboard");
+    Socket.emit("getLeaderboard", this.props.type);
   };
 
   componentDidMount() {
     this.generateScoreboard();
   }
+
   render() {
     const player1 = this.state.tableData[0];
     const player2 = this.state.tableData[1];
     const player3 = this.state.tableData[2];
+
+    const rows = this.state.tableData.map((user,index) => (
+      <DataTable.Row key={index}>
+        <DataTable.Cell
+          numeric
+          style={{ alignItems: "center", justifyContent: "center" }}
+        >
+          <Text style={styles.font}>{index+1}</Text>
+        </DataTable.Cell>
+        <DataTable.Cell
+          style={{ alignItems: "center", justifyContent: "center" }}
+        >
+          <Text style={styles.font}>{user.username}</Text>
+        </DataTable.Cell>
+        <DataTable.Cell
+          numeric
+          style={{ alignItems: "center", justifyContent: "center" }}
+        >
+          <Text style={styles.font}>
+            {Math.floor(user.score).toString() + "p"}
+          </Text>
+        </DataTable.Cell>
+      </DataTable.Row>
+      ))
+
     return (
-      <View
-        style={
-          (styles.main,
-          {
-            width: "80%",
-            alignItems: "center",
-            borderRadius: 15,
-            height: "40%",
-          })
-        }
+      <View 
+        style={(styles.main,{width: "80%",alignItems: "center",borderRadius: 15,height: "40%",})}
       >
         <DataTable>
           <LinearGradient colors={themes.BLUE_GRADIENT} style={{borderRadius: themes.ROUNDING_SMALL}}>
@@ -53,6 +71,9 @@ class Scoreboard extends React.Component {
               <Text style={styles.headerText}>Top Players</Text>
             </DataTable.Header>
 
+            {rows}
+            
+            {/* 
             <DataTable.Row>
               <DataTable.Cell
                 numeric
@@ -118,6 +139,7 @@ class Scoreboard extends React.Component {
                 </Text>
               </DataTable.Cell>
             </DataTable.Row>
+            */}
           </LinearGradient>
         </DataTable>
       </View>
