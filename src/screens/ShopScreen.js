@@ -26,13 +26,13 @@ const prices = [
 class PriceButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { modalVisible: false, showCode: false};
+    this.state = { modalVisible: false, showCode: false };
   }
 
   updateBalance = (price) => {
     Socket.emit("changeBalance", Socket.id, price);
     Socket.on("returnUpdateSuccess", () => {
-      this.setState({showCode: true, modalVisible: false})
+      this.setState({ showCode: true, modalVisible: false });
     });
   };
 
@@ -97,15 +97,19 @@ class PriceButton extends React.Component {
               }}
             >
               <View style={styles.centeredView}>
-                <TouchableOpacity onPress= {() => {this.setState({showCode: false})}}>
-                <View style={styles.modalView}>
-                  <QRCode
-                    size={width}
-                    logoSize={45}
-                    value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    logoBackgroundColor='transparent'
-                  />
-                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.setState({ showCode: false });
+                  }}
+                >
+                  <View style={styles.modalView}>
+                    <QRCode
+                      size={width}
+                      logoSize={45}
+                      value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                      logoBackgroundColor="transparent"
+                    />
+                  </View>
                 </TouchableOpacity>
               </View>
             </Modal>
@@ -136,7 +140,7 @@ export default class ShopScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Shop/>
+        <Shop />
         <QuestionButton />
         <View style={styles.midsquare}>
           <Text style={styles.header}>─────── PRICE SHOP ───────</Text>
@@ -155,10 +159,7 @@ export default class ShopScreen extends React.Component {
   }
 }
 
-
-
 const styles = StyleSheet.create({
-  
   midsquare: {
     backgroundColor: theme.DARK_PURPLE,
     marginTop: "10%",
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: theme.LIGHT_BLUE,
     margin: "10%",
-    fontSize: theme.FONT_SIZE_TINY
+    fontSize: theme.FONT_SIZE_TINY,
   },
   button_blue: {
     margin: theme.MARGIN_MEDIUM,
