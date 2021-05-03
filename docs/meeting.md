@@ -325,3 +325,27 @@ Inget att kommentera.
 ### Andra punkter
 
 Inget att kommentera.
+
+## Arbetsmöte 03/05/21
+
+### Vad gjorde vi förra veckan?
+
+* Shoppen i princip färdig
+
+* Scoreboarden för artQ färdig
+
+* Sista skärmen för newsQ
+
+### Vi tänker vi göra idag?
+
+* Skriva quizzen
+
+* Mergea in shoppen
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
