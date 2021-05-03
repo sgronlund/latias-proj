@@ -18,23 +18,23 @@ export default class NewsQDone extends React.Component {
       numCorrect: this.props.navigation.state.params.numCorrect,
       completeGame: this.props.navigation.state.params.completeGame,
       totalScore: this.props.navigation.state.params.totalScore,
-      time: secondsUntilRedirect
+      time: secondsUntilRedirect,
     };
   }
 
   componentDidMount() {
     setInterval(() => {
       this.decrementTime();
-    }, 100)
+    }, 100);
     setTimeout(() => {
       this.props.navigation.navigate("GameScreen");
-    }, secondsUntilRedirect * 1000)
+    }, secondsUntilRedirect * 1000);
   }
 
   /**
    * @summary decrement the time state
    */
-   decrementTime() {
+  decrementTime() {
     this.setState({ time: this.state.time - decrementStep });
   }
 

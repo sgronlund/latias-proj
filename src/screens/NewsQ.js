@@ -175,10 +175,10 @@ class NewsQ extends React.Component {
    * @function
    * @summary submits the score to the database
    */
-   submitScore() {
+  submitScore() {
     var totalScore = this.calculateScoreTotal();
     Socket.emit("submitAnswers", totalScore);
-    // Navigate to the "victory" screen with the amount of correct 
+    // Navigate to the "victory" screen with the amount of correct
     // answers as well as an object of how the user did in the quiz
     this.props.navigation.navigate("NewsQDone", {
       numCorrect: this.state.correctAnswers,
