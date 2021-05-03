@@ -91,7 +91,7 @@ class ArtQWaiting extends React.Component {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-        <Scoreboard type="artq"/>
+        <Scoreboard type="artq" />
       </SafeAreaView>
     );
   }

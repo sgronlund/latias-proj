@@ -61,7 +61,7 @@ class NewsQWaiting extends React.Component {
           </TouchableOpacity>
         </View>
         <Text style={styles.TitleText}>────────────────────────</Text>
-        <Scoreboard type="newsq"/>
+        <Scoreboard type="newsq" />
       </SafeAreaView>
     );
   }
