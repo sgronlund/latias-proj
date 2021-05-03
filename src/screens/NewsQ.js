@@ -167,16 +167,25 @@ class NewsQ extends React.Component {
 
     //Reached the end of the questions
     if (currentQuestion === questions.length) {
-      var totalScore = this.calculateScoreTotal();
-      Socket.emit("submitAnswers", this.state.correctAnswers);
-      // Navigate to the "victory" screen with the amount of correct answers aswell as an object of how the user did in the quizz
-      this.props.navigation.navigate("NewsQDone", {
-        numCorrect: this.state.correctAnswers,
-        completeGame: this.state.doneArr,
-        totalScore: totalScore,
-      });
+      this.submitScore();
     }
   };
+
+  /**
+   * @function
+   * @summary submits the score to the database
+   */
+   submitScore() {
+    var totalScore = this.calculateScoreTotal();
+    Socket.emit("submitAnswers", totalScore);
+    // Navigate to the "victory" screen with the amount of correct 
+    // answers as well as an object of how the user did in the quiz
+    this.props.navigation.navigate("NewsQDone", {
+      numCorrect: this.state.correctAnswers,
+      completeGame: this.state.doneArr,
+      totalScore: totalScore,
+    });
+  }
 
   /**
    * @summary checks if a given answer is correct
