@@ -6,6 +6,11 @@ import styleSheets from "../styles/StyleSheets";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 
+const secondsUntilRedirect = 10;
+
+//Decrement timer by 0.1
+const decrementStep = 0.1;
+
 export default class NewsQDone extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +18,24 @@ export default class NewsQDone extends React.Component {
       numCorrect: this.props.navigation.state.params.numCorrect,
       completeGame: this.props.navigation.state.params.completeGame,
       totalScore: this.props.navigation.state.params.totalScore,
+      time: secondsUntilRedirect,
     };
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.decrementTime();
+    }, 100);
+    setTimeout(() => {
+      this.props.navigation.navigate("GameScreen");
+    }, secondsUntilRedirect * 1000);
+  }
+
+  /**
+   * @summary decrement the time state
+   */
+  decrementTime() {
+    this.setState({ time: this.state.time - decrementStep });
   }
 
   render() {
@@ -76,6 +98,8 @@ export default class NewsQDone extends React.Component {
             {game}
           </LinearGradient>
         </View>
+        <Text style={styles.headerText}>You will be redirected in:</Text>
+        <Text style={styles.timerText}>{this.state.time.toFixed(1)}</Text>
       </SafeAreaView>
     );
   }
@@ -139,6 +163,11 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: theme.FONT_SIZE_TINY,
+    fontFamily: theme.DEFAULT_FONT,
+    color: "#FFFFFF",
+  },
+  timerText: {
+    fontSize: theme.FONT_SIZE_LARGE,
     fontFamily: theme.DEFAULT_FONT,
     color: "#FFFFFF",
   },

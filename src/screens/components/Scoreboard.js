@@ -33,10 +33,7 @@ class Scoreboard extends React.Component {
   }
 
   render() {
-    const player1 = this.state.tableData[0];
-    const player2 = this.state.tableData[1];
-    const player3 = this.state.tableData[2];
-
+    const type = this.props.type;
     const rows = this.state.tableData.map((user,index) => (
       <DataTable.Row key={index}>
         <DataTable.Cell
@@ -55,7 +52,7 @@ class Scoreboard extends React.Component {
           style={{ alignItems: "center", justifyContent: "center" }}
         >
           <Text style={styles.font}>
-            {Math.floor(user.score).toString() + "p"}
+            {type === "newsq" ? Math.floor(user.score).toString() + "p" : Math.floor(user.scoreArticle).toString()}
           </Text>
         </DataTable.Cell>
       </DataTable.Row>
@@ -71,7 +68,7 @@ class Scoreboard extends React.Component {
               <Text style={styles.headerText}>Top Players</Text>
             </DataTable.Header>
 
-            {rows}
+            {rows.splice(0, 3)}
             
           </LinearGradient>
         </DataTable>

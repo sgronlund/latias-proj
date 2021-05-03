@@ -13,6 +13,8 @@ import QuestionButton from "./components/QuestionButton";
 import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
+const scoreMultiplier = 75;
+
 class ArtQ extends React.Component {
   constructor(props) {
     super(props);
@@ -221,12 +223,9 @@ class ArtQ extends React.Component {
         numberOfCorrectAnswers++;
       }
     }
-    //TODO: Replace this with adding score to the database
-    alert(numberOfCorrectAnswers + "/" + correctAnswers.length + " correct!");
-
-    /* We should add this line back in the future when we 
-    replace the alert with score added to the database */
-    //this.props.navigation.navigate("GameScreen");
+    var score = numberOfCorrectAnswers * scoreMultiplier;
+    Socket.emit("submitAnswersArticle", score);
+    this.props.navigation.navigate("GameScreen");
   }
 
   render() {

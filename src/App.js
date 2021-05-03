@@ -139,7 +139,7 @@ const navigator = createStackNavigator(
         height: themes.HEIGHT
       },
       headerTitleStyle: {
-        
+        textAlign: "center",  
         fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },
