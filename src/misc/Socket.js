@@ -33,22 +33,22 @@ Socket.on("serverPublic", (server_public, g, p) => {
  */
 let initLoginSockets = (navigation) => {
   Socket.on("blankDetails", () => {
-    alert("You need to enter all fields!");
+    alert("Du har lämnat blanka fält!");
   });
   Socket.on("loginRoot", () => {
     navigation.navigate("Developer");
   });
   Socket.on("alreadyLoggedIn", () => {
-    alert("You are already logged in on another device!");
+    alert("Du är redan inloggad på en annan enhet!");
   });
   Socket.on("loginSuccess", () => {
     navigation.navigate("GameScreen", { headerLeft: () => null });
   });
   Socket.on("invalidUserDetails", () => {
-    alert("Invalid details!");
+    alert("Felaktiga inloggningsuppgifter!");
   });
   Socket.on("loginFailure", () => {
-    alert("Login failed!");
+    alert("Inlogg misslyckades!");
   });
 };
 
@@ -68,7 +68,7 @@ let initResetSockets = (navigation, email) => {
   });
   Socket.on("emailFailure", () => {
     Socket.off("emailFailure");
-    alert("Invalid email!");
+    alert("Felaktig mail!");
   });
 };
 
@@ -85,7 +85,7 @@ let initSignupSockets = (navigation) => {
   });
   Socket.on("registerFailure", () => {
     Socket.off("registerFailure");
-    alert("Username or email busy!");
+    alert("Användarnamnet eller mail-addressen är upptagen!");
   });
 };
 
@@ -99,7 +99,7 @@ let initSignupSockets = (navigation) => {
 let initVerifyResetSockets = (navigation, email) => {
   Socket.on("codeFailure", () => {
     Socket.off("codeFailure");
-    alert("Wrong code!");
+    alert("Fel kod!");
   });
   Socket.on("codeSuccess", () => {
     Socket.off("codeSuccess");
@@ -115,11 +115,11 @@ let initVerifyResetSockets = (navigation, email) => {
 let initDeveloperNewsQSockets = () => {
   Socket.on("addQuestionSuccess", () => {
     Socket.off("addQuestionSuccess");
-    alert("Question added!");
+    alert("Fråga tillagd!");
   });
   Socket.on("addQuestionFailure", () => {
     Socket.off("addQuestionFailure");
-    alert("Invalid input!");
+    alert("Det gick ej att lägga till frågan!");
   });
 };
 
@@ -131,11 +131,11 @@ let initDeveloperNewsQSockets = () => {
 let initDeveloperArtQSockets = () => {
   Socket.on("addQuestionArticleSuccess", () => {
     Socket.off("addQuestionArticleSuccess");
-    alert("Question added!");
+    alert("Fråga tillagd!");
   });
   Socket.on("addQuestionArticleFailure", () => {
     Socket.off("addQuestionArticleFailure");
-    alert("Invalid input!");
+    alert("Det gick ej att lägga till frågan!");
   });
 };
 
@@ -152,7 +152,7 @@ let initLogoutSockets = (navigation) => {
   });
   Socket.on("logoutFailure", () => {
     Socket.off("logoutFailure");
-    alert("You are not logged in!");
+    alert("Du är ej inloggad!");
   });
 };
 

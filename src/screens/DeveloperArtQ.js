@@ -106,7 +106,7 @@ class DeveloperArtQ extends React.Component {
    */
   resetQuestions = () => {
     Socket.emit("resetQuestionsArticle", currentWeekNumber());
-    alert("Questions has been reset!");
+    alert("Frågorna har återställts!");
   };
 
   componenWillUnmount() {

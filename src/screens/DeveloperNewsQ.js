@@ -99,7 +99,7 @@ class DeveloperNewsQ extends React.Component {
    */
   resetQuestions = () => {
     Socket.emit("resetQuestions", currentWeekNumber());
-    alert("Questions has been reset!");
+    alert("Frågorna har återställts!");
   };
 
   render() {

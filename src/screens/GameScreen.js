@@ -104,7 +104,7 @@ class GameScreen extends React.Component {
             onPress={() => {
               this.state.quizReady
                 ? this.props.navigation.navigate("NewsQReady")
-                : alert("Quiz not ready!");
+                : alert("Quizzet är inte redo!");
             }}
             style={styles.Button}
           >

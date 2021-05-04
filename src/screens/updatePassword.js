@@ -52,7 +52,7 @@ class updatePassword extends React.Component {
    */
   updatePassword = (password, passwordConfirm) => {
     if (password !== passwordConfirm) {
-      return alert("Passwords are not the same");
+      return alert("Lösenorden måste matcha!");
     }
     Socket.on("returnUserByEmailSuccess", (username) => {
       var salt_pass = password.toString() + username.toUpperCase();
@@ -60,7 +60,7 @@ class updatePassword extends React.Component {
       //The passwords are also irreversibly hashed
       let hash_pass = sha256(salt_pass);
 
-      if (!sharedKey) return alert("You are not connected to the server!");
+      if (!sharedKey) return alert("Du är inte ansluten till servern!");
 
       //The data transmission is encrypted in case of listeners.
       var encrypted_pass = CryptoJS.AES.encrypt(

@@ -57,7 +57,7 @@ class ArtQ extends React.Component {
       Socket.off("getQuestionsArticleFailure");
       Socket.off("getQuestionsArticleSuccess");
       this.props.navigation.goBack();
-      alert("Could not retrieve questions!");
+      alert("Kunde inte hämta frågorna!");
     });
     Socket.on("changeScreenFinishedArtQ", () => {
       this.props.navigation.navigate("GameScreen");
@@ -210,7 +210,7 @@ class ArtQ extends React.Component {
       userAnswers.includes(undefined) ||
       userAnswers.length !== correctAnswers.length
     ) {
-      alert("You have not answered all questions!");
+      alert("Du har inte svarat på alla frågor!");
       return;
     }
 

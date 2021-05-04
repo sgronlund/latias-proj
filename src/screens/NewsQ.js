@@ -102,7 +102,7 @@ class NewsQ extends React.Component {
     });
     Socket.on("getQuestionsFailure", () => {
       Socket.off("getQuestionsSuccess");
-      alert("Could not retrieve questions!");
+      alert("Kunde inte hämta frågorna!");
     });
   };
 

@@ -64,7 +64,7 @@ class Signup extends React.Component {
   handleRegister = (username, password, email) => {
     //if inputs are invalid we don't want to do anything
     if (!username || !password || !email) {
-      alert("Some inputs are empty!");
+      alert("Du har lämnat blanka fält!");
       return;
     }
     const trimmedUsername = username.trim();
@@ -78,7 +78,7 @@ class Signup extends React.Component {
 
     //The data transmission is encrypted in case of listeners.
 
-    if (!sharedKey) return alert("You are not connected to the server!");
+    if (!sharedKey) return alert("Du är inte ansluten till servern!");
     //we now want to encrypt the password so that it cannot be replayed by an attacker. The server will decrypt the password on its end.
     var encrypted_pass = CryptoJS.AES.encrypt(
       hash_pass,
