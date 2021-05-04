@@ -106,13 +106,13 @@ class DeveloperNewsQ extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.InputContainer}>
-          <Text style={styleSheets.inputHeader}>Question:</Text>
+          <Text style={styleSheets.inputHeader}>Fråga:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="Question"
             onChangeText={this.handleQuestion}
           />
-          <Text style={styleSheets.inputHeader}>Answers:</Text>
+          <Text style={styleSheets.inputHeader}>Svar:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="Wrong answer"
@@ -140,13 +140,13 @@ class DeveloperNewsQ extends React.Component {
             )
           }
         >
-          <Text style={styleSheets.ButtonText}>SUBMIT</Text>
+          <Text style={styleSheets.ButtonText}>SKICKA</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
           onPress={this.resetQuestions}
         >
-          <Text style={styleSheets.ButtonText}>RESET QUESTIONS</Text>
+          <Text style={styleSheets.ButtonText}>ÅTERSTÄLL FRÅGOR</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

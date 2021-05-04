@@ -67,10 +67,10 @@ class Signup extends React.Component {
       alert("Some inputs are empty!");
       return;
     }
-
+    const trimmedUsername = username.trim();
     initSignupSockets(this.props.navigation);
     //the client first applies salt to the password
-    var salt_pass = password + username.toUpperCase();
+    var salt_pass = password + trimmedUsername.toUpperCase();
 
     //hash the password so that it is not stored in clear text in the database
     //The passwords are also irreversibly hashed
@@ -84,7 +84,7 @@ class Signup extends React.Component {
       hash_pass,
       sharedKey.toString()
     ).toString();
-    Socket.emit("register", username, encrypted_pass, email);
+    Socket.emit("register", trimmedUsername, encrypted_pass, email);
   };
 
   render() {
@@ -95,23 +95,23 @@ class Signup extends React.Component {
           style={styles.LoginContainer}
           behaviour="position"
         >
-          <Text style={styleSheets.inputHeader}>Username:</Text>
+          <Text style={styleSheets.inputHeader}>Användarnamn:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your username"
+            placeholder="Användarnamn"
             onChangeText={this.handleUsername}
           />
-          <Text style={styleSheets.inputHeader}>Password:</Text>
+          <Text style={styleSheets.inputHeader}>Lösenord:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your password"
+            placeholder="Lösenord"
             onChangeText={this.handlePassword}
             secureTextEntry={true}
           />
-          <Text style={styleSheets.inputHeader}>Email:</Text>
+          <Text style={styleSheets.inputHeader}>Mail:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your email"
+            placeholder="Mail"
             onChangeText={this.handleEmail}
           />
         </KeyboardAvoidingView>
@@ -129,7 +129,7 @@ class Signup extends React.Component {
               )
             }
           >
-            <Text style={styleSheets.ButtonText}>REGISTER</Text>
+            <Text style={styleSheets.ButtonText}>REGISTRERA</Text>
           </TouchableOpacity>
         </LinearGradient>
       </SafeAreaView>

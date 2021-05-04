@@ -33,7 +33,7 @@ class Developer extends React.Component {
                 colors={theme.BLUE_GRADIENT}
                 style={styles.Gradient}
               >
-                <Text style={styles.ButtonText}>NEWS QUIZ</Text>
+                <Text style={styles.ButtonText}>NYHETSFRÅGOR</Text>
               </LinearGradient>
             }
           </TouchableOpacity>
@@ -46,7 +46,7 @@ class Developer extends React.Component {
                 colors={theme.PINK_GRADIENT}
                 style={styles.Gradient}
               >
-                <Text style={styles.ButtonText}>ARTICLE QUIZ</Text>
+                <Text style={styles.ButtonText}>ARTIKEL QUIZ</Text>
               </LinearGradient>
             }
           </TouchableOpacity>
@@ -59,7 +59,7 @@ class Developer extends React.Component {
                 colors={theme.DARK_BLUE_GRADIENT}
                 style={styles.Gradient}
               >
-                <Text style={styles.ButtonText}>QUESTIONS</Text>
+                <Text style={styles.ButtonText}>FRÅGOR</Text>
               </LinearGradient>
             }
           </TouchableOpacity>

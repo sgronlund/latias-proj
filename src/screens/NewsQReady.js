@@ -56,7 +56,7 @@ class NewsQWaiting extends React.Component {
               colors={theme.PINK_GRADIENT}
               style={styles.Gradient}
             >
-              <Text style={styles.ButtonText}>START</Text>
+              <Text style={styles.ButtonText}>STARTA</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>

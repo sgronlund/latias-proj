@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import theme from "../styles/themes";
 import Shop from "./components/Shop";
-import QuestionButton from "./components/QuestionButton";
 import styleSheets from "../styles/StyleSheets";
 import { LinearGradient } from "expo-linear-gradient";
 import { Socket } from "../misc/Socket";
@@ -35,7 +34,6 @@ class PriceButton extends React.Component {
       this.setState({ showCode: true, modalVisible: false });
     });
   };
-
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   };
@@ -67,8 +65,7 @@ class PriceButton extends React.Component {
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                   <Text style={styles.modalText}>
-                    Do you want to make this purchase? (The code will have to be
-                    used now)
+                    Är du säker på att du vill göra det här köpet?
                   </Text>
                   <Pressable
                     style={[styles.button, styles.buttonBuy]}
@@ -77,13 +74,13 @@ class PriceButton extends React.Component {
                       this.setModalVisible(false);
                     }}
                   >
-                    <Text style={styles.textStyle}>BUY</Text>
+                    <Text style={styles.textStyle}>KÖP</Text>
                   </Pressable>
                   <Pressable
                     style={[styles.button, styles.buttonClose]}
                     onPress={() => this.setModalVisible(false)}
                   >
-                    <Text style={styles.textStyle}>Cancel</Text>
+                    <Text style={styles.textStyle}>AVBRYT</Text>
                   </Pressable>
                 </View>
               </View>
@@ -142,7 +139,7 @@ export default class ShopScreen extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <Shop />
         <View style={styles.midsquare}>
-          <Text style={styles.header}>─────── PRICE SHOP ───────</Text>
+          <Text style={styles.header}>─────── BUTIK ───────</Text>
           <View style={{ width: "100%" }}>
             {prices.map((price, index) => (
               <PriceButton

@@ -17,7 +17,7 @@ class SignUpIcon extends React.Component {
         style={styles.Container}
         onPress={() => this.props.navigation.navigate("Sign")}
       >
-        <Text style={styles.Text}>Sign up</Text>
+        <Text style={styles.Text}>REGISTRERA</Text>
       </TouchableOpacity>
     );
   }

@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
-import Scoreboard from "./components/Scoreboard";
 import theme from "../styles/themes";
 import Socket from "../misc/Socket";
 import Shop from "./components/Shop";
@@ -72,7 +71,7 @@ class GameScreen extends React.Component {
         {isLoggedIn ? <Shop /> : <SignUpIcon />}
         <QuestionButton />
         <View style={styles.TextContainer}>
-          <Text style={styles.header}>WHAT DO YOU WANT TO DO?</Text>
+          <Text style={styles.header}>VAD VILL DU GÖRA?</Text>
         </View>
 
         <View style={styles.ButtonContainer}>
@@ -84,7 +83,7 @@ class GameScreen extends React.Component {
               colors={theme.BLUE_GRADIENT}
               style={styles.Gradient}
             >
-              <Text style={styles.ButtonText}>READ THIS WEEKS ARTICLE</Text>
+              <Text style={styles.ButtonText}>LÄS VECKANS ARTIKLAR</Text>
             </LinearGradient>
           </TouchableOpacity>
 
@@ -96,7 +95,7 @@ class GameScreen extends React.Component {
               colors={theme.PINK_GRADIENT}
               style={styles.Gradient}
             >
-              <Text style={styles.ButtonText}>THIS WEEKS ARTICLE QUIZ</Text>
+              <Text style={styles.ButtonText}>VECKANS ARTIKEL QUIZ</Text>
               <Text style={styles.timer}>{this.state.time}</Text>
             </LinearGradient>
           </TouchableOpacity>
@@ -113,7 +112,7 @@ class GameScreen extends React.Component {
               colors={theme.PINK_GRADIENT}
               style={styles.Gradient}
             >
-              <Text style={styles.ButtonText}>THIS WEEKS NEWS QUIZ</Text>
+              <Text style={styles.ButtonText}>VECKANS NYHETSFRÅGOR</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>

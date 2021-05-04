@@ -75,9 +75,9 @@ class DeveloperQuestions extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.Container}>
-          <Text style={styles.TextBig}>News Quiz:</Text>
+          <Text style={styles.TextBig}>NYHETSFRÅGOR:</Text>
           {newsQuestions}
-          <Text style={styles.TextBig}>Article Quiz:</Text>
+          <Text style={styles.TextBig}>ARTIKEL QUIZ:</Text>
           {artQuestions}
         </View>
       </SafeAreaView>

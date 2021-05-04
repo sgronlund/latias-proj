@@ -9,7 +9,6 @@ import {
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
-import QuestionButton from "./components/QuestionButton";
 import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
 
@@ -25,6 +24,9 @@ const decrementStep = 0.1;
 
 //1000 ms
 const delayNewQuestion = 1000;
+
+//Amount of extra score if user answered all questions correctly
+const extraScoreAllCorrect = 30;
 
 class NewsQ extends React.Component {
   constructor(props) {
@@ -128,12 +130,18 @@ class NewsQ extends React.Component {
    */
   calculateScoreTotal() {
     var totalScore = 0;
+    var numberOfCorrectAnswers = 0
     for (const question of this.state.doneArr) {
       if (question.answerColor === theme.GREEN_GRADIENT) {
+        numberOfCorrectAnswers++;
         //5 + (0 to 5)
         totalScore +=
           5 + parseFloat(question.timeLeft) / divideToGetMaximumFive;
       }
+    }
+
+    if(numberOfCorrectAnswers === this.state.questions.length) {
+      totalScore += extraScoreAllCorrect;
     }
     return Math.floor(totalScore);
   }
@@ -177,9 +185,9 @@ class NewsQ extends React.Component {
    */
   submitScore() {
     var totalScore = this.calculateScoreTotal();
+    var scoreToBalance = Math.round(totalScore*(-1)/10)
     Socket.emit("submitAnswers", totalScore);
-    // Navigate to the "victory" screen with the amount of correct
-    // answers as well as an object of how the user did in the quiz
+    Socket.emit("changeBalance", Socket.id, scoreToBalance); 
     this.props.navigation.navigate("NewsQDone", {
       numCorrect: this.state.correctAnswers,
       completeGame: this.state.doneArr,

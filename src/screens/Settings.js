@@ -1,7 +1,5 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, TouchableOpacity, Text } from "react-native";
-import QuestionButton from "./components/QuestionButton.js";
-import Shop from "./components/Shop.js";
 import theme from "../styles/themes.js";
 import styleSheets from "../styles/StyleSheets.js";
 import LoginContainer from "./components/LoginContainer";
@@ -29,7 +27,7 @@ class Settings extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <TouchableOpacity style={styles.Button}>
-          <Text style={styleSheets.ButtonText}>Sound Off</Text>
+          <Text style={styleSheets.ButtonText}>Ljud Av</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.Button}
@@ -37,7 +35,7 @@ class Settings extends React.Component {
             this.props.navigation.navigate("UserPolicy");
           }}
         >
-          <Text style={styleSheets.ButtonText}>User Policy</Text>
+          <Text style={styleSheets.ButtonText}>Användarpolicy</Text>
         </TouchableOpacity>
         {this.state.loggedIn ? <LoginContainer /> : null}
       </SafeAreaView>

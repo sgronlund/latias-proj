@@ -80,17 +80,17 @@ class updatePassword extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.LoginContainer}>
-          <Text style={styleSheets.inputHeader}>New Password:</Text>
+          <Text style={styleSheets.inputHeader}>Nytt Lösenord:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="new password"
+            placeholder="Nytt lösenord"
             onChangeText={this.handlePassword}
             secureTextEntry={true}
           />
-          <Text style={styleSheets.inputHeader}>Confirm Password:</Text>
+          <Text style={styleSheets.inputHeader}>Bekräfta Lösenord:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="new password"
+            placeholder="Nytt lösenord"
             onChangeText={this.handlePasswordConfirm}
             secureTextEntry={true}
           />
@@ -101,7 +101,7 @@ class updatePassword extends React.Component {
             this.updatePassword(this.state.password, this.state.passwordConfirm)
           }
         >
-          <Text style={styleSheets.ButtonText}>CONFIRM</Text>
+          <Text style={styleSheets.ButtonText}>BEKRÄFTA</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
