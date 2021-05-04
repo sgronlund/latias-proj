@@ -61,7 +61,7 @@ class ArtQ extends React.Component {
     });
     Socket.on("changeScreenFinishedArtQ", () => {
       this.props.navigation.navigate("GameScreen");
-    })
+    });
     Socket.emit("getQuestionsArticle", currentWeekNumber());
   };
 
@@ -226,16 +226,16 @@ class ArtQ extends React.Component {
     }
     var score;
     var newBalance;
-    if(numberOfCorrectAnswers === this.state.questions.length) {
-      score = 750
+    if (numberOfCorrectAnswers === this.state.questions.length) {
+      score = 750;
     } else {
-      score = 50 * numberOfCorrectAnswers
+      score = 50 * numberOfCorrectAnswers;
     }
 
     /* Here we take a negative value so that we'll increase the balance 
     instead of decrease, because we always subtract balance on the backend */
-    
-    var newBalance = -score/10
+
+    var newBalance = -score / 10;
 
     Socket.emit("changeBalance", Socket.id, newBalance);
     Socket.emit("submitAnswersArticle", score);
