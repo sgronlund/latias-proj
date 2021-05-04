@@ -24,7 +24,6 @@ const styleSheets = StyleSheet.create({
   GenericButton: {
     width: "80%",
     height: "8%",
-    // alignItems: "center", bråkar med Lineargradient, måste läggas i direkt i filen
     justifyContent: "center",
     padding: theme.PADDING_MEDIUM,
     borderRadius: theme.ROUNDING_MEDIUM,

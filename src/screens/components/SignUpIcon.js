@@ -4,8 +4,7 @@ import theme from "../../styles/themes.js";
 import { withNavigation } from "react-navigation";
 
 /**
- * @summary This is a component which leads the user to
- * the shop screen.
+ * @summary This is a component which replaces the shop component if the user is not logged in, redirects the user to sign up.
  */
 class SignUpIcon extends React.Component {
   constructor(props) {

@@ -120,28 +120,28 @@ class DeveloperArtQ extends React.Component {
         <View style={styles.InputContainer}>
           <Text style={styleSheets.inputHeader}>Question:</Text>
           <TextInput
-            style={styles.QuestionInput}
+            style={styleSheets.Input}
             placeholder="Question"
             onChangeText={this.handleQuestion}
           />
           <Text style={styleSheets.inputHeader}>Answers:</Text>
           <TextInput
-            style={styles.AnswerInput}
+            style={styleSheets.Input}
             placeholder="Wrong answer"
             onChangeText={this.handleWrongAnswer1}
           />
           <TextInput
-            style={styles.AnswerInput}
+            style={styleSheets.Input}
             placeholder="Wrong answer"
             onChangeText={this.handleWrongAnswer2}
           />
           <TextInput
-            style={styles.AnswerInput}
+            style={styleSheets.Input}
             placeholder="Wrong answer"
             onChangeText={this.handleWrongAnswer3}
           />
           <TextInput
-            style={styles.AnswerInput}
+            style={styleSheets.Input}
             placeholder="Correct answer"
             onChangeText={this.handleCorrectAnswer}
           />
@@ -180,23 +180,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
     margin: theme.MARGIN_LARGE,
-  },
-  QuestionInput: {
-    flexBasis: 40,
-    margin: 12,
-    width: "80%",
-    borderWidth: 1,
-    backgroundColor: "white",
-    textAlign: "center",
-    borderRadius: theme.ROUNDING_EXTRA_SMALL,
-  },
-  AnswerInput: {
-    flexBasis: 40,
-    width: "80%",
-    borderWidth: 1,
-    textAlign: "center",
-    backgroundColor: "white",
-    borderRadius: theme.ROUNDING_EXTRA_SMALL,
   },
 });
 
