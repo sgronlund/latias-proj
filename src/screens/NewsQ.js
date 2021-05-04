@@ -130,7 +130,7 @@ class NewsQ extends React.Component {
    */
   calculateScoreTotal() {
     var totalScore = 0;
-    var numberOfCorrectAnswers = 0
+    var numberOfCorrectAnswers = 0;
     for (const question of this.state.doneArr) {
       if (question.answerColor === theme.GREEN_GRADIENT) {
         numberOfCorrectAnswers++;
@@ -140,7 +140,7 @@ class NewsQ extends React.Component {
       }
     }
 
-    if(numberOfCorrectAnswers === this.state.questions.length) {
+    if (numberOfCorrectAnswers === this.state.questions.length) {
       totalScore += extraScoreAllCorrect;
     }
     return Math.floor(totalScore);
@@ -185,9 +185,9 @@ class NewsQ extends React.Component {
    */
   submitScore() {
     var totalScore = this.calculateScoreTotal();
-    var scoreToBalance = Math.round(totalScore*(-1)/10)
+    var scoreToBalance = Math.round((totalScore * -1) / 10);
     Socket.emit("submitAnswers", totalScore);
-    Socket.emit("changeBalance", Socket.id, scoreToBalance); 
+    Socket.emit("changeBalance", Socket.id, scoreToBalance);
     this.props.navigation.navigate("NewsQDone", {
       numCorrect: this.state.correctAnswers,
       completeGame: this.state.doneArr,
