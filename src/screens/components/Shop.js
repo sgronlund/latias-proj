@@ -30,7 +30,7 @@ class Shop extends React.Component {
     Socket.emit("getBalance", Socket.id);
   }
 
-  componentWillUnmount() { //kolla discord
+  componentWillUnmount() { 
     Socket.off("returnUpdateSuccess");
     Socket.off("returnBalanceSuccess");
     Socket.off("returnUpdateFailure");
