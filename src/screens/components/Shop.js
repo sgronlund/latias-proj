@@ -48,7 +48,6 @@ class Shop extends React.Component {
     );
   }
 }
-//fyfan va vi har trash kod asså usch aja bryr mig inte
 const styles = StyleSheet.create({
   Container: {
     paddingHorizontal: "5%",
