@@ -349,3 +349,25 @@ Inget att kommentera.
 ### Andra punkter
 
 Inget att kommentera.
+
+## Arbetsmöte 04/05/21
+
+### Vad gjorde vi igår?
+
+* Skriva quizzen
+
+### Vi tänker vi göra idag?
+
+* Presentation
+
+* Söka artiklar
+
+* Balance
+
+### Några problem?
+
+Inget att kommentera.
+
+### Andra punkter
+
+Inget att kommentera.
