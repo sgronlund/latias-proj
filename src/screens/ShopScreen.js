@@ -65,7 +65,7 @@ class PriceButton extends React.Component {
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                   <Text style={styles.modalText}>
-                    Är du säker på att du vill göra det här köpet?
+                    Är du säker på att du vill göra det här köpet? (Koden kommer behöva användas direkt)
                   </Text>
                   <Pressable
                     style={[styles.button, styles.buttonBuy]}
