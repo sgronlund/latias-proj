@@ -24,33 +24,66 @@ class HomeScreen extends React.Component {
         <QuestionButton />
         <LinearGradient
           colors={theme.PINK_GRADIENT}
-          style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
+          style={styleSheets.GenericButton}
         >
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("LogIn")}
+            style={styles.GenericButton}
           >
             <Text style={styleSheets.ButtonText}>LOG IN</Text>
           </TouchableOpacity>
         </LinearGradient>
         <Text style={styles.Text}>───── or ─────</Text>
-        <TouchableOpacity
-          style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
-          onPress={() => this.props.navigation.navigate("Sign")}
+        <LinearGradient
+          colors={theme.BLUE_GRADIENT}
+          style={styleSheets.GenericButton}
         >
-          <Text style={styleSheets.ButtonText}>SIGN UP</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
-          onPress={() => this.props.navigation.navigate("GameScreen")}
+          <TouchableOpacity
+            style={styles.GenericButton}
+            onPress={() => this.props.navigation.navigate("Sign")}
+          >
+            <Text style={styleSheets.ButtonText}>SIGN UP</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
+        <LinearGradient
+          colors={theme.BLUE_GRADIENT}
+          style={styleSheets.GenericButton}
         >
-          <Text style={styleSheets.ButtonText}>PLAY AS GUEST</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.GenericButton}
+            onPress={() => this.props.navigation.navigate("GameScreen")}
+          >
+            <Text style={styleSheets.ButtonText}>PLAY AS GUEST</Text>
+          </TouchableOpacity>
+        </LinearGradient>
       </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  MainContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: theme.PURPLE,
+  },
+
+  GenericButton: {
+    flex: 1,
+    alignItems: "center",
+  },
+
+  TitleContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#545985",
+    width: "95%",
+    height: "35%",
+    borderRadius: theme.ROUNDING_SMALL,
+    margin: theme.MARGIN_MEDIUM,
+  },
   Text: {
     fontSize: theme.FONT_SIZE_SMALL,
     color: "white",

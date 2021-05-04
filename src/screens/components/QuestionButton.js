@@ -91,7 +91,9 @@ const styles = StyleSheet.create({
   },
   Container: {
     position: "absolute",
-    margin: theme.MARGIN_MEDIUM,
+    alignSelf: "flex-end",
+    margin: theme.MARGIN_SMALL,
+    padding: theme.PADDING_SMALL,
     bottom: 0,
     right: 0,
   },
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
   TextSmall: {
     fontSize: theme.FONT_SIZE_SMALL,
     color: "white",
-    flexWrap: 1,
+    flexWrap: "wrap",
     marginBottom: theme.MARGIN_EXTRA_TINY
   },
   Overlay: {

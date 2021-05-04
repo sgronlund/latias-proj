@@ -1,7 +1,7 @@
-import { createAppContainer  } from "react-navigation";
-import { createStackNavigator} from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { loadAsync } from "expo-font";
-import AppLoading from 'expo-app-loading';
+import AppLoading from "expo-app-loading";
 import HomeScreen from "./screens/HomeScreen";
 import GameScreen from "./screens/GameScreen";
 import Signup from "./screens/Signup";
@@ -22,12 +22,11 @@ import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import themes from "./styles/themes";
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from "@expo/vector-icons";
 import UserPolicy from "./screens/UserPolicy";
 import Scoreboard from "./screens/components/Scoreboard";
 import NewsQReady from "./screens/NewsQReady";
 import NewsQDone from "./screens/NewsQDone";
-
 
 /**
  * @summary This file contains the stack navigator
@@ -52,6 +51,7 @@ const navigator = createStackNavigator(
       navigationOptions: {
         title: "THIS WEEKS NEWS QUIZ",
         headerLeft: () => null,
+        headerRight: () => null,
       },
     },
     GameScreen: {
@@ -74,27 +74,29 @@ const navigator = createStackNavigator(
     },
     Settings: {
       screen: Settings,
-      navigationOptions:{
+      navigationOptions: {
         title: "SETTINGS",
+        headerRight: () => null,
       },
     },
     ShopScreen: {
       screen: ShopScreen,
-      navigationOptions:{
+      navigationOptions: {
         title: "SHOP",
       },
     },
-    ArtQWaiting : {
+    ArtQWaiting: {
       screen: ArtQWaiting,
       navigationOptions: {
-        title: "ARTICLE QUIZ"
-      }
+        title: "ARTICLE QUIZ",
+      },
     },
-    ArtQ : {
+    ArtQ: {
       screen: ArtQ,
       navigationOptions: {
         title: "ARTICLE QUIZ",
-      }
+        headerRight: () => null,
+      },
     },
     NewsQReady: NewsQReady,
     Scoreboard: Scoreboard,
@@ -106,7 +108,8 @@ const navigator = createStackNavigator(
     DeveloperNewsQ: {
       screen: DeveloperNewsQ,
       navigationOptions: {
-        title: "NEWS QUIZ"
+        title: "NEWS QUIZ",
+        
       }
     },
     DeveloperArtQ: {
@@ -126,26 +129,34 @@ const navigator = createStackNavigator(
       navigationOptions: {
         title: "SCORE",
         headerLeft: () => null,
+        headerRight: () => null,
       },
     },
   },
   {
     initialRouteName: "Home",
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       headerTintColor: "#FFFFFF",
       headerBackTitleVisible: false,
+      headerTitleAlign: 'center',
       headerStyle: {
         backgroundColor: themes.PURPLE_LIGHT,
-        height: themes.HEIGHT
+        height: themes.HEIGHT,
       },
       headerTitleStyle: {
-        textAlign: "center",  
         fontSize: themes.FONT_SIZE_EXTRA_SMALL,
         fontFamily: themes.DEFAULT_FONT,
       },
-      headerRight: () =>  (
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={{marginRight: 15}}>
-            <Ionicons name="ios-settings-sharp" size={themes.FONT_SIZE_EXTRA_SMALL} color="black"/>
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Settings")}
+          style={{ marginRight: themes.MARGIN_MEDIUM }}
+        >
+          <Ionicons
+            name="ios-settings-sharp"
+            size={themes.FONT_SIZE_EXTRA_SMALL}
+            color="black"
+          />
         </TouchableOpacity>
       ),
     }),
@@ -162,15 +173,23 @@ export default class App extends React.Component {
 
   async loadLocalFonts() {
     await loadAsync({
-      ///FIXME: Doesn't load succesfully when starting with Expo
-      "Ramaraja": require("./assets/fonts/Ramaraja.ttf"),
+      Ramaraja: require("./assets/fonts/Ramaraja.ttf"),
       "Roboto Slab": require("./assets/fonts/RobotoSlab-Regular.ttf"),
     });
   }
 
   render() {
     const Container = createAppContainer(navigator);
-    if(!this.state.fontLoaded) return <AppLoading startAsync={this.loadLocalFonts} onFinish={() => {this.setState({ fontLoaded: true });} }onError={console.warn}/>
+    if (!this.state.fontLoaded)
+      return (
+        <AppLoading
+          startAsync={this.loadLocalFonts}
+          onFinish={() => {
+            this.setState({ fontLoaded: true });
+          }}
+          onError={console.warn}
+        />
+      );
     return <Container />;
   }
 }

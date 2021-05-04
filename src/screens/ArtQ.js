@@ -51,17 +51,18 @@ class ArtQ extends React.Component {
    * server to get the questions for the current week.
    */
   getQuestions = () => {
-    Socket.emit("getQuestionsArticle", currentWeekNumber());
     Socket.on("getQuestionsArticleSuccess", (questionsAnswers) => {
       Socket.off("getQuestionsArticleSuccess");
+      Socket.off("getQuestionsArticleFailure");
       this.initializeQuestions(questionsAnswers);
     });
-    // FIXME: Should always check if there are any questions, right now we can enter the quiz even if we have none
     Socket.on("getQuestionsArticleFailure", () => {
+      Socket.off("getQuestionsArticleFailure");
       Socket.off("getQuestionsArticleSuccess");
       this.props.navigation.goBack();
       alert("Could not retrieve questions!");
     });
+    Socket.emit("getQuestionsArticle", currentWeekNumber());
   };
 
   /**
@@ -231,7 +232,6 @@ class ArtQ extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton />
         <View style={styles.PlayerCountContainer}>
           <Text style={styles.Text}>
             {"Player count: " + this.state.playerCount}

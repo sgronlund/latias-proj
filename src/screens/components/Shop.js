@@ -2,6 +2,7 @@ import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../styles/themes.js";
 import { withNavigation } from "react-navigation";
+import Socket from "../../misc/Socket";
 
 /**
  * @summary This is a component which leads the user to
@@ -10,13 +11,42 @@ import { withNavigation } from "react-navigation";
 class Shop extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { balance: null };
+  }
+
+  componentDidMount() {
+    Socket.on("returnBalanceSuccess", (balance) => {
+      console.log("returnBalanceSuccess", balance);
+      this.setState({ balance: parseInt(balance) });
+    });
+
+    Socket.on("returnUpdateSuccess", (balance) => {
+      console.log("returnUpdateSuccess", balance);
+      this.setState({ balance: parseInt(balance) });
+      Socket.emit("updatedStateInShop")
+    });
+
+    //felhantering
+    Socket.on("returnUpdateFailure", () => {
+      console.log("Balance is too low");
+    });
+
+    Socket.emit("getBalance", Socket.id);
+  }
+
+  componentWillUnmount() {
+    Socket.off("returnUpdateSuccess");
+    Socket.off("returnBalanceSuccess")
+    Socket.off("returnUpdateFailure")
   }
 
   render() {
     return (
-      <TouchableOpacity style={styles.Container} 
-      onPress={() => this.props.navigation.navigate("ShopScreen")}>
-        <Text style={styles.Text}>97 $</Text>
+      <TouchableOpacity
+        style={styles.Container}
+        onPress={() => this.props.navigation.navigate("ShopScreen")}
+      >
+        <Text style={styles.Text}>{this.state.balance} €</Text>
       </TouchableOpacity>
     );
   }
@@ -24,8 +54,9 @@ class Shop extends React.Component {
 
 const styles = StyleSheet.create({
   Container: {
-    width: 80,
-    height: 30,
+    //width: 80,
+    //height: 30,
+    paddingHorizontal: "5%",
     borderRadius: 10,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     position: "absolute",

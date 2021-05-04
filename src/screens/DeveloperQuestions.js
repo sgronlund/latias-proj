@@ -46,6 +46,13 @@ class DeveloperQuestions extends React.Component {
     Socket.emit("getQuestions", currentWeekNumber());
   }
 
+  componentWillUnmount() {
+    Socket.off("getQuestionsArticleSuccess");
+    Socket.off("getQuestionsArticleFailure");
+    Socket.off("getQuestionsSuccess");
+    Socket.off("getQuestionsFailure");
+  }
+
   render() {
     const newsQuestions = this.state.NewsQuestions.map((item, index) => (
       <>

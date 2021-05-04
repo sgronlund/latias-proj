@@ -14,6 +14,7 @@ import styleSheets from "../styles/StyleSheets";
 import { Socket, initSignupSockets, sharedKey } from "../misc/Socket";
 import sha256 from "sha256";
 import CryptoJS from "react-native-crypto-js";
+import { LinearGradient } from "expo-linear-gradient";
 
 /**
  * @summary This represents the signup screen. From here you enter
@@ -114,18 +115,23 @@ class Signup extends React.Component {
             onChangeText={this.handleEmail}
           />
         </KeyboardAvoidingView>
-        <TouchableOpacity
-          style={[styleSheets.GenericButton, styleSheets.LightBlueBackground]}
-          onPress={() =>
-            this.handleRegister(
-              this.state.username,
-              this.state.password,
-              this.state.email
-            )
-          }
+        <LinearGradient
+          colors={theme.BLUE_GRADIENT}
+          style={styleSheets.GenericButton}
         >
-          <Text style={styleSheets.ButtonText}>REGISTER</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.GenericButton}
+            onPress={() =>
+              this.handleRegister(
+                this.state.username,
+                this.state.password,
+                this.state.email
+              )
+            }
+          >
+            <Text style={styleSheets.ButtonText}>REGISTER</Text>
+          </TouchableOpacity>
+        </LinearGradient>
       </SafeAreaView>
     );
   }
@@ -139,6 +145,10 @@ const styles = StyleSheet.create({
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
     margin: theme.MARGIN_SMALL,
+  },
+  GenericButton: {
+    flex: 1,
+    alignItems: "center",
   },
 });
 

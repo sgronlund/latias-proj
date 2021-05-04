@@ -13,6 +13,7 @@ import styleSheets from "../styles/StyleSheets";
 import { Socket, sharedKey, initLoginSockets } from "../misc/Socket";
 import sha256 from "sha256";
 import CryptoJS from "react-native-crypto-js";
+import { LinearGradient } from "expo-linear-gradient";
 
 /**
  * @summary This represents the login screen. From here you
@@ -88,14 +89,21 @@ class LogIn extends React.Component {
             secureTextEntry={true}
           />
         </View>
-        <TouchableOpacity
-          style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
-          onPress={() =>
-            this.handleLogin(this.state.username, this.state.password)
-          }
+
+        <LinearGradient
+          colors={theme.PINK_GRADIENT}
+          style={styleSheets.GenericButton}
         >
-          <Text style={styleSheets.ButtonText}>LOG IN</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.GenericButton}
+            onPress={() =>
+              this.handleLogin(this.state.username, this.state.password)
+            }
+          >
+            <Text style={styleSheets.ButtonText}>LOG IN</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Reset")}
         >
@@ -120,6 +128,10 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     color: "#3E9EFE",
     textDecorationLine: "underline",
+  },
+  GenericButton: {
+    flex: 1,
+    alignItems: "center",
   },
 });
 

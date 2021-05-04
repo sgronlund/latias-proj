@@ -258,7 +258,6 @@ class NewsQ extends React.Component {
     else
       return (
         <SafeAreaView style={styleSheets.MainContainer}>
-          <QuestionButton />
           <View style={styles.NumberQContainer}>
             <Text style={styles.numberQ}>
               {`${this.state.currentQuestion}/${this.state.questions.length}`}

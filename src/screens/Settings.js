@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import QuestionButton from "./components/QuestionButton.js";
-import Wallet from "./components/Shop.js";
+import Shop from "./components/Shop.js";
 import theme from "../styles/themes.js";
 import styleSheets from "../styles/StyleSheets.js";
 import LoginContainer from "./components/LoginContainer";
@@ -15,12 +15,12 @@ import Socket from "../misc/Socket";
 class Settings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loggedIn: false };
+    this.state = { loggedIn: false, username: null };
   }
 
   componentDidMount() {
     Socket.on("returnUserSuccess", (username) => {
-      this.setState({ loggedIn: true });
+      this.setState({ loggedIn: true, username: username });
     });
     Socket.emit("getUser", Socket.id);
   }
@@ -28,8 +28,6 @@ class Settings extends React.Component {
   render() {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <QuestionButton />
-        <Wallet />
         <TouchableOpacity style={styles.Button}>
           <Text style={styleSheets.ButtonText}>Sound Off</Text>
         </TouchableOpacity>
@@ -56,6 +54,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.DARK_PURPLE,
     borderRadius: theme.ROUNDING_SMALL,
     margin: theme.MARGIN_MEDIUM,
+  },
+  NameText: {
+    fontSize: 20,
+    color: "white",
+    fontFamily: theme.DEFAULT_FONT,
   },
 });
 

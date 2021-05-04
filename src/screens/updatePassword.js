@@ -55,7 +55,7 @@ class updatePassword extends React.Component {
       return alert("Passwords are not the same");
     }
     Socket.on("returnUserByEmailSuccess", (username) => {
-      var salt_pass = password.toString() + username.toString();
+      var salt_pass = password.toString() + username.toUpperCase();
 
       //The passwords are also irreversibly hashed
       let hash_pass = sha256(salt_pass);
