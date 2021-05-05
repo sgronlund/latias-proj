@@ -128,14 +128,13 @@ class PriceButton extends React.Component {
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {coupons: []};
+    this.state = { coupons: [] };
   }
 
-  
   componentDidMount() {
     Socket.on("getCouponsSuccess", (coupons) => {
-      this.setState({coupons: coupons});
-    })
+      this.setState({ coupons: coupons });
+    });
     Socket.emit("getCoupons");
   }
 
@@ -148,14 +147,20 @@ export default class ShopScreen extends React.Component {
         <View style={styles.midsquare}>
           <Text style={styles.header}>─────── BUTIK ───────</Text>
           <View style={{ width: "100%" }}>
-          {coupons.length > 0 ? coupons.map((item, index) => (
-              <PriceButton
-                key={"price" + index}
-                text={item.name}
-                price={item.price}
-                onPressBuy={this.updateBalance}
-              />
-            )) : <Text style={styles.Text}>No coupons available at this time.</Text>}
+            {coupons.length > 0 ? (
+              coupons.map((item, index) => (
+                <PriceButton
+                  key={"price" + index}
+                  text={item.name}
+                  price={item.price}
+                  onPressBuy={this.updateBalance}
+                />
+              ))
+            ) : (
+              <Text style={styles.Text}>
+                No coupons available at this time.
+              </Text>
+            )}
           </View>
         </View>
       </SafeAreaView>
@@ -172,7 +177,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     width: "90%",
-    padding: theme.PADDING_LARGE
+    padding: theme.PADDING_LARGE,
   },
   header: {
     justifyContent: "flex-start", //y-led
@@ -250,5 +255,5 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
     textAlign: "center",
-  }
+  },
 });
