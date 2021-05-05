@@ -1,7 +1,5 @@
 import React from "react";
 import { Text, SafeAreaView, StyleSheet, View } from "react-native";
-import QuestionButton from "./components/QuestionButton";
-import Shop from "./components/Shop";
 import styleSheets from "../styles/StyleSheets";
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
@@ -64,7 +62,7 @@ export default class NewsQDone extends React.Component {
     return (
       <SafeAreaView style={[styleSheets.MainContainer]}>
         <View style={styles.textContainer}>
-          <Text style={styles.greetUser}> Well done!</Text>
+          <Text style={styles.greetUser}> Bra gjort!</Text>
           <Text style={styles.greetUser}>
             {this.state.numCorrect + "/" + this.state.completeGame.length}
           </Text>
@@ -79,23 +77,23 @@ export default class NewsQDone extends React.Component {
             <View style={styles.finalScoreContainer}>
               <Text
                 style={styles.finalScore}
-              >{`★ FINAL SCORE: ${this.state.totalScore} ★`}</Text>
+              >{`★ RESULTAT: ${this.state.totalScore} ★`}</Text>
             </View>
             <View style={styles.rowContainerText}>
               <View style={styles.FlexBox}>
-                <Text style={styles.headerText}>Question</Text>
+                <Text style={styles.headerText}>Fråga</Text>
               </View>
               <View style={styles.FlexBox}>
-                <Text style={styles.headerText}>Answer</Text>
+                <Text style={styles.headerText}>Svar</Text>
               </View>
               <View style={styles.FlexBox}>
-                <Text style={styles.headerText}>Time</Text>
+                <Text style={styles.headerText}>Tid</Text>
               </View>
             </View>
             {game}
           </LinearGradient>
         </View>
-        <Text style={styles.headerText}>You will be redirected in:</Text>
+        <Text style={styles.headerText}>Du blir omdirigerad om:</Text>
         <Text style={styles.timerText}>{this.state.time.toFixed(1)}</Text>
       </SafeAreaView>
     );

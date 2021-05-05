@@ -9,11 +9,8 @@ import {
 import theme from "../styles/themes";
 import { LinearGradient } from "expo-linear-gradient";
 import styleSheets from "../styles/StyleSheets";
-import QuestionButton from "./components/QuestionButton";
 import { Socket } from "../misc/Socket";
 import currentWeekNumber from "current-week-number";
-
-const scoreMultiplier = 75;
 
 class ArtQ extends React.Component {
   constructor(props) {
@@ -60,7 +57,10 @@ class ArtQ extends React.Component {
       Socket.off("getQuestionsArticleFailure");
       Socket.off("getQuestionsArticleSuccess");
       this.props.navigation.goBack();
-      alert("Could not retrieve questions!");
+      alert("Kunde inte hämta frågorna!");
+    });
+    Socket.on("changeScreenFinishedArtQ", () => {
+      this.props.navigation.navigate("GameScreen");
     });
     Socket.emit("getQuestionsArticle", currentWeekNumber());
   };
@@ -210,7 +210,7 @@ class ArtQ extends React.Component {
       userAnswers.includes(undefined) ||
       userAnswers.length !== correctAnswers.length
     ) {
-      alert("You have not answered all questions!");
+      alert("Du har inte svarat på alla frågor!");
       return;
     }
 
@@ -224,9 +224,21 @@ class ArtQ extends React.Component {
         numberOfCorrectAnswers++;
       }
     }
-    var score = numberOfCorrectAnswers * scoreMultiplier;
+    var score;
+    var newBalance;
+    if (numberOfCorrectAnswers === this.state.questions.length) {
+      score = 750;
+    } else {
+      score = 50 * numberOfCorrectAnswers;
+    }
+
+    /* Here we take a negative value so that we'll increase the balance 
+    instead of decrease, because we always subtract balance on the backend */
+
+    var newBalance = -score / 10;
+
+    Socket.emit("changeBalance", Socket.id, newBalance);
     Socket.emit("submitAnswersArticle", score);
-    this.props.navigation.navigate("GameScreen");
   }
 
   render() {
@@ -234,7 +246,7 @@ class ArtQ extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.PlayerCountContainer}>
           <Text style={styles.Text}>
-            {"Player count: " + this.state.playerCount}
+            {"Antal Spelare: " + this.state.playerCount}
           </Text>
         </View>
 
@@ -347,7 +359,7 @@ class ArtQ extends React.Component {
               }}
               style={styles.ArrowButton}
             >
-              <Text style={styles.Arrow}>Submit</Text>
+              <Text style={styles.Arrow}>Skicka</Text>
             </TouchableOpacity>
           )}
 

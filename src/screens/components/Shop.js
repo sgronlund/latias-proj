@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
 import theme from "../../styles/themes.js";
-import { withNavigation } from "react-navigation";
+import { withNavigation, NavigationEvents } from "react-navigation";
 import Socket from "../../misc/Socket";
 
 /**
@@ -14,19 +14,15 @@ class Shop extends React.Component {
     this.state = { balance: null };
   }
 
-  componentDidMount() {
+  mount() {
     Socket.on("returnBalanceSuccess", (balance) => {
-      console.log("returnBalanceSuccess", balance);
       this.setState({ balance: parseInt(balance) });
     });
 
     Socket.on("returnUpdateSuccess", (balance) => {
-      console.log("returnUpdateSuccess", balance);
       this.setState({ balance: parseInt(balance) });
-      Socket.emit("updatedStateInShop")
     });
 
-    //felhantering
     Socket.on("returnUpdateFailure", () => {
       console.log("Balance is too low");
     });
@@ -34,28 +30,26 @@ class Shop extends React.Component {
     Socket.emit("getBalance", Socket.id);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() { 
     Socket.off("returnUpdateSuccess");
-    Socket.off("returnBalanceSuccess")
-    Socket.off("returnUpdateFailure")
+    Socket.off("returnBalanceSuccess");
+    Socket.off("returnUpdateFailure");
   }
 
   render() {
     return (
-      <TouchableOpacity
-        style={styles.Container}
-        onPress={() => this.props.navigation.navigate("ShopScreen")}
-      >
-        <Text style={styles.Text}>{this.state.balance} €</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.Container}
+          onPress={() => this.props.navigation.navigate("ShopScreen")}
+        >
+          <NavigationEvents onDidFocus={() => this.mount()} />
+          <Text style={styles.Text}>{this.state.balance} €</Text>
+        </TouchableOpacity>
     );
   }
 }
-
 const styles = StyleSheet.create({
   Container: {
-    //width: 80,
-    //height: 30,
     paddingHorizontal: "5%",
     borderRadius: 10,
     backgroundColor: "rgba(0, 0, 0, 0.5)",

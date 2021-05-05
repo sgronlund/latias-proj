@@ -29,7 +29,7 @@ class LoginContainer extends React.Component {
             this.props.navigation.navigate("Reset");
           }}
         >
-          <Text style={styleSheets.ButtonText}>New Password</Text>
+          <Text style={styleSheets.ButtonText}>Nytt Lösenord</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.Button}
@@ -37,7 +37,7 @@ class LoginContainer extends React.Component {
             this.handleLogout();
           }}
         >
-          <Text style={styleSheets.ButtonText}>Log Out</Text>
+          <Text style={styleSheets.ButtonText}>Logga Ut</Text>
         </TouchableOpacity>
       </>
     );

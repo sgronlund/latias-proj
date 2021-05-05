@@ -65,7 +65,7 @@ class Scoreboard extends React.Component {
         <DataTable>
           <LinearGradient colors={themes.BLUE_GRADIENT} style={{borderRadius: themes.ROUNDING_SMALL}}>
             <DataTable.Header style={styles.header}>
-              <Text style={styles.headerText}>Top Players</Text>
+              <Text style={styles.headerText}>Topplista</Text>
             </DataTable.Header>
 
             {rows.splice(0, 3)}

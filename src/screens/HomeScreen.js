@@ -30,10 +30,10 @@ class HomeScreen extends React.Component {
             onPress={() => this.props.navigation.navigate("LogIn")}
             style={styles.GenericButton}
           >
-            <Text style={styleSheets.ButtonText}>LOG IN</Text>
+            <Text style={styleSheets.ButtonText}>LOGGA IN</Text>
           </TouchableOpacity>
         </LinearGradient>
-        <Text style={styles.Text}>───── or ─────</Text>
+        <Text style={styles.Text}>───── eller ─────</Text>
         <LinearGradient
           colors={theme.BLUE_GRADIENT}
           style={styleSheets.GenericButton}
@@ -42,7 +42,7 @@ class HomeScreen extends React.Component {
             style={styles.GenericButton}
             onPress={() => this.props.navigation.navigate("Sign")}
           >
-            <Text style={styleSheets.ButtonText}>SIGN UP</Text>
+            <Text style={styleSheets.ButtonText}>REGISTRERA</Text>
           </TouchableOpacity>
         </LinearGradient>
 
@@ -54,7 +54,7 @@ class HomeScreen extends React.Component {
             style={styles.GenericButton}
             onPress={() => this.props.navigation.navigate("GameScreen")}
           >
-            <Text style={styleSheets.ButtonText}>PLAY AS GUEST</Text>
+            <Text style={styleSheets.ButtonText}>SPELA SOM GÄST</Text>
           </TouchableOpacity>
         </LinearGradient>
       </SafeAreaView>

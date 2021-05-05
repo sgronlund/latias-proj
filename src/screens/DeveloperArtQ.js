@@ -106,7 +106,7 @@ class DeveloperArtQ extends React.Component {
    */
   resetQuestions = () => {
     Socket.emit("resetQuestionsArticle", currentWeekNumber());
-    alert("Questions has been reset!");
+    alert("Frågorna har återställts!");
   };
 
   componenWillUnmount() {
@@ -118,31 +118,31 @@ class DeveloperArtQ extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.InputContainer}>
-          <Text style={styleSheets.inputHeader}>Question:</Text>
+          <Text style={styleSheets.inputHeader}>Fråga:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="Question"
+            placeholder="Fråga"
             onChangeText={this.handleQuestion}
           />
-          <Text style={styleSheets.inputHeader}>Answers:</Text>
+          <Text style={styleSheets.inputHeader}>Svar:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="Wrong answer"
+            placeholder="Fel svar"
             onChangeText={this.handleWrongAnswer1}
           />
           <TextInput
             style={styleSheets.Input}
-            placeholder="Wrong answer"
+            placeholder="Fel svar"
             onChangeText={this.handleWrongAnswer2}
           />
           <TextInput
             style={styleSheets.Input}
-            placeholder="Wrong answer"
+            placeholder="Fel svar"
             onChangeText={this.handleWrongAnswer3}
           />
           <TextInput
             style={styleSheets.Input}
-            placeholder="Correct answer"
+            placeholder="Rätt svar"
             onChangeText={this.handleCorrectAnswer}
           />
         </View>
@@ -158,13 +158,13 @@ class DeveloperArtQ extends React.Component {
             )
           }
         >
-          <Text style={styleSheets.ButtonText}>SUBMIT</Text>
+          <Text style={styleSheets.ButtonText}>SKICKA</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
           onPress={this.resetQuestions}
         >
-          <Text style={styleSheets.ButtonText}>RESET QUESTIONS</Text>
+          <Text style={styleSheets.ButtonText}>ÅTERSTÄLL FRÅGOR</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
