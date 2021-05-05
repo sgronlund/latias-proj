@@ -27,6 +27,7 @@ import UserPolicy from "./screens/UserPolicy";
 import Scoreboard from "./screens/components/Scoreboard";
 import NewsQReady from "./screens/NewsQReady";
 import NewsQDone from "./screens/NewsQDone";
+import EndScreen from "./screens/EndScreen";
 
 /**
  * @summary This file contains the stack navigator
@@ -157,6 +158,12 @@ const navigator = createStackNavigator(
       screen: DeveloperQuestions,
       navigationOptions: {
         title: "FRÅGOR"
+      }
+    },
+    EndScreen: {
+      screen: EndScreen,
+      navigationOptions: {
+        header: () => null
       }
     },
     NewsQDone: {
