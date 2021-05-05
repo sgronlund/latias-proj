@@ -18,22 +18,15 @@ class Shop extends React.Component {
     Socket.on("returnBalanceSuccess", (balance) => {
       this.setState({ balance: parseInt(balance) });
     });
-
     Socket.on("returnUpdateSuccess", (balance) => {
       this.setState({ balance: parseInt(balance) });
     });
-
-    Socket.on("returnUpdateFailure", () => {
-      console.log("Balance is too low");
-    });
-
     Socket.emit("getBalance", Socket.id);
   }
 
   componentWillUnmount() { 
-    Socket.off("returnUpdateSuccess");
     Socket.off("returnBalanceSuccess");
-    Socket.off("returnUpdateFailure");
+    Socket.off("returnUpdateSuccess");
   }
 
   render() {

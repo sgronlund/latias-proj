@@ -10,12 +10,13 @@ import {
   Dimensions,
 } from "react-native";
 import theme from "../styles/themes";
-import Shop from "./components/Shop";
+import { FontAwesome5 } from "@expo/vector-icons";
 import styleSheets from "../styles/StyleSheets";
 import { LinearGradient } from "expo-linear-gradient";
 import { Socket } from "../misc/Socket";
 import themes from "../styles/themes";
 import QRCode from "react-native-qrcode-svg";
+import { ThemeColors } from "react-navigation";
 
 const prices = [
   { text: "Liten latte OKQ8", price: 100 },
@@ -25,22 +26,14 @@ const prices = [
 class PriceButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { modalVisible: false, showCode: false };
+    this.state = { modalVisible: false, showCode: this.props.showCode };
   }
 
-  updateBalance = (price) => {
-    Socket.emit("changeBalance", Socket.id, price);
-    Socket.on("returnUpdateSuccess", () => {
-      this.setState({ showCode: true, modalVisible: false });
-    });
-  };
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   };
 
   render() {
-    const width = Dimensions.get("window").width / 2;
-
     return (
       <LinearGradient colors={theme.BLUE_GRADIENT} style={styles.button_blue}>
         <View
@@ -59,7 +52,7 @@ class PriceButton extends React.Component {
               transparent={true}
               visible={this.state.modalVisible}
               onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
+                alert("Modal has been closed.");
               }}
             >
               <View style={styles.centeredView}>
@@ -71,8 +64,8 @@ class PriceButton extends React.Component {
                   <Pressable
                     style={[styles.button, styles.buttonBuy]}
                     onPress={() => {
-                      this.updateBalance(this.props.price);
-                      this.setModalVisible(false);
+                      this.props.onPressBuy?.(this.props.price);
+                      this.setState({ showCode: true, modalVisible: false });
                     }}
                   >
                     <Text style={styles.textStyle}>KÖP</Text>
@@ -84,31 +77,6 @@ class PriceButton extends React.Component {
                     <Text style={styles.textStyle}>AVBRYT</Text>
                   </Pressable>
                 </View>
-              </View>
-            </Modal>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={this.state.showCode}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-              }}
-            >
-              <View style={styles.centeredView}>
-                <TouchableOpacity
-                  onPress={() => {
-                    this.setState({ showCode: false });
-                  }}
-                >
-                  <View style={styles.modalView}>
-                    <QRCode
-                      size={width}
-                      logoSize={45}
-                      value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                      logoBackgroundColor="transparent"
-                    />
-                  </View>
-                </TouchableOpacity>
               </View>
             </Modal>
             <TouchableOpacity
@@ -133,22 +101,83 @@ class PriceButton extends React.Component {
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showCode: false,
+      userBalance: 0,
+    };
   }
 
+  componentDidMount() {
+    Socket.emit("getBalance", Socket.id);
+    Socket.on("returnBalanceSuccess", (balance) => {
+      this.setState({ userBalance: parseInt(balance) });
+    });
+    Socket.on("returnUpdateFailure", () => {
+      alert("För lågt saldo!");
+    });
+    Socket.on("returnUpdateSuccess", (newBalance) => {
+      this.setState({ userBalance: newBalance, showCode: true });
+    });
+  }
+
+  updateBalance = (price) => {
+    Socket.emit("changeBalance", Socket.id, price);
+  };
+
   render() {
+    const width = Dimensions.get("window").width / 2;
+
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
-        <Shop />
         <View style={styles.midsquare}>
           <Text style={styles.header}>─────── BUTIK ───────</Text>
+          <Text style={styles.BalanceText}>
+            {this.state.userBalance === 0
+              ? null
+              : "Nuvarande saldo: " + this.state.userBalance}
+          </Text>
           <View style={{ width: "100%" }}>
             {prices.map((price, index) => (
               <PriceButton
                 key={"price" + index}
                 text={price.text}
                 price={price.price}
+                onPressBuy={this.updateBalance}
               />
             ))}
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={this.state.showCode}
+              onRequestClose={() => {
+                alert("Modal has been closed.");
+              }}
+            >
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <View style={styles.iconContainer}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setState({ showCode: false });
+                    }}
+                    
+                  >
+                    <FontAwesome5
+                      name="times-circle"
+                      size={theme.FONT_SIZE_SMALL}
+                      color="black"
+                    ></FontAwesome5>
+                  </TouchableOpacity>
+                  </View>
+                  <QRCode
+                    size={width}
+                    logoSize={45}
+                    value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    logoBackgroundColor="transparent"
+                  />
+                </View>
+              </View>
+            </Modal>
           </View>
         </View>
       </SafeAreaView>
@@ -166,11 +195,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "90%",
   },
+  BalanceText: {
+    justifyContent: "flex-start", //y-led
+    alignItems: "center",
+    color: "#FFFFFF",
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    margin: theme.MARGIN_MEDIUM,
+  },
+  iconContainer: {
+    alignSelf: "flex-end",
+    marginBottom: theme.MARGIN_SMALL,
+  },
   header: {
     justifyContent: "flex-start", //y-led
     alignItems: "center",
     color: theme.LIGHT_BLUE,
-    margin: "10%",
+    margin: theme.MARGIN_MEDIUM,
     fontSize: theme.FONT_SIZE_TINY,
   },
   button_blue: {
@@ -207,6 +247,7 @@ const styles = StyleSheet.create({
     marginTop: theme.MARGIN_SMALL,
   },
   modalView: {
+    width: "80%",
     margin: theme.MARGIN_SMALL,
     backgroundColor: themes.PURPLE_LIGHT,
     borderRadius: theme.ROUNDING_SMALL,
