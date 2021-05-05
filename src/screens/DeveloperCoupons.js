@@ -29,7 +29,7 @@ class DeveloperCoupons extends React.Component {
    * @summary Updates the state of the couponName when the user inputs text
    * @param {String} text text to update couponName to
    */
-   handleCouponName = (text) => {
+  handleCouponName = (text) => {
     this.setState({ couponName: text });
   };
 
