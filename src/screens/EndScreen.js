@@ -27,7 +27,7 @@ class EndScreen extends React.Component {
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("GameScreen")}
           >
-            <Text style={styles.ButtonText}>HOMESCREEN</Text>
+            <Text style={styles.ButtonText}>GAMESCREEN</Text>
           </TouchableOpacity>
         </CircleButton>
       </SafeAreaView>
