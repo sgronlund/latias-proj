@@ -9,17 +9,17 @@ import {
 } from "react-native";
 import theme from "../../styles/themes.js";
 
-const RealDeal = `This mobile application contains two different quizzes that are released every sunday at 20:00 (CET). The users objective is getting a good score in the quizzes which will reward the user with Real Deal balance that they can purchase coupons with in the shop.\n`;
+const RealDeal = `Quiza på dina nyhetskunskaper! Det finns två olika quiz, dels artiklequizet där du läser några artiklar under veckan och quizar på dem på söndag kväll, sedan även nyhetsfrågor där du får snabba frågor om händelser under veckan. Läs tidningen och quiza loss!\n` 
 
-const ArticleQuiz = `This quiz contains 10 questions with 4 alternatives to choose from. The questions are based on articles that are released one week prior to the quiz being released.\n`;
+const ArticleQuiz = `Artikelquizet består av to frågor, som hänvisar till någon av de tre artiklar som finns tillgängliga under veckan. Frågorna kommer vara lite svårare men belönas desto mer! Quizet finns tillgängligt på söndagar mellan 18 och 20.\n`
 
-const NewsQuiz = `This quiz contains 12 questions with 3 alternatives to choose from. The user has 20 seconds to choose an answer and is rewarded with a higher score if the user answers quickly.\n`;
+const NewsQuiz = `Nyhetsfrågor är 12 korta frågor om händelser från veckan. Här gäller det att svara snabbt eftersom detta ger mer poäng. Quizet finns tillgängligt hela veckan och byts ut på måndagar.\n`
 
-const RealDealSwedish = `Quiza på dina nyhetskunskaper! Det finns två olika quiz, dels artiklequizet där du läser några artiklar under veckan och quizar på dem på söndag kväll, sedan även nyhetsfrågor där du får snabba frågor om händelser under veckan. Läs tidningen och quiza loss!\n` 
+const Result = `Varje rätt svar i ArtikelQuizet ger användaren 50 poäng. Om användaren svarar alla rätt så belönar vi användaren med 75 poäng per fråga istället för 50 poäng.\n\nVarje rätt i Nyhetsfrågorna ger användaren 5 poäng + 0 till 5 poäng beroende på hur snabbt användaren svarar. Om användaren svarar alla rätt så får den 30 extra poäng. Detta gör att användaren kan få maximalt 150 poäng.`
 
-const ArticleQuizSwedish = `Artikelquizet består av to frågor, som hänvisar till någon av de tre artiklar som finns tillgängliga under veckan. Frågorna kommer vara lite svårare men belönas desto mer! Quizet finns tillgängligt på söndagar mellan 18 och 20.\n`
+const Balance = `För att räkna ut hur mycket saldo användaren ska få så tar vi poängen från quizzen och delar med 10.`
 
-const NewsQuizSwedish = `Nyhetsfrågor är 12 korta frågor om händelser från veckan. Här gäller det att svara snabbt eftersom detta ger mer poäng. Quizet finns tillgängligt hela veckan och byts ut på måndagar.\n`
+
 /**
  * @summary This is a component which leads the user to
  * the screen where information about the application
@@ -28,8 +28,7 @@ const NewsQuizSwedish = `Nyhetsfrågor är 12 korta frågor om händelser från 
 class QuestionButton extends React.Component {
   constructor(props) {
     super(props);
-    //TODO: Change the states dynamically???
-    this.state = { show: false, rD: RealDealSwedish, artQ: ArticleQuizSwedish, newsQ: NewsQuizSwedish };
+    this.state = { show: false };
   }
 
   toggleShow() {
@@ -43,11 +42,15 @@ class QuestionButton extends React.Component {
         <View style={styles.Main}>
           <ScrollView style={styles.Overlay}>
             <Text style={styles.TextBig}>The Real Deal:</Text>
-            <Text style={styles.TextSmall}>{this.state.rD}</Text>
-            <Text style={styles.TextBig}>Article Quiz:</Text>
-            <Text style={styles.TextSmall}>{this.state.artQ}</Text>
-            <Text style={styles.TextBig}>News Quiz:</Text>
-            <Text style={styles.TextSmall}>{this.state.newsQ}</Text>
+            <Text style={styles.TextSmall}>{RealDeal}</Text>
+            <Text style={styles.TextBig}>Artikel Quiz:</Text>
+            <Text style={styles.TextSmall}>{ArticleQuiz}</Text>
+            <Text style={styles.TextBig}>Nyhetsfrågor:</Text>
+            <Text style={styles.TextSmall}>{NewsQuiz}</Text>
+            <Text style={styles.TextBig}>Poäng:</Text>
+            <Text style={styles.TextSmall}>{Result}</Text>
+            <Text style={styles.TextBig}>Saldo:</Text>
+            <Text style={styles.TextSmall}>{Balance}</Text>
           </ScrollView>
           <View style={styles.Container}>
             <TouchableOpacity

@@ -37,19 +37,19 @@ const navigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        header: () => null,
+        header: () => null
       },
     },
     Read: {
       screen: Read,
       navigationOptions: {
-        title: "READ THIS WEEKS ARTICLES",
+        title: "LÄS VECKANS ARTIKLAR"
       },
     },
     NewsQ: {
       screen: NewsQ,
       navigationOptions: {
-        title: "THIS WEEKS NEWS QUIZ",
+        title: "VECKANS NYHETSFRÅGOR",
         headerLeft: () => null,
         headerRight: () => null,
       },
@@ -57,77 +57,112 @@ const navigator = createStackNavigator(
     GameScreen: {
       screen: GameScreen,
       navigationOptions: {
-        title: "THE REAL DEAL",
+        title: "THE REAL DEAL"
       },
     },
     Sign: {
       screen: Signup,
       navigationOptions: {
-        title: "SIGN UP",
+        title: "REGISTRERA"
       },
     },
     LogIn: {
       screen: LogIn,
       navigationOptions: {
-        title: "LOG IN",
+        title: "LOGGA IN"
       },
     },
     Settings: {
       screen: Settings,
       navigationOptions: {
-        title: "SETTINGS",
+        title: "INSTÄLLNINGAR",
         headerRight: () => null,
       },
     },
     ShopScreen: {
       screen: ShopScreen,
       navigationOptions: {
-        title: "SHOP",
+        title: "BUTIK"
       },
     },
     ArtQWaiting: {
       screen: ArtQWaiting,
       navigationOptions: {
-        title: "ARTICLE QUIZ",
+        title: "ARTIKEL QUIZ"
       },
     },
     ArtQ: {
       screen: ArtQ,
       navigationOptions: {
-        title: "ARTICLE QUIZ",
+        title: "ARTIKEL QUIZ",
         headerRight: () => null,
       },
     },
-    NewsQReady: NewsQReady,
-    Scoreboard: Scoreboard,
-    UserPolicy: UserPolicy,
-    Reset: Reset,
-    VerifyReset: VerifyReset,
-    UpdatePassword: UpdatePassword,
-    Developer: Developer,
+    NewsQReady: {
+      screen: NewsQReady,
+      navigationOptions: {
+        title: "NYHETSFRÅGOR"
+      }
+    },
+    Scoreboard: {
+      screen: Scoreboard,
+      navigationOptions: {
+        title: "RESULTAT"
+      }
+    },
+    UserPolicy: {
+      screen: UserPolicy,
+      navigationOptions: {
+        title: "ANVÄNDARPOLICY"
+      }
+    },
+    Reset: {
+      screen: Reset,
+      navigationOptions: {
+        title: null
+      }
+    },
+    VerifyReset: {
+      screen: VerifyReset,
+      navigationOptions: {
+        title: null
+      }
+    },
+    UpdatePassword: {
+      screen: UpdatePassword,
+      navigationOptions: {
+        title: null
+      }
+    },
+    Developer: {
+      screen: Developer,
+      navigationOptions: {
+        title: "UTVECKLARE"
+      }
+    },
     DeveloperNewsQ: {
       screen: DeveloperNewsQ,
       navigationOptions: {
-        title: "NEWS QUIZ",
+        title: "NYHETSFRÅGOR",
         
       }
     },
     DeveloperArtQ: {
       screen: DeveloperArtQ,
       navigationOptions: {
-        title: "ARTICLE QUIZ"
+        title: "ARTIKEL QUIZ"
       }
     },
     DeveloperQuestions: {
       screen: DeveloperQuestions,
       navigationOptions: {
-        title: "QUESTIONS"
+        title: "FRÅGOR"
       }
     },
     NewsQDone: {
       screen: NewsQDone,
       navigationOptions: {
-        title: "SCORE",
+        title: "RESULTAT",
         headerLeft: () => null,
         headerRight: () => null,
       },

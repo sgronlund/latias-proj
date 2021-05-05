@@ -12,14 +12,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome5 } from "@expo/vector-icons";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
-import themes from "../styles/themes";
 
 const Read = () => {
   return (
     <SafeAreaView style={styleSheets.MainContainer}>
       <QuestionButton />
       <View style={styles.midSquare}>
-        <Text style={styles.header}>───── THIS WEEKS ARTICLES ─────</Text>
+        <Text style={styles.header}>───── VECKANS ARTIKLAR ─────</Text>
 
         <TouchableOpacity
           onPress={() =>

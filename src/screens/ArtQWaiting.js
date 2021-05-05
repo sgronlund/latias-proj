@@ -60,7 +60,7 @@ class ArtQWaiting extends React.Component {
         <View style={styles.Container}>
           {quizReady ? (
             <>
-              <Text style={styles.Text}>THIS QUIZ IS AVAILABLE NOW</Text>
+              <Text style={styles.Text}>QUIZZET ÄR REDO NU</Text>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate("ArtQ")}
                 style={styles.ReadyButton}
@@ -69,13 +69,13 @@ class ArtQWaiting extends React.Component {
                   colors={theme.PINK_GRADIENT}
                   style={styles.Gradient}
                 >
-                  <Text style={styles.ButtonText}>START</Text>
+                  <Text style={styles.ButtonText}>STARTA</Text>
                 </LinearGradient>
               </TouchableOpacity>
             </>
           ) : (
             <>
-              <Text style={styles.Text}>THIS QUIZ IS AVAILABLE IN</Text>
+              <Text style={styles.Text}>QUIZZET ÄR REDO OM</Text>
               <Text style={styles.timerText}>{this.state.time}</Text>
             </>
           )}
@@ -87,7 +87,7 @@ class ArtQWaiting extends React.Component {
               colors={theme.PINK_GRADIENT}
               style={styles.GradientButton}
             >
-              <Text style={styles.ButtonText}>READ THIS WEEKS ARTICLES</Text>
+              <Text style={styles.ButtonText}>LÄS VECKANS ARTIKLAR</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>

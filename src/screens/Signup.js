@@ -64,13 +64,13 @@ class Signup extends React.Component {
   handleRegister = (username, password, email) => {
     //if inputs are invalid we don't want to do anything
     if (!username || !password || !email) {
-      alert("Some inputs are empty!");
+      alert("Du har lämnat blanka fält!");
       return;
     }
-
+    const trimmedUsername = username.trim();
     initSignupSockets(this.props.navigation);
     //the client first applies salt to the password
-    var salt_pass = password + username.toUpperCase();
+    var salt_pass = password + trimmedUsername.toUpperCase();
 
     //hash the password so that it is not stored in clear text in the database
     //The passwords are also irreversibly hashed
@@ -78,13 +78,13 @@ class Signup extends React.Component {
 
     //The data transmission is encrypted in case of listeners.
 
-    if (!sharedKey) return alert("You are not connected to the server!");
+    if (!sharedKey) return alert("Du är inte ansluten till servern!");
     //we now want to encrypt the password so that it cannot be replayed by an attacker. The server will decrypt the password on its end.
     var encrypted_pass = CryptoJS.AES.encrypt(
       hash_pass,
       sharedKey.toString()
     ).toString();
-    Socket.emit("register", username, encrypted_pass, email);
+    Socket.emit("register", trimmedUsername, encrypted_pass, email);
   };
 
   render() {
@@ -95,23 +95,23 @@ class Signup extends React.Component {
           style={styles.LoginContainer}
           behaviour="position"
         >
-          <Text style={styleSheets.inputHeader}>Username:</Text>
+          <Text style={styleSheets.inputHeader}>Användarnamn:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your username"
+            placeholder="Användarnamn"
             onChangeText={this.handleUsername}
           />
-          <Text style={styleSheets.inputHeader}>Password:</Text>
+          <Text style={styleSheets.inputHeader}>Lösenord:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your password"
+            placeholder="Lösenord"
             onChangeText={this.handlePassword}
             secureTextEntry={true}
           />
-          <Text style={styleSheets.inputHeader}>Email:</Text>
+          <Text style={styleSheets.inputHeader}>Mail:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your email"
+            placeholder="Mail"
             onChangeText={this.handleEmail}
           />
         </KeyboardAvoidingView>
@@ -129,7 +129,7 @@ class Signup extends React.Component {
               )
             }
           >
-            <Text style={styleSheets.ButtonText}>REGISTER</Text>
+            <Text style={styleSheets.ButtonText}>REGISTRERA</Text>
           </TouchableOpacity>
         </LinearGradient>
       </SafeAreaView>

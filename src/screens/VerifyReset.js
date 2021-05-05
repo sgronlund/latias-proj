@@ -52,7 +52,7 @@ class VerifyReset extends React.Component {
           <Text style={styleSheets.inputHeader}>Code:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="Code"
+            placeholder="Kod"
             onChangeText={this.handleCode}
           />
         </View>

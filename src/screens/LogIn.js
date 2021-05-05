@@ -55,19 +55,20 @@ class LogIn extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleLogin = (username, password) => {
+    const trimmedUsername = username.trim();
     //The passwords stored in the database are first salted
-    var salt_pass = password + username.toUpperCase();
+    var salt_pass = password + trimmedUsername.toUpperCase();
 
     //The passwords are also irreversibly hashed
     let hash_pass = sha256(salt_pass);
-    if (!sharedKey) return alert("You are not connected to the server!");
+    if (!sharedKey) return alert("Du är ej ansluten med servern!");
     var encrypted_pass = CryptoJS.AES.encrypt(
       hash_pass,
       sharedKey.toString()
     ).toString();
 
     //The data transmission is encrypted in case of listeners.
-    Socket.emit("login", username, encrypted_pass, Socket.id);
+    Socket.emit("login", trimmedUsername, encrypted_pass, Socket.id);
   };
 
   render() {
@@ -75,16 +76,16 @@ class LogIn extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <QuestionButton />
         <View style={styles.LoginContainer}>
-          <Text style={styleSheets.inputHeader}>Username:</Text>
+          <Text style={styleSheets.inputHeader}>Användarnamn:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your username"
+            placeholder="Användarnamn"
             onChangeText={this.handleUsername}
           />
-          <Text style={styleSheets.inputHeader}>Password:</Text>
+          <Text style={styleSheets.inputHeader}>Lösenord:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="your password"
+            placeholder="Användarnamn"
             onChangeText={this.handlePassword}
             secureTextEntry={true}
           />
@@ -100,14 +101,14 @@ class LogIn extends React.Component {
               this.handleLogin(this.state.username, this.state.password)
             }
           >
-            <Text style={styleSheets.ButtonText}>LOG IN</Text>
+            <Text style={styleSheets.ButtonText}>LOGGA IN</Text>
           </TouchableOpacity>
         </LinearGradient>
 
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Reset")}
         >
-          <Text style={styles.ForgotPassword}>forgot password?</Text>
+          <Text style={styles.ForgotPassword}>glömt lösenord?</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

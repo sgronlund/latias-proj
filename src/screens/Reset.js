@@ -45,7 +45,7 @@ class Reset extends React.Component {
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <View style={styles.LoginContainer}>
-          <Text style={styleSheets.inputHeader}>Email:</Text>
+          <Text style={styleSheets.inputHeader}>Mail:</Text>
           <TextInput
             style={styleSheets.Input}
             placeholder="Email"
@@ -58,7 +58,7 @@ class Reset extends React.Component {
             this.handleSubmit(this.state.email);
           }}
         >
-          <Text style={styleSheets.ButtonText}>SEND MAIL</Text>
+          <Text style={styleSheets.ButtonText}>SKICKA MAIL</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
