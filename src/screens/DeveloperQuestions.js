@@ -77,7 +77,7 @@ class DeveloperQuestions extends React.Component {
         <View style={styles.Container}>
           <Text style={styles.TextBig}>NYHETSFRÅGOR:</Text>
           {newsQuestions}
-          <Text style={styles.TextBig}>ARTIKEL QUIZ:</Text>
+          <Text style={styles.TextBig}>ARTIKELQUIZ:</Text>
           {artQuestions}
         </View>
       </SafeAreaView>
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
     padding: theme.PADDING_LARGE,
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
-    flexGrow: 1,
+    width: "90%",
+    height: "95%"
   },
   rowContainer: {
     width: "100%",
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   TextBig: {
-    fontSize: theme.FONT_SIZE_MEDIUM,
+    fontSize: theme.FONT_SIZE_SMALL,
     fontFamily: theme.DEFAULT_FONT,
     color: "#FFFFFF",
   },
