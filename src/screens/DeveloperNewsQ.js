@@ -24,6 +24,7 @@ class DeveloperNewsQ extends React.Component {
       wrongAnswer1: "",
       wrongAnswer2: "",
       correctAnswer: "",
+      weekNumberReset: ""
     };
   }
 
@@ -68,6 +69,16 @@ class DeveloperNewsQ extends React.Component {
 
   /**
    * @function
+   * @summary Updates the state of weekNumber when the user
+   * inputs text
+   * @param {String} text text to weekNumber to
+   */
+  handleWeekNumberReset = (text) => {
+    this.setState({ weekNumberReset: text });
+  };
+
+  /**
+   * @function
    * @summary Tells the server that a user is trying to log in
    * @param {String} username username of the user to log in
    * @param {String} password password of the user to log in
@@ -98,7 +109,9 @@ class DeveloperNewsQ extends React.Component {
    * current week
    */
   resetQuestions = () => {
-    Socket.emit("resetQuestions", currentWeekNumber());
+    const weekNumber = parseInt(this.state.weekNumberReset);
+    if (weekNumber) Socket.emit("resetQuestions", parseInt(weekNumber));
+    else Socket.emit("resetQuestions", currentWeekNumber());
     alert("Frågorna har återställts!");
   };
 
@@ -109,23 +122,23 @@ class DeveloperNewsQ extends React.Component {
           <Text style={styleSheets.inputHeader}>Fråga:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="Question"
+            placeholder="Fråga"
             onChangeText={this.handleQuestion}
           />
           <Text style={styleSheets.inputHeader}>Svar:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="Wrong answer"
+            placeholder="Fel svar"
             onChangeText={this.handleWrongAnswer1}
           />
           <TextInput
             style={styleSheets.Input}
-            placeholder="Wrong answer"
+            placeholder="Fel svar"
             onChangeText={this.handleWrongAnswer2}
           />
           <TextInput
             style={styleSheets.Input}
-            placeholder="Correct answer"
+            placeholder="Rätt svar"
             onChangeText={this.handleCorrectAnswer}
           />
         </View>
@@ -148,6 +161,11 @@ class DeveloperNewsQ extends React.Component {
         >
           <Text style={styleSheets.ButtonText}>ÅTERSTÄLL FRÅGOR</Text>
         </TouchableOpacity>
+        <TextInput
+          style={[styleSheets.Input]}
+          placeholder="Lämna blankt för denna vecka"
+          onChangeText={this.handleWeekNumberReset}
+        />
       </SafeAreaView>
     );
   }
