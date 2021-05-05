@@ -23,7 +23,7 @@ class DeveloperArticles extends React.Component {
       articleName: "",
       link: "",
       weekNumber: "",
-      weekNumberReset: ""
+      weekNumberReset: "",
     };
   }
 
@@ -72,7 +72,9 @@ class DeveloperArticles extends React.Component {
    * @param {String} password password of the user to log in
    */
   handleSubmitArticle = (articleName, link, weekNumber) => {
-    let linkRegex = new RegExp(/^(http|https):\/\/(www.)[a-öA-Ö0-9]+[a-öA-Ö0-9.]+?\.[a-öA-Ö0-9]+[a-öA-Ö0-9\-\/]+?$/);
+    let linkRegex = new RegExp(
+      /^(http|https):\/\/(www.)[a-öA-Ö0-9]+[a-öA-Ö0-9.]+?\.[a-öA-Ö0-9]+[a-öA-Ö0-9\-\/]+?$/
+    );
 
     if (!articleName || !link) return alert("Du har lämnat blanka fält!");
     if (weekNumber) {
@@ -137,17 +139,17 @@ class DeveloperArticles extends React.Component {
         >
           <Text style={styleSheets.ButtonText}>SKICKA</Text>
         </TouchableOpacity>
-          <TouchableOpacity
-            style={[styleSheets.GenericButton, styleSheets.PinkBackground,]}
-            onPress={this.resetArticles}
-          >
-            <Text style={styleSheets.ButtonText}>ÅTERSTÄLL ARTIKLAR</Text>
-          </TouchableOpacity>
-          <TextInput
-            style={[styleSheets.Input]}
-            placeholder="Lämna blankt för denna vecka"
-            onChangeText={this.handleWeekNumberReset}
-          />
+        <TouchableOpacity
+          style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
+          onPress={this.resetArticles}
+        >
+          <Text style={styleSheets.ButtonText}>ÅTERSTÄLL ARTIKLAR</Text>
+        </TouchableOpacity>
+        <TextInput
+          style={[styleSheets.Input]}
+          placeholder="Lämna blankt för denna vecka"
+          onChangeText={this.handleWeekNumberReset}
+        />
       </SafeAreaView>
     );
   }

@@ -13,22 +13,24 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
 import { Socket } from "../misc/Socket";
-import currentWeekNumber from "current-week-number"
+import currentWeekNumber from "current-week-number";
 
-class Read extends React.Component  {
+class Read extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {articles : []}
+    super(props);
+    this.state = { articles: [] };
   }
 
   componentDidMount() {
     Socket.on("getArticleSuccess", (articles) => {
-      this.setState({articles: articles});
+      this.setState({ articles: articles });
       Socket.off("getArticleFail");
       Socket.off("getArticleSuccess");
     });
     Socket.on("getArticleFail", () => {
-      this.setState({articles: [{name: "Something went wrong", link: "", week: 10}]});
+      this.setState({
+        articles: [{ name: "Something went wrong", link: "", week: 10 }],
+      });
       Socket.off("getArticleFail");
       Socket.off("getArticleSuccess");
     });
@@ -37,26 +39,22 @@ class Read extends React.Component  {
 
   render() {
     console.log(this.state.articles);
-    const articles = this.state.articles.map((item,index) => (
+    const articles = this.state.articles.map((item, index) => (
       <TouchableOpacity
-            onPress={() =>
-              Linking.openURL(
-                item.link
-              )
-            }
-            style={styles.Button}
+        onPress={() => Linking.openURL(item.link)}
+        style={styles.Button}
+      >
+        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
+          <FontAwesome5
+            name="book-open"
+            size={theme.FONT_SIZE_EXTRA_SMALL}
+            color="white"
           >
-            <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
-              <FontAwesome5
-                name="book-open"
-                size={theme.FONT_SIZE_EXTRA_SMALL}
-                color="white"
-              >
-                {" "}
-                {item.name}
-              </FontAwesome5>
-            </LinearGradient>
-          </TouchableOpacity>
+            {" "}
+            {item.name}
+          </FontAwesome5>
+        </LinearGradient>
+      </TouchableOpacity>
     ));
 
     return (
@@ -69,7 +67,7 @@ class Read extends React.Component  {
       </SafeAreaView>
     );
   }
-};
+}
 
 const styles = StyleSheet.create({
   midSquare: {

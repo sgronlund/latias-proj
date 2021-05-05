@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: theme.DARK_PURPLE,
     width: "90%",
-    height: "95%"
+    height: "95%",
   },
   rowContainer: {
     width: "100%",

@@ -144,7 +144,7 @@ let initDeveloperArtQSockets = () => {
  * @summary Initializes socket listeners for checking if a coupon
  * was successfully added
  */
- let initDeveloperCouponSockets = () => {
+let initDeveloperCouponSockets = () => {
   Socket.on("addCouponSuccess", () => {
     Socket.off("addCouponSuccess");
     alert("Kupong tillagd!");
@@ -160,7 +160,7 @@ let initDeveloperArtQSockets = () => {
  * @summary Initializes socket listeners for checking if an article
  * was successfully added
  */
- let initDeveloperArticlesSockets = () => {
+let initDeveloperArticlesSockets = () => {
   Socket.on("addArticleSuccess", () => {
     Socket.off("addArticleSuccess");
     alert("Artikel tillagd!");
