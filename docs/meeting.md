@@ -371,3 +371,30 @@ Inget att kommentera.
 ### Andra punkter
 
 Inget att kommentera.
+
+
+## Arbetsmöte 05/05/21
+
+INTERN DEADLINE: 10/05/21, Teknisk Utveckling
+
+## Att göra-lista
+
+* Stänga ner-knapp på QRKOD, Kimiya+Aishe
+
+* Alert vid låg saldo, Sebastian
+
+* Slutskärm artikelquiz, Richard
+
+* Dubbelkolla styling (LinearGradient + Alignments), Fanny
+
+* Styling på knapparna i artikelquiz (Submit + Pilarna),  ÖPPEN
+
+* Scoreboard styling, padding nere, Kimiya+Aishe
+
+* Ändra färgval på ett av quizzet (Så att vi sker skillnad), Kimiya+Aishe
+
+* Dynamisk input för kuponger och artiklar, Jakob + Niclas (Frontend)
+
+* Fixa speltid på artikelquizzet, ÖPPEN
+
+* Checka av design detaljer i Figma, ÖPPEN
