@@ -25,7 +25,7 @@ class DeveloperArtQ extends React.Component {
       wrongAnswer2: "",
       wrongAnswer3: "",
       correctAnswer: "",
-      weekNumberReset: ""
+      weekNumberReset: "",
     };
   }
 
@@ -78,15 +78,15 @@ class DeveloperArtQ extends React.Component {
     this.setState({ correctAnswer: text });
   };
 
-    /**
+  /**
    * @function
    * @summary Updates the state of weekNumber when the user
    * inputs text
    * @param {String} text text to weekNumber to
    */
-     handleWeekNumberReset = (text) => {
-      this.setState({ weekNumberReset: text });
-    };
+  handleWeekNumberReset = (text) => {
+    this.setState({ weekNumberReset: text });
+  };
 
   /**
    * @function

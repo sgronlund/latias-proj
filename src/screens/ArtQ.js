@@ -27,7 +27,7 @@ class ArtQ extends React.Component {
       buttonColour2: theme.BLUE_GRADIENT,
       buttonColour3: theme.BLUE_GRADIENT,
       buttonColour4: theme.BLUE_GRADIENT,
-      onLastQuestion: false
+      onLastQuestion: false,
     };
   }
 
@@ -79,9 +79,9 @@ class ArtQ extends React.Component {
       currentQuestion: newQuestion,
     });
     this.displayPress(this.state.userAnswers[this.state.currentQuestion + 1]);
-    
-    if(newQuestion === this.state.questions.length - 1) {
-      this.setState({onLastQuestion: true});
+
+    if (newQuestion === this.state.questions.length - 1) {
+      this.setState({ onLastQuestion: true });
     }
   };
 
@@ -94,7 +94,7 @@ class ArtQ extends React.Component {
     if (this.state.currentQuestion === 0) return;
     this.setState({
       currentQuestion: this.state.currentQuestion - 1,
-      onLastQuestion: false
+      onLastQuestion: false,
     });
     this.displayPress(this.state.userAnswers[this.state.currentQuestion - 1]);
   };
@@ -342,9 +342,7 @@ class ArtQ extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <View
-          style={styles.ArrowContainer}
-        >
+        <View style={styles.ArrowContainer}>
           {this.state.onLastQuestion ? (
             <TouchableOpacity
               onPress={() => {
@@ -423,7 +421,7 @@ const styles = StyleSheet.create({
     width: "30%",
     height: "70%",
   },
-  SubmitText : {
+  SubmitText: {
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
     fontFamily: theme.DEFAULT_FONT,
     color: "#FFFFFF",
@@ -437,7 +435,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#081842",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
     paddingLeft: theme.PADDING_MEDIUM,
-    paddingRight: theme.PADDING_MEDIUM
+    paddingRight: theme.PADDING_MEDIUM,
   },
   ArrowButton: {
     alignItems: "center",

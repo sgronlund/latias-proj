@@ -24,7 +24,7 @@ class DeveloperNewsQ extends React.Component {
       wrongAnswer1: "",
       wrongAnswer2: "",
       correctAnswer: "",
-      weekNumberReset: ""
+      weekNumberReset: "",
     };
   }
 

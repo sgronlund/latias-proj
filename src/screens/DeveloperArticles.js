@@ -23,7 +23,7 @@ class DeveloperArticles extends React.Component {
       articleName: "",
       link: "",
       weekNumber: "",
-      weekNumberReset: ""
+      weekNumberReset: "",
     };
   }
 
