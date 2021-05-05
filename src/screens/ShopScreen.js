@@ -17,11 +17,6 @@ import { Socket } from "../misc/Socket";
 import themes from "../styles/themes";
 import QRCode from "react-native-qrcode-svg";
 
-const prices = [
-  { text: "Liten latte OKQ8", price: 100 },
-  { text: "Stor latte OKQ8", price: 150 },
-];
-
 class PriceButton extends React.Component {
   constructor(props) {
     super(props);
@@ -133,22 +128,34 @@ class PriceButton extends React.Component {
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {coupons: []};
+  }
+
+  
+  componentDidMount() {
+    Socket.on("getCouponsSuccess", (coupons) => {
+      this.setState({coupons: coupons});
+    })
+    Socket.emit("getCoupons");
   }
 
   render() {
+    const coupons = this.state.coupons;
+
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
         <Shop />
         <View style={styles.midsquare}>
           <Text style={styles.header}>─────── BUTIK ───────</Text>
           <View style={{ width: "100%" }}>
-            {prices.map((price, index) => (
+          {coupons.length > 0 ? coupons.map((item, index) => (
               <PriceButton
                 key={"price" + index}
-                text={price.text}
-                price={price.price}
+                text={item.name}
+                price={item.price}
+                onPressBuy={this.updateBalance}
               />
-            ))}
+            )) : <Text style={styles.Text}>No coupons available at this time.</Text>}
           </View>
         </View>
       </SafeAreaView>
@@ -165,12 +172,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     width: "90%",
+    padding: theme.PADDING_LARGE
   },
   header: {
     justifyContent: "flex-start", //y-led
     alignItems: "center",
     color: theme.LIGHT_BLUE,
-    margin: "10%",
+    marginBottom: theme.MARGIN_MEDIUM,
     fontSize: theme.FONT_SIZE_TINY,
   },
   button_blue: {
@@ -183,7 +191,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   button_blue_text: {
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    fontSize: theme.FONT_SIZE_TINY,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
@@ -196,7 +204,7 @@ const styles = StyleSheet.create({
   button_pink_text: {
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    fontSize: theme.FONT_SIZE_TINY,
     textAlign: "center",
     padding: theme.PADDING_MEDIUM,
   },
@@ -237,4 +245,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+  Text: {
+    fontSize: theme.FONT_SIZE_SMALL,
+    color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
+    textAlign: "center",
+  }
 });
