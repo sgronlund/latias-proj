@@ -156,18 +156,17 @@ export default class ShopScreen extends React.Component {
               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                   <View style={styles.iconContainer}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      this.setState({ showCode: false });
-                    }}
-                    
-                  >
-                    <FontAwesome5
-                      name="times-circle"
-                      size={theme.FONT_SIZE_SMALL}
-                      color="black"
-                    ></FontAwesome5>
-                  </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.setState({ showCode: false });
+                      }}
+                    >
+                      <FontAwesome5
+                        name="times-circle"
+                        size={theme.FONT_SIZE_SMALL}
+                        color="black"
+                      ></FontAwesome5>
+                    </TouchableOpacity>
                   </View>
                   <QRCode
                     size={width}
