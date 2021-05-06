@@ -96,15 +96,14 @@ class PriceButton extends React.Component {
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { coupons: [], showCode: false,
-      userBalance: 0 };
+    this.state = { coupons: [], showCode: false, userBalance: 0 };
   }
 
   componentDidMount() {
     Socket.on("getCouponsSuccess", (coupons) => {
       this.setState({ coupons: coupons });
     });
-    
+
     Socket.on("returnBalanceSuccess", (balance) => {
       this.setState({ userBalance: parseInt(balance) });
     });
