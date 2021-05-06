@@ -62,7 +62,7 @@ class DeveloperCoupons extends React.Component {
    */
   resetCoupons = () => {
     Socket.emit("resetCoupons");
-    alert("Artiklarna har återställts!");
+    alert("Kupongerna har återställts!");
   };
 
   render() {
