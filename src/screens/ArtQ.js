@@ -27,6 +27,7 @@ class ArtQ extends React.Component {
       buttonColour2: theme.BLUE_GRADIENT,
       buttonColour3: theme.BLUE_GRADIENT,
       buttonColour4: theme.BLUE_GRADIENT,
+      onLastQuestion: false,
     };
   }
 
@@ -71,11 +72,17 @@ class ArtQ extends React.Component {
    * screen for the next question
    */
   nextQuestion = () => {
+    const newQuestion = this.state.currentQuestion + 1;
+
     if (this.state.currentQuestion === this.state.questions.length - 1) return;
     this.setState({
-      currentQuestion: this.state.currentQuestion + 1,
+      currentQuestion: newQuestion,
     });
     this.displayPress(this.state.userAnswers[this.state.currentQuestion + 1]);
+
+    if (newQuestion === this.state.questions.length - 1) {
+      this.setState({ onLastQuestion: true });
+    }
   };
 
   /**
@@ -87,6 +94,7 @@ class ArtQ extends React.Component {
     if (this.state.currentQuestion === 0) return;
     this.setState({
       currentQuestion: this.state.currentQuestion - 1,
+      onLastQuestion: false,
     });
     this.displayPress(this.state.userAnswers[this.state.currentQuestion - 1]);
   };
@@ -334,15 +342,22 @@ class ArtQ extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <View
-          style={{
-            flexDirection: "row-reverse",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "40%",
-          }}
-        >
-          {this.state.currentQuestion < this.state.questions.length - 1 ? (
+        <View style={styles.ArrowContainer}>
+          {this.state.onLastQuestion ? (
+            <TouchableOpacity
+              onPress={() => {
+                this.submitAnswers();
+              }}
+              style={styles.SubmitButton}
+            >
+              <LinearGradient
+                colors={theme.GREEN_GRADIENT}
+                style={styles.Gradient}
+              >
+                <Text style={styles.SubmitText}>Skicka</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          ) : (
             <TouchableOpacity
               onPress={async () => {
                 await this.nextQuestion();
@@ -351,15 +366,6 @@ class ArtQ extends React.Component {
               style={styles.ArrowButton}
             >
               <Text style={styles.Arrow}>→</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              onPress={() => {
-                this.submitAnswers();
-              }}
-              style={styles.ArrowButton}
-            >
-              <Text style={styles.Arrow}>Skicka</Text>
             </TouchableOpacity>
           )}
 
@@ -387,12 +393,12 @@ const styles = StyleSheet.create({
   },
   QuestionContainer: {
     height: "20%",
-    width: "95%",
+    width: "90%",
     alignItems: "center",
   },
   AlternativeContainer: {
     height: "40%",
-    width: "95%",
+    width: "90%",
     alignItems: "center",
   },
   Gradient: {
@@ -410,6 +416,26 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "20%",
     marginTop: theme.MARGIN_SMALL,
+  },
+  SubmitButton: {
+    width: "30%",
+    height: "70%",
+  },
+  SubmitText: {
+    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    fontFamily: theme.DEFAULT_FONT,
+    color: "#FFFFFF",
+  },
+  ArrowContainer: {
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "90%",
+    height: "12%",
+    backgroundColor: "#081842",
+    borderRadius: theme.ROUNDING_EXTRA_SMALL,
+    paddingLeft: theme.PADDING_MEDIUM,
+    paddingRight: theme.PADDING_MEDIUM,
   },
   ArrowButton: {
     alignItems: "center",

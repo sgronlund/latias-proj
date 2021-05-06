@@ -67,11 +67,13 @@ class DeveloperArticles extends React.Component {
 
   /**
    * @function
-   * @summary Tells the server that a user is trying to log in
-   * @param {String} username username of the user to log in
-   * @param {String} password password of the user to log in
+   * @summary Tells the server that a developer is submitting
+   * an article
    */
-  handleSubmitArticle = (articleName, link, weekNumber) => {
+  handleSubmitArticle = () => {
+    const articleName = this.state.articleName;
+    const link = this.state.link;
+    const weekNumber = this.state.weekNumber;
     let linkRegex = new RegExp(
       /^(http|https):\/\/(www.)[a-öA-Ö0-9]+[a-öA-Ö0-9.]+?\.[a-öA-Ö0-9]+[a-öA-Ö0-9\-\/]+?$/
     );
@@ -129,13 +131,7 @@ class DeveloperArticles extends React.Component {
         </View>
         <TouchableOpacity
           style={[styleSheets.GenericButton, styleSheets.PinkBackground]}
-          onPress={() =>
-            this.handleSubmitArticle(
-              this.state.articleName,
-              this.state.link,
-              this.state.weekNumber
-            )
-          }
+          onPress={this.handleSubmitArticle}
         >
           <Text style={styleSheets.ButtonText}>SKICKA</Text>
         </TouchableOpacity>
