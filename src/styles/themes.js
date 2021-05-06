@@ -73,5 +73,4 @@ export default {
   ORANGE_GRADIENT: ["#ff5e00", "#ff9100"],
   HEIGHT: dimensions.height,
   WIDTH: dimensions.width,
-  ROUND_START_BUTTON: 200,
 };
