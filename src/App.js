@@ -184,7 +184,7 @@ const navigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "EndScreen",
     defaultNavigationOptions: ({ navigation }) => ({
       headerTintColor: "#FFFFFF",
       headerBackTitleVisible: false,

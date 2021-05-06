@@ -1,14 +1,12 @@
 import React from "react";
 import {
-  View,
   Text,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  Button,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+
 import { withNavigation } from "react-navigation";
 import CircleButton from "./components/circlebutton";
 import styleSheets from "../styles/StyleSheets";
@@ -22,7 +20,7 @@ class EndScreen extends React.Component {
         <TitleContainer />
 
         <Text style={styles.header}>DU HAR SKICKAT IN DINA SVAR</Text>
-
+        
         <CircleButton>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("GameScreen")}

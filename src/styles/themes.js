@@ -74,4 +74,5 @@ export default {
   GREY_GRADIENT: ["#ff0000", "#00e4ff"],
   HEIGHT: dimensions.height,
   WIDTH: dimensions.width,
+  
 };
