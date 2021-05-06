@@ -20,7 +20,7 @@ class EndScreen extends React.Component {
         <TitleContainer />
 
         <Text style={styles.header}>DU HAR SKICKAT IN DINA SVAR</Text>
-        
+
         <CircleButton>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("GameScreen")}
