@@ -163,7 +163,8 @@ const navigator = createStackNavigator(
     EndScreen: {
       screen: EndScreen,
       navigationOptions: {
-        header: () => null
+        header: () => null,
+        title: "ARTIKELQUIZ"
       }
     },
     NewsQDone: {
