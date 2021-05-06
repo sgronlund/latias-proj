@@ -169,7 +169,7 @@ export default class ShopScreen extends React.Component {
                     </TouchableOpacity>
                   </View>
                   <QRCode
-                    size={width}
+                    size={QRCodeSize}
                     logoSize={45}
                     value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     logoBackgroundColor="transparent"
