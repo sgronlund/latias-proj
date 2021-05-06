@@ -96,22 +96,15 @@ class PriceButton extends React.Component {
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { coupons: [] };
+    this.state = { coupons: [], showCode: false,
+      userBalance: 0 };
   }
 
   componentDidMount() {
     Socket.on("getCouponsSuccess", (coupons) => {
       this.setState({ coupons: coupons });
     });
-    Socket.emit("getCoupons");
-    this.setState({
-      showCode: false,
-      userBalance: 0,
-    });
-  }
-
-  componentDidMount() {
-    Socket.emit("getBalance", Socket.id);
+    
     Socket.on("returnBalanceSuccess", (balance) => {
       this.setState({ userBalance: parseInt(balance) });
     });
@@ -121,6 +114,8 @@ export default class ShopScreen extends React.Component {
     Socket.on("returnUpdateSuccess", (newBalance) => {
       this.setState({ userBalance: newBalance, showCode: true });
     });
+    Socket.emit("getCoupons");
+    Socket.emit("getBalance", Socket.id);
   }
 
   updateBalance = (price) => {
@@ -130,6 +125,15 @@ export default class ShopScreen extends React.Component {
   render() {
     const coupons = this.state.coupons;
     const QRCodeSize = Dimensions.get("window").width / 2;
+
+    const allCoupons = coupons.map((item, index) => (
+      <PriceButton
+        key={"price" + index}
+        text={item.name}
+        price={item.price}
+        onPressBuy={this.updateBalance}
+      />
+    ));
 
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
@@ -142,46 +146,39 @@ export default class ShopScreen extends React.Component {
           </Text>
           <View style={{ width: "100%" }}>
             {coupons.length > 0 ? (
-              coupons.map((item, index) => (
-                <PriceButton
-                  key={"price" + index}
-                  text={item.name}
-                  price={item.price}
-                  onPressBuy={this.updateBalance}
-                />
-              ))
-    <Modal
-              animationType="slide"
-              transparent={true}
-              visible={this.state.showCode}
-              onRequestClose={() => {
-                alert("Modal has been closed.");
-              }}
-            >
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <View style={styles.iconContainer}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        this.setState({ showCode: false });
-                      }}
-                    >
-                      <FontAwesome5
-                        name="times-circle"
-                        size={theme.FONT_SIZE_SMALL}
-                        color="black"
-                      ></FontAwesome5>
-                    </TouchableOpacity>
+              <>
+                {allCoupons}
+                <Modal
+                  animationType="slide"
+                  transparent={true}
+                  visible={this.state.showCode}
+                  onRequestClose={() => {}}
+                >
+                  <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                      <View style={styles.iconContainer}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            this.setState({ showCode: false });
+                          }}
+                        >
+                          <FontAwesome5
+                            name="times-circle"
+                            size={theme.FONT_SIZE_SMALL}
+                            color="black"
+                          ></FontAwesome5>
+                        </TouchableOpacity>
+                      </View>
+                      <QRCode
+                        size={QRCodeSize}
+                        logoSize={45}
+                        value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                        logoBackgroundColor="transparent"
+                      />
+                    </View>
                   </View>
-                  <QRCode
-                    size={QRCodeSize}
-                    logoSize={45}
-                    value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    logoBackgroundColor="transparent"
-                  />
-                </View>
-              </View>
-            </Modal>
+                </Modal>
+              </>
             ) : (
               <Text style={styles.Text}>
                 No coupons available at this time.
