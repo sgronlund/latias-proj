@@ -61,7 +61,7 @@ class ArtQ extends React.Component {
       alert("Kunde inte hämta frågorna!");
     });
     Socket.on("changeScreenFinishedArtQ", () => {
-      this.props.navigation.navigate("GameScreen");
+      this.props.navigation.navigate("EndScreen");
     });
     Socket.emit("getQuestionsArticle", currentWeekNumber());
   };

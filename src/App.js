@@ -29,6 +29,7 @@ import UserPolicy from "./screens/UserPolicy";
 import Scoreboard from "./screens/components/Scoreboard";
 import NewsQReady from "./screens/NewsQReady";
 import NewsQDone from "./screens/NewsQDone";
+import EndScreen from "./screens/EndScreen";
 
 /**
  * @summary This file contains the stack navigator
@@ -161,6 +162,13 @@ const navigator = createStackNavigator(
         title: "FRÅGOR"
       }
     },
+    EndScreen: {
+      screen: EndScreen,
+      navigationOptions: {
+        header: () => null,
+        title: "ARTIKELQUIZ"
+      }
+    },
     DeveloperArticles: {
       screen: DeveloperArticles,
       navigationOptions: {
@@ -183,7 +191,7 @@ const navigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "EndScreen",
     defaultNavigationOptions: ({ navigation }) => ({
       headerTintColor: "#FFFFFF",
       headerBackTitleVisible: false,
