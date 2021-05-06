@@ -167,6 +167,7 @@ let initDeveloperArticlesSockets = () => {
     alert("Artikel tillagd!");
   });
   Socket.on("addArticleFailure", () => {
+    Socket.off("addArticleSuccess");
     Socket.off("addArticleFailure");
     alert("Det gick ej att lägga till artikeln!");
   });
