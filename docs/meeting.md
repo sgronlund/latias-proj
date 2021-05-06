@@ -395,6 +395,26 @@ INTERN DEADLINE: 10/05/21, Teknisk Utveckling
 
 * Dynamisk input för kuponger och artiklar, Jakob + Niclas (Frontend)
 
-* Fixa speltid på artikelquizzet, ÖPPEN
+* Fixa speltid på artikelquizzet, ÖPPEN (KANSKE INTE?)
 
 * Checka av design detaljer i Figma, ÖPPEN
+
+## Arbetsmöte 06/05/21
+
+## Vad gjorde vi igår?
+
+* Betade av checklistan.
+
+## Vad ska göra idag?
+
+* Sista punkterna på checklistan.
+
+* Börja på quizzen (stoppa in nutids + leta artiklar), Fanny
+
+* Slipa och fortsätt skriva rapporten.
+
+## Gruppuppdelning
+
+* Presentation: Fanny + ANDRA
+
+* Rapport: ANDRA
