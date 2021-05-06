@@ -179,9 +179,7 @@ export default class ShopScreen extends React.Component {
                 </Modal>
               </>
             ) : (
-              <Text style={styles.Text}>
-                Finns inga kuponger att visa.
-              </Text>
+              <Text style={styles.Text}>Finns inga kuponger att visa.</Text>
             )}
           </View>
         </View>
