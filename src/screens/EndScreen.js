@@ -21,7 +21,7 @@ class EndScreen extends React.Component {
       <SafeAreaView style={styleSheets.MainContainer}>
         <TitleContainer />
 
-        <Text style={styles.header}>YOUR ANSWERS IS SUBMITTED</Text>
+        <Text style={styles.header}>DU HAR SKICKAT IN DINA SVAR</Text>
 
         <CircleButton>
           <TouchableOpacity
