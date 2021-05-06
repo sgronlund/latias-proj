@@ -29,7 +29,7 @@ class GameScreen extends React.Component {
     const { params = {} } = navigation.state;
     if (params.loggedIn) {
       return {
-        headerLeft: null,
+        headerLeft: () => null,
       };
     }
   };
