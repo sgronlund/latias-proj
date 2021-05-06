@@ -141,6 +141,38 @@ let initDeveloperArtQSockets = () => {
 
 /**
  * @function
+ * @summary Initializes socket listeners for checking if a coupon
+ * was successfully added
+ */
+let initDeveloperCouponSockets = () => {
+  Socket.on("addCouponSuccess", () => {
+    Socket.off("addCouponSuccess");
+    alert("Kupong tillagd!");
+  });
+  Socket.on("addCouponFailure", () => {
+    Socket.off("addCouponFailure");
+    alert("Det gick ej att lägga till kupongen!");
+  });
+};
+
+/**
+ * @function
+ * @summary Initializes socket listeners for checking if an article
+ * was successfully added
+ */
+let initDeveloperArticlesSockets = () => {
+  Socket.on("addArticleSuccess", () => {
+    Socket.off("addArticleSuccess");
+    alert("Artikel tillagd!");
+  });
+  Socket.on("addArticleFailure", () => {
+    Socket.off("addArticleFailure");
+    alert("Det gick ej att lägga till artikeln!");
+  });
+};
+
+/**
+ * @function
  * @summary Initializes socket listeners for checking for logout
  * success or failure and removes the listeners
  * @param {Object} navigation navigator that redirects to other screens
@@ -164,6 +196,8 @@ export {
   initVerifyResetSockets,
   initDeveloperNewsQSockets,
   initDeveloperArtQSockets,
+  initDeveloperCouponSockets,
+  initDeveloperArticlesSockets,
   initLogoutSockets,
   sharedKey,
   Socket,
