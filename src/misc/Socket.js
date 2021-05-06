@@ -163,6 +163,7 @@ let initDeveloperCouponSockets = () => {
 let initDeveloperArticlesSockets = () => {
   Socket.on("addArticleSuccess", () => {
     Socket.off("addArticleSuccess");
+    Socket.off("addArticleFailure");
     alert("Artikel tillagd!");
   });
   Socket.on("addArticleFailure", () => {
