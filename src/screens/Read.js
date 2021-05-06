@@ -12,76 +12,62 @@ import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome5 } from "@expo/vector-icons";
 import styleSheets from "../styles/StyleSheets";
 import QuestionButton from "./components/QuestionButton";
+import { Socket } from "../misc/Socket";
+import currentWeekNumber from "current-week-number";
 
-const Read = () => {
-  return (
-    <SafeAreaView style={styleSheets.MainContainer}>
-      <QuestionButton />
-      <View style={styles.midSquare}>
-        <Text style={styles.header}>───── VECKANS ARTIKLAR ─────</Text>
+class Read extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { articles: [] };
+  }
 
-        <TouchableOpacity
-          onPress={() =>
-            Linking.openURL(
-              "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
-            )
-          }
-          style={styles.Button}
-        >
-          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
-            <FontAwesome5
-              name="book-open"
-              size={theme.FONT_SIZE_EXTRA_SMALL}
-              color="white"
-            >
-              {" "}
-              TRUMP HAR GIFT SIG
-            </FontAwesome5>
-          </LinearGradient>
-        </TouchableOpacity>
+  componentDidMount() {
+    Socket.on("getArticleSuccess", (articles) => {
+      this.setState({ articles: articles });
+      Socket.off("getArticleFail");
+      Socket.off("getArticleSuccess");
+    });
+    Socket.on("getArticleFail", () => {
+      this.setState({
+        articles: [{ name: "Something went wrong", link: "", week: 10 }],
+      });
+      Socket.off("getArticleFail");
+      Socket.off("getArticleSuccess");
+    });
+    Socket.emit("getArticle", currentWeekNumber());
+  }
 
-        <TouchableOpacity
-          onPress={() =>
-            Linking.openURL(
-              "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
-            )
-          }
-          style={styles.Button}
-        >
-          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
-            <FontAwesome5
-              name="book-open"
-              size={theme.FONT_SIZE_EXTRA_SMALL}
-              color="white"
-            >
-              {" "}
-              TRUMP HAR GIFT SIG
-            </FontAwesome5>
-          </LinearGradient>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            Linking.openURL(
-              "https://www.aftonbladet.se/nyheter/a/WLR4lk/donald-trump-har-gift-sig"
-            )
-          }
-          style={styles.Button}
-        >
-          <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
-            <FontAwesome5
-              name="book-open"
-              size={theme.FONT_SIZE_EXTRA_SMALL}
-              color="white"
-            >
-              {" "}
-              TRUMP HAR GIFT SIG
-            </FontAwesome5>
-          </LinearGradient>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-};
+  render() {
+    console.log(this.state.articles);
+    const articles = this.state.articles.map((item, index) => (
+      <TouchableOpacity
+        onPress={() => Linking.openURL(item.link)}
+        style={styles.Button}
+      >
+        <LinearGradient colors={theme.PINK_GRADIENT} style={styles.Gradient}>
+          <FontAwesome5
+            name="book-open"
+            size={theme.FONT_SIZE_EXTRA_SMALL}
+            color="white"
+          >
+            {" "}
+            {item.name}
+          </FontAwesome5>
+        </LinearGradient>
+      </TouchableOpacity>
+    ));
+
+    return (
+      <SafeAreaView style={styleSheets.MainContainer}>
+        <QuestionButton />
+        <View style={styles.midSquare}>
+          <Text style={styles.header}>───── THIS WEEKS ARTICLES ─────</Text>
+          {articles}
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   midSquare: {

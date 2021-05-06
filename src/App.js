@@ -18,6 +18,7 @@ import Developer from "./screens/Developer";
 import DeveloperNewsQ from "./screens/DeveloperNewsQ";
 import DeveloperArtQ from "./screens/DeveloperArtQ"
 import DeveloperQuestions from "./screens/DeveloperQuestions";
+import DeveloperArticles from "./screens/DeveloperArticles";
 import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
 import { TouchableOpacity } from "react-native";
@@ -165,6 +166,12 @@ const navigator = createStackNavigator(
       navigationOptions: {
         header: () => null,
         title: "ARTIKELQUIZ"
+      }
+    },
+    DeveloperArticles: {
+      screen: DeveloperArticles,
+      navigationOptions: {
+        title: "ARTIKLAR"
       }
     },
     NewsQDone: {

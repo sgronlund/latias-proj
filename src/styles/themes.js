@@ -71,6 +71,7 @@ export default {
   GREEN_GRADIENT: ["#0a7909", "#19ff00"],
   RED_GRADIENT: ["#792409", "#ff3500"],
   ORANGE_GRADIENT: ["#ff5e00", "#ff9100"],
+  GREY_GRADIENT: ["#ff0000", "#00e4ff"],
   HEIGHT: dimensions.height,
   WIDTH: dimensions.width,
 };

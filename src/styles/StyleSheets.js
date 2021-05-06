@@ -25,6 +25,7 @@ const styleSheets = StyleSheet.create({
     width: "80%",
     height: "8%",
     justifyContent: "center",
+    alignItems: "center",
     padding: theme.PADDING_MEDIUM,
     borderRadius: theme.ROUNDING_MEDIUM,
     margin: theme.MARGIN_MEDIUM,
