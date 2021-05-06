@@ -2,7 +2,6 @@ import React from "react";
 import { Text, Dimensions, TouchableOpacity, View } from "react-native"; 
 import theme from "../../styles/themes.js";
 import styleSheets from "../../styles/StyleSheets";
-//import { Colors } from "react-native/Libraries/NewAppScreen";
 
 class CircleButton extends React.Component {
     constructor(props) {
