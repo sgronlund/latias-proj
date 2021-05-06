@@ -30,7 +30,7 @@ class Developer extends React.Component {
           >
             {
               <LinearGradient
-                colors={theme.BLUE_GRADIENT}
+                colors={theme.DARK_BLUE_GRADIENT}
                 style={styles.Gradient}
               >
                 <Text style={styles.ButtonText}>NYHETSFRÅGOR</Text>
@@ -43,10 +43,10 @@ class Developer extends React.Component {
           >
             {
               <LinearGradient
-                colors={theme.PINK_GRADIENT}
+                colors={theme.DARK_BLUE_GRADIENT}
                 style={styles.Gradient}
               >
-                <Text style={styles.ButtonText}>ARTIKEL QUIZ</Text>
+                <Text style={styles.ButtonText}>ARTIKELQUIZ</Text>
               </LinearGradient>
             }
           </TouchableOpacity>
@@ -60,6 +60,32 @@ class Developer extends React.Component {
                 style={styles.Gradient}
               >
                 <Text style={styles.ButtonText}>FRÅGOR</Text>
+              </LinearGradient>
+            }
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("DeveloperCoupons")}
+            style={styles.Button}
+          >
+            {
+              <LinearGradient
+                colors={theme.DARK_BLUE_GRADIENT}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>KUPONGER</Text>
+              </LinearGradient>
+            }
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("DeveloperArticles")}
+            style={styles.Button}
+          >
+            {
+              <LinearGradient
+                colors={theme.DARK_BLUE_GRADIENT}
+                style={styles.Gradient}
+              >
+                <Text style={styles.ButtonText}>ARTIKLAR</Text>
               </LinearGradient>
             }
           </TouchableOpacity>
@@ -78,7 +104,7 @@ const styles = StyleSheet.create({
   },
   Button: {
     width: "100%",
-    height: "30%",
+    height: "20%",
     marginTop: theme.MARGIN_SMALL,
   },
   Gradient: {

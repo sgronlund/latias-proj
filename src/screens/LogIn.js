@@ -85,7 +85,7 @@ class LogIn extends React.Component {
           <Text style={styleSheets.inputHeader}>Lösenord:</Text>
           <TextInput
             style={styleSheets.Input}
-            placeholder="Användarnamn"
+            placeholder="Lösenord"
             onChangeText={this.handlePassword}
             secureTextEntry={true}
           />
