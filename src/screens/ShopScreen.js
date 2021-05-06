@@ -180,7 +180,7 @@ export default class ShopScreen extends React.Component {
               </>
             ) : (
               <Text style={styles.Text}>
-                No coupons available at this time.
+                Finns inga kuponger att visa.
               </Text>
             )}
           </View>
