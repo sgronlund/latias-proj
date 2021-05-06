@@ -125,7 +125,7 @@ export default class ShopScreen extends React.Component {
   };
 
   render() {
-    const width = Dimensions.get("window").width / 2;
+    const QRCodeSize = Dimensions.get("window").width / 2;
 
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
