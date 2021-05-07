@@ -18,7 +18,8 @@ global.fontSizes = {
 
 global.margins = {
   align: width * 0.1,
-  ExtraTiny: width / 200,
+  ExtraTiny: width / 400,
+
   Tiny: width / 60,
   Small: width / 40,
   Medium: width / 15,
@@ -71,7 +72,7 @@ export default {
   GREEN_GRADIENT: ["#0a7909", "#19ff00"],
   RED_GRADIENT: ["#792409", "#ff3500"],
   ORANGE_GRADIENT: ["#ff5e00", "#ff9100"],
-  GREY_GRADIENT: ["#ff0000", "#00e4ff"],
+  GREY_GRADIENT: ["#6a6a6a", "#C4C4C4"],
   HEIGHT: dimensions.height,
   WIDTH: dimensions.width,
 };

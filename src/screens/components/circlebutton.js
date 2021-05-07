@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   justifyContent: 'center',
   alignItems: 'center',
   margin: theme.MARGIN_MEDIUM,
-  border: "2px",
+  borderWidth: 2,
   borderColor: "black",
   borderStyle:'solid',
 }});

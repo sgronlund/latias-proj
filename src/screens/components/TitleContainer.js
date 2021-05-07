@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Text, View, StyleSheet } from "react-native";
-import LOGOCOLOR from "../../assets/Logo_white_onColor.png"
+import LOGOCOLOR from "../../assets/Logo_white_with_blue_border_on_color.png"
 import theme from "../../styles/themes.js";
 
 /**

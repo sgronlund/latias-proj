@@ -295,7 +295,7 @@ class ArtQ extends React.Component {
               this.saveAnswer(2);
               this.displayPress(2);
             }}
-            style={styles.Button}
+            style={[styles.Button, { marginLeft: theme.MARGIN_TINY }]}
           >
             <LinearGradient
               colors={this.state.buttonColour2}
@@ -306,7 +306,8 @@ class ArtQ extends React.Component {
               </Text>
             </LinearGradient>
           </TouchableOpacity>
-
+        </View>
+        <View style={styles.AlternativeContainer}>
           <TouchableOpacity
             onPress={() => {
               this.saveAnswer(3);
@@ -329,7 +330,7 @@ class ArtQ extends React.Component {
               this.saveAnswer(4);
               this.displayPress(4);
             }}
-            style={styles.Button}
+            style={[styles.Button, { marginLeft: theme.MARGIN_TINY }]}
           >
             <LinearGradient
               colors={this.state.buttonColour4}
@@ -386,7 +387,7 @@ class ArtQ extends React.Component {
 
 const styles = StyleSheet.create({
   PlayerCountContainer: {
-    height: "10%",
+    height: "7%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -395,31 +396,37 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "90%",
     alignItems: "center",
+    marginBottom: theme.MARGIN_TINY,
   },
   AlternativeContainer: {
-    height: "40%",
-    width: "90%",
+    height: "17%",
     alignItems: "center",
+    width: "90%",
+    flexDirection: "row",
+    margin: theme.MARGIN_EXTRA_TINY,
+    justifyContent: "space-evenly",
   },
   Gradient: {
     flex: 1,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: theme.ROUNDING_SMALL,
+    borderRadius: theme.ROUNDING_EXTRA_SMALL,
+    padding: theme.PADDING_SMALL,
+    textAlign: "center",
   },
   ButtonText: {
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    fontSize: theme.FONT_SIZE_TINY,
+    fontFamily: theme.DEFAULT_FONT,
     color: "#FFFFFF",
   },
   Button: {
-    width: "100%",
-    height: "20%",
-    marginTop: theme.MARGIN_SMALL,
+    flex: 2,
+    height: "95%",
   },
   SubmitButton: {
     width: "30%",
-    height: "70%",
+    height: "60%",
   },
   SubmitText: {
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
@@ -434,8 +441,9 @@ const styles = StyleSheet.create({
     height: "12%",
     backgroundColor: "#081842",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
-    paddingLeft: theme.PADDING_MEDIUM,
-    paddingRight: theme.PADDING_MEDIUM,
+    paddingLeft: theme.PADDING_LARGE,
+    paddingRight: theme.PADDING_LARGE,
+    margin: theme.MARGIN_TINY,
   },
   ArrowButton: {
     alignItems: "center",
@@ -450,14 +458,14 @@ const styles = StyleSheet.create({
     height: "10%",
     justifyContent: "center",
     alignItems: "center",
-    margin: 10,
+    margin: theme.MARGIN_EXTRA_TINY,
   },
   NumberQ: {
     color: "#FFFFFF",
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },
   Text: {
-    fontSize: theme.FONT_SIZE_MEDIUM,
+    fontSize: theme.FONT_SIZE_SMALL,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },

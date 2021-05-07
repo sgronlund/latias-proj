@@ -93,8 +93,9 @@ export default class NewsQDone extends React.Component {
             {game}
           </LinearGradient>
         </View>
-        <Text style={styles.headerText}>Du blir omdirigerad om:</Text>
-        <Text style={styles.timerText}>{this.state.time.toFixed(1)}</Text>
+        <Text style={styles.headerText}>
+          Du blir omdirigerad om: {this.state.time.toFixed(1)}
+        </Text>
       </SafeAreaView>
     );
   }
