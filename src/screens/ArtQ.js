@@ -297,7 +297,7 @@ class ArtQ extends React.Component {
               this.saveAnswer(2);
               this.displayPress(2);
             }}
-            style={[styles.Button, {marginLeft: theme.MARGIN_TINY}]}
+            style={[styles.Button, { marginLeft: theme.MARGIN_TINY }]}
           >
             <LinearGradient
               colors={this.state.buttonColour2}
@@ -308,8 +308,8 @@ class ArtQ extends React.Component {
               </Text>
             </LinearGradient>
           </TouchableOpacity>
-          </View>
-          <View style={styles.AlternativeContainer}>
+        </View>
+        <View style={styles.AlternativeContainer}>
           <TouchableOpacity
             onPress={() => {
               this.saveAnswer(3);
@@ -332,7 +332,7 @@ class ArtQ extends React.Component {
               this.saveAnswer(4);
               this.displayPress(4);
             }}
-            style={[styles.Button, {marginLeft: theme.MARGIN_TINY}]}
+            style={[styles.Button, { marginLeft: theme.MARGIN_TINY }]}
           >
             <LinearGradient
               colors={this.state.buttonColour4}
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
     width: "90%",
     flexDirection: "row",
     margin: theme.MARGIN_EXTRA_TINY,
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
   },
   Gradient: {
     flex: 1,
@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
     padding: theme.PADDING_SMALL,
-    textAlign: "center"
+    textAlign: "center",
   },
   ButtonText: {
     fontSize: theme.FONT_SIZE_TINY,
@@ -445,7 +445,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.ROUNDING_EXTRA_SMALL,
     paddingLeft: theme.PADDING_LARGE,
     paddingRight: theme.PADDING_LARGE,
-    margin: theme.MARGIN_TINY
+    margin: theme.MARGIN_TINY,
   },
   ArrowButton: {
     alignItems: "center",
