@@ -38,7 +38,6 @@ class Read extends React.Component {
   }
 
   render() {
-    console.log(this.state.articles);
     const articles = this.state.articles.map((item, index) => (
       <TouchableOpacity
         onPress={() => Linking.openURL(item.link)}

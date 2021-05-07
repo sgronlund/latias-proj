@@ -19,6 +19,7 @@ import DeveloperNewsQ from "./screens/DeveloperNewsQ";
 import DeveloperArtQ from "./screens/DeveloperArtQ"
 import DeveloperQuestions from "./screens/DeveloperQuestions";
 import DeveloperArticles from "./screens/DeveloperArticles";
+import DeveloperCoupons from "./screens/DeveloperCoupons";
 import ArtQWaiting from "./screens/ArtQWaiting";
 import React from "react";
 import { TouchableOpacity } from "react-native";
@@ -28,6 +29,7 @@ import UserPolicy from "./screens/UserPolicy";
 import Scoreboard from "./screens/components/Scoreboard";
 import NewsQReady from "./screens/NewsQReady";
 import NewsQDone from "./screens/NewsQDone";
+import EndScreen from "./screens/EndScreen";
 
 /**
  * @summary This file contains the stack navigator
@@ -160,10 +162,23 @@ const navigator = createStackNavigator(
         title: "FRÅGOR"
       }
     },
+    EndScreen: {
+      screen: EndScreen,
+      navigationOptions: {
+        header: () => null,
+        title: "ARTIKELQUIZ"
+      }
+    },
     DeveloperArticles: {
       screen: DeveloperArticles,
       navigationOptions: {
         title: "ARTIKLAR"
+      }
+    },
+    DeveloperCoupons: {
+      screen: DeveloperCoupons,
+      navigationOptions: {
+        title: "KUPONGER"
       }
     },
     NewsQDone: {
@@ -176,7 +191,7 @@ const navigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "EndScreen",
     defaultNavigationOptions: ({ navigation }) => ({
       headerTintColor: "#FFFFFF",
       headerBackTitleVisible: false,

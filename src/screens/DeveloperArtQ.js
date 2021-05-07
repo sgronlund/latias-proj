@@ -25,6 +25,7 @@ class DeveloperArtQ extends React.Component {
       wrongAnswer2: "",
       wrongAnswer3: "",
       correctAnswer: "",
+      weekNumberReset: "",
     };
   }
 
@@ -79,6 +80,16 @@ class DeveloperArtQ extends React.Component {
 
   /**
    * @function
+   * @summary Updates the state of weekNumber when the user
+   * inputs text
+   * @param {String} text text to weekNumber to
+   */
+  handleWeekNumberReset = (text) => {
+    this.setState({ weekNumberReset: text });
+  };
+
+  /**
+   * @function
    * @summary Tells the server that a user is trying to log in
    * @param {String} username username of the user to log in
    * @param {String} password password of the user to log in
@@ -105,7 +116,9 @@ class DeveloperArtQ extends React.Component {
    * current week
    */
   resetQuestions = () => {
-    Socket.emit("resetQuestionsArticle", currentWeekNumber());
+    const weekNumber = parseInt(this.state.weekNumberReset);
+    if (weekNumber) Socket.emit("resetQuestionsArticle", parseInt(weekNumber));
+    else Socket.emit("resetQuestionsArticle", currentWeekNumber());
     alert("Frågorna har återställts!");
   };
 
@@ -166,6 +179,11 @@ class DeveloperArtQ extends React.Component {
         >
           <Text style={styleSheets.ButtonText}>ÅTERSTÄLL FRÅGOR</Text>
         </TouchableOpacity>
+        <TextInput
+          style={[styleSheets.Input]}
+          placeholder="Lämna blankt för denna vecka"
+          onChangeText={this.handleWeekNumberReset}
+        />
       </SafeAreaView>
     );
   }

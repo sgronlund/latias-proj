@@ -18,11 +18,6 @@ import themes from "../styles/themes";
 import QRCode from "react-native-qrcode-svg";
 import { ThemeColors } from "react-navigation";
 
-const prices = [
-  { text: "Liten latte OKQ8", price: 100 },
-  { text: "Stor latte OKQ8", price: 150 },
-];
-
 class PriceButton extends React.Component {
   constructor(props) {
     super(props);
@@ -101,14 +96,14 @@ class PriceButton extends React.Component {
 export default class ShopScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showCode: false,
-      userBalance: 0,
-    };
+    this.state = { coupons: [], showCode: false, userBalance: 0 };
   }
 
   componentDidMount() {
-    Socket.emit("getBalance", Socket.id);
+    Socket.on("getCouponsSuccess", (coupons) => {
+      this.setState({ coupons: coupons });
+    });
+
     Socket.on("returnBalanceSuccess", (balance) => {
       this.setState({ userBalance: parseInt(balance) });
     });
@@ -118,6 +113,8 @@ export default class ShopScreen extends React.Component {
     Socket.on("returnUpdateSuccess", (newBalance) => {
       this.setState({ userBalance: newBalance, showCode: true });
     });
+    Socket.emit("getCoupons");
+    Socket.emit("getBalance", Socket.id);
   }
 
   updateBalance = (price) => {
@@ -125,7 +122,17 @@ export default class ShopScreen extends React.Component {
   };
 
   render() {
+    const coupons = this.state.coupons;
     const QRCodeSize = Dimensions.get("window").width / 2;
+
+    const allCoupons = coupons.map((item, index) => (
+      <PriceButton
+        key={"price" + index}
+        text={item.name}
+        price={item.price}
+        onPressBuy={this.updateBalance}
+      />
+    ));
 
     return (
       <SafeAreaView style={styleSheets.MainContainer}>
@@ -137,46 +144,43 @@ export default class ShopScreen extends React.Component {
               : "Nuvarande saldo: " + this.state.userBalance}
           </Text>
           <View style={{ width: "100%" }}>
-            {prices.map((price, index) => (
-              <PriceButton
-                key={"price" + index}
-                text={price.text}
-                price={price.price}
-                onPressBuy={this.updateBalance}
-              />
-            ))}
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={this.state.showCode}
-              onRequestClose={() => {
-                alert("Modal has been closed.");
-              }}
-            >
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <View style={styles.iconContainer}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        this.setState({ showCode: false });
-                      }}
-                    >
-                      <FontAwesome5
-                        name="times-circle"
-                        size={theme.FONT_SIZE_SMALL}
-                        color="black"
-                      ></FontAwesome5>
-                    </TouchableOpacity>
+            {coupons.length > 0 ? (
+              <>
+                {allCoupons}
+                <Modal
+                  animationType="slide"
+                  transparent={true}
+                  visible={this.state.showCode}
+                  onRequestClose={() => {}}
+                >
+                  <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                      <View style={styles.iconContainer}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            this.setState({ showCode: false });
+                          }}
+                        >
+                          <FontAwesome5
+                            name="times-circle"
+                            size={theme.FONT_SIZE_SMALL}
+                            color="black"
+                          ></FontAwesome5>
+                        </TouchableOpacity>
+                      </View>
+                      <QRCode
+                        size={QRCodeSize}
+                        logoSize={45}
+                        value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                        logoBackgroundColor="transparent"
+                      />
+                    </View>
                   </View>
-                  <QRCode
-                    size={QRCodeSize}
-                    logoSize={45}
-                    value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                    logoBackgroundColor="transparent"
-                  />
-                </View>
-              </View>
-            </Modal>
+                </Modal>
+              </>
+            ) : (
+              <Text style={styles.Text}>Finns inga kuponger att visa.</Text>
+            )}
           </View>
         </View>
       </SafeAreaView>
@@ -193,6 +197,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     width: "90%",
+    padding: theme.PADDING_LARGE,
   },
   BalanceText: {
     justifyContent: "flex-start", //y-led
@@ -209,7 +214,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start", //y-led
     alignItems: "center",
     color: theme.LIGHT_BLUE,
-    margin: theme.MARGIN_MEDIUM,
+    marginBottom: theme.MARGIN_MEDIUM,
     fontSize: theme.FONT_SIZE_TINY,
   },
   button_blue: {
@@ -222,7 +227,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   button_blue_text: {
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    fontSize: theme.FONT_SIZE_TINY,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
@@ -235,7 +240,7 @@ const styles = StyleSheet.create({
   button_pink_text: {
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
-    fontSize: theme.FONT_SIZE_EXTRA_SMALL,
+    fontSize: theme.FONT_SIZE_TINY,
     textAlign: "center",
     padding: theme.PADDING_MEDIUM,
   },
@@ -276,5 +281,11 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_TINY,
     color: "white",
     fontWeight: "bold",
+  },
+  Text: {
+    fontSize: theme.FONT_SIZE_SMALL,
+    color: "#FFFFFF",
+    fontFamily: theme.DEFAULT_FONT,
+    textAlign: "center",
   },
 });
