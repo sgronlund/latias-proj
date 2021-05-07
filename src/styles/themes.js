@@ -19,7 +19,7 @@ global.fontSizes = {
 global.margins = {
   align: width * 0.1,
   ExtraTiny: width / 400,
-  
+
   Tiny: width / 60,
   Small: width / 40,
   Medium: width / 15,

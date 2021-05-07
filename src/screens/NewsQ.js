@@ -261,20 +261,25 @@ class NewsQ extends React.Component {
   }
 
   render() {
-
     var copy = this.state.doneArr.slice();
-    while(copy.length < this.state.questions.length) {
-      copy.push({answerColor: theme.GREY_GRADIENT})
+    while (copy.length < this.state.questions.length) {
+      copy.push({ answerColor: theme.GREY_GRADIENT });
     }
     const answersColorsXD = copy.map((item, index) => (
       <>
-        <View key={index} style={[styles.FlexBox, {width: `${Math.round(200/this.state.questions.length)}%`}]}>
-            <LinearGradient colors={item.answerColor} style={styles.Gradient}>
-              <Text> </Text>
-            </LinearGradient>
+        <View
+          key={index}
+          style={[
+            styles.FlexBox,
+            { width: `${Math.round(200 / this.state.questions.length)}%` },
+          ]}
+        >
+          <LinearGradient colors={item.answerColor} style={styles.Gradient}>
+            <Text> </Text>
+          </LinearGradient>
         </View>
       </>
-    ))
+    ));
 
     if (this.state.currentQuestion === this.state.questions.length + 1)
       return null;
@@ -347,15 +352,11 @@ class NewsQ extends React.Component {
           <Text style={styles.timerText}>
             {Math.abs(this.state.time).toFixed(1)}
           </Text>
-          <View style={styles.answerContainer}>
-            {answersColorsXD}
-          </View>
+          <View style={styles.answerContainer}>{answersColorsXD}</View>
         </SafeAreaView>
       );
   }
 }
-
-
 
 const styles = StyleSheet.create({
   AlternativeContainer: {
@@ -393,7 +394,7 @@ const styles = StyleSheet.create({
     height: "40%",
     alignItems: "center",
     paddingHorizontal: theme.PADDING_SMALL,
-    marginBottom: theme.MARGIN_TINY
+    marginBottom: theme.MARGIN_TINY,
   },
   ButtonText: {
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
