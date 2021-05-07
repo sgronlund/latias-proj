@@ -418,3 +418,17 @@ INTERN DEADLINE: 10/05/21, Teknisk Utveckling
 * Presentation: Fanny + ANDRA
 
 * Rapport: ANDRA
+
+## Arbetsmöte 07/05/21
+
+## Vad gjorde vi igår?
+
+* Korrekturläste rapport.
+
+* Fixade lite funktioner
+
+## Vad ska göra idag?
+
+* Kolla hur frågorna passar in i newsQ. (Checka av tekniska aspekter).
+
+* Börja på quizzen (stoppa in nutids + leta artiklar).
