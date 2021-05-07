@@ -261,6 +261,21 @@ class NewsQ extends React.Component {
   }
 
   render() {
+
+    var copy = this.state.doneArr.slice();
+    while(copy.length < this.state.questions.length) {
+      copy.push({answerColor: theme.GREY_GRADIENT})
+    }
+    const answersColorsXD = copy.map((item, index) => (
+      <>
+        <View key={index} style={[styles.FlexBox, {width: `${Math.round(200/this.state.questions.length)}%`}]}>
+            <LinearGradient colors={item.answerColor} style={styles.Gradient}>
+              <Text> </Text>
+            </LinearGradient>
+        </View>
+      </>
+    ))
+
     if (this.state.currentQuestion === this.state.questions.length + 1)
       return null;
     else
@@ -332,15 +347,38 @@ class NewsQ extends React.Component {
           <Text style={styles.timerText}>
             {Math.abs(this.state.time).toFixed(1)}
           </Text>
+          <View style={styles.answerContainer}>
+            {answersColorsXD}
+          </View>
         </SafeAreaView>
       );
   }
 }
 
+
+
 const styles = StyleSheet.create({
   AlternativeContainer: {
     height: "40%",
     width: "95%",
+    alignItems: "center",
+  },
+  answerContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: "95%",
+    height: "15%",
+    alignItems: "center",
+    backgroundColor: theme.DARK_PURPLE,
+    borderRadius: theme.ROUNDING_SMALL,
+    margin: theme.MARGIN_SMALL,
+    padding: theme.PADDING_SMALL,
+  },
+  rowContainer: {
+    flexWrap: "wrap",
+    width: "100%",
+    height: "50%",
+    flexDirection: "row",
     alignItems: "center",
   },
   Gradient: {
@@ -349,6 +387,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: theme.ROUNDING_SMALL,
+  },
+  FlexBox: {
+    justifyContent: "center",
+    height: "40%",
+    alignItems: "center",
+    paddingHorizontal: theme.PADDING_SMALL,
+    marginBottom: theme.MARGIN_TINY
   },
   ButtonText: {
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
@@ -378,7 +423,8 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_EXTRA_SMALL,
   },
   timerText: {
-    fontSize: theme.FONT_SIZE_LARGE,
+    marginTop: theme.MARGIN_SMALL,
+    fontSize: theme.FONT_SIZE_SMALL,
     color: "#FFFFFF",
     fontFamily: theme.DEFAULT_FONT,
   },
