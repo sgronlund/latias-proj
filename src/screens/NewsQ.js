@@ -265,7 +265,7 @@ class NewsQ extends React.Component {
     while (copy.length < this.state.questions.length) {
       copy.push({ answerColor: theme.GREY_GRADIENT });
     }
-    const answersColorsXD = copy.map((item, index) => (
+    const answersColors = copy.map((item, index) => (
       <>
         <View
           key={index}
