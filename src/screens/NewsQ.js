@@ -352,7 +352,7 @@ class NewsQ extends React.Component {
           <Text style={styles.timerText}>
             {Math.abs(this.state.time).toFixed(1)}
           </Text>
-          <View style={styles.answerContainer}>{answersColorsXD}</View>
+          <View style={styles.answerContainer}>{answersColors}</View>
         </SafeAreaView>
       );
   }
