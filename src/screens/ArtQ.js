@@ -185,7 +185,7 @@ class ArtQ extends React.Component {
       shuffledAlternatives: shuffledAlternatives,
       correctAnswers: correctAnswers,
       questions: questions2,
-      onLastQuestion: singleQuestion
+      onLastQuestion: singleQuestion,
     });
     this.updateCurrentAlternatives();
   }
