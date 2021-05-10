@@ -432,3 +432,12 @@ INTERN DEADLINE: 10/05/21, Teknisk Utveckling
 * Kolla hur frågorna passar in i newsQ. (Checka av tekniska aspekter).
 
 * Börja på quizzen (stoppa in nutids + leta artiklar).
+
+## Arbetsmöte 08/05/21
+
+## Gruppindelning
+
+* Presentation: Fanny, Niclas, Kimiya, Richard
+
+* Rapport: Jacob, Sebastian, Aishe
+
