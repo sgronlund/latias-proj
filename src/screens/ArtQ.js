@@ -180,10 +180,12 @@ class ArtQ extends React.Component {
       correctAnswers.push(question.correct);
       questions2.push(question.question);
     }
+    var singleQuestion = questions2.length === 1;
     await this.setState({
       shuffledAlternatives: shuffledAlternatives,
       correctAnswers: correctAnswers,
       questions: questions2,
+      onLastQuestion: singleQuestion,
     });
     this.updateCurrentAlternatives();
   }
