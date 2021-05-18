@@ -73,7 +73,7 @@ class DeveloperArticles extends React.Component {
   handleSubmitArticle = () => {
     const articleName = this.state.articleName;
     const link = this.state.link;
-    const weekNumber = this.state.weekNumber;
+    var weekNumber = this.state.weekNumber;
     let linkRegex = new RegExp(
       /^(http|https):\/\/(www.)[a-öA-Ö0-9]+[a-öA-Ö0-9.]+?\.[a-öA-Ö0-9]+[a-öA-Ö0-9\-\/]+?$/
     );
