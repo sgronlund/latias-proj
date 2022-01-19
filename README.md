@@ -12,7 +12,7 @@ This project was done for the course [1DT003 Computer Systems with Project Work 
 # The Real Deal - Frontend
 ![logo](./src/assets/Logo_white_with_blue_border_on_color.png)
 
-This repository hosts the frontend of our project, *The Real Deal*, written in [React Native](https://reactnative.dev/) and built and run using [Expo](https://expo.dev/) which communicates with our frontend application which can be found [here](https://github.com/sgronlund/latias-backend).
+This repository hosts the frontend of our project, *The Real Deal*, written in [React Native](https://reactnative.dev/) and built and run using [Expo](https://expo.dev/) and the backend application which communicates with this application can be found [here](https://github.com/sgronlund/latias-backend).
 
 ## First Time
 
