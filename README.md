@@ -1,30 +1,31 @@
-# latias-proj
+**NOTE:**
+This project was done for the course [1DT003 Computer Systems with Project Work at Uppsala University](https://www.uu.se/en/admissions/freestanding-courses/course-syllabus/?kKod=1DT003&lasar=) by the following members:
 
-The backend and all its functionality are located [here](https://github.com/sgronlund/latias-backend)
+* [AGUPTA375](https://github.com/AGUPTA375)
+* [Skrotsamlarn](https://github.com/Skrotsamlarn)
+* [RichardG99](https://github.com/RichardG99)
+* [Kimiya98901](https://github.com/Kimiya98901)
+* [JakobPaulsson](https://github.com/JakobPaulsson)
+* [niclasgardsuu](https://github.com/niclasgardsuu)
+* [sgronlund](https://github.com/sgronlund)
+---
+# The Real Deal - Frontend
+![logo](./src/assets/Logo_white_with_blue_border_on_color.png)
 
-## First time
+This repository hosts the frontend of our project, *The Real Deal*, written in [React Native](https://reactnative.dev/) and built and run using [Expo](https://expo.dev/) which communication with our frontend application which can be found [here](https://github.com/sgronlund/latias-backend).
 
-When you've successfully cloned this repo, enter the src folder and run the following command :
+## First Time
+
+When you've successfully cloned this repo, enter the `src` folder and run:
 ```
 npm i
-``` 
-This installs all the dependencies this project requires.
-This process should not differ from MacOS, Linux or Windows assuming you've succesfully installed NodeJS on your host machine.
-
-## Client-Server session
-
-### Server
-When initiating the Client-Server session you must first start the server. To do this enter the `server`-directory which exists in the `src`-directory and run the command:
-```bash
-npm start
 ```
+This installs all the dependencies this project requires.
+This process should not differ from MacOS, Linux or Windows assuming you've successfully installed NodeJS on your host machine.
 
-If everything is working your terminal should look something like this:
-![image](https://user-images.githubusercontent.com/55285451/113585007-eaae8c80-962b-11eb-9f0c-616a5c71464e.png)
+### Usage
 
-### Client
-
-To connect a client, enter the src folder from another terminal and simply run:
+To connect a client, enter the `src` folder from another terminal and simply run:
 ```bash
 npm start
 ```
@@ -34,15 +35,14 @@ If you choose the browser your console should look something like this:
 
 ![image](https://user-images.githubusercontent.com/55285451/113585858-1120f780-962d-11eb-81f5-9c4978737d20.png)
 
+### Documentation
 
-### Docs
-
-To generate documentation, you can simply run (after running npm install):
+To generate documentation, you can simply run:
 ```bash
 npm run document
 ```
 
-This will generate the src/out/ folder where index.html will contain all generated documentation.
+This will generate the `src/out/` folder where index.html will contain all generated documentation.
 
 ### Clean
 
@@ -50,12 +50,3 @@ To clean up temporary files or files that should not be commited, simply run:
 ```bash
 npm run clean
 ```
-
-### Errors
-
-1. If you cannot compile
-- Remove `node_modules` and `package-lock.json`
-- Run `npm install` and try again
-2. If error persists
-- Read error message and try to interpret it
-3. Ask for help 🤠
