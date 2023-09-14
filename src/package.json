@@ -21,25 +21,23 @@
     ]
   },
   "dependencies": {
-    "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.4",
     "current-week-number": "^1.0.7",
-    "expo": "~40.0.0",
+    "eas-cli": "^5.2.0",
+    "expo": "^49.0.10",
     "expo-app-loading": "^1.0.3",
-    "expo-font": "~8.4.0",
+    "expo-font": "~11.4.0",
+    "expo-linear-gradient": "~12.3.0",
     "jsdoc": "^3.6.6",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-crypto-js": "^1.0.0",
-    "react-native-gesture-handler": "~1.8.0",
+    "react-native-gesture-handler": "~2.12.0",
     "react-native-paper": "^4.8.1",
-    "react-native-qrcode-svg": "^6.1.1",
-    "react-native-reanimated": "~1.13.0",
-    "react-native-safe-area-context": "3.1.9",
-    "react-native-screens": "~2.15.2",
-    "react-native-svg": "^12.1.1",
-    "react-native-web": "^0.16.1",
+    "react-native-qrcode-svg": "^6.2.0",
+    "react-native-reanimated": "~3.3.0",
+    "react-native-safe-area-context": "4.6.3",
+    "react-native-screens": "~3.22.0",
+    "react-native-svg": "13.9.0",
+    "react-native-web": "~0.19.6",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
     "sha256": "^0.2.0",
@@ -48,9 +46,10 @@
     "ws": "^1.1.5"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0",
-    "jest": "^26.6.3",
+    "@babel/core": "^7.20.0",
+    "jest": "^29.2.1",
     "prettier": "2.2.1"
   },
   "private": true
 }
+
