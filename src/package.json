@@ -43,7 +43,8 @@
     "sha256": "^0.2.0",
     "shelljs": "^0.8.4",
     "socket.io-client": "^4.0.1",
-    "ws": "^1.1.5"
+    "ws": "^1.1.5",
+    "@expo/webpack-config": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -52,4 +53,3 @@
   },
   "private": true
 }
-

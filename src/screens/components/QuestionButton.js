@@ -28,7 +28,7 @@ const Balance = `För att räkna ut hur mycket saldo användaren ska få så tar
 class QuestionButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { show: false };
+    this.state = { show:false };
   }
 
   toggleShow() {
@@ -104,26 +104,25 @@ const styles = StyleSheet.create({
     width: responsive.width,
     height: responsive.height,
     borderRadius: responsive.borderRadius,
-    backgroundColor: "black",
+    backgroundColor: "white",
     opacity: 0.9,
     textAlign: "center",
     justifyContent: "center",
+      position: "fixed",
   },
   QuestionMark: {
-    fontSize: theme.FONT_SIZE_MEDIUM,
+    fontSize: theme.FONT_SIZE_SMALL,
     textAlign: "center",
-    color: "white",
+    color: "black",
   },
   TextBig: {
-    fontSize: theme.FONT_SIZE_MEDIUM,
-    color: "white",
-    marginBottom: theme.MARGIN_SMALL
-  },
-  TextSmall: {
     fontSize: theme.FONT_SIZE_SMALL,
     color: "white",
+  },
+  TextSmall: {
+      fontSize: theme.FONT_SIZE_TINY,
+    color: "white",
     flexWrap: "wrap",
-    marginBottom: theme.MARGIN_EXTRA_TINY
   },
   Overlay: {
     padding: theme.PADDING_MEDIUM,
